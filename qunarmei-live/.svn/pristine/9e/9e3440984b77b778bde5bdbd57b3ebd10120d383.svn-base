@@ -1,0 +1,323 @@
+<?php
+
+namespace app\admin\controller;
+use think\Db;
+use think\Exception;
+
+/**
+ * 直播相关配置
+ */
+class Liveconf extends Base
+{
+
+    /**
+     * 手机端主播商品配置
+     */
+    public function goods(){
+
+        $key = input('key');
+        $map = [];
+        if($key&&$key!==""){
+            $map['l.mobile'] = ['like','%'.$key.'%'];
+        }
+        $Nowpage = input('get.page') ? input('get.page'):1;
+        $limits = 50;// 获取总条数
+
+        $count = Db::table('think_live_goods l')->join(['ims_bj_shopn_member'=>'m'],['l.mobile=m.mobile'],'LEFT')
+            ->join(['ims_bwk_branch'=>'b'],['b.id=m.storeid'],'LEFT')
+            ->join(['ims_bj_shopn_goods'=>'g'],['l.goods_id=g.id'],'LEFT')
+            ->field('l.id,l.is_show,l.is_hot,l.create_time,l.mobile,l.goods_id,m.realname,b.sign,b.title')
+            ->where($map)
+            ->order('l.id desc')->count();//计算总页面
+        $allpage = intval(ceil($count / $limits));
+        $pre = ($Nowpage-1)*$limits;
+
+        // 主播号码,主播名称,主播门店,主播已配置直播间的商品,当前热门商品,配置时间,修改时间
+        $lists = Db::table('think_live_goods l')
+            ->join(['ims_bj_shopn_member'=>'m'],['l.mobile=m.mobile'],'LEFT')
+            ->join(['ims_bwk_branch'=>'b'],['b.id=m.storeid'],'LEFT')
+            ->join(['ims_bj_shopn_goods'=>'g'],['l.goods_id=g.id'],'LEFT')
+            ->field('l.id,l.is_show,l.is_hot,l.create_time,l.mobile,l.goods_id,m.realname,b.sign,b.title,g.title goods_title')
+            ->where($map)
+            ->order('l.id desc')
+            ->limit($pre,$limits)
+            ->select();
+
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数
+        $this->assign('count', $count);
+        $this->assign('val', $key);
+        if(input('get.page')){
+            return json($lists);
+        }
+        return $this->fetch();
+    }
+
+    /**
+     * 修改状态
+     * @return [type] [description]
+     */
+    public function upd_goods()
+    {
+        $id = input('id');
+        $map['id'] = $id;
+        $status = Db::table('think_live_goods')->where($map)->value('is_show');//判断当前状态情况
+        $dt = date('Y-m-d H:i:s');
+        if($status==1) {
+            $flag = Db::table('think_live_goods')->where($map)->setField(['is_show'=>0,'update_time'=>$dt]);
+            return json(['code' => 0, 'data' => $flag['data'], 'msg' => '下架']);
+        } else {
+            $flag = Db::table('think_live_goods')->where($map)->setField(['is_show'=>1,'update_time'=>$dt]);
+            return json(['code' => 1, 'data' => $flag['data'], 'msg' => '上架']);
+        }
+    }
+    /**
+     * 添加主播直播间商品
+     * @return [type] [description]
+     */
+    public function add_goods(){
+        // 添加提交
+        $arr = [];
+        if(request()->isAjax()){
+            $param = input('post.');
+            $data['mobile'] = $param['mobile'];
+            $data['goods_id'] = $param['goods_id'];
+            // 查询主播门店
+            $map_b['mobile'] = $param['mobile'];
+            $res_b = Db::table('ims_bj_shopn_member')->where($map_b)->limit(1)->find();
+            if($res_b){
+                $map_g['storeid'] = $res_b['storeid'];
+                $map_g['pid'] = $param['goods_id'];
+                $res_g = Db::table('ims_bj_shopn_goods')->where($map_g)->limit(1)->find();
+                if($res_g){
+                    $data['goods_id'] = $res_g['id'];
+                }
+            }else{
+                $arr['code'] = 0;
+                $arr['msg'] = '主播账号不存在';
+                return json($arr);
+            }
+            // 查询门店对应的子商品id
+            $data['is_show'] = $param['is_show'];
+            $data['create_time'] = date('Y-m-d H:i:s');
+            try{
+                $res1 = Db::table('think_live_goods')->insert($data);
+                $arr['msg'] = '添加成功';
+                $arr['code'] = 1;
+            }catch(Exception $e){
+                $arr['msg'] = '添加失败-'.$e->getMessage();
+                $arr['code'] = 0;
+            }
+            return json($arr);
+        }
+        // 查询父商品可选的列表
+        $map['g.isshow'] = 1;
+        $map['g.status'] = 1;
+        $map['g.deleted'] = 0;
+        $map['g.storeid'] = 0;
+
+        $map['c.enabled'] = 1;
+        // 可选商品列表
+        $res_gd = Db::table('ims_bj_shopn_goods g')->join(['ims_bj_shopn_category'=>'c'],['c.id=g.pcate'],'left')->field('g.id,g.title,g.marketprice')->where($map)->order('g.pcate desc')->select();
+        $this->assign('list',$res_gd);
+        return $this->fetch();
+    }
+    /**
+     * 修改主播直播间商品
+     * @return [type] [description]
+     */
+    public function edit_goods(){
+        $id = input('id');
+        // 添加提交
+        $arr = [];
+        if(request()->isAjax()){
+            $param = input('post.');
+            $map['id'] = $id;
+            $data['mobile'] = $param['mobile'];
+            $data['goods_id'] = $param['goods_id'];
+            $data['is_show'] = $param['is_show'];
+            $data['create_time'] = date('Y-m-d H:i:s');
+            try{
+                $res1 = Db::table('think_live_goods')->where($map)->update($data);
+                $arr['msg'] = '添加成功';
+                $arr['code'] = 1;
+            }catch(Exception $e){
+                $arr['msg'] = '添加失败-'.$e->getMessage();
+                $arr['code'] = 0;
+            }
+            return json($arr);
+        }
+        // 查询父商品可选的列表
+        $map['g.isshow'] = 1;
+        $map['g.status'] = 1;
+        $map['g.deleted'] = 0;
+        $map['g.storeid'] = 0;
+        $map['c.enabled'] = 1;
+
+        // 配置列表
+        $mapg['id'] = $id;
+        $res_conf = Db::table('think_live_goods')->where($mapg)->order('create_time desc')->limit(1)->find();
+        // 查询主播所在门店
+        $mapm['mobile'] = $res_conf['mobile'];
+        $res_mem = Db::table('ims_bj_shopn_member')->where($mapm)->limit(1)->find();
+        $map['g.storeid'] = $res_mem['storeid'];
+        // 可选商品列表
+        $res_gd = Db::table('ims_bj_shopn_goods g')->join(['ims_bj_shopn_category'=>'c'],['c.id=g.pcate'],'left')->field('g.id,g.title,g.marketprice')->where($map)->order('g.pcate desc')->select();
+        $this->assign('id',$id);
+        $this->assign('list',$res_gd);
+        $this->assign('res',$res_conf);
+        return $this->fetch();
+    }
+    /**
+     * 删除主播直播间商品
+     * @return [type] [description]
+     */
+    public function del_goods()
+    {
+        $id = input('id');
+        $arr['code'] = 0;
+        $arr['msg'] = '删除失败';
+        try{
+            $map['id'] = $id;
+            Db::table('think_live_goods')->where($map)->delete();
+            $arr['msg'] = '删除成功';
+        }catch(Exception $e){
+            $arr['msg'] .= '-'.$e->getMessage();
+        }
+        return json($arr);
+    }
+    /**
+     * 直播观看权限配置
+     */
+    public function seeconf(){
+
+        $key = input('key');
+        $map = [];
+        if($key&&$key!==""){
+            $map['c.mobile'] = ['like','%'.$key.'%'];
+        }
+        $Nowpage = input('get.page') ? input('get.page'):1;
+        $limits = 50;// 获取总条数
+
+        $count = Db::table('think_live_see_conf c')
+            ->join(['ims_bj_shopn_member'=>'m'],['c.mobile=m.mobile'],'LEFT')
+            ->join(['ims_bwk_branch'=>'b'],['b.id=m.storeid'],'LEFT')
+            ->field('c.*,m.realname,b.title,b.sign')
+            ->where($map)
+            ->order('c.start_time desc')->count();//计算总页面
+        $allpage = intval(ceil($count / $limits));
+        $pre = ($Nowpage-1)*$limits;
+
+        // 主播号码,主播名称,主播门店,主播已配置直播间的商品,当前热门商品,配置时间,修改时间
+        $lists = Db::table('think_live_see_conf c')
+            ->join(['ims_bj_shopn_member'=>'m'],['c.mobile=m.mobile'],'LEFT')
+            ->join(['ims_bwk_branch'=>'b'],['b.id=m.storeid'],'LEFT')
+            ->field('c.*,m.realname,b.title,b.sign')
+            ->where($map)
+            ->order('c.id desc')
+            ->limit($pre,$limits)
+            ->select();
+        if($lists){
+            foreach($lists as $k=>$v){
+                $lists[$k]['realname'] = $v['realname']==null?'':$v['realname'];
+                $lists[$k]['title'] = $v['title']==null?'':$v['title'];
+                $lists[$k]['sign'] = $v['sign']==null?'':$v['sign'];
+                $lists[$k]['start_time'] = $v['start_time']>0?date('Y-m-d H:i:s',$v['start_time']):'';
+                $lists[$k]['end_time'] = $v['end_time']>0?date('Y-m-d H:i:s',$v['end_time']):'';
+            }
+        }
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数
+        $this->assign('count', $count);
+        $this->assign('val', $key);
+        if(input('get.page')){
+            return json($lists);
+        }
+        return $this->fetch();
+    }
+    /**
+     * 添加主播直播观看权限
+     * @return [type] [description]
+     */
+    public function add_seeconf(){
+        // 添加提交
+        $arr = [];
+        $param = input('post.');
+        if($param && $param['submit']){
+            $data['mobile'] = $param['mobile'];
+            $data['store_signs'] = $param['store_signs'];
+            $data['see_mobiles'] = $param['see_mobiles'];
+            $data['start_time'] = strtotime($param['start_time']);
+            $data['end_time'] = strtotime($param['end_time']);
+            $data['create_time'] = $param['create_time'];
+            $data['remark'] = $param['remark'];
+            try{
+                $res1 = Db::table('think_live_see_conf')->insert($data);
+                $arr['msg'] = '添加成功';
+                $arr['code'] = 1;
+            }catch(Exception $e){
+                $arr['msg'] = '添加失败-'.$e->getMessage();
+                $arr['code'] = 0;
+            }
+            return json($arr);
+        }
+        return $this->fetch();
+    }
+    /**
+     * 修改主播直播权限配置
+     * @return [type] [description]
+     */
+    public function edit_seeconf(){
+        $id = input('id');
+        // 添加提交
+        $arr = [];
+        if(request()->isAjax()){
+            $param = input('post.');
+            $map['id'] = $id;
+            $data['mobile'] = $param['mobile'];
+            $data['store_signs'] = $param['store_signs'];
+            $data['see_mobiles'] = $param['see_mobiles'];
+            $data['start_time'] = strtotime($param['start_time']);
+            $data['end_time'] = strtotime($param['end_time']);
+            $data['create_time'] = $param['create_time'];
+            $data['remark'] = $param['remark'];
+            try{
+                $res1 = Db::table('think_live_see_conf')->where($map)->update($data);
+                $arr['msg'] = '修改成功';
+                $arr['code'] = 1;
+            }catch(Exception $e){
+                $arr['msg'] = '修改失败-'.$e->getMessage();
+                $arr['code'] = 0;
+            }
+            return json($arr);
+        }
+        // 配置列表
+        $mapg['id'] = $id;
+        $res_conf = Db::table('think_live_see_conf')->where($mapg)->order('create_time desc')->limit(1)->find();
+        if($res_conf){
+            $res_conf['start_time'] = date('Y-m-d',$res_conf['start_time']);
+            $res_conf['end_time'] = date('Y-m-d',$res_conf['end_time']);
+        }
+        $this->assign('id',$id);
+        $this->assign('res',$res_conf);
+        return $this->fetch();
+    }
+    /**
+     * 删除主播直播权限配置
+     * @return [type] [description]
+     */
+    public function del_seeconf()
+    {
+        $id = input('id');
+        $arr['code'] = 0;
+        $arr['msg'] = '删除失败';
+        try{
+            $map['id'] = $id;
+            Db::table('think_live_see_conf')->where($map)->delete();
+            $arr['msg'] = '删除成功';
+        }catch(Exception $e){
+            $arr['msg'] .= '-'.$e->getMessage();
+        }
+        return json($arr);
+    }
+}

@@ -1,0 +1,493 @@
+<?php
+
+namespace app\admin\controller;
+use app\admin\service\BranchSer;
+use app\admin\service\GouldMap;
+use think\Db;
+
+set_time_limit(0);
+// 制定允许其他域名访问
+header("Access-Control-Allow-Origin:*");
+// 响应类型
+header('Access-Control-Allow-Methods:GET');
+// 响应头设置
+header('Access-Control-Allow-Headers:x-requested-with, content-type');
+class Branch extends Base
+{
+    // 域名使用
+    protected $url = 'http://live.qunarmei.com';
+    // 测试环境父商品id
+//    protected $pid = [11,12,13,14,15,5036,8663,17354,17446,17454,17690,17701,17702,17715,17716,17717,17742,17743,17744,17780,17781,17782,21865,21866,21867,21868,21869,21870,21871,21872,28397,1746720,1748543,1748544,1748545,1751096,1751097,1751098];//要插入的父商品id
+
+    // 拼购添加活动商品测试接口
+    protected $pt_gooods_url = 'http://192.168.3.88:3311/api/execute/pt_goods_up/store_id/';
+    // 生产环境父商品id,上新商品及时更新
+    protected $pid = [11,12,13,14,15,8663,17354,17446,17454,17690,17701,17702,17715,17716,17717,17742,17743,17744,17780,17781,17782,1746720,1746721,1746722,1746723,1746724,1747226,1747227,1747228,1748131,1748132,1748133,1748134,1748135,1748136,1748137,1748138,1777175,1777176,1777177,1777178,1777179,1777180,1786376,1786377,1786378,1786379,1786380,1786381,1799101,1805273,1807282,1807283,1807284,1807285,1807286,1807287,1807288,1807289,1807290,1807291,1807292,1807293,1807294,1807295,1807296,1807297,1807298,1807299,1807300,1807301,1807302,1807303,1807304,1807305,1807306,1807307,1822214,1822215,1822216,1822217,1822218,1822219,1822220,1822221,1822818,1822839,1837911,1837913,1837915,1837917,1843573];
+
+    // 生产环境
+    // 88礼券父商品id
+    protected $pid88 = 1974358;
+    // 直播间父商品id
+    protected $pidzb = [1748134,1941467,1941468,1941469,1941470,1941471,1941472,1941473,1974355];
+    /**
+     * 门店列表
+     */
+    public function index(){
+        $uid = $_SESSION['think']['uid'];
+        $export = input('export',0);
+        $key = input('key');
+        $map = [];
+        if($key&&$key!==""){
+            $map['sign'] = ['like','%'.$key.'%'];
+        }
+        $Nowpage = input('get.page') ? input('get.page'):1;
+        $limits = 50;// 获取总条数
+        $count = Db::table('ims_bwk_branch')->where($map)->count();//计算总页面
+        $allpage = intval(ceil($count / $limits));
+        $pre = ($Nowpage-1)*$limits;
+        if($export){
+            // 大数据切割分开导出
+            $limits = 600;
+            $num = ceil($count/$limits);
+            // 文件头
+            $file_name = 'store_'.date('YmdHis').'.csv';
+            $header_arr = array('门店id','所属办事处','门店名称','门店编号','门店地址','412直播活动开关','直播消费券活动开关');
+            // CSV名称转中文试下
+            @$csv_name = iconv("UTF-8", "GB2312//IGNORE", @$file_name);
+            $csv_path = '/home/canmay/www/live/public/csv/';// 服务器
+//            $csv_path = 'D:\software\phpstudy\PHPTutorial\WWW\SVN\qunarmei-liv\public\csv\\';// 本地测试
+            $fp = fopen($csv_path.$csv_name,'a+');
+            // 处理头部标题
+            foreach ($header_arr as $kc => $vc) {
+                $header_arr[$kc] = iconv('utf-8','gb2312//IGNORE',$vc);
+            }
+            $header = implode(',', $header_arr) ."\n";
+            fwrite($fp, $header);
+
+            for($a = 1;$a <= $num;$a++){
+                $pre = ($a-1)*$limits;
+                $lists1 = Db::table('ims_bwk_branch b')
+                    ->join(['sys_departbeauty_relation'=>'sdr'],['b.id=sdr.id_beauty'],'LEFT')
+                    ->join(['sys_department'=>'sd'],['sdr.id_department=sd.id_department'],'LEFT')
+                    ->field('b.*,sd.st_department bsc')
+                    ->where($map)
+                    ->order('b.id desc')
+                    ->limit($pre,$limits)
+                    ->select();
+                // 循环追加写入导出
+                if($lists1){
+                    $content = '';
+                    foreach ($lists1 as $k1=>$v1) {
+                        $data1['id'] = $v1['id'];
+                        $data1['bsc'] = iconv('utf-8','gb2312//IGNORE',$v1['bsc']);
+                        $data1['title'] = iconv('utf-8','gb2312//IGNORE',$v1['title']);
+                        $data1['sign'] = iconv('utf-8','gb2312//IGNORE',$v1['sign']);
+                        $data1['address'] = iconv('utf-8','gb2312//IGNORE',$v1['address']);;
+                        $data1['act_flag315'] = $v1['act_flag315']==1?iconv('utf-8','gb2312//IGNORE','开'):iconv('utf-8','gb2312//IGNORE','关');
+                        $data1['act_live_card'] = $v1['act_live_card']==1?iconv('utf-8','gb2312//IGNORE','开'):iconv('utf-8','gb2312//IGNORE','关');
+                        $content .= implode(",",$data1)."\n"; //用英文逗号分开
+                        // 写入并关闭资源
+                        fwrite($fp, $content);
+                        unset($content);
+                        $content = '';
+                    }
+                }
+            }
+            // 关闭并释放资源
+            fclose($fp);
+            $res_url = 'http://live.qunarmei.com/csv/'.$file_name;// 服务器域名
+//            $res_url = 'http://test_live.qunarmei.com:9999/csv/'.$file_name;// 本地域名
+            echo $res_url;die();
+//            return $file_n;
+        }
+        $lists = Db::table('ims_bwk_branch b')
+            ->join(['sys_departbeauty_relation'=>'sdr'],['b.id=sdr.id_beauty'],'LEFT')
+            ->join(['sys_department'=>'sd'],['sdr.id_department=sd.id_department'],'LEFT')
+            ->field('b.*,sd.st_department bsc')
+            ->where($map)
+            ->order('b.id desc')
+            ->limit($pre,$limits)
+            ->select();
+        $storeids = [];    
+        if($lists){
+            foreach ($lists as $k=>$v) {
+                $lists[$k]['bsc'] = $v['bsc']==null?'':$v['bsc'];
+                $lists[$k]['is_anxinsong'] = 0;
+                $lists[$k]['act_list'] = '';
+                if($v['act_flag315']){
+                    $lists[$k]['act_list'] = '412直播活动';
+                }
+            }
+            // 查询开启安心送的门店有哪些
+            $mapg['is_reassuring'] = 1;
+            $mapg['storeid'] = ['in',$storeids];
+            $res_axs = Db::table('ims_bj_shopn_goods g')->field('storeid')->where($mapg)->group('storeid')->order('storeid')->select();
+            if ($res_axs) {
+                $store_axs = [];
+                foreach ($res_axs as $k1 => $v1) {
+                    $store_axs[] = $v1['storeid'];
+                }
+                foreach ($lists as $k => $v) {
+                    if (in_array($v['id'],$store_axs)) {
+                        $lists[$k]['is_anxinsong'] = 1;
+                    }
+                }
+            }
+        }
+//        echo 'lists<pre>:';print_r($lists);die;
+        // 导出报表
+        $export = input('export',0);
+        if ($export) {
+//            echo 'lists<pre>:';print_r($lists);die;
+//            $data = [];
+//            foreach ($lists as $k => $v) {
+//                $data1['bsc'] = $v['bsc'];
+//                $data1['title'] = $v['title'];
+//                $data1['sign'] = $v['sign'];
+//                $data1['address'] = $v['address'];
+//                $data1['is_axs'] = $v['is_anxinsong']==1?'安心送开启':'安心送关闭';
+//                $data1['act_flag315'] = $v['act_flag315']==1?'315活动开':'315活动关';
+//                $data[] = $data1;
+//            }
+////            echo 'data<pre>:';print_r($data);die;
+//            if($data) {
+//                $file_name = 'store_'.date('YmdHis');
+//                $header_arr = array('所属办事处','门店名称','门店编号','门店地址','安心送开关','315直播活动开关');
+//                $file_name1 = reportCsv ($header_arr,$data,$file_name);
+//                $res_url = 'http://live.qunarmei.com/csv/'.$file_name1;
+//                echo $res_url;die();
+////                export_csv($header_arr,$data,$file_name);die;
+//            }
+        }
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数
+        $this->assign('count', $count);
+        $this->assign('val', $key);
+        if(input('get.page')){
+            return json($lists);
+        }
+        return $this->fetch();
+    }
+    /**
+     * 修改安心送开关状态
+     * @return [type] [description]
+     */
+    public function upd_anxinsong()
+    {
+        $id = input('id');
+        $kaiguan = input('kaiguan');
+        $map['storeid'] = $id;
+        $data['is_reassuring'] = $kaiguan=='open'?1:0;
+        $res = Db::table('ims_bj_shopn_goods')->where($map)->update($data);
+        $arr = ['code'=>1,'msg'=>'修改成功'];
+        return $arr;
+    }
+    /**
+     * 门店商品
+     * @return [type] [description]
+     */
+    public function store_goods(){
+        $key = input('key');
+        $storeid = input('storeid');
+        $map['g.storeid'] = $storeid;
+        $map['g.status'] = 1;
+        $map['g.isshow'] = 1;
+        $map['g.deleted'] = 0;
+        $map['g.live_flag'] = 0;
+        $map['c.enabled'] = 1;
+        if($key&&$key!==""){
+            $map['g.title'] = ['like','%'.$key.'%'];
+        }
+        $Nowpage = input('get.page') ? input('get.page'):1;
+        $limits = 30;// 获取总条数
+        $count = Db::table('ims_bj_shopn_goods g')->join(['ims_bj_shopn_category'=>'c'],['c.id=g.pcate'],'LEFT')->field('g.*')->where($map)->count();//计算总页面
+        // var_dump($count);die;
+        $allpage = intval(ceil($count / $limits));
+        $pre = ($Nowpage-1)*$limits;
+        $lists = Db::table('ims_bj_shopn_goods g')
+            ->join(['ims_bj_shopn_category'=>'c'],['c.id=g.pcate'],'LEFT')
+            ->field('g.*')
+            ->where($map)
+            ->order('g.pcate asc,g.displayorder desc,g.id asc')
+            ->limit($pre,$limits)
+            ->select();
+        if($lists){
+            foreach ($lists as $k => $v) {
+                $lists[$k]['title'] = $v['title'];
+                $lists[$k]['price'] = $v['marketprice'];
+                $lists[$k]['is_anxinsong'] = $v['is_reassuring'];
+            }
+        }
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数
+        $this->assign('count', $count);
+        $this->assign('val', $key);
+        $this->assign('storeid', $storeid);
+        if(input('get.page')){
+            return json($lists);
+        }
+        return $this->fetch();
+    }
+    /**
+     * 修改门店商品-安心送开关状态
+     * @return [type] [description]
+     */
+    public function upd_anxinsong_goods()
+    {
+        $id = input('id');
+        $kaiguan = input('kaiguan');
+        $map['id'] = $id;
+        $data['is_reassuring'] = $kaiguan=='open'?1:0;
+        $res = Db::table('ims_bj_shopn_goods')->where($map)->update($data);
+        $arr = ['code'=>1,'msg'=>'修改成功'];
+        return $arr;
+    }
+
+    /**
+     * 查询最新添加的父商品
+     */
+    private function getGoodsPid()
+    {
+        $map['id'] = ['>',end($this->pid)];
+        $res = Db::table('ims_bj_shopn_goods')->where($map)->field('id')->order('id asc')->select();
+        if($res){
+            $pids = [];
+            foreach ($res as $v) {
+                $pids[] = $v['id'];
+            }
+            if($pids){
+                $this->pid = array_merge($this->pid,$pids);
+            }
+        }
+    }
+
+    /**
+     * 添加拼购活动商品
+     * @param $store_id
+     * @return mixed
+     */
+    private function addPgGoods($store_id)
+    {
+        $res = curl_get($this->pt_gooods_url.$store_id);
+        return $res;
+    }
+    /**
+     * 添加门店
+     */
+    public function branchAdd()
+    {
+        $rest = [];
+        if(request()->isAjax()){
+            $sign = input('sign');
+            $sign = trim($sign);
+            $signs = explode(',',$sign);
+            // 开通门店315活动
+            $map1['sign'] = ['in',$sign];
+            $data['act_flag315'] = 1;
+            $res1 = Db::table('ims_bwk_branch')->where($map1)->update($data);
+            if ($res1) {
+                // 推送商品到门店
+                $gdSer = new \app\neibu\service\GoodService();
+                $resg = $gdSer->addLiveGoods($sign);
+                $rest = $resg;
+                return json(['code' => $rest['code'], 'data' => '', 'msg' => $rest['msg']]);
+            }
+        }
+        return $this->fetch();
+    }
+
+    /**
+     * 删除门店
+     */
+    public function branchDel()
+    {
+        $id = input('param.id');
+        if($id) {
+            $branchSer = new BranchSer();
+            $map['id'] = $id;
+            $branchSer->delBranch($map);
+        }
+        return json(['code' => 1, 'data' => '', 'msg' => '删除成功']);
+    }
+
+    /**
+     * 编辑门店
+     */
+    public function branchEdit()
+    {
+        $id = input('id',0);
+        $submit = input('submit');
+        $list = Db::table('ims_bwk_branch')->where('id',$id)->limit(1)->find();
+        if($submit){
+            $param = input();
+            $id = $param['id'];
+            $data = [
+                'title' => $param['title'],
+                'sign' => $param['sign'],
+                'address' => $param['address']
+            ];
+            $gouldSer = new GouldMap();
+            $res_addr = $gouldSer->addressTolng($param['address']);
+            if($res_addr) {
+                $res_addr1 = $res_addr['geocodes'][0];
+                $data['location_p'] = $res_addr1['province'];
+                $data['location_c'] = $res_addr1['city'];
+                $data['location_a'] = $res_addr1['district'];
+                $lng = explode(',', $res_addr1['location']);
+                $data['lng'] = $lng[0];
+                $data['lat'] = $lng[1];
+            }
+            $res = Db::table('ims_bwk_branch')->where('id',$id)->update($data);
+            
+            // 记录用户行为日志
+            $baseSer = new \app\admin\service\BaseSer();
+            $user_id = $_SESSION['think']['uid'];
+            $msg = '修改门店-'.$data['sign'].'-地址:'.$data['address'];
+            $baseSer->writeLog($user_id,$msg);
+
+            return json(array('code'=>1,'data' => '','msg' => '修改成功'));
+        }
+        $this->assign('id', $id);
+        $this->assign('list', $list);
+        return $this->fetch();
+    }
+    /**
+     * 修改活动开关状态
+     * @return [type] [description]
+     */
+    public function upd_actflag315()
+    {
+        $id = input('id');
+        $kaiguan = input('kaiguan');
+        $map['id'] = $id;
+        $data['act_flag315'] = $kaiguan;
+        $res = Db::table('ims_bwk_branch')->where($map)->update($data);
+        $arr = ['code'=>1,'msg'=>'修改成功'];
+        return json($arr);
+    }
+    // 参与315活动门店
+    public function act315()
+    {
+        $map['act_flag315'] = 1;
+        $res = Db::table('ims_bwk_branch b')->join(['sys_departbeauty_relation'=>'r'],['r.id_beauty=b.id'],'LEFT')->join(['sys_department'=>'s'],['r.id_department=s.id_department'],'LEFT')->where($map)->order('b.id desc')->select();
+        $data = [];
+        if ($res) {
+            foreach ($res as $k => $v) {
+                $data1['bsc'] = $v['st_department'];
+                $data1['title'] = $v['title'];
+                $data1['sign'] = $v['sign'];
+                $data[] = $data1;
+            }
+        }
+        $filename = "app参与315活动门店".date('YmdHis');
+        $header = array ('办事处','门店名称','门店编号');
+        $widths=array('10','10','10');
+        if($data) {
+            excelExport($filename, $header, $data, $widths);//生成数据
+        }
+        die();
+    }
+
+    /**
+     * 弹窗选择活动开关
+     */
+    public function act_list(){
+        if(request()->isAjax()){
+            try {
+                // 412活动开关=>直播商品;88礼券开关
+                $param = input('post.');
+                // 关闭88礼券和直播商品
+                $pid = $this->pidzb;
+                $pid[] = $this->pid88;
+                $map['pid'] = ['in',$pid];
+                $map['storeid'] = $param['storeid'];
+                $data['status'] = 0;
+                $data['deleted'] = 1;
+                $data['isshow'] = 0;
+                $res = Db::table('ims_bj_shopn_goods')->where($map)->update($data);
+
+                // 更改门店活动开关
+                $mapb['id'] = $param['storeid'];
+                $datab['act_flag315'] = 0;
+                $res1 = Db::table('ims_bwk_branch')->where($mapb)->update($datab);
+                // 开通选择的活动和商品
+                if(isset($param['act']) && $param['act']){
+                    $pid = [];
+                    $pid1 = [];
+                    $pid2 = [];
+                    $zb_flag = 0;
+                    foreach ($param['act'] as $v) {
+                        // 开通88
+                        if($v == 1){
+                            $pid1[] = $this->pid88;
+                        }
+                        if($v == 2){
+                            // 开通直播商品
+                            $pid2 = $this->pidzb;
+                            $zb_flag = 1;
+                        }
+                    }
+                    $pid = array_merge($pid1,$pid2);
+                    $map['pid'] = ['in',$pid];
+                    $map['storeid'] = $param['storeid'];
+                    $data['status'] = 1;
+                    $data['deleted'] = 0;
+                    $data['isshow'] = 1;
+                    $res = Db::table('ims_bj_shopn_goods')->where($map)->update($data);
+
+                    // 门店活动打开
+                    $datab['act_flag315'] = 1;
+                    $res1 = Db::table('ims_bwk_branch')->where($mapb)->update($datab);
+                }
+                return json(['code' => 1, 'data' => '', 'msg' => '选择成功']);
+            }catch (\Exception $e){
+                return json(['code' => 0, 'data' => '', 'msg' => '选择失败'.$e->getMessage()]);
+            }
+        }
+        $storeid=input('param.storeid');
+
+        // 88礼券
+        $map_88['storeid'] = $storeid;
+        $map_88['pid'] = $this->pid88;
+        $map_88['status'] = 1;
+        $map_88['isshow'] = 1;
+        $map_88['deleted'] = 0;
+        $map_88['ticket_type'] = ['in',[1,2]];
+        $res_88 = Db::table('ims_bj_shopn_goods')->where($map_88)->value('id');
+        $join_tk1 = [];
+        if($res_88){
+            $join_tk1[] = 1;
+        }
+        // 直播商品
+        $map_88['ticket_type'] = 0;
+        $map_88['pid'] = ['in',$this->pidzb];
+        $res_zb = Db::table('ims_bj_shopn_goods')->where($map_88)->value('id');
+        if($res_zb){
+            $join_tk1[] = 2;
+        }
+        $join_tk = implode(',',$join_tk1);
+        $this->assign('storeid',$storeid);
+        $this->assign('act',$join_tk);
+        return $this->fetch();
+    }
+    // 参与直播消费券活动开关
+    public function act_live()
+    {
+        $id = input('id');
+        $arr = ['code'=>1,'msg'=>'修改成功'];
+        // 查询状态
+        $map['id'] = $id;
+        $res = Db::table('ims_bwk_branch')->where($map)->limit(1)->find();
+        if($res){
+            // 等于1的话改为0
+            if($res['act_live_card']){
+                $data['act_live_card'] = 0;
+                $arr['code'] = 0;
+            }else{
+                $data['act_live_card'] = 1;
+            }
+            Db::table('ims_bwk_branch')->where($map)->update($data);
+            return json($arr);
+        }
+    }
+}

@@ -1,0 +1,44 @@
+---------------------------------------------------------------
+[ 2019-12-05T09:40:09+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/user_score?user_id=16829
+[ sql ] [ DB ] CONNECT:[ UseTime:0.033504s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_score_category` [ RunTime:0.019002s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_score_category` WHERE  `is_show` = 1 ORDER BY create_time desc [ RunTime:0.018503s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_sum_user` [ RunTime:0.017003s ]
+[ sql ] [ SQL ] SELECT * FROM `think_sum_user` WHERE  `user_id` = 16829 LIMIT 1 [ RunTime:0.017502s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_scores_record` [ RunTime:0.017502s ]
+[ sql ] [ SQL ] SELECT SUM(scores) AS tp_sum FROM `think_scores_record` WHERE  `user_id` = 16829  AND `type` IN ('missshop','missshop_transfer','missshop_exchange') LIMIT 1 [ RunTime:0.017002s ]
+[ sql ] [ SQL ] UPDATE `think_sum_user`  SET `missshop_scores`=-156,`missshop_scores_upd_time`='2019-12-05 09:40:09'  WHERE  `id` = 71 [ RunTime:0.016503s ]
+[ sql ] [ SQL ] SELECT sum(scores) score,`r`.* FROM `think_scores_record` `r` WHERE  `type` IN ('missshop','missshop_transfer','missshop_exchange')  AND `user_id` = 16829 GROUP BY `usable` [ RunTime:0.017502s ]
+---------------------------------------------------------------
+[ 2019-12-05T09:45:24+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/user_score?user_id=16829
+[ sql ] [ DB ] CONNECT:[ UseTime:0.029503s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_score_category` [ RunTime:0.014502s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_score_category` WHERE  `is_show` = 1 ORDER BY create_time desc [ RunTime:0.017002s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_sum_user` [ RunTime:0.013502s ]
+[ sql ] [ SQL ] SELECT * FROM `think_sum_user` WHERE  `user_id` = 16829 LIMIT 1 [ RunTime:0.014502s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_scores_record` [ RunTime:0.014002s ]
+[ sql ] [ SQL ] SELECT SUM(scores) AS tp_sum FROM `think_scores_record` WHERE  `user_id` = 16829  AND `type` IN ('missshop','missshop_transfer','missshop_exchange') LIMIT 1 [ RunTime:0.015502s ]
+[ sql ] [ SQL ] UPDATE `think_sum_user`  SET `missshop_scores`=-156,`missshop_scores_upd_time`='2019-12-05 09:45:24'  WHERE  `id` = 71 [ RunTime:0.018002s ]
+[ sql ] [ SQL ] SELECT sum(scores) score,`r`.* FROM `think_scores_record` `r` WHERE  `type` IN ('missshop','missshop_transfer','missshop_exchange')  AND `user_id` = 16829 GROUP BY `usable` [ RunTime:0.016502s ]
+---------------------------------------------------------------
+[ 2019-12-05T09:56:03+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/redeem_now?goods_id=21547&goods_num=1&user_id=16829&store_id=2&property_ids=1&remark=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.035005s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_goods` [ RunTime:0.018502s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_goods` WHERE  `storeid` = 2  AND `id` = 21547 LIMIT 1 [ RunTime:0.020502s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_score_goods` [ RunTime:0.017002s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_score_goods` WHERE  `goods_id` = 11 LIMIT 1 [ RunTime:0.017003s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_score_goods_property` [ RunTime:0.019003s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_score_goods_property` WHERE  `score_cat_id` = '1'  AND `goods_id` = 11  AND `property_id` = 1 LIMIT 1 [ RunTime:0.017502s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_scores_record` [ RunTime:0.015502s ]
+[ sql ] [ SQL ] SELECT sum(scores) score,`r`.* FROM `think_scores_record` `r` WHERE  `user_id` = 16829  AND `usable` = 1  AND `type` IN ('missshop','missshop_transfer','missshop_exchange') GROUP BY `usable` [ RunTime:0.017002s ]
+---------------------------------------------------------------
+[ 2019-12-05T10:07:18+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/redeem_now?goods_id=21547&goods_num=1&user_id=16829&store_id=2&property_ids=1&remark=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.035004s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_goods` [ RunTime:0.018002s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_goods` WHERE  `storeid` = 2  AND `id` = 21547 LIMIT 1 [ RunTime:0.023003s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_score_goods` [ RunTime:0.017502s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_score_goods` WHERE  `goods_id` = 11 LIMIT 1 [ RunTime:0.066008s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_score_goods_property` [ RunTime:0.018002s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_score_goods_property` WHERE  `score_cat_id` = '1'  AND `goods_id` = 11  AND `property_id` = 1 LIMIT 1 [ RunTime:0.065508s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_scores_record` [ RunTime:0.016002s ]
+[ sql ] [ SQL ] SELECT sum(scores) score,`r`.* FROM `think_scores_record` `r` WHERE  `user_id` = 16829  AND `usable` = 1  AND `type` IN ('missshop','missshop_transfer','missshop_exchange') GROUP BY `usable` [ RunTime:0.066509s ]

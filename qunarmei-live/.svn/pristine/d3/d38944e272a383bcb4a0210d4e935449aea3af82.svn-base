@@ -1,0 +1,15 @@
+---------------------------------------------------------------
+[ 2020-01-10T09:22:02+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v3/app_ver/aboutQunarmei?user_id=16829&store_id=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.036504s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `app_version_update` [ RunTime:0.017502s ]
+[ sql ] [ SQL ] SELECT * FROM `app_version_update` WHERE  `id_apptype` = 1 LIMIT 1 [ RunTime:0.018003s ]
+---------------------------------------------------------------
+[ 2020-01-10T16:20:41+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v3/app_ver/aboutQunarmei?user_id=16829&store_id=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.038005s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `app_version_update` [ RunTime:0.016002s ]
+[ sql ] [ SQL ] SELECT * FROM `app_version_update` WHERE  `id_apptype` = 1 LIMIT 1 [ RunTime:0.017502s ]
+---------------------------------------------------------------
+[ 2020-01-10T17:24:20+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?type=1&ver=1&user_id=16829
+[ sql ] [ DB ] CONNECT:[ UseTime:0.033005s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_user_log` [ RunTime:0.017002s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_user_log` WHERE  `user_id` = 16829  AND `type` = 1  AND `val` = '1' LIMIT 1 [ RunTime:0.018002s ]

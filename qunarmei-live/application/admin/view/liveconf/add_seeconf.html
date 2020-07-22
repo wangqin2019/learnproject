@@ -1,0 +1,115 @@
+{include file="public/header" /}
+<!--<link rel="stylesheet" type="text/css" media="all" href="/sldate/daterangepicker-bs3.css" />-->
+<script type="text/javascript" src="/sldate/moment.js"></script>
+<script type="text/javascript" src="/static/admin/js/plugins/layer/laydate/laydate.js"></script>
+<!--<script type="text/javascript" src="/sldate/daterangepicker.js"></script>-->
+<style>
+    .file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+    .file-item .info{overflow: hidden;}
+    .uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>直播观看权限配置</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="add" id="add" method="post" action="{:url('add_seeconf')}">
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">主播号码</label>
+                            <div class="input-group col-sm-4">
+                                <input id="mobile" type="text" class="form-control" name="mobile" placeholder="">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">参与门店编号</label>
+                            <div class="input-group col-sm-4">
+                                <input id="store_signs" type="text" class="form-control" name="store_signs" placeholder="">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">参与观看用户号码</label>
+                            <div class="input-group col-sm-4">
+                                <input id="see_mobiles" type="text" class="form-control" name="see_mobiles" placeholder="">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">开始时间</label>
+                            <div class="input-group col-sm-4">
+                                <input id="start_time" type="text" class="form-control" name="start_time" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">结束时间</label>
+                            <div class="input-group col-sm-4">
+                                <input id="end_time" type="text" class="form-control" name="end_time" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建时间</label>
+                            <div class="input-group col-sm-4">
+                                <input id="create_time" type="text" class="form-control" name="create_time" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">备注说明</label>
+                            <div class="input-group col-sm-4">
+                                <input id="remark" type="text" class="form-control" name="remark" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit" name="submit" value="1"><i class="fa fa-save"></i> 保存信息</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+
+    $(function(){
+
+        $('#add').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        function checkForm(){
+
+        }
+
+        function complete(data){
+            console.log(data);
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    window.location.href="{:url('seeconf')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+
+    });
+
+
+</script>
+</body>
+</html>

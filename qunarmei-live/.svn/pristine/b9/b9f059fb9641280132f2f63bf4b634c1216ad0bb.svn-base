@@ -1,0 +1,80 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2017/11/15
+ * Time: 15:03
+ */
+
+namespace qiniu_transcoding;
+
+require_once __DIR__ . '/autoload.php';
+date_default_timezone_set('Asia/Shanghai');
+// 引入鉴权类
+use qiniu_transcoding\src\Qiniu\Auth;
+// 引入上传类
+use qiniu_transcoding\src\Qiniu\Storage\UploadManager;
+//上传图片到七牛
+class Upimg
+{
+    protected $accessKey = 'kw7pkYECHtgXDQBgZzwhu9ijMVYkYdl6iamkylMO';
+    protected $secretKey = 'Hu2DVofTTCHzge1zJTyBmPVyBG0QqV0_wTPbwdkj';
+    protected $bucket = 'qunamei-app';
+
+    //上传图片到七牛
+    public function upImg($filePath,$key1='')
+    {
+        // 构建鉴权对象
+        $auth = new Auth($this->accessKey, $this->secretKey);
+        // 生成上传 Token
+        $token = $auth->uploadToken($this->bucket);
+        // 上传到七牛后保存的文件名
+        // $key = date('YmdHis').'_'.mt_rand(1111,9999).'.jpg';
+        // 上传到七牛后保存的文件名
+        if($key1){
+            $key = $key1;
+        }else{
+            $key = date('YmdHis').'_'.mt_rand(1111,9999).'.jpg';
+        }
+        $url = 'http://appc.qunarmei.com/'.$key;
+        // 初始化 UploadManager 对象并进行文件的上传。
+        $uploadMgr = new UploadManager();
+        // 调用 UploadManager 的 putFile 方法进行文件的上传。
+        list($ret, $err) = $uploadMgr->putFile($token, $key, $filePath);
+
+        // 调用 BucketManager 的 fetch 方法进行文件的上传。
+        if ($err !== null) {
+            // var_dump($err);
+        } else {
+            // var_dump($ret);
+            return $url;
+        }
+    }
+
+    //start Modify by wangqin 2018-01-17
+    //上传视频文件到七牛
+    public function upFile($filePath,$type='mp4')
+    {
+        // 构建鉴权对象
+        $auth = new Auth($this->accessKey, $this->secretKey);
+        // 生成上传 Token
+        $token = $auth->uploadToken($this->bucket);
+        // 上传到七牛后保存的文件名
+        $key = date('YmdHis').'_'.mt_rand(1111,9999).'.'.$type;
+        $url = 'http://appc.qunarmei.com/'.$key;
+        // 初始化 UploadManager 对象并进行文件的上传。
+        $uploadMgr = new UploadManager();
+        // 调用 UploadManager 的 putFile 方法进行文件的上传。
+        list($ret, $err) = $uploadMgr->putFile($token, $key, $filePath);
+
+        // 调用 BucketManager 的 fetch 方法进行文件的上传。
+        if ($err !== null) {
+            // var_dump($err);
+        } else {
+            // var_dump($ret);
+            return $url;
+        }
+    }
+    //end Modify by wangqin 2018-01-17
+
+}

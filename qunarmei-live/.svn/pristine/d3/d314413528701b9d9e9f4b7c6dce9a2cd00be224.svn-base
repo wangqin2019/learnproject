@@ -1,0 +1,114 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<script type="text/javascript" src="/static/admin/js/plugins/layer/laydate/laydate.js"></script>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加节日</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal" name="addH" id="addH" method="post" action="{:url('addH')}">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">节日自定义名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="holiday_name" type="text" class="form-control" name="holiday_name" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">节日原来名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="holiday_real_name" type="text" class="form-control" name="holiday_real_name" value="">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">节日日期：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="begin_time" type="text" class="form-control" name="holiday_dt" value="">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">状&nbsp;态：</label>
+                            <div class="col-sm-6">
+                                <div class="radio i-checks">
+                                    <input type="radio" name='status' value="1" checked="checked"/>显示&nbsp;&nbsp;
+                                    <input type="radio" name='status' value="0" />隐藏
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+
+    $(function(){
+        $('#addH').ajaxForm({
+            beforeSubmit: checkForm, 
+            success: complete, 
+            dataType: 'json'
+        });
+        
+        function checkForm(){
+
+        }
+
+        function complete(data){
+            if(data.code==1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    window.location.href="{:url('store_tx_holiday/index')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1});
+                return false;   
+            }
+        }
+
+        //layui 时间日期控件
+        var begin_time = {
+            elem: '#begin_time', //选择ID为START的input
+            format: 'YYYY-MM-DD', //自动生成的时间格式
+//         min: laydate.now(), //设定最小日期为当前日期
+            max: '2099-06-16', //最大日期
+            istime: true, //必须填入时间
+            istoday: false,  //是否是当天
+            start: laydate.now(0,"YYYY-MM-DD"),  //设置开始时间为当前时间
+            choose: function(datas){
+//            end.min = datas; //开始日选好后，重置结束日的最小日期
+//            end.start = datas //将结束日的初始值设定为开始日
+            }
+        };
+        laydate(begin_time);
+     
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>用户app建议反馈列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                <div  class="col-sm-2" style="width: 100px">
+                    <div class="input-group" >
+
+                    </div>
+                </div>
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('index')}">
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的建议" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>用户名</th>
+                                <th>号码</th>
+                                <th>所属门店</th>
+                                <th>建议类型</th>
+                                <th>建议</th>
+                                <th>图片</th>
+                                <th>状态</th>
+                                <th>创建时间</th>
+                                <th>处理结果</th>
+                                <th>更新时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+
+                            {foreach $lists as $v}
+                            <tr class="long-td">
+                                <td>{$v['id']}</td>
+                                <td>{$v['realname']}</td>
+                                <td>{$v['mobile']}</td>
+                                <td>{$v['title']}</td>
+                                <td>{$v['type']}</td>
+                                <td>{$v['content']}</td>
+                                <td>
+                                    {if $v['img_path']}
+                                        {foreach $v['img_path'] as $v1}
+                                    <a href="{$v1}" target="view_window"><img src="{$v1}" style="width:100px;height:100px" onerror="this.src='/static/admin/images/head_default.gif'"/></a>
+                                        {/foreach}
+                                    {/if}
+
+                                    <!--<img src="" style="width:100px;height:100px" onerror="this.src='/static/admin/images/head_default.gif'"/>-->
+
+                                </td>
+                                <td>{$v['status']}</td>
+                                <td>{$v['createtime']}</td>
+                                <td>{$v['result']}</td>
+                                <td>{$v['updatetime']}</td>
+                                <td>
+                                        {if (!$v['result'])}
+                                        <a href="javascript:;" onclick="liveEdit({$v['id']})" class="btn btn-primary btn-outline btn-xs"><i class="fa fa-paste"></i> 处理</a>&nbsp;&nbsp;
+                                        {/if}
+                                        <a href="javascript:;" onclick="liveDel({$v['id']})" class="btn btn-danger btn-outline btn-xs">
+                                            <i class="fa fa-trash-o"></i> 删除</a>
+
+                                </td>
+                            </tr>
+                            {/foreach}
+
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div style="float: right;">{$p->render}</div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+    <div style="float: right;">共{$p->pageNum}页,当前第{$p->page}页</div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+
+//编辑用户
+function liveEdit(id){
+    location.href = './sugEdit/id/'+id+'.html';
+}
+
+//删除用户
+function liveDel(id){
+    lunhui.confirm(id,'{:url("sugDel")}');
+//    window.location.href="{:url('suggestion/index')}";
+}
+</script>
+</body>
+</html>

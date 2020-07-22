@@ -1,0 +1,43 @@
+---------------------------------------------------------------
+[ 2020-01-09T15:05:01+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?user_id=16829&type=1&ver=1
+[ log ] 1578553501-请求数据:%2Fapi%2Fv4%2Fnotice%2Fget_notice=&user_id=16829&type=1&ver=1
+[ log ] 1578553501-下发数据:{"code":1,"data":{"ver":1,"title":"声明与政策","content1":"感谢您信任并使用\"去嘟美\"!\n我们非常注重您的个人信息和隐私保护,并依据最新的法律要求更新了<<隐私协议>>、<<用户协议>>、<<声明协议>>,特向您推送本提示。诘您仔细阅读井充分埋解相关条款,我们将严格按照您同意的条款使用您的个人信息,以便为您提供更好的限务。","content2":"如果您同意以上的政策及声明,请点击\"同意\"并开始使用我们的产品和服务。我们将尽全力保护您的个人信息及合法权益,再次感谢您的信任!","agreement":[]},"msg":"获取成功"}
+---------------------------------------------------------------
+[ 2020-01-09T15:07:03+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?user_id=16829&type=1&ver=1
+[ log ] 1578553623-请求数据:%2Fapi%2Fv4%2Fnotice%2Fget_notice=&user_id=16829&type=1&ver=1
+[ log ] 1578553623-下发数据:{"code":1,"data":{"ver":1,"title":"声明与政策","content1":"感谢您信任并使用\"去嘟美\"!\n我们非常注重您的个人信息和隐私保护,并依据最新的法律要求更新了<<隐私协议>>、<<用户协议>>、<<声明协议>>,特向您推送本提示。诘您仔细阅读井充分埋解相关条款,我们将严格按照您同意的条款使用您的个人信息,以便为您提供更好的限务。","content2":"如果您同意以上的政策及声明,请点击\"同意\"并开始使用我们的产品和服务。我们将尽全力保护您的个人信息及合法权益,再次感谢您的信任!","agreement":[{"name":"<<隐私协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html"},{"name":"<<用户协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html"},{"name":"<<声明协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html"}]},"msg":"获取成功"}
+---------------------------------------------------------------
+[ 2020-01-09T15:08:41+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?user_id=16829&type=1&ver=1
+[ log ] 1578553721-请求数据:%2Fapi%2Fv4%2Fnotice%2Fget_notice=&user_id=16829&type=1&ver=1
+[ log ] 1578553721-下发数据:{"code":1,"data":{"ver":1,"title":"声明与政策","content1":"感谢您信任并使用\"去嘟美\"!\n我们非常注重您的个人信息和隐私保护,并依据最新的法律要求更新了<<隐私协议>>、<<用户协议>>、<<声明协议>>,特向您推送本提示。诘您仔细阅读井充分埋解相关条款,我们将严格按照您同意的条款使用您的个人信息,以便为您提供更好的限务。","content2":"如果您同意以上的政策及声明,请点击\"同意\"并开始使用我们的产品和服务。我们将尽全力保护您的个人信息及合法权益,再次感谢您的信任!","agreement":[{"name":"<<隐私协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#a"},{"name":"<<用户协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#b"},{"name":"<<声明协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#c"}]},"msg":"获取成功"}
+---------------------------------------------------------------
+[ 2020-01-09T15:09:03+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?user_id=16829&type=1&ver=2
+[ log ] 1578553743-请求数据:%2Fapi%2Fv4%2Fnotice%2Fget_notice=&user_id=16829&type=1&ver=2
+[ log ] 1578553743-下发数据:{"code":1,"data":{"ver":1,"title":"声明与政策","content1":"感谢您信任并使用\"去嘟美\"!\n我们非常注重您的个人信息和隐私保护,并依据最新的法律要求更新了<<隐私协议>>、<<用户协议>>、<<声明协议>>,特向您推送本提示。诘您仔细阅读井充分埋解相关条款,我们将严格按照您同意的条款使用您的个人信息,以便为您提供更好的限务。","content2":"如果您同意以上的政策及声明,请点击\"同意\"并开始使用我们的产品和服务。我们将尽全力保护您的个人信息及合法权益,再次感谢您的信任!","agreement":[{"name":"<<隐私协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#a"},{"name":"<<用户协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#b"},{"name":"<<声明协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#c"}]},"msg":"获取成功"}
+---------------------------------------------------------------
+[ 2020-01-09T15:09:33+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?user_id=16829&type=1&ver=2
+[ log ] 1578553772-请求数据:%2Fapi%2Fv4%2Fnotice%2Fget_notice=&user_id=16829&type=1&ver=2
+[ log ] 1578553772-下发数据:{"code":1,"data":{"ver":3,"title":"声明与政策","content1":"感谢您信任并使用\"去嘟美\"!\n我们非常注重您的个人信息和隐私保护,并依据最新的法律要求更新了<<隐私协议>>、<<用户协议>>、<<声明协议>>,特向您推送本提示。诘您仔细阅读井充分埋解相关条款,我们将严格按照您同意的条款使用您的个人信息,以便为您提供更好的限务。","content2":"如果您同意以上的政策及声明,请点击\"同意\"并开始使用我们的产品和服务。我们将尽全力保护您的个人信息及合法权益,再次感谢您的信任!","agreement":[{"name":"<<隐私协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#a"},{"name":"<<用户协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#b"},{"name":"<<声明协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#c"}]},"msg":"获取成功"}
+---------------------------------------------------------------
+[ 2020-01-09T15:11:52+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/saveNotice?user_id=16829&ver=1
+[ log ] 1578553912-请求数据:%2Fapi%2Fv4%2Fnotice%2FsaveNotice=&user_id=16829&ver=1
+---------------------------------------------------------------
+[ 2020-01-09T15:12:20+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/save_user_notice?user_id=16829&ver=1
+[ log ] 1578553940-请求数据:%2Fapi%2Fv4%2Fnotice%2Fsave_user_notice=&user_id=16829&ver=1
+[ log ] 1578553940-下发数据:{"code":1,"data":[],"msg":"保存成功"}
+---------------------------------------------------------------
+[ 2020-01-09T15:12:54+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?user_id=16829&type=1&ver=1
+[ log ] 1578553974-请求数据:%2Fapi%2Fv4%2Fnotice%2Fget_notice=&user_id=16829&type=1&ver=1
+[ log ] 1578553974-下发数据:{"code":1,"data":{"ver":1,"title":"声明与政策","content1":"感谢您信任并使用\"去嘟美\"!\n我们非常注重您的个人信息和隐私保护,并依据最新的法律要求更新了<<隐私协议>>、<<用户协议>>、<<声明协议>>,特向您推送本提示。诘您仔细阅读井充分埋解相关条款,我们将严格按照您同意的条款使用您的个人信息,以便为您提供更好的限务。","content2":"如果您同意以上的政策及声明,请点击\"同意\"并开始使用我们的产品和服务。我们将尽全力保护您的个人信息及合法权益,再次感谢您的信任!","agreement":[{"name":"<<隐私协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#a"},{"name":"<<用户协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#b"},{"name":"<<声明协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#c"}]},"msg":"获取成功"}
+---------------------------------------------------------------
+[ 2020-01-09T15:12:58+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?user_id=16829&type=1&ver=1
+[ log ] 1578553978-请求数据:%2Fapi%2Fv4%2Fnotice%2Fget_notice=&user_id=16829&type=1&ver=1
+[ log ] 1578553978-下发数据:{"code":1,"data":{"ver":1,"title":"声明与政策","content1":"感谢您信任并使用\"去嘟美\"!\n我们非常注重您的个人信息和隐私保护,并依据最新的法律要求更新了<<隐私协议>>、<<用户协议>>、<<声明协议>>,特向您推送本提示。诘您仔细阅读井充分埋解相关条款,我们将严格按照您同意的条款使用您的个人信息,以便为您提供更好的限务。","content2":"如果您同意以上的政策及声明,请点击\"同意\"并开始使用我们的产品和服务。我们将尽全力保护您的个人信息及合法权益,再次感谢您的信任!","agreement":[{"name":"<<隐私协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#a"},{"name":"<<用户协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#b"},{"name":"<<声明协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#c"}]},"msg":"获取成功"}
+---------------------------------------------------------------
+[ 2020-01-09T15:14:05+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?user_id=16829&type=1&ver=1
+[ log ] 1578554045-请求数据:%2Fapi%2Fv4%2Fnotice%2Fget_notice=&user_id=16829&type=1&ver=1
+[ log ] 1578554045-下发数据:{"code":1,"data":{},"msg":"暂无数据"}
+---------------------------------------------------------------
+[ 2020-01-09T15:14:17+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?user_id=16829&type=1&ver=1
+[ log ] 1578554057-请求数据:%2Fapi%2Fv4%2Fnotice%2Fget_notice=&user_id=16829&type=1&ver=1
+[ log ] 1578554057-下发数据:{"code":1,"data":{"ver":1,"title":"声明与政策","content1":"感谢您信任并使用\"去嘟美\"!\n我们非常注重您的个人信息和隐私保护,并依据最新的法律要求更新了<<隐私协议>>、<<用户协议>>、<<声明协议>>,特向您推送本提示。诘您仔细阅读井充分埋解相关条款,我们将严格按照您同意的条款使用您的个人信息,以便为您提供更好的限务。","content2":"如果您同意以上的政策及声明,请点击\"同意\"并开始使用我们的产品和服务。我们将尽全力保护您的个人信息及合法权益,再次感谢您的信任!","agreement":[{"name":"<<隐私协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#a"},{"name":"<<用户协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#b"},{"name":"<<声明协议>>","url":"http://teststore.qunarmei.com/html/privacypolicy.html#c"}]},"msg":"获取成功"}

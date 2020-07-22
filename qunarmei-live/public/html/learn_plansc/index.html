@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+
+		<link rel="stylesheet" href="css/weui.min.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="js/common.js"></script>
+		<title>诚美学霸计划</title>
+	</head>
+	<style type="text/css">
+		body{background: url(img/bg.png) no-repeat;background-size: cover;background-color: #F0E1C2;}
+		.logo{width: 80%;position: fixed;top: 30%;left: 5%;bottom: 10%;}
+		.user{width: 80%;position: fixed;top: 30%;left: 5%;bottom: 5%;background: #fff;box-shadow: 0 0 0.5em #D9D4CA;border-radius: 1em;padding: 5%;text-align: center;font-size: 0.8em;}
+		.user img{width: 7em;height: 7em;border-radius: 50%;border: 2px solid #000;}
+		.user p{margin-bottom: 15px;}
+		.weui-btn_default{font-size: 0.8em;height: 2.5em;line-height: 2.5em;}
+		.login{background: #666666;color: #492612;font-size: 1.2em;height: 2.5em;line-height: 2.5em;}
+	</style>
+
+	<body>
+		<!--<img src="img/logo.png" class="logo"/>-->
+		<div class="user">
+			<img src="../分享/head.png" />
+			<p class="name">YANG</p>
+			<p>PC端下载学霸通道：<span class="download"></span></p>
+			<p>ipad端请登录App Store搜索应用<span style="color: red">脑力OTO学员端</span></p>
+			<button class="weui-btn weui-btn_default">专属学霸账号:<span class="oto_user"></span></button>
+			<button class="weui-btn weui-btn_default">初始学霸密码:<span class="oto_ped"></span></button>
+
+			<button class="weui-btn login">立即进入</button>
+		</div>
+	</body>
+	<script>
+		var user_id = getQueryString('user_id');
+		var account = ajaxpost('otoAccount',{user_id:user_id})
+		$('.user img').attr('src',account.data.head_img);
+		$('.name').html(account.data.user_name);
+		$('.download').html(account.data.down_url);
+		$('.oto_user').html(account.data.oto_user);
+		$('.oto_ped').html(account.data.oto_pwd);
+
+		$('.login').click(function(){
+			window.location.href = 'list.html?oto_user='+account.data.oto_user;
+		})
+	</script>
+</html>

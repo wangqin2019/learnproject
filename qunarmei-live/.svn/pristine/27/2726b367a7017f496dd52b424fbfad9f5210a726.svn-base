@@ -1,0 +1,57 @@
+{include file="public/header" /}
+<link rel="stylesheet" href="/static/admin/js/layui/layui/css/layui.css" media="all">
+
+<style>
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>分数详情</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+
+            <div class="hr-line-dashed"></div>
+            <div class="layui-container">
+                <div class="layui-row" style="font-size: x-large">考核详情</div>
+                <div class="hr-line-dashed"></div>
+                <div>
+                    <table class="layui-hide" id="demo" lay-filter="test3"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="/static/admin/js/layui/layui/layui.js"></script>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    // json字符串转为json对象
+    var data_user = JSON.parse('{$res}')
+
+    console.log(data_user);
+// [{"mobile":"15821462605","user_name":"罗晓","depart":"数字方案部","live_time":1598335200,"status":4},{"mobile":"15921324164","user_name":"王钦","depart":"数字方案部","live_time":1598335200,"status":3}]
+    layui.use('table', function(){
+        var table = layui.table;
+
+        // 渲染数据
+        table.render({
+            elem: '#demo'
+            ,title: '分数详情'
+            ,totalRow: true
+            ,limit: 50
+            ,cols: [[
+                {field:'user_name', title:'考核成员昵称'}
+                ,{field:'depart', title:'办事处/门店' }
+                ,{field:'score', title:'打分'}
+            ]]
+            ,data: data_user
+            ,page: true
+        });
+    });
+</script>
+</body>
+</html>

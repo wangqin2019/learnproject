@@ -1,0 +1,39 @@
+---------------------------------------------------------------
+[ 2017-09-28T09:53:27+08:00 ] 192.168.3.56 192.168.3.56 GET /api/live/livelist
+[ error ] [4]语法错误: unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING)[F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php:160]
+---------------------------------------------------------------
+[ 2017-09-28T09:55:37+08:00 ] 192.168.3.56 192.168.3.56 GET /api/live/livelist
+[ error ] [4]语法错误: unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING)[F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php:160]
+---------------------------------------------------------------
+[ 2017-09-28T10:36:16+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ error ] [4]语法错误: unexpected '['[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php:102]
+---------------------------------------------------------------
+[ 2017-09-28T15:27:22+08:00 ] ::1 ::1 POST /admin/live/liveadd.html
+[ error ] [8]Trying to get property of non-object[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php:100]
+---------------------------------------------------------------
+[ 2017-09-28T15:27:29+08:00 ] ::1 ::1 POST /admin/live/liveadd.html
+[ error ] [8]Trying to get property of non-object[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php:100]
+---------------------------------------------------------------
+[ 2017-09-28T15:29:00+08:00 ] ::1 ::1 POST /admin/live/liveadd.html
+[ error ] [8]Array to string conversion[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php:98]
+---------------------------------------------------------------
+[ 2017-09-28T15:34:59+08:00 ] ::1 ::1 POST /admin/live/liveadd.html
+[ error ] [8]未定义变量: push_url[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php:119]
+---------------------------------------------------------------
+[ 2017-09-28T15:37:04+08:00 ] ::1 ::1 POST /admin/live/liveadd.html
+[ error ] [2]Illegal string offset 'push_url'[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php:105]
+---------------------------------------------------------------
+[ 2017-09-28T15:55:06+08:00 ] ::1 ::1 GET /admin/live/liveclose.html?id=6
+[ error ] [8]Trying to get property of non-object[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php:192]
+---------------------------------------------------------------
+[ 2017-09-28T15:55:11+08:00 ] ::1 ::1 GET /admin/live/liveclose.html?id=6
+[ error ] [8]Trying to get property of non-object[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php:192]
+---------------------------------------------------------------
+[ 2017-09-28T15:55:17+08:00 ] ::1 ::1 GET /admin/live/liveclose.html?id=6
+[ error ] [8]Trying to get property of non-object[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php:192]
+---------------------------------------------------------------
+[ 2017-09-28T15:55:51+08:00 ] ::1 ::1 GET /admin/live/liveclose.html?id=6
+[ error ] [8]Trying to get property of non-object[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php:193]
+---------------------------------------------------------------
+[ 2017-09-28T18:05:40+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare
+[ error ] [8]未定义变量: list[F:\software\phpstudy\WWW\lunhui_tp5\runtime\temp\a67f5c5af8bc579ad9336e00b8e01c23.php:9]

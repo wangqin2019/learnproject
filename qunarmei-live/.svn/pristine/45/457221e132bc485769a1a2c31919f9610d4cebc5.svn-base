@@ -1,0 +1,53 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2019/10/14
+ * Time: 15:32
+ */
+
+namespace app\api\controller\html;
+
+use app\api\controller\v3\Common;
+use app\api\service\LiveService;
+header('Access-Control-Allow-Origin:*');
+
+/**
+ * H5直播相关接口设计
+ * Class HtmlApi
+ * @package app\api\controller\v4
+ */
+class Live extends Common
+{
+    // 直播服务类
+    protected $liveSer;
+    /**
+     * 初始化方法
+     */
+    public function _initialize()
+    {
+        parent::_initialize();
+        $this->liveSer = new LiveService();
+    }
+    /**
+     * 网页直播列表-异步刷新
+     * @param string $zb_id 直播间id
+     * @return
+     */
+    public function live_list()
+    {
+        $res = $this->liveSer->liveList();
+        return $this->returnMsg($res['code'],$res['data'],$res['msg']);
+    }
+     /**
+     * H5 315直播是否开启接口
+     * @param string $mobile 用户手机号
+     * @param string $id 直播间id
+     * @return
+     */
+    public function is_live()
+    {
+        $res = $this->liveSer->isLive();
+        return $this->returnMsg($res['code'],$res['data'],$res['msg']);
+    }
+}

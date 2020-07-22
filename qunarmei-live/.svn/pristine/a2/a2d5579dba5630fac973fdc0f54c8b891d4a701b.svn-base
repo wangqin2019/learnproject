@@ -1,0 +1,280 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:113:"D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\public/../application/admin\view\livetrailer\livetraileredit.html";i:1508239214;s:99:"D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\public/../application/admin\view\public\header.html";i:1505280616;s:99:"D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\public/../application/admin\view\public\footer.html";i:1505280616;}*/ ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo config('WEB_SITE_TITLE'); ?></title>
+    <link href="/static/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/static/admin/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="/static/admin/css/animate.min.css" rel="stylesheet">
+    <link href="/static/admin/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/static/admin/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="/static/admin/css/plugins/switchery/switchery.css" rel="stylesheet">
+    <link href="/static/admin/css/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="/static/admin/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <style type="text/css">
+    .long-tr th{
+        text-align: center
+    }
+    .long-td td{
+        text-align: center
+    }
+    </style>
+</head>
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/style.css">
+
+<link rel="stylesheet" type="text/css" media="all" href="/sldate/daterangepicker-bs3.css" />
+<script type="text/javascript" src="/sldate/moment.js"></script>
+<style>
+    .file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+    .file-item .info{overflow: hidden;}
+    .uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加直播预告</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal" name="livetrailerEdit" id="livetrailerEdit" method="post" action="<?php echo url('livetrailerEdit'); ?>">
+                        <input id="" type="hidden" class="form-control" name="id" value="<?php echo $list[0]['id']; ?>">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播预告用户：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="user" type="text" class="form-control" name="user" value="<?php echo $list[0]['user']; ?>">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播预告用户头像：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="hidden" id="data_photo" name="user_img" value="<?php echo $list[0]['user_img']; ?>"/>
+                                <div id="fileList" class="uploader-list" style="float:right"></div>
+                                <div id="imgPicker" style="float:left">选择头像</div>
+                                <img id="img_data" class="img-circle" height="80px" width="80px" style="float:left;margin-left: 50px;margin-top: -10px;" src="/uploads/face/<?php echo $list[0]['user_img']; ?>" onerror="this.src='/static/admin/images/head_default.gif'"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播预告地点：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="address" type="text" class="form-control" name="address" value="<?php echo $list[0]['address']; ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播预告封面图：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="hidden" id="data_photo1" name="cover_img" value="<?php echo $list[0]['cover_img']; ?>"/>
+                                <div id="fileList1" class="uploader-list" style="float:right"></div>
+                                <div id="imgPicker1" style="float:left">选择封面</div>
+                                <img id="img_data1" class="img-circle" height="80px" width="80px" style="float:left;margin-left: 50px;margin-top: -10px;" src="/uploads/face/<?php echo $list[0]['cover_img']; ?>" onerror="this.src='/static/admin/images/head_default.gif'"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播预告标题：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="title" value="<?php echo $list[0]['title']; ?>">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">开播时间：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="begin_time" type="text" name="begin_time" class="form-control laydate-icon" value="<?php echo $list[0]['begin_time']; ?>">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="__JS__/jquery.min.js?v=2.1.4"></script>
+<script src="__JS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__JS__/content.min.js?v=1.0.0"></script>
+<script src="__JS__/plugins/chosen/chosen.jquery.js"></script>
+<script src="__JS__/plugins/iCheck/icheck.min.js"></script>
+<script src="__JS__/plugins/layer/laydate/laydate.js"></script>
+<script src="__JS__/plugins/switchery/switchery.js"></script><!--IOS开关样式-->
+<script src="__JS__/jquery.form.js"></script>
+<script src="__JS__/layer/layer.js"></script>
+<script src="__JS__/laypage/laypage.js"></script>
+<script src="__JS__/laytpl/laytpl.js"></script>
+<script src="__JS__/lunhui.js"></script>
+<script>
+    $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
+</script>
+<script type="text/javascript" src="/static/admin/webupload/webuploader.min.js"></script>
+
+<script type="text/javascript">
+    var $list = $('#fileList');
+    var $list1 = $('#fileList1');
+    //上传图片,初始化WebUploader
+    var uploader = WebUploader.create({
+
+        auto: true,// 选完文件后，是否自动上传。
+        swf: '/static/admin/webupload/Uploader.swf',// swf文件路径
+        server: "<?php echo url('Upload/uploadface'); ?>",// 文件接收服务端。
+        duplicate :true,// 重复上传图片，true为可重复false为不可重复
+        pick: '#imgPicker',// 选择文件的按钮。可选。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/jpg,image/jpeg,image/png'
+        },
+
+        'onUploadSuccess': function(file, data, response) {
+            $("#data_photo").val(data._raw);
+            $("#img_data").attr('src', '/uploads/face/' + data._raw).show();
+        }
+    });
+
+    var uploader1 = WebUploader.create({
+
+        auto: true,// 选完文件后，是否自动上传。
+        swf: '/static/admin/webupload/Uploader.swf',// swf文件路径
+        server: "<?php echo url('Upload/uploadface'); ?>",// 文件接收服务端。
+        duplicate :true,// 重复上传图片，true为可重复false为不可重复
+        pick: '#imgPicker1',// 选择文件的按钮。可选。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/jpg,image/jpeg,image/png'
+        },
+
+        'onUploadSuccess': function(file, data, response) {
+            $("#data_photo1").val(data._raw);
+            $("#img_data1").attr('src', '/uploads/face/' + data._raw).show();
+        }
+    });
+
+    uploader.on( 'fileQueued', function( file ) {
+        $list.html( '<div id="' + file.id + '" class="item">' +
+                '<h4 class="info">' + file.name + '</h4>' +
+                '<p class="state">正在上传...</p>' +
+                '</div>' );
+    });
+
+    uploader.on( 'fileQueued', function( file ) {
+        $list1.html( '<div id="' + file.id + '" class="item">' +
+                '<h4 class="info">' + file.name + '</h4>' +
+                '<p class="state">正在上传...</p>' +
+                '</div>' );
+    });
+    // 文件上传成功
+    uploader.on( 'uploadSuccess', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传成功！');
+    });
+
+    // 文件上传失败，显示上传出错。
+    uploader.on( 'uploadError', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传出错!');
+    });
+
+    uploader1.on( 'fileQueued', function( file ) {
+        $list.html( '<div id="' + file.id + '" class="item">' +
+                '<h4 class="info">' + file.name + '</h4>' +
+                '<p class="state">正在上传...</p>' +
+                '</div>' );
+    });
+
+    uploader1.on( 'fileQueued', function( file ) {
+        $list1.html( '<div id="' + file.id + '" class="item">' +
+                '<h4 class="info">' + file.name + '</h4>' +
+                '<p class="state">正在上传...</p>' +
+                '</div>' );
+    });
+    // 文件上传成功
+    uploader1.on( 'uploadSuccess', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传成功！');
+    });
+
+    // 文件上传失败，显示上传出错。
+    uploader1.on( 'uploadError', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传出错!');
+    });
+
+    //提交
+    $(function(){
+
+        $('#livetrailerEdit').ajaxForm({
+            beforeSubmit: checkForm,
+            success: complete,
+            dataType: 'json'
+        });
+
+        function checkForm(){
+            // console.log('title:'+$('#title').val());
+            return true;
+        }
+
+
+        function complete(data){
+            if(data.code==1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    window.location.href="<?php echo url('livetrailer/index'); ?>";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1});
+                return false;
+            }
+        }
+        //layui 时间日期控件
+        var begin_time = {
+            elem: '#begin_time', //选择ID为START的input
+            format: 'YYYY-MM-DD hh:mm:ss', //自动生成的时间格式
+            min: laydate.now(), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true, //必须填入时间
+            istoday: false,  //是否是当天
+            start: laydate.now(0,"YYYY-MM-DD hh:mm:ss"),  //设置开始时间为当前时间
+            choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        };
+        laydate(begin_time);
+    });
+
+
+
+    //IOS开关样式配置
+    var elem = document.querySelector('.js-switch');
+    var switchery = new Switchery(elem, {
+        color: '#1AB394'
+    });
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+2019-07-30 08:11:11 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-07-30 08:11:16 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-07-30 08:11:17 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-07-30 08:11:17 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-07-30 08:11:18 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-07-30 08:12:05 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-07-30 08:13:41 pid:1 Gateway: Worker->name conflict. Key:127.0.0.1:YourAppBusinessWorker:0
+2019-07-30 08:13:42 pid:1 Gateway: Worker->name conflict. Key:127.0.0.1:YourAppBusinessWorker:0
+2019-07-30 08:20:49 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:32 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:32 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:32 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:32 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:32 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:33 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:33 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:33 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:33 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:33 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:34 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:34 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:36 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:36 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 05:38:37 pid:1 Bad request for Register service. Request info(IP:192.168.3.88, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2019-09-19 08:55:00 pid:1 Worker process terminated with ERROR: E_ERROR "Function name must be a string in D:\phpStudy\PHPTutorial\WWW\pt\vendor\GatewayWorker\Applications\YourApp\Events.php on line 66"
+2019-09-19 09:15:19 pid:1 Worker process terminated with ERROR: E_ERROR "Function name must be a string in D:\phpStudy\PHPTutorial\WWW\pt\vendor\GatewayWorker\Applications\YourApp\Events.php on line 66"
+2019-09-19 09:16:41 pid:1 Worker process terminated with ERROR: E_ERROR "Function name must be a string in D:\phpStudy\PHPTutorial\WWW\pt\vendor\GatewayWorker\Applications\YourApp\Events.php on line 66"
+2019-09-26 07:48:39 pid:1 Worker process terminated with ERROR: E_ERROR "Function name must be a string in D:\phpStudy\PHPTutorial\WWW\pt\vendor\GatewayWorker\Applications\YourApp\Events.php on line 66"
+2019-09-26 07:49:40 pid:1 Worker process terminated with ERROR: E_ERROR "Function name must be a string in D:\phpStudy\PHPTutorial\WWW\pt\vendor\GatewayWorker\Applications\YourApp\Events.php on line 66"
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:49:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:51 pid:1 Worker process terminated with ERROR: E_ERROR "Function name must be a string in D:\phpStudy\PHPTutorial\WWW\pt\vendor\GatewayWorker\Applications\YourApp\Events.php on line 66"
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:53:52 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:02 pid:1 Worker process terminated with ERROR: E_ERROR "Function name must be a string in D:\phpStudy\PHPTutorial\WWW\pt\vendor\GatewayWorker\Applications\YourApp\Events.php on line 66"
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:03 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:04 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:04 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:04 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:04 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:04 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:04 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:04 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:04 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:04 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:04 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:04 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-09-26 07:56:04 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-10-08 08:33:28 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-10-08 08:33:28 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-10-08 08:33:29 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-10-08 08:33:29 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-10-08 08:33:30 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-10-08 08:33:30 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-10-08 08:33:31 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-10-08 08:33:31 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-10-08 08:33:33 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-10-08 08:33:33 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://doc2.workerman.net/send-buffer-to-worker-fail.html
+2019-12-17 02:13:09 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:  üqÓ£å[U™ÁàèèôÙH³sgRMÖ^¦•W[). See http://doc2.workerman.net/register-auth-timeout.html
+2019-12-17 02:13:10 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:  üâ¿l…ÌkŠªG2¬0Æ-ÿ¥İ‚V~È¾ò„ò £ºè Wşòâ~Ëß—/Oxræå&¿+!¢•˜İn "ŠŠÀ+À/À,À0Ì©Ì¨ÀÀ œ  / 5 ). See http://doc2.workerman.net/register-auth-timeout.html
+2019-12-17 02:13:11 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:  üfÍuE¡¾_s]mÇ1ud)‹(Eûà‹’ıæ—…µ8!¤JÖ Àpƒ¿õÖV¾tFª_ĞëãÃÌiU}èèo¬ò "úúÀ+À/À,À0Ì©Ì¨ÀÀ œ  / 5 ). See http://doc2.workerman.net/register-auth-timeout.html
+2019-12-17 02:13:12 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:  ü•’ o*MOtØ)UÂe'æò)Ãèóâ>*¯‡ ÿ). See http://doc2.workerman.net/register-auth-timeout.html
+2019-12-17 02:13:13 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:  üÅcë	ŠÆ—uaİ¹Vÿ’Ü0y…h)nDT®BÀ T«¦C½l©a-*ºŒui.´xÂ 	¸Ñ'pˆ3Ÿ "ZZÀ+À/À,À0Ì©Ì¨ÀÀ œ  / 5 ). See http://doc2.workerman.net/register-auth-timeout.html
+2019-12-17 02:13:14 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:  ü½¦D0>©H±+ˆ$G$Ò¼F0ıƒT.ãÍ\ Y†AÑ$oM¼=“ÂmhÛä³4[Àã$3xzô€ìXU‚ "ººÀ+À/À,À0Ì©Ì¨ÀÀ œ  / 5 ). See http://doc2.workerman.net/register-auth-timeout.html

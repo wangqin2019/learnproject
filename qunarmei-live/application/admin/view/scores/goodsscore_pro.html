@@ -1,0 +1,112 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>商品多属性配置</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('goodsscore_pro')}">
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的门店名称" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <a href="{:url('goodsscore_pro_add')}?goods_id={$goods_id}" class="btn btn-primary">添加商品积分多属性配置</a>
+                                </span>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr class="long-tr">
+                            <th>ID</th>
+                            <th>活动名称</th>
+                            <th>商品名称</th>
+                            <th>商品属性</th>
+                            <th>商品积分</th>
+                            <th>商品可兑换数量</th>
+                            <th>商品已兑换数量</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        {if $list}
+                            {foreach $list as $v}
+                            <tr class="long-td">
+                                <td>{$v.id}</td>
+                                <td>{$v.act_name}</td>
+                                <td>{$v.title}</td>
+                                <td>{$v.goods_property}</td>
+                                <td>{$v.exchange_score}</td>
+                                <td>{$v.exchange_num}</td>
+                                <td>{$v.already_exchange_num}</td>
+                                <td>
+                                    <a href="{:url('goodsscore_pro_edit')}?id={$v.id}" class="btn btn-primary btn-outline btn-xs">
+                                        <i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+                                    <a href="javascript:;" onclick="del_rule({$v.id})" class="btn btn-danger btn-outline btn-xs">
+                                        <i class="fa fa-trash-o"></i> 删除</a>
+                                </td>
+                            </tr>
+                            {/foreach}
+                        {else}
+                        暂无数据
+                        <tr class="long-td">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {/if}
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    function del_rule(id){
+        layer.confirm('确认删除此记录?', {icon: 3, title:'提示'}, function(index){
+            //do something
+            $.getJSON('./goodsscore_pro_del', {'id' : id}, function(res){
+                if(res.code == 1){
+                    layer.msg(res.msg,{icon:1,time:1500,shade: 0.1},function(index){
+                        layer.close(index);
+                        window.location.href="{:url('goodsScore')}";
+                    });
+
+                }else{
+                    layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+                }
+            });
+
+            layer.close(index);
+        })
+
+    }
+</script>
+</body>
+</html>

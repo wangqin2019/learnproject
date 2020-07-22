@@ -1,0 +1,29 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>日常数据操作汇总</h5>
+        </div>
+        <div class="ibox-content">        
+            <div class="row">
+                <div class="col-sm-12">   
+                <div  class="col-sm-2" style="width: 700px">
+                    <div class="input-group" >  
+                        <a href="{:url('sendLiveCardAdd')}"><button class="btn btn-outline btn-primary" type="button">补发直播消费券</button></a>
+                        &nbsp;&nbsp;
+                        <a href="{:url('liveUserUpd')}"><button class="btn btn-outline btn-primary" type="button">线性修改直播人数</button></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+
+{include file="public/footer" /}
+</body>
+</html>

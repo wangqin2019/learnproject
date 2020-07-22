@@ -1,0 +1,119 @@
+{include file="public/header"}
+
+<link rel="stylesheet" href="/static/admin/js/layui/layui/css/layui.css" media="all">
+<body>
+<script src="/static/admin/js/layui/layui/layui.js"></script>
+<script src="/static/admin/js/layui/excel.js"></script>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <h5>考核列表</h5>
+        </div>
+    </div>
+</div>
+<div class="layui-container">
+    <form action="{:url('assessmentList')}" class="layui-form"  >
+        <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <a href="{:url('assessmentAdd')}"><button type="button" class="layui-btn">添加考核</button></a>
+            </div>
+        </div>
+        <div class="layui-form-item">
+                <label class="layui-form-label">号码</label>
+                <!--layui-input-inline多个控件显示1行-->
+                <div class="layui-input-inline">
+                    <input id="mobile" name="mobile" class="layui-input" oninput="value=value.replace(/[^0-9]/g,'')">
+                </div>
+                <label class="layui-form-label" style="width:120px;">下拉选择框</label>
+                <div class="layui-input-inline">
+                    <select name="modules" lay-search="" id="modules">
+                        <option value="">直接选择或搜索选择</option>
+                        <option value="1">layer</option>
+                        <option value="2">form</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <button class="layui-btn" lay-submit="serach_submit" lay-filter="formDemo">立即提交</button>
+                </div>
+                <div class="layui-input-inline">
+                    <button class="layui-btn" id="test">导出数据</button>
+                </div>
+        </div>
+    </form>
+    <table id="demo" lay-filter="test" class="layui-bg-blue layui-row"></table>
+</div>
+<script>
+
+    layui.use(['form','table','jquery'], function(){
+        var form = layui.form;
+        var table = layui.table;
+        //各种基于事件的操作，下面会有进一步介绍
+
+        // 自定义数据
+        var url = '/admin/live_assessment/assessmentlist';
+
+        // 点击按钮导出数据
+        $("#test").click(function(){
+            exportData();
+            return false;
+        });
+
+        // 提交表单数据
+        form.on('submit(formDemo)', function (data) {
+            var mobile = data.field.mobile;
+            url1 = url+'?mobile='+mobile;
+            console.log('url:'+url1)
+            // 加载搜索后数据
+            dataList(url1);
+            return false;
+        });
+
+        // 加载数据列表
+        dataList(url);
+        // 自定义封装-获取数据列表
+        function dataList(url){
+            // 列表数据
+            table.render({
+                elem: '#demo'
+                ,height: 750
+                ,limit: 50
+                ,url: url //数据接口
+                ,page: true //开启分页
+                ,cols: [[ //表头
+                    {field: 'id', title: 'ID',  sort: true}
+                    ,{field: 'realname', title: '考核人名称'}
+                    ,{field: 'mobile', title: '考核人号码'}
+                    ,{field: 'title', title: '门店名称'}
+                    ,{field: 'sign', title: '门店编号'}
+                ]]
+            });
+        }
+        // 自定义导出数据方法
+        function exportData() {
+            url1 = url;
+            mobile = $("#mobile").val();
+            modules = $("#modules").val();
+            url1 = url1 + '?export=1&mobile='+mobile+'&modules='+modules;
+
+            console.log(url1);
+            $.ajax({
+                url: url1,
+                dataType: 'json',
+                success: function(res) {
+                    // 假如返回的 res.data 是需要导出的列表数据
+                    console.log(res.data);//
+
+                    // 获取成功
+                    if(res.code == 0){
+                        LAY_EXCEL.exportExcel(res.data, '用户列表.xlsx', 'xlsx')
+                    }
+                }
+            });
+            return false;
+        }
+    });
+</script>
+{include file="public/footer"}
+
+</body>
+</html>

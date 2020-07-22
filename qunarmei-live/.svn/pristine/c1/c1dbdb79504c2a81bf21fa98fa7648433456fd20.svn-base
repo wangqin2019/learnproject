@@ -1,0 +1,131 @@
+<?php
+//增加命名空间
+namespace pili_test;
+
+// require_once './lib/Pili_v2.php';
+require dirname(__DIR__) . '/pili_test/lib/Pili_v2.php';
+/**
+* 七牛直播常用方法类 Rtmp
+*/
+class Rtmp
+{
+  //相关配置参数
+  protected $ak = 'kw7pkYECHtgXDQBgZzwhu9ijMVYkYdl6iamkylMO';
+  protected $sk = 'Hu2DVofTTCHzge1zJTyBmPVyBG0QqV0_wTPbwdkj';
+  protected $hubName = 'qunarmeilive';
+  protected $streamKey = 'live';
+  protected $hubs = '';
+  protected $stream = '';
+
+  function __construct($streamKey='')
+  {
+    //创建hub
+    $mac = new \pili_test\lib\Qiniu\Pili\Mac($this->ak, $this->sk);
+    $client = new \pili_test\lib\Qiniu\Pili\Client($mac);
+    $this->hubs = $client->hub($this->hubName);
+    //创建stream
+    if($streamKey)
+    {
+      $this->streamKey = $streamKey;
+    }
+    $this->stream = $this->hubs->stream($streamKey);
+  }
+  //获取流列表
+  public function getStreamList($stream_name='live',$limit=5)
+  {
+    $resp = $this->hubs->listStreams($stream_name, $limit, "");
+    return $resp ;
+  }
+  //获取正在直播的流
+  public function getStreamLive($stream_name='live',$limit=5)
+  {
+    $resp = $this->hubs->listLiveStreams($stream_name, $limit, "");
+    return $resp ;
+  }
+  //禁用流
+  public function disableStream()
+  {
+    $resp = $this->stream->disable();
+    return $resp ;
+  }
+  //启用流
+  public function enableStream()
+  {
+    $resp = $this->stream->enable();
+    $status = $this->stream->liveStatus();
+    return $status ;
+  }
+  //获取RTMP推流地址
+  public function getRtmpUrl($streamKey='')
+  {
+    if($streamKey)
+    {
+      $this->streamKey = $streamKey;
+    }
+    $resp = \pili_test\lib\Qiniu\Pili\RTMPPublishURL("pili-publish.qunarmei.com", $this->hubName, $this->streamKey, 3600, $this->ak, $this->sk);
+    return $resp ;
+  }
+  //获取rtmp播放地址
+  public function getRtmpPlay($streamKey='')
+  {
+    if($streamKey)
+    {
+      $this->streamKey = $streamKey;
+    }
+    $resp = \pili_test\lib\Qiniu\Pili\RTMPPlayURL("pili-live-rtmp.qunarmei.com", $this->hubName, $this->streamKey);
+    return $resp ;
+  }
+  //获取hls播放地址
+  public function getHlsPlay($streamKey='')
+  {
+    if($streamKey)
+    {
+      $this->streamKey = $streamKey;
+    }
+    $resp = \pili_test\lib\Qiniu\Pili\HLSPlayURL("pili-live-hls.qunarmei.com", $this->hubName, $this->streamKey);
+    return $resp ;
+  }
+  //截图直播地址
+  public function getScreenShot($streamKey='')
+  {
+    if($streamKey)
+    {
+      $this->streamKey = $streamKey;
+    }
+    $resp = \pili_test\lib\Qiniu\Pili\SnapshotPlayURL("pili-live-snapshot.qunarmei.com", $this->hubName, $this->streamKey);
+    return $resp ;
+  }
+  //保存直播回放 fname:保存的文件名称
+  public function saveReplay($fname='',$start_time='',$end_time='')
+  {
+    //默认整个直播流保存为 m3u8格式
+    if($fname)
+    {
+      $this->streamKey = $fname;
+    }
+    $resp = $this->stream->saveas(array("format" => "mp4",'fname'=>$fname.'.mp4',"start" => $start_time,'end'=>$end_time));
+    return $resp ;
+  }
+  //活跃流历史记录 返回开始时间到结束时间
+  public function liveHistory()
+  {
+    $resp = $this->stream->historyActivity(0,0);
+    return $resp ;
+  }
+  //start Modify by wangqin 2017-12-25 保存直播封面图
+  public function getSnapshot($stream='')
+  {
+    if($stream)
+    {
+      $this->streamKey = $stream;
+    }
+    $resp = $this->stream->snapshot(array("format" => "jpg",'fname'=>($this->streamKey.'.jpg')));
+    if($resp)
+    {
+      $fname = $resp['fname'];
+    }
+    return $fname ;
+  }
+  //end Modify by wangqin 2017-12-25
+
+}

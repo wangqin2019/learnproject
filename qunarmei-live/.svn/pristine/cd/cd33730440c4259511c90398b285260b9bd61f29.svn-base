@@ -1,0 +1,543 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2019/10/14
+ * Time: 15:36
+ */
+
+namespace app\neibu\service;
+use app\api\model\Branch;
+use app\api\model\BjGoods;
+use app\api\model\Live;
+use app\api\model\LiveConf;
+use app\api\model\LiveGoods;
+use app\api\service\BaseSer;
+use app\api\service\TicketSer;
+use think\Db;
+use think\Exception;
+set_time_limit(0);
+/**
+ * 日常工作服务类
+ */
+class DailyWorkService extends BaseSer
+{
+    // 门店2直播间主播商品id
+    protected $store2_id = [1973614,1941475,1941476,1941477,1941478,1941479,1941480,1941481,1976240];
+    // 直播间商品id
+    protected $pidzb = [1748134,1941467,1941468,1941469,1941470,1941471,1941472,1941473,1974355];
+    // 肌底液不上的商品id
+    protected $pidjdy = [1941472];
+    // 88礼券商品id
+    protected $pidcard = [1974358];
+
+    // 模型定义
+    protected $bwk_model ;//门店模型
+    protected $gd_model ;//商品模型
+    protected $live_model ;//直播模型
+    // 418奖品图片
+//    protected $drawPic = 'http://ml.chengmei.com/jp0_0416.png';
+    // 430直播消费券奖品图片
+    protected $drawPic = 'http://appc.qunarmei.com/tptest_3580_0.png';
+    /*
+     * 初始化方法
+     */
+    public function __construct()
+    {
+        $this->bwk_model = new Branch();
+        $this->gd_model = new BjGoods();
+        $this->live_model = new Live();
+    }
+    /**
+     * 添加主播9个子商品
+     * @param string $mobile(多个,分隔)
+     */
+    public function insertLiveGoods($mobile)
+    {
+        $mobiles = explode(',',$mobile);
+        foreach ($mobiles as $v) {
+            foreach ($this->store2_id as $v2) {
+                $data['goods_id'] = $v2;
+                $data['mobile'] = $v;
+                $data['is_show'] = 1;
+                $data['create_time'] = date('Y-m-d H:i:s');
+                LiveGoods::create($data);
+            }
+        }
+        $this->code = 1;
+        $this->msg = '主播商品添加成功';
+        return $this->returnArr();
+    }
+    /**
+     * 更新主播账号下的观看门店权限
+     * @param string $mobile
+     * @param string $type 类型,1:日常活动门店,2:直播消费券门店
+     */
+    public function updateLiveQx($mobile,$type=1)
+    {
+        $this->code = 0;
+        $this->msg = '主播开通活动门店权限更新失败';
+        // 1.查询已开通活动门店
+
+        if($type == 1){
+            $mapb['act_flag315'] = 1;
+        }elseif($type == 2){
+            // 开通430成功
+            $mapb['act_live_card'] = 1;
+        }
+        $res_bwk = $this->bwk_model->where($mapb)->field('DISTINCT sign')->select();
+        // 2.更新主播账号观看门店权限
+        if($res_bwk){
+            $signs = [];
+            foreach ($res_bwk as $v) {
+                $signs[] = $v['sign'];
+            }
+            $sign = implode(',',$signs);
+            $map['mobile'] = $mobile;
+            $data['store_signs'] = $sign;
+            LiveConf::update($data,$map);
+            $this->code = 1;
+            $this->msg = '主播开通日常活动门店观看权限成功';
+            if($type == 2){
+                $this->msg = '主播开通直播消费券门店观看权限成功';
+            }
+        }
+        return $this->returnArr();
+    }
+    /**
+     * 手动针对用户id补发奖券
+     * $arr = [{'mobile':15921324164,'card_num':1}];
+     * @param int $mobile [用户手机号码]
+     * @param int $card_num [奖券数量]
+     */
+    public function sendCardByUser($arr)
+    {
+        $this->code = 0;
+        $this->msg = '手动补发418奖券-发送失败';
+        $data = [];
+
+        $arr1 = json_decode($arr,true);
+//        echo 'arr1:<pre>';print_r($arr1);die;
+        // 根据账号和数量发送奖券
+        $tick_ser = new TicketSer();
+
+        foreach ($arr1 as $k=>$v) {
+            // 根据号码查询用户
+            $user_id = $this->getUserId($v);
+            // 根据奖券数量发送
+            for ($i=0; $i < $v['card_num']; $i++) {
+                $order['order_id'] = 0;
+                $order['order_sn'] = '';
+                $res2 = $this->sendJpcard($tick_ser,$user_id,$order,$v['price']);
+                if($res2){
+                    // 添加成功的奖券id
+                    $data[] = $res2;
+                }
+            }
+        }
+        // 异步多张图片上传
+        if($tick_ser->qrcodeImgs){
+            $tick_ser->ybUpimg($tick_ser->qrcodeImgs);
+        }
+
+        if($data){
+            $this->data = $data;
+            $this->msg = '手动补发418奖券-418奖券发送成功';
+            $this->code = 1;
+        }
+        return $this->returnArr();
+    }
+    /**
+     * 手动补发418奖券
+     */
+    public function sendCard()
+    {
+        $this->code = 0;
+        $this->msg = '奖券发送失败';
+        // 1.查询用户购买直播订单
+//        $arr1['begin_time'] = '2020-04-05';
+//        $arr1['end_time'] = '2020-04-06';
+        $arr1['order_id'] = [303616,303617,303618,303625,303627,303639,303640,303647,303649,303651,303656,303658,303659,303661,303667,303672,303673,303676,303680,303687,303858];
+        $res1 = $this->getUserLiveOrder($arr1);
+
+        $data = [];
+        // 2.补发奖券
+        if($res1){
+            $tick_ser = new TicketSer();
+            foreach ($res1 as $v1) {
+//                echo '<pre>';print_r($v1['uid']);die;
+                $order['order_id'] = $v1['id'];
+                $order['order_sn'] = $v1['ordersn'];
+                $res2 = $this->sendJpcard($tick_ser,$v1['uid'],$order);
+                if($res2){
+                    // 添加成功的奖券id
+                    $data[] = $res2;
+                }
+            }
+            // 异步多张图片上传
+            if($tick_ser->qrcodeImgs){
+                $tick_ser->ybUpimg($tick_ser->qrcodeImgs);
+            }
+        }
+        if($data){
+            $this->data = $data;
+            $this->msg = '418奖券发送成功';
+            $this->code = 1;
+        }
+        return $this->returnArr();
+    }
+    /**
+     * 删除腾讯云不用的聊天室
+     */
+    public function delChat()
+    {
+        $this->code = 0;
+        $this->msg = '聊天室删除失败';
+        // 1.查询不用的聊天室
+        $map['user_id'] = ['neq',1];
+        $map['live_source'] = 2;
+        $map['statu'] = ['neq',1];
+        $map['insert_time'] = ['>=',1582359176];
+        $res = $this->live_model->field('id,chat_id,count(id) cnt')->where($map)->order('insert_time asc')->group('chat_id')->limit(10)->select();
+        // 2.调用腾讯云删除
+        if($res){
+            $data = [];
+            $timser = new \tencent_cloud\TimChat();
+            foreach ($res as $v) {
+                $data[] = $v['chat_id'];
+                $timser->destroyroup($v['chat_id']);
+            }
+            $this->code = 1;
+            $this->msg = '聊天室删除成功';
+            $this->data = $data;
+        }
+        return $this->returnArr();
+    }
+
+    public function updMrsStore($mobile,$sign)
+    {
+        // 1.更换美容师门店
+
+        // 2.更换下面顾客门店
+
+        // 3.更换顾客下面订单门店
+        Db::startTrans();
+        try{
+            $where['sign'] = $sign;
+            $where['mobile'] = $mobile;
+            $res = $this->updMrsBwk($where);
+            Db::commit();
+            $this->code = 1;
+            $this->msg = '美容师及名下顾客转移成功';
+            $this->data = $res;
+        }catch(Exception $e){
+            // 回滚事务
+            Db::rollback();
+            $this->msg .= $e->getMessage();
+        }
+        return $this->returnArr();
+    }
+
+    /**
+     * 更新412直播门店观看权限
+     * @return \think\response\Json
+     */
+    public function updateSeeLive()
+    {
+        $this->code = 0;
+        $this->msg = '更新失败';
+        // 1.查询目前已开通412门店编号
+        $map_b['act_flag315'] = 1;
+        $res_bwk = $this->getBwk($map_b,2);
+        if($res_bwk){
+            $stores = [];
+            foreach ($res_bwk as $v) {
+                $stores[] = $v['sign'];
+            }
+            $stores1 = implode(',',$stores);
+            // 2.按,分割更新到mobile=1直播配置中
+            $map_u['mobile'] = 111;
+            $data_u['store_signs'] = $stores1;
+            $this->updSeeLive($map_u,$data_u);
+//             3.清除服务器直播列表redis缓存
+            $this->clearRedis('livelist19');
+
+            $this->code = 1;
+            $this->msg = '开通门店-收看直播权限更新成功';
+        }
+        return $this->returnArr();
+    }
+    /**
+     * 批量开通门店活动权限
+     * @param string $sign [门店编号,多个,分割]
+     * @return \think\response\Json
+     */
+    public function openLive($sign)
+    {
+        $this->code = 0;
+        $this->msg = '开通失败';
+        // 门店多家切割成数组
+        $signs = explode(',',$sign);
+        Db::startTrans();
+        try{
+            // 1.开通门店直播活动开关
+            $storeids = $this->openZb($signs);
+            // 2.开通直播商品
+            $this->openZbGd($storeids);
+            // 3.开通88礼券商品
+            $this->openZbCard($storeids);
+            // 4.下架肌底液商品
+//            $this->closeZbJdy($storeids);
+            // 提交事务
+            Db::commit();
+            $this->code = 1;
+            $this->msg = '开通成功';
+            $this->data = $signs;
+        }catch( Exception $e){
+            // 回滚事务
+            Db::rollback();
+            $this->msg .= $e->getMessage();
+        }
+        return $this->returnArr();
+    }
+
+    /**
+     * 开通门店直播活动开关
+     * @param $signs
+     */
+    protected function openZb($signs)
+    {
+        // 门店模型
+        $map['sign'] = ['in',$signs];
+        $data['act_flag315'] = 1;
+        $this->bwk_model->where($map)->update($data);
+        // 返回门店id列表
+        $res = $this->bwk_model->where($map)->select();
+        $storeids = [];
+        if($res){
+            foreach ($res as $v) {
+                $storeids[] = $v['id'];
+            }
+        }
+        return $storeids;
+    }
+    /**
+     * 开通直播商品
+     * @param array $storeids 门店id
+     */
+    protected function openZbGd($storeids)
+    {
+        // 商品模型
+        $map1['storeid'] = ['in',$storeids];
+        $map1['pid'] = ['in',$this->pidzb];
+        $data1['status'] = 1;
+        $data1['isshow'] = 1;
+        $data1['deleted'] = 0;
+        $this->gd_model->where($map1)->update($data1);
+    }
+    /**
+     * 开通88礼券商品
+     * @param array $storeids 门店id
+     */
+    protected function openZbCard($storeids)
+    {
+        // 商品模型
+        $map2['storeid'] = ['in',$storeids];
+        $map2['pid'] = ['in',$this->pidcard];
+        $data2['status'] = 1;
+        $data2['isshow'] = 1;
+        $data2['deleted'] = 0;
+        $this->gd_model->where($map2)->update($data2);
+    }
+    /**
+     * 下架直播间肌底液商品
+     */
+    protected function closeZbJdy($storeids)
+    {
+        // 商品模型
+        $map2['storeid'] = ['in',$storeids];
+        $map2['pid'] = ['in',$this->pidjdy];
+        $data2['deleted'] = 1;
+        $this->gd_model->where($map2)->update($data2);
+    }
+
+    /**
+     * 获取门店数据
+     * @param array $where 查询条件
+     * @param int $limit 查询条数,1:单条,2:多条
+     */
+    protected function getBwk($where,$limit=1)
+    {
+        $res = [];
+        // 单条
+        if($limit == 1){
+            $res = $this->bwk_model->where($where)->limit(1)->find();
+        }elseif($limit == 2){
+        // 多条
+            $res = $this->bwk_model->where($where)->select();
+        }
+        return $res;
+    }
+    /**
+     * 更新直播权限门店数据
+     * @param array $where 查询条件
+     * @param array $data 更新的数据
+     */
+    protected function updSeeLive($where,$data)
+    {
+        $res = Db::table('think_live_see_conf')->where($where)->update($data);
+    }
+    /**
+     * 清除服务器直播列表redis缓存
+     * @param string $paras 键名
+     */
+    protected function clearRedis($paras)
+    {
+        curl_get('http://live.qunarmei.com/api/live/clearRedis?paras='.$paras);
+    }
+    /**
+     * 更换美容师及名下顾客门店及顾客订单
+     * @param array $where 查询条件
+     * @param array $data 更新的数据
+     */
+    protected function updMrsBwk($where)
+    {
+        $arr = [];
+        // 1.查询门店
+        $map_store['sign'] = $where['sign'];
+        $res_store = Db::table('ims_bwk_branch b')->where($map_store)->limit(1)->find();
+        // 2.转移门店
+        if($res_store){
+            $arr['storeid'] = $res_store['id'];
+            $data['storeid'] = $res_store['id'];
+            $map['mobile'] = $where['mobile'];
+
+            // 3.查询美容师信息
+            $res_mrs = Db::table('ims_bj_shopn_member m')->where($map)->limit(1)->find();
+            if($res_mrs){
+                $arr['mrs_id'] = $res_mrs['id'];
+                // 更换下面顾客门店
+                $map_gk['pid'] = $res_mrs['id'];
+                $data_gk['storeid'] = $res_store['id'];
+                Db::table('ims_bj_shopn_member')->where($map_gk)->update($data_gk);
+
+                // 更换顾客订单门店
+                Db::table('ims_bj_shopn_order')->where($map_gk)->update($data_gk);
+
+            }
+            $res = Db::table('ims_bj_shopn_member')->where($map)->update($data);
+        }
+        return $arr;
+    }
+
+    /**
+     * 查询用户直播商品订单
+     * @param array $map1(begin_time:支付开始日期,end_time:支付结束日期(不包含),order_id:订单id-数组)
+     *
+     */
+    protected function getUserLiveOrder($map1)
+    {
+        // 查询用户直播订单
+//        $map['g.pcate'] = 31;
+//        $map['g.ticket_type'] = 0;
+//        $map['g.live_flag'] = 1;
+//        $map['o.payTime'] = ['between time',[strtotime($map1['begin_time']),strtotime($map1['end_time'])]];
+        $map['o.id'] = ['in',$map1['order_id']];
+//        $res = Db::table('ims_bj_shopn_order o')->join(['ims_bj_shopn_order_goods'=>'og'],['og.orderid=o.id'],'LEFT')->join(['ims_bj_shopn_goods'=>'g'],['g.id=og.goodsid'],'LEFT')->field('o.uid,o.id,o.ordersn')->where($map)->group('o.id')->select();
+        $res = Db::table('ims_bj_shopn_order o')->where($map)->field('o.uid,o.id,o.ordersn')->select();
+        return $res;
+    }
+
+    /**
+     * 发送奖品-卡券
+     * @param object $tick_ser (卡券服务类)
+     * @param int $user_id (用户id)
+     * @param array $order (订单信息)
+     */
+    protected function sendJpcard($tick_ser,$user_id,$order=[],$price=0)
+    {
+
+        $flag = 0;
+
+        // 查询是否已经有券,有券不下发
+//        $map_t['user_id'] = $user_id;
+//        $map_t['type'] = 23;
+//        $res_t = $tick_ser->getTick($map_t);
+//        if($res_t){
+//            return $flag;
+//        }
+
+        // 查询用户信息
+        $map['m.id'] = $user_id;
+        $res_u = Db::table('ims_bj_shopn_member m')->join(['ims_bwk_branch'=>'b'],['m.storeid=b.id'],'LEFT')->join(['sys_departbeauty_relation'=>'r'],['r.id_beauty=b.id'],'LEFT')->join(['sys_department'=>'d'],['r.id_department=d.id_department'],'LEFT')->field('m.mobile,b.id storeid,b.title,b.sign,d.st_department bsc')->where($map)->limit(1)->find();
+        if($res_u){
+            $tick_code = $tick_ser->makeCode($user_id);
+            if(empty($order)){
+                $order['order_sn'] = '';
+                $order['order_id'] = 0;
+            }
+            // 查询下$tick_code是否存在,存在重新生成
+            $map_t['ticket_code'] = $tick_code;
+            $res_tick = Db::table('pt_ticket_user')->where($map_t)->limit(1)->find();
+            if($tick_code){
+                $tick_code = $tick_ser->makeCode($user_id);
+            }
+            // 查询奖券图片及id
+            $map_ti['par_value'] = $price;
+            $res_act_info = Db::table('ims_bj_activity_ticket_info')->where($map_ti)->limit(1)->find();
+            $draw_pic = $this->drawPic;
+            $ticket_info_id = 1;
+            $par_value = 2020;
+            if($res_act_info){
+                $draw_pic = $res_act_info['unused_img'];
+                $ticket_info_id = $res_act_info['id'];
+                $par_value = $res_act_info['par_value'];
+            }
+            $data = [
+                'par_value' => $par_value,
+                'depart' => $res_u['bsc'],
+                'storeid' => $res_u['storeid'],
+                'branch' => $res_u['title'],
+                'sign' => $res_u['sign'],
+                'mobile' => $res_u['mobile'],
+                'ticket_code' => $tick_code,
+                'type' => 24,// 10:现金券,11:魔境礼券,12:皮肤礼券,23:418奖券,24:直播消费券
+                'draw_pic' => $draw_pic,
+                'insert_time' => date('Y-m-d H:i:s'),
+//                'qrcode' => $tick_ser->makeQrcode($tick_code),
+                'order_sn' => $order['order_sn'],
+                'orderid' => $order['order_id'],
+                'user_id' => $user_id,
+                'ticket_info_id' => $ticket_info_id,
+                'aead_time' => strtotime('+15 day')
+            ];
+            $flag = Db::table('pt_ticket_user')->insertGetId($data);
+//            $flag = 1;
+//            $flag = $tick_ser->addTick($data);
+        }
+        return $flag;
+    }
+    /**
+     * 获取用户门店匹配发券
+     */
+    public function getUserId($map)
+    {
+        // 获取手机号前3位,获取手机号后4位
+        $mobile1 = substr($map['mobile'],0,3);
+        $mobile2 = substr($map['mobile'],-4);
+        $map1['mobile'] = ['like',$mobile1.'%'];
+        $map2['mobile'] = ['like','%'.$mobile2];
+        $map1['sign'] = $map['sign'];
+        $res = Db::table('ims_bj_shopn_member m')->join(['ims_bwk_branch'=>'b'],['b.id=m.storeid'],'left')->where($map1)->where($map2)->value('m.id');
+//        var_dump($res);die;
+        return $res;
+    }
+//    /**
+//     * 获取用户信息
+//     */
+//    public function getUserId($map)
+//    {
+//        $res = Db::table('ims_bj_shopn_member')->where($map)->value('id');
+//        return $res;
+//    }
+}

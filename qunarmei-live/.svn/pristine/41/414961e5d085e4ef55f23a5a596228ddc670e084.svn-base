@@ -1,0 +1,467 @@
+<?php
+    //增加命名空间
+    namespace tencent_cloud;
+    use think\Db;
+    //引入接口类
+	require_once("TimRestApi.php");
+
+    class TimChat{
+
+        protected   $sdkappid = '1400047679';
+        protected   $identifier = 'admin';
+        //独立模式
+        protected   $private_pem_path = '/keys/private_key';
+        protected   $user_sig = '';
+        //托管模式
+//        protected   $private_pem_path = '';
+//        protected   $user_sig = 'eJx10EFvgjAYxvE7n6LpdcssUKEs8QBuy5hMYtZlukvT0KJFwQYKQ82**zI1GZe91*eX-JP3ZAEAIE3e7niW7dvKMHPQEoJ7AG3iuQTe-gGtlWDcMLcWF4ARQthHvjNQsteqloznRtYXNfY9gn5voJSQlVG5uhouSlUN5kZs2Tn3f6dR6-P4*riYxg99PrXnWeyOwm3S36DPVaZbV0THZ9T570Hb0Y9DvKsSuutCFY0anC6cp5kJvjw7CtNa0ZTPizLZFy84avzlrDhuKN8sV*vJZJA0qrx*ZowC7BAbEWh9Wz-C51gE';
+
+        //获取访问授权
+        public function getUserSig($identifier='')
+        {
+            //托管模式
+//            return $this->user_sig;
+
+            //独立模式
+            if($identifier)
+            {
+                $moblie =  $identifier;
+            }else
+            {
+                $moblie = $this->identifier;
+            }
+            //查询user_sig是否过期
+            $res1 = Db::name('tent_cloud')->field('user_sig,log_time')->where("tent_cloud='$moblie'")->limit(1)->find();
+            if(!empty($res1)){
+                $dt =  strtotime($res1['log_time'])+3600*24*20;// 20天user_sig是否过期
+                if($dt > time() && !empty($res1['user_sig']))
+                {
+                    $res = $res1['user_sig'];
+                }else{
+                    $res = $this->creUserSig($moblie);
+                }
+            }else{
+                $res = $this->creUserSig($moblie);
+            }
+            return $res;
+        }
+
+        //请求接口Api
+        public function requestApi($api_name='',$datav='',$interface_func='')
+        {
+            $url = 'https://console.tim.qq.com/v4/';
+            $data = 'usersig='.$this->getUserSig().'&identifier='.$this->identifier.'&sdkappid='.$this->sdkappid.'&random=99999999&contenttype=json';
+            $res = $this->curlPost($url.$api_name.'?'.$data,$datav);
+            //记录请求接口到日志表
+            $dataval = array('func'=>$interface_func,'url'=>$url.$api_name.'?'.$data,'request_paras'=>$datav,'respon_paras'=>$res,'log_time'=>date('Y-m-d H:i:s'));
+             $res1 = Db::name('query_log')->insert($dataval);
+            return $res;
+        }
+
+        //curl post数据
+        public function curlPost($url='',$data='')
+        {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($data)));
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_URL, $url);
+            $output = curl_exec($ch);
+            $curlInfo = curl_getinfo($ch);
+            //释放curl句柄
+            curl_close($ch);
+            return $output;
+        }
+
+        //群组中发送消息
+        public function sendMsgs($chat_id='',$content='',$type='')
+        {
+//            管理员在群组中发送普通消息  => 发送字幕
+            $url1 = 'group_open_http_svc/send_group_msg';
+            //水军发送消息
+            if($type=='sj')
+            {
+                //水军昵称随机
+                $nick_name = Db::name('tent_cloud')->field('more_users')->limit(1)->select();
+                $ret = $nick_name[0]['more_users'];
+                $ret1 = explode(',',$ret);
+                $sj_name = $ret1[rand(0,24)];
+
+                $datav= '{"GroupId":"'.$chat_id.'","From_Account":"admin","Random":'.rand(1,999999).',"MsgBody":[{"MsgType": "TIMTextElem","MsgContent":{"Text":"'.$content.'"}},{"MsgType":"TIMCustomElem","MsgContent":{"Data":"{\"userAction\":500,\"name\": \"'.$sj_name.'\",\"scroll\":0}"}}]}';
+                $datav2= '指定消息发送者发送群消息';
+            }else
+            {
+                //字幕
+                if(!$type)
+                {
+                    $type = 0;
+                }
+                $datav= '{"GroupId":"'.$chat_id.'","From_Account":"admin","Random":'.rand(1,999999).',"MsgBody":[{"MsgType": "TIMTextElem","MsgContent":{"Text":"'.$content.'"}},{"MsgType":"TIMCustomElem","MsgContent":{"Data":"{\"userAction\":501,\"name\": \"admin\",\"scroll\":'.$type.'}"}}]}';
+                $datav2= '管理员发送普通群消息';
+            }
+
+            if($content)
+            {
+                $datav = str_replace(' ','',$datav);
+                $res1 = $this->requestApi($url1,$datav,$datav2);
+                return $res1;
+            }
+
+        }
+
+
+        //创建聊天室
+        public function creChatRoom()
+        {
+            $url = 'group_open_http_svc/create_group';
+            $dt = time();
+            $data1 = '{"Owner_Account": "admin","Type": "AVChatRoom","Name": "去哪美聊天室'.$dt.'","GroupId": "'.$dt.'"}';
+            $data2 = '创建群组';
+            $res1 = $this->requestApi($url,$data1,$data2);
+            return $dt;
+        }
+
+        //获取群组人数
+        public function getChatCnt($chat_id='')
+        {
+            $url = 'group_open_http_svc/get_group_info';
+            $dt = time();
+            $data1 = '{"GroupIdList":["'.$chat_id.'"]}';
+            $data2 = '获取群组详细资料';
+            $res1 = $this->requestApi($url,$data1,$data2);
+            // var_dump($res1);exit;
+            if($res1)
+            {
+                $ret = json_decode($res1);
+                $ret1 = $ret->GroupInfo;
+                $ret2 = $ret1[0];
+    //            print_r($ret2->MemberNum);exit;
+                $ret3 = ($ret2->MemberNum);
+            }else
+            {
+                $ret3 = 1;
+            }
+
+            return $ret3;
+        }
+
+        //批量获取多个群组人数
+        // $chat_ids=>多个群组数组
+        public function getChatCntList($chat_ids)
+        {
+            $url = 'group_open_http_svc/get_group_info';
+            $ret3 = null;$rest = [];
+            $dt = time();
+            if($chat_ids){
+                $data1['GroupIdList'] = $chat_ids;
+                $data11 = json_encode($data1);
+                $data2 = '获取群组详细资料';
+                $res1 = $this->requestApi($url,$data11,$data2);
+                $ret = json_decode($res1);
+                $ret1 = $ret->GroupInfo;
+                foreach ($ret1 as $v) {
+                    $ret3['chat_id'] = $v->GroupId;
+                    $ret3['chat_num'] = $v->MemberNum;
+                    $rest[] = $ret3;
+                }
+            }
+            return $rest;
+        }
+
+        //注册腾讯云
+        //start Modify by wangqin 2017-11-02 注册号码和昵称
+        public function tentRegister($mobile='',$nick_name='')
+        {
+            $url = 'im_open_login_svc/account_import';
+            //start Modify by wangqin 2017-12-19 注册腾讯增加昵称
+            if(!$nick_name)
+            {
+                $nick_name = '手机用户'.substr($mobile,-3);
+            }
+            //end Modify by wangqin
+            $data1 = '{"Identifier":"'.$mobile.'","Nick":"'.$nick_name.'"}';
+        // end Modify by wangqin 2017-11-02
+            $data2 = '独立模式账号导入接口';
+            $res1 = $this->requestApi($url,$data1,$data2);
+            return 1;
+        }
+
+        //创建usersig
+        public function creUserSig($moblie='')
+        {
+            $api = createRestAPI();
+            $api->init($this->sdkappid, $moblie);
+
+            if($this->private_pem_path != "")
+            {
+//                        echo dirname(__FILE__);
+                //独立模式
+
+                if(!file_exists(dirname(__FILE__).$this->private_pem_path))
+                {
+                    echo "私钥文件不存在, 请确保TimRestApiConfig.json配置字段private_pem_path正确\n";
+                    return;
+                }
+
+                /**
+                 * 获取usersig
+                 * 36000为usersig的保活期
+                 * signature为获取私钥脚本，详情请见 账号登录集成 http://avc.qcloud.com/wiki2.0/im/
+                 */
+                if(is_64bit()){
+                    if(PATH_SEPARATOR==':'){
+                        $signature = "/signature/linux-signature64";
+                    }else{
+                        $signature = "/signature\\windows-signature64.exe";
+                    }
+
+                }else{
+                    if(PATH_SEPARATOR==':')
+                    {
+                        $signature = "/signature/linux-signature32";
+                    }else{
+                        $signature = "/signature/windows-signature32.exe";
+                    }
+                }
+//                echo 'moblie:'.$moblie;
+//                echo '-pem_path:'.dirname(__FILE__).$this->private_pem_path;
+//                echo '-signature:'.dirname(__FILE__).$signature;exit;
+                $ret = $api->generate_user_sig($moblie, '36000', dirname(__FILE__).$this->private_pem_path, dirname(__FILE__).$signature);
+//                print_r($ret);exit;
+                if($ret == null || strstr($ret[0], "failed")){
+                    echo "获取usrsig失败, 请确保TimRestApiConfig.json配置信息正确\n";
+                    return -1;
+                }
+            }else if($this->user_sig != ""){
+                //托管模式
+                $ret = $api->set_user_sig($this->user_sig);
+                if($ret == false){
+                    echo "设置usrsig失败, 请确保TimRestApiConfig.json配置信息正确\n";
+                    return -1;
+                }
+            }else{
+                echo "请填写TimRestApiConfig.json中private_pem_path(独立模式)或者user_sig(托管模式)字段\n";
+                return -1;
+            }
+            //更新user_sig和时间
+            $data_v = array('user_sig'=>$ret[0],'log_time'=>date('Y-m-d H:i:s'));
+            if($moblie)
+            {
+                $res2 = Db::name('tent_cloud')->where("tent_cloud='$moblie'")->limit(1)->select();
+                if($res2)
+                {
+                    //查到修改user_sig
+                    $res3 = Db::name('tent_cloud')->where("tent_cloud='$moblie'")->update($data_v);
+                }else
+                {
+                    $data_v['tent_cloud'] = $moblie;
+                    $res4 = Db::name('tent_cloud')->insert($data_v);
+                }
+
+            }
+//                    $res1 = Db::name('tent_cloud')->where('id=1')->update($data_v);
+            return $ret[0];
+        }
+
+        //获取群组成员信息
+        public function getChatMem($chat_id)
+        {
+            $url = 'group_open_http_svc/get_group_member_info';
+            $data1 = '{"GroupId":"'.$chat_id.'"}';
+            $data2 = '获取群组成员列表';
+            $res = $this->requestApi($url,$data1,$data2);
+            if($res)
+            {
+                $res1 = json_decode($res);
+                $res2 = $res1->MemberList;
+
+                foreach ($res2 as $item)
+                {
+                    $roles =  $item->Role;
+                    $mobiles = $item->Member_Account;
+//                    $name = $item->NameCard;
+//                    echo '<pre>item:';print_r($item);exit;
+                    if($roles!='Admin')
+                    {
+                        //写入文件
+//                        $res2 = file_put_contents($file_name, $mobiles, FILE_APPEND);
+                        $mobile[] = array('mobile'=>$mobiles);
+                    }
+                }
+//                $mobile[] = array('mobile'=>'150123456');
+//                $mobile[] = array('mobile'=>'151123457');
+//                $mobile[] = array('mobile'=>'152123458');
+//                $mobile[] = array('mobile'=>'153123459');
+//                $mobile[] = array('mobile'=>'154123450');
+//                $mobile[] = array('mobile'=>'155123451');
+                return $mobile ;
+            }
+
+        }
+
+        //start Modify by wangqin 2017-11-15
+        //用户禁言
+        public function forbidUser($chat_id,$user)
+        {
+            if($user)
+            {
+                $url = 'group_open_http_svc/forbid_send_msg';
+                $data1 = '{"GroupId": "'.$chat_id.'","Members_Account":["'.$user.'"],"ShutUpTime":7200}';
+                $data2 = '用户禁言';
+                $res = $this->requestApi($url,$data1,$data2);
+                return $res;
+            }
+        }
+        //end Modify by wangqin 2017-11-15
+
+        //start Modify by wangqin 2017-11-15
+        //聊天室消息列表
+        public function MsgList($chat_id,$MsgSeq='')
+        {
+            if($chat_id)
+            {
+                $url = 'group_open_http_svc/group_msg_get_simple';
+
+                $data1 = '{"GroupId": "'.$chat_id.'","ReqMsgNumber":20}';
+
+                $data2 = '获取聊天室消息列表';
+                $res = $this->requestApi($url,$data1,$data2);
+                return $res;
+            }
+        }
+
+
+        /*
+         * 功能: 获取用户昵称
+         * 请求: $user 用户名
+         * 返回: $nickname 用户昵称
+         * */
+        public function getNickName($user)
+        {
+            if($user)
+            {
+                $url = 'profile/portrait_get';
+                $data1 = '{"To_Account": ["'.$user.'"],"TagList":["Tag_Profile_IM_Nick"]}';
+                $data2 = '获取聊天室消息列表';
+                $res = $this->requestApi($url,$data1,$data2);
+                if($res)
+                {
+                    $res = json_decode($res);
+                    $res1 = $res->UserProfileItem;
+                    $res2 = $res1[0];
+                    $res3 = $res2->ProfileItem;
+                    $res4 = $res3[0];
+                    $res = $res4->Value;
+                }
+                return $res;
+            }
+        }
+
+        //end Modify by wangqin 2017-11-15
+
+        /*
+         * 功能: 添加敏感字定义
+         * 请求: type 类型,add=>添加敏感字,del=>删除敏感字
+         *       word 敏感字
+         * 返回:
+         * */
+        public function sensWord($type='add',$word='')
+        {
+            if($type == 'del')
+            {
+                $url = 'openim_dirty_words/delete';
+                $data1 = '{"DirtyWordsList": ["'.$word.'"]}';
+                $data2 = '删除敏感字';
+                $res = $this->requestApi($url,$data1,$data2);
+                return $res;
+            }else if($type == 'add')
+            {
+                $url = 'openim_dirty_words/add';
+                $data1 = '{"DirtyWordsList": ["'.$word.'"]}';
+                $data2 = '添加敏感字';
+                $res = $this->requestApi($url,$data1,$data2);
+                return $res;
+            }else
+            {
+                $url = 'openim_dirty_words/get';
+                $data1 = '{}';
+                $data2 = '查询APP自定义脏字';
+                $res = $this->requestApi($url,$data1,$data2);
+                return $res;
+            }
+        }
+
+    //start Modify by wangqin 2017-12-19 解散聊天室
+    /*
+         * 功能: 解散聊天室
+         * 请求: type 类型,add=>添加敏感字,del=>删除敏感字
+         *       word 敏感字
+         * 返回:
+         * */
+        public function destroyroup($chat_id)
+        {
+            $url = 'group_open_http_svc/destroy_group';
+            $data1 = '{"GroupId": "'.$chat_id.'"}';
+            $data2 = '解散聊天室';
+            $res = $this->requestApi($url,$data1,$data2);
+            return $res;
+
+        }
+    //end Modify by wangqin 2017-12-19
+
+    //start Modify by wangqin 2017-12-19 获取聊天室信息
+        /*
+         * 功能: 获取聊天室个数
+         * 请求:
+         * 返回:
+         * */
+        public function getChatNum()
+        {
+            $url = 'group_open_http_svc/get_appid_group_list';
+            $data1 = '{"GroupType": "AVChatRoom"}';
+            $data2 = '获取聊天室个数';
+            $res = $this->requestApi($url,$data1,$data2);
+            return $res;
+
+        }
+
+    //start Modify by wangqin 2017-12-25 修改用户在腾讯聊天室昵称
+        /*
+         * 功能: 修改用户在腾讯聊天室昵称
+         * 请求:
+         * 返回:
+         * */
+        public function setChatName($mobile='',$nickname='')
+        {
+            $url = 'profile/portrait_set';
+            $data1 = '{"From_Account":"'.$mobile.'","ProfileItem":[{"Tag":"Tag_Profile_IM_Nick","Value":"'.$nickname.'"}]}';
+            $data2 = '修改用户在腾讯聊天室昵称';
+            $res = $this->requestApi($url,$data1,$data2);
+            return $res;
+
+        }
+        //end Modify by wangqin 2017-12-25
+        /**
+         * 设置用户腾讯IM资料
+         * @param [string] $mobile    [账号]
+         * @param [string] $user_name [名称]
+         * @param [string] $head_img  [头像]
+         */
+        public function setUserImInfo($mobile,$user_name,$head_img)
+        {
+            $url = 'profile/portrait_set';
+            $data1 = '{"From_Account":"'.$mobile.'","ProfileItem":[{"Tag":"Tag_Profile_IM_Nick","Value":"'.$user_name.'"},{"Tag":"Tag_Profile_IM_Image","Value":"'.$head_img.'"}]}';
+            $data2 = '修改用户在腾讯聊天室昵称头像';
+            $res = $this->requestApi($url,$data1,$data2);
+            return $res;
+        }
+}
+
+
+?>

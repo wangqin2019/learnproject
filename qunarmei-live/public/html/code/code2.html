@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <META HTTP-EQUIV="expires" CONTENT="0">
+		<script type="text/javascript" src="jquery.min.js"></script>
+		<title>去哪美</title>
+	</head>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0
+		}
+		
+		html {
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+		
+		body {
+			line-height: 1.6;
+			font-family: -apple-system-font, Helvetica Neue, sans-serif;
+			background: url(bg.png) no-repeat;
+			background-size: cover;
+			text-align: center;
+		}
+		
+		body:after {
+			content: "";
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background: inherit;
+			filter: blur(5px);
+			z-index: -1;
+		}
+		
+		img {
+			border: 0
+		}
+		
+		p {
+			color: #ffffff;
+			font-size: 1em;
+		}
+		
+		input {
+			border: none;
+			width: 80%;
+			height: 3em;
+			line-height: 3em;
+			border-radius: 0.5em;
+			text-align: center;
+			margin-bottom: 1.5em;
+		}
+		
+		button {
+			background: #C6AE65;
+			color: #ffffff;
+			border: none;
+			width: 80%;
+			height: 3em;
+			line-height: 3em;
+			border-radius: 0.5em;
+		}
+		
+		.logo {
+			margin-top: 2em;
+			width: 5em;
+			height: 5em;
+		}
+		
+		.title {
+			font-size: 1.2em;
+			margin-top: 1em;
+		}
+		
+		.detail {
+			font-size: 0.9em;
+		}
+		
+		.form {
+			position: relative;
+			top: 2em;
+			left: 0;
+			right: 0;
+		}
+		
+		.code {
+			position: relative;
+			top: 2em;
+			left: 0;
+			right: 0;
+		}
+		
+		.code img {
+			width: 6em;
+			height: 6em;
+			margin-bottom: 0.5em;
+		}
+		
+		.code p {
+			font-size: 0.9em;
+		}
+		#wx {
+			width: 100%;
+			height: 100%;
+			background: #000000;
+			opacity: 0.8;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 999;
+			display: none;
+		}
+		#wx img{
+			position: absolute;
+			top: 2em;
+			right: 5%;
+			width: 80%;
+		}
+		@media screen and (max-width: 375px) and (min-width: 320px) {
+			/*iphone5*/
+			.body {
+				margin-top: 0em;
+			}
+			.code {
+				top: 4em;
+			}
+		}
+		
+		@media screen and (max-width: 414px) and (min-width: 375px) {
+			/*iphone7*/
+			.body {
+				margin-top: 0em;
+			}
+			.form {
+				top: 2em;
+			}
+			.code {
+				top: 5em;
+			}
+		}
+		
+		@media screen and (max-width: 639px) and (min-width: 414px) {
+			/*iphone7 plus*/
+			.body {
+				margin-top: 4em;
+			}
+			.code {
+				top: 5em;
+			}
+		}
+		
+		@media only screen and (device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) {
+			/*iphonex*/
+			.body {
+				margin-top: 5em;
+			}
+			.code {
+				top: 6em;
+			}
+		}
+		
+		@media screen and (min-width: 640px) {
+			/*ipad*/
+			.body {
+				margin-top: 6em;
+			}
+			.code {
+				top: 4em;
+			}
+			.logo {
+				width: 6em;
+				height: 6em;
+			}
+			p {
+				font-size: 1.5em;
+			}
+			.title {
+				font-size: 2.2em;
+			}
+			.detail,
+			.code p {
+				font-size: 1.8em;
+			}
+			.code img {
+				width: 8em;
+				height: 8em;
+			}
+			input,
+			button {
+				font-size: 1.5em;
+			}
+		}
+		
+		.tishi {
+			position: fixed;
+			background: #000000;
+			opacity: 0.6;
+			color: #FFFFFF;
+			left: 20%;
+			width: 60%;
+			bottom: 2em;
+			line-height: 2em;
+			border-radius: 0.2em;
+			text-align: center;
+		}
+		
+		.hide {
+			display: none;
+		}
+	</style>
+
+	<body>
+		<div id="wx">
+			<img src="wx.png" />
+		</div>
+		<div class="body">
+			<div>
+				<img src="logo.png" class="logo" />
+				<p>去哪美</p>
+				<p class="title">随时随地搜寻美</p>
+				<p class="detail">随时随地选择产品和服务，解决搜寻的烦恼</p>
+			</div>
+
+			<div class="form">
+				<input placeholder="请输入手机号码" type="number" />
+				<button>确定</button>
+			</div>
+
+			<div class="code">
+				<img src="wx.jpg" />
+				<p>识别二维码，下载去哪美APP</p>
+			</div>
+
+		</div>
+		<div class="tishi hide"></div>
+	</body>
+	<script>
+//		console.log(window.location.search.indexOf('type=1'))
+		var mrs_mobile = getQueryString('mobile');
+		var ua = navigator.userAgent;
+		var isWeixin = !!/MicroMessenger/i.test(ua);
+		var isiOS = !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+		var a = document.createElement('a');
+		if(isWeixin){
+			$('#wx').css('display','block');
+		}
+		else{
+			if(isiOS == true){
+				if(window.location.search.indexOf('type=1') == -1){
+					a.setAttribute('href', 'qnmclient://goodsDetail'+window.location.search);
+				}
+				else{
+					a.setAttribute('href', 'qnmclient://');
+				}
+				//a.setAttribute('href', 'qnmclient:/goodsDetail'+window.location.search);
+			}
+			else{
+				a.setAttribute('href', 'qunarmei://qunarmei.com/'+window.location.search);
+			}
+			a.setAttribute('id', 'startTelMedicine');
+			// 防止反复添加
+			if(document.getElementById('startTelMedicine')) {
+				document.body.removeChild(document.getElementById('startTelMedicine'));
+			}
+			document.body.appendChild(a);
+		}
+		
+		function detectVersion() {
+			let isAndroid, isIOS, isIOS9, version,
+				u = navigator.userAgent,
+				ua = u.toLowerCase();
+
+			if(u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) { //android终端或者uc浏览器
+				//Android系统
+				isAndroid = true
+			}
+
+			if(ua.indexOf("like mac os x") > 0) {
+				//ios
+				var regStr_saf = /os [\d._]*/gi;
+				var verinfo = ua.match(regStr_saf);
+				version = (verinfo + "").replace(/[^0-9|_.]/ig, "").replace(/_/ig, ".");
+			}
+			var version_str = version + "";
+			if(version_str != "undefined" && version_str.length > 0) {
+				version = parseInt(version)
+				if(version >= 8) {
+					// ios9以上
+					isIOS9 = true
+				} else {
+					isIOS = true
+				}
+			}
+			return {
+				isAndroid,
+				isIOS,
+				isIOS9
+			}
+		}
+
+
+		// 判断手机上是否安装了app，如果安装直接打开url，如果没安装，执行callback
+		function openApp() {
+			a.click();
+		}
+
+		//跳h5
+		function goConfirmAddr() {
+			var ua = navigator.userAgent;
+			var isAndroid = ua.indexOf('Android') > -1 || ua.indexOf('Adr') > -1; //android终端
+			//			var isiOS = !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+			if(isAndroid == true) {
+				window.location.href = 'https://sj.qq.com/myapp/detail.htm?apkName=com.qunarmei.client';
+			} else {
+				window.location.href = 'https://apps.apple.com/cn/app/%E5%8E%BB%E5%93%AA%E7%BE%8E/id1188580031';
+			}
+		}
+		
+
+		$('button').click(function() {
+			var mobile = $('input').val();
+			mob = isPoneAvailable(mobile);
+			if(mob == true) {
+				$.ajax({
+					type: 'post',
+					url: 'http://testc.qunarmei.com:9091/api/v4/beauty_code/register',
+					dataType: 'json',
+					data: 'mrs_mobile=' + mrs_mobile + '&mobile=' + mobile,
+					crossDomain: true,
+					async: false,
+					cache: false,
+					success: function(data) {
+						console.log(data)
+						if(data.code == 1){
+//							a.click();	
+							goConfirmAddr();
+						}
+						else{
+//							alert(data.code)
+							a.click();
+							setTimeout(function () {
+						    	goConfirmAddr();
+						    }, 2000)
+//							tishi(data.msg, 1000);
+						}
+
+					},
+					error: function(data) {
+						console.log(data);
+					},
+				});
+			}
+		})
+		//手机号
+		function isPoneAvailable(msg) {
+			var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+			if(!myreg.test(msg)) {
+				tishi('请输入有效的号码！', 1000);
+				return false;
+			} else {
+				return true;
+			}
+		}
+		//获取地址
+		function getQueryString(name) {
+			var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+			var r = window.location.search.substr(1).match(reg);
+			if(r != null) {
+				return unescape(r[2]);
+			}
+			return null;
+		}
+		//提示
+		function tishi(msg, time) {
+			$('.tishi').html(msg);
+			$('.tishi').removeClass('hide');
+			var t = setTimeout(function() {
+				$('.tishi').addClass('hide');
+			}, time)
+		}
+	</script>
+
+</html>

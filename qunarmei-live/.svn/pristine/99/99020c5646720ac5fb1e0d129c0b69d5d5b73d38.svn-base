@@ -1,0 +1,87 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2020/1/9
+ * Time: 11:41
+ */
+
+namespace app\api\controller\v4;
+
+
+use app\api\controller\v3\Common;
+use app\api\service\LiveSubjectService;
+/**
+ * 手机端直播答题
+ */
+class LiveSubject extends Common
+{
+    // 服务类
+    protected $liveSubSer;
+    /**
+     * 初始化方法
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->liveSubSer = new LiveSubjectService();
+    }
+    /**
+     * 用户答题答案记录
+     * @param int $ls_id 直播题目关联ID think_live_subject表ID
+     * @param int $user_id 用户id
+     * @param int $live_id 直播间id
+     * @param int $subject_id 题目id
+     * @param string $option 提交的选项
+     */
+    public function user_live_answers_add()
+    {
+        $ls_id = input('ls_id');
+        $user_id = input('user_id');
+        $live_id = input('live_id');
+        $subject_id = input('subject_id');
+        $option = input('option');
+        $res = $this->liveSubSer->UsersLiveAnswersAdd($user_id,$live_id,$subject_id,$option,$ls_id);
+        return $this->returnMsg($res['code'],$res['data'],$res['msg']);
+    }
+
+    /**
+     * 是否弹窗文案直播
+     * @param int $user_id 用户id
+     * @param int $store_id 门店id
+     */
+    public function has_copyroom()
+    {
+        $user_id = input('user_id');
+        $store_id = input('store_id');
+
+        $res = $this->liveSubSer->hasCopyroom($user_id,$store_id);
+        return $this->returnMsg($res['code'],$res['data'],$res['msg']);
+    }
+
+    /**
+     * 直播文案选择列表
+     * @param int $user_id 用户id
+     * @param int $store_id 门店id
+     * @param int $page 当前页,不传查询所有
+     */
+    public function get_copyroom()
+    {
+        $user_id = input('user_id');
+        $store_id = input('store_id');
+        $page = input('page',0);
+        $res = $this->liveSubSer->getCopyroom($user_id,$store_id,$page);
+        return $this->returnMsg($res['code'],$res['data'],$res['msg']);
+    }
+    /**
+     * 文案直播-当前文案
+     * @param string $chat_id 当前聊天室
+     */
+    public function current_copyroom()
+    {
+        $chat_id = input('chat_id');
+        $res = $this->liveSubSer->currentCopyroom($chat_id);
+        return $this->returnMsg($res['code'],$res['data'],$res['msg']);
+    }
+    
+}

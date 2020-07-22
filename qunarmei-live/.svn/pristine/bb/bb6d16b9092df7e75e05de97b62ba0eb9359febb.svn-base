@@ -1,0 +1,157 @@
+{include file="public/header" /}
+<script type="text/javascript" src="/static/admin/js/plugins/layer/laydate/laydate.js"></script>
+<!--<link rel="stylesheet" type="text/css" media="all" href="/sldate/daterangepicker-bs3.css" />-->
+<script type="text/javascript" src="/sldate/moment.js"></script>
+<script type="text/javascript" src="/static/admin/js/plugins/layer/laydate/laydate.js"></script>
+<!--<script type="text/javascript" src="/sldate/daterangepicker.js"></script>-->
+<style>
+    .file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+    .file-item .info{overflow: hidden;}
+    .uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>直播观看权限配置</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t layui-form" name="add" id="add" method="post" action="{:url('add_special')}">
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">审核结果通知号码</label>
+                            <div class="input-group col-sm-4">
+                                <input id="notice_mobile" type="text" class="form-control" name="notice_mobile" placeholder="">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">主播号码</label>
+                            <div class="input-group col-sm-4">
+                                <input id="mobile" type="text" class="form-control" name="mobile" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">主播直播间id</label>
+                            <div class="input-group col-sm-4">
+                                <input id="live_id" type="text" class="form-control" name="live_id" placeholder="">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">参与观看用户号码</label>
+                            <div class="input-group col-sm-4">
+                                <input id="see_mobiles" type="text" class="form-control" name="see_mobiles" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group layui-form-item">
+                            <label class="col-sm-3 control-label">选择门店</label>
+                            <input type="text"  id="serach_store" placeholder="请输入完整门店编号,如:666-666-1" style="width:200px;"><button value="搜索" onclick="serach_bwk()" type='button'>搜索</button>
+                            <div class="input-group col-sm-8">
+                            <ul id="store_ids">
+                                {foreach $branch as $k => $v}
+                                <li style="float: left;list-style-type: none;width:20%;">
+                                    <input type="checkbox" name="signs[]" value="{$v.sign}" id="{$v.sign}">{$v.title}-{$v.sign}&nbsp;&nbsp;
+                                </li>
+                                {/foreach}
+                            </ul>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">开始时间</label>
+                            <div class="input-group col-sm-4">
+                                <input id="begin_time" type="text" class="form-control" name="start_time" placeholder="">
+                            </div>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">备注说明</label>
+                            <div class="input-group col-sm-4">
+                                <input id="remark" type="text" class="form-control" name="remark" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit" name="submit" value="1"><i class="fa fa-save"></i> 保存信息</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    $(function(){
+        $('#add').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        function checkForm(){
+            return true;
+        }
+        function complete(data){
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    window.location.href="{:url('index')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+
+    });
+    //layui 时间日期控件
+    var begin_time = {
+        elem: '#begin_time', //选择ID为START的input
+        format: 'YYYY-MM-DD', //自动生成的时间格式
+//         min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16', //最大日期
+        istime: true, //必须填入时间
+        istoday: false,  //是否是当天
+        start: laydate.now(0,"YYYY-MM-DD"),  //设置开始时间为当前时间
+        choose: function(datas){
+            end_time.min = datas; //开始日选好后，重置结束日的最小日期
+            end_time.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+    laydate(begin_time);
+    //layui 时间日期控件
+    var end_time = {
+        elem: '#end_time', //选择ID为START的input
+        format: 'YYYY-MM-DD', //自动生成的时间格式
+//         min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16', //最大日期
+        istime: true, //必须填入时间
+        istoday: false,  //是否是当天
+        start: laydate.now(0,"YYYY-MM-DD"),  //设置开始时间为当前时间
+        choose: function(datas){
+            begin_time.max = datas;
+//            end.min = datas; //开始日选好后，重置结束日的最小日期
+//            end.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+    laydate(end_time);
+
+    // 查询搜索门店
+    function serach_bwk() {
+        // 获取输入数据
+        var data11 = $("#serach_store").val();
+        console.log('#'+data11);
+        window.location.hash = "#"+data11;
+    }
+</script>
+</body>
+</html>

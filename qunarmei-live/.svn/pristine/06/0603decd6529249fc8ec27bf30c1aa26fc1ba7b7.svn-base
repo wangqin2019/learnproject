@@ -1,0 +1,120 @@
+<2017-11-30 13:52:03|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo20", "pwd": "demo", "appid": 'Your_SDK_APP_ID'}
+<2017-11-30 13:52:03|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 0 secs, data:
+	{"errorCode":10002,"errorInfo":"HTTP Request Json Parse Error"}
+<2017-11-30 13:52:31|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo20", "pwd": "demo", "appid":123456}
+<2017-11-30 13:52:31|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 0 secs, data:
+	{"errorCode":10003,"errorInfo":"Invalid appid"}
+<2017-11-30 13:53:17|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo20", "pwd": "demo", "appid":1400047679}
+<2017-11-30 13:53:17|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 0 secs, data:
+	{"errorCode":10003,"errorInfo":"Invalid appid"}
+<2017-11-30 13:54:15|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo20", "pwd": "demo", "appid":0}
+<2017-11-30 13:54:15|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 0 secs, data:
+	{"errorCode":10003,"errorInfo":"Invalid appid"}
+<2017-11-30 13:55:02|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo20", "pwd": "demo", "appid":0}
+<2017-11-30 13:55:02|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 0 secs, data:
+	{"errorCode":10003,"errorInfo":"Invalid appid"}
+<2017-11-30 13:55:29|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo20", "pwd": "demo"}
+<2017-11-30 13:55:29|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 0 secs, data:
+	{"errorCode":10003,"errorInfo":"Invalid appid"}
+<2017-11-30 13:57:01|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo20", "pwd": "demo", "appid":123456}
+<2017-11-30 13:57:01|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 0 secs, data:
+	{"errorCode":10003,"errorInfo":"Invalid appid"}
+<2017-11-30 14:00:04|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo20", "pwd": "demo", "appid":123456}
+<2017-11-30 14:00:04|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 0 secs, data:
+	{"errorCode":10003,"errorInfo":"Invalid appid"}
+<2017-11-30 14:00:28|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo20", "pwd": "demo", "appid":1400047679}
+<2017-11-30 14:00:29|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 1 secs, data:
+	{"errorCode":90000,"errorInfo":"Server inner error"}
+<2017-11-30 14:01:23|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo20", "pwd": "demo", "appid":1400047679}
+<2017-11-30 14:01:24|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 1 secs, data:
+	{"errorCode":90000,"errorInfo":"Server inner error"}
+<2017-11-30 14:01:37|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo21", "pwd": "demo"}
+<2017-11-30 14:01:38|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 1 secs, data:
+	{"errorCode":10005,"errorInfo":"User not exist"}
+<2017-11-30 14:01:51|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo20", "pwd": "demo"}
+<2017-11-30 14:01:52|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 1 secs, data:
+	{"errorCode":90000,"errorInfo":"Server inner error"}
+<2017-11-30 14:06:09|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo20", "pwd": "demo", "appid":1400047679}
+<2017-11-30 14:06:10|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 1 secs, data:
+	{"errorCode":10006,"errorInfo":"User password error"}
+<2017-11-30 14:08:00|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = regist, data:
+	 { "id":"demo1", "pwd": "demo"}
+<2017-11-30 14:08:02|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = regist, time = 2 secs, data:
+	{"errorCode":0,"errorInfo":""}
+<2017-11-30 14:08:23|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo1", "pwd": "demo", "appid":1400047679}
+<2017-11-30 14:08:24|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 1 secs, data:
+	{"errorCode":10006,"errorInfo":"User password error"}
+<2017-11-30 14:10:25|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo1", "pwd": "demo", "appid":1400047679}
+<2017-11-30 14:10:26|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 1 secs, data:
+	{"errorCode":10006,"errorInfo":"User password error"}
+<2017-11-30 14:11:21|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo1", "pwd": "demo", "appid":1400047679}
+<2017-11-30 14:11:22|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 1 secs, data:
+	{"errorCode":10006,"errorInfo":"User password error"}
+<2017-11-30 14:13:01|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo1", "pwd": "demo", "appid":1400047679}
+<2017-11-30 14:13:02|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 1 secs, data:
+	{"errorCode":10006,"errorInfo":"User password error"}
+<2017-11-30 14:13:41|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	request svc = account, cmd = login, data:
+	 { "id":"demo1", "pwd": "demo", "appid":1400047679}
+<2017-11-30 14:13:43|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\SuiXinBoPHPServer-StandaloneAuth\index.php|function:handle>
+	response svc = account, cmd = login, time = 2 secs, data:
+	{"errorCode":10006,"errorInfo":"User password error"}
+<2017-11-30 14:16:17|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\public\sxb\index.php|function:handle>
+	request svc = account, cmd = regist, data:
+	 { "id":"demo2", "pwd": "demo"}
+<2017-11-30 14:16:19|INFO|file:D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\public\sxb\index.php|function:handle>
+	response svc = account, cmd = regist, time = 2 secs, data:
+	{"errorCode":0,"errorInfo":""}

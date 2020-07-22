@@ -1,0 +1,181 @@
+{include file="public/header" /}
+<!--<link rel="stylesheet" type="text/css" media="all" href="/sldate/daterangepicker-bs3.css" />-->
+<script type="text/javascript" src="/sldate/moment.js"></script>
+<!--<script type="text/javascript" src="/sldate/daterangepicker.js"></script>-->
+<style>
+    .file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+    .file-item .info{overflow: hidden;}
+    .uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>修改直播商品方案</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="add" id="add" method="post" action="{:url('edit_sale')}">
+                        <input type="hidden" name="id" value="{$id}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">方案类型</label>
+                            <div class="input-group col-sm-4">
+                                <input type="radio" name='activity_type' value="1" id="ms" {if $res_rule['activity_type'] eq 1}checked{/if}/>买送&nbsp;
+                                <input type="radio" name='activity_type' value="0" id="mj" {if $res_rule['activity_type'] eq 0}checked{/if}/>满减&nbsp;
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-3 control-label">商品选择：</label>
+                        <div class="input-group" style="margin-top: -5px;">
+                            <select class="form-control m-b chosen-select" name="goods_id[]" id="goods_id1" style="width: 250px" lay-search="">
+                                <option value=""></option>
+                                {if !empty($live_goods)}
+                                {foreach name="$live_goods" item="v"}
+                                <option value="{$v.id}" {if $res_rule['goods_id'] eq $v.id}selected{/if}>{$v.title}-{$v.id}</option>
+                                {/foreach}
+                                {/if}
+                            </select>
+                            <select class="form-control m-b chosen-select" name="goods_id[]" id="goods_id2" style="width: 250px;display: none" lay-search="">
+                                <option value=""></option>
+                                {if !empty($live_goods2)}
+                                {foreach name="$live_goods2" item="v"}
+                                <option value="{$v.id}" {if $res_rule['goods_id'] eq $v.id}selected{/if}>{$v.title}-{$v.id}</option>
+                                {/foreach}
+                                {/if}
+                            </select>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">实施方案</label>
+                            <div class="input-group col-sm-4">
+                                <span id="man">满</span>&nbsp;<input id="goods_num" type="text"  name="goods_num" placeholder="请输入" style="with: 100px;" value="{$res_rule['goods_num']}">&nbsp;个<br/>
+                                <span id="jian">减</span>&nbsp;<input id="reduction_num" type="text" name="reduction_num" placeholder="请输入" style="with: 100px;" onblur="numDx()" value="{$res_rule['reduction_num']}">&nbsp;个<br/>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">赠送优惠券</label>
+                            <div class="input-group col-sm-4">
+                                <input type="checkbox" name='card_id[]' value="24" {in name="24" value="$res_rule['send_card_type']"}checked{/in}/>消费券&nbsp;
+                                <input type="checkbox" name='card_id[]' value="25" {in name="25" value="$res_rule['send_card_type']"}checked{/in}/>护理券&nbsp;
+                                <input type="checkbox" name='card_id[]' value="26" {in name="26" value="$res_rule['send_card_type']"}checked{/in}/>门店定制礼券&nbsp;
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group layui-form-item">
+                            <label class="col-sm-3 control-label">当前执行门店</label>
+                            <label class="col-sm-3 control-label">{$res_rule['signs']}</label>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">备注说明</label>-->
+                            <!--<div class="input-group col-sm-4">-->
+                                <!--<input id="remark" type="text" class="form-control" name="remark" placeholder="" value="{$res_rule['remark']}">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit" name="submit" value="1"><i class="fa fa-save"></i> 保存信息</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    var ms = document.getElementById('ms'); // 分别拿到对版应权的元素
+    var mj = document.getElementById('mj');
+    ms.onclick = function() {
+//        alert('ms');
+        $("#man").html('买');
+        $("#jian").html('送');
+        $("#goods_id1").css("display",'none');
+        $("#goods_id2").css("display",'block');
+
+    }
+    mj.onclick = function() {
+//        alert('mj');
+        $("#man").html('满');
+        $("#jian").html('减');
+        $("#goods_id1").css("display",'block');
+        $("#goods_id2").css("display",'none');
+    }
+    function numDx(){
+        var n1 = $("#goods_num").val();
+        var n2 = $("#reduction_num").val();
+        var type = $("input[name='activity_type']:checked").val();
+        // 买送
+        if(type == 1){
+            if(n1 < n2){
+                layer.msg('送个数不能大于买个数', {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+            }
+        }else{
+            // 满减
+            if(n1 <= n2){
+                layer.msg('减个数不能大于买个数', {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+            }
+        }
+        return false;
+    }
+    $(function(){
+        $('#add').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        function checkForm(){
+            var n1 = $("#goods_num").val();
+            var n2 = $("#reduction_num").val();
+            var type = $("input[name='activity_type']:checked").val();
+            // 买送
+            if(type == 1){
+                if(n1 < n2){
+                    layer.msg('送个数不能大于买个数', {icon: 5,time:1500,shade: 0.1}, function(index){
+                        layer.close(index);
+                        return false;
+                    });
+                }
+            }else{
+                // 满减
+                if(n1 <= n2){
+                    layer.msg('减个数不能大于买个数', {icon: 5,time:1500,shade: 0.1}, function(index){
+                        layer.close(index);
+                        return false;
+                    });
+                }
+            }
+            return true;
+        }
+
+        function complete(data){
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    window.location.href="{:url('sale_list')}?sign={$res_rule['signs']}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+
+    });
+
+
+</script>
+</body>
+</html>

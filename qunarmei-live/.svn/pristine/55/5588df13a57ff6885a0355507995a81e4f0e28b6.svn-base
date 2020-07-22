@@ -1,0 +1,73 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2018/4/18
+ * Time: 15:30
+ */
+
+namespace phpmailer_kz;
+/*
+**发送邮件
+*/
+class SendMail extends PHPMailer
+{
+    /*初始化配置*/
+    public function mailConf()
+    {
+        $this->isSMTP();
+        $this->SMTPDebug = 0;                                       // Debug模式级别
+        $this->Host = "smtp.qq.com";                                // SMTP服务器地址
+        $this->Port = 465;                                          // 端口号
+        $this->SMTPAuth = true;                                     //启用SMTP认证
+        $this->CharSet = 'UTF-8';                                   // 邮件编码设置
+        $this->SMTPSecure =   'ssl';                                 // 启用SMTP服务
+        $this->Encoding = "base64"; //编码方式
+        $this->Username = "1145308756@qq.com";                  // SMTP登录邮箱
+        $this->Password = "wvblzqrovebogheg";                 // SMTP登录密码
+        $this->setFrom('1145308756@qq.com', '去哪美App管理员');            // 发件人邮箱和名称
+
+    }
+
+    /*
+     * 发送邮件
+     * toMail=>收件人地址,subject=>邮件主题,content=>邮件内容，支持html,attachment=>收件人地址,toMail=>收件人地址,
+     * */
+    public function sendMailS($toMail, $subject, $content, $attachment = null)
+    {
+        $this->mailConf();
+        // 发送多人邮件
+        if($toMail && is_array($toMail))
+        {
+            foreach($toMail as $mail_v)
+            {
+                $this->addAddress($mail_v);
+            }
+        }else
+        {
+            // 发送单人邮件
+            $this->addAddress($toMail);
+        }
+
+        $this->Subject = $subject;
+        $this->msgHTML($content);
+
+        if($attachment) { // 添加附件
+            if(is_string($attachment)){
+                is_file($attachment) && $this->AddAttachment($attachment);
+            }
+            else if(is_array($attachment)){
+                foreach ($attachment as $file) {
+                    is_file($file) && $this->AddAttachment($file);
+                }
+            }
+        }
+
+        if(!$this->send()){ // 发送
+            return $this->ErrorInfo;
+        }
+        else{
+            return true;
+        }
+    }
+}

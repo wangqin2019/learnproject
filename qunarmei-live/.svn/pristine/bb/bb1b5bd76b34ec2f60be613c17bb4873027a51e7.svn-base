@@ -1,0 +1,32 @@
+<?php
+namespace app\api\model;
+
+use think\Model;
+/*
+ * 直播信息表
+*/
+class Live extends Model
+{
+    // 定义表名称,含前缀$name,完整表名$table
+    protected $name='live';
+    // 定义主键
+//    protected $pk = 'id';
+
+    // 关联查询
+    public function listLive()
+    {
+        $list = $this->belongsTo("LiveCate", "category_id", "id", ['live'=>'l', 'live_category'=>'c'], 'LEFT');
+        // 数据表关联查询
+//        $list = $this->join('live_category l','l.id=think_live.category_id','LEFT')->field('think_live.*,l.category_name')->select();
+        return $list;
+    }
+    /*
+     * 功能:查询当前直播的直播间
+     * */
+    public static function liveSel()
+    {
+        $map['statu'] = 1;
+        $res = self::where($map)->limit(1)->find();
+        return $res;
+    }
+}

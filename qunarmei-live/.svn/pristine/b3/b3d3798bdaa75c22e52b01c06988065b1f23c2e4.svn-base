@@ -1,0 +1,65 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>直播列表</title>
+
+<link rel="stylesheet" type="text/css" href="../../static/index/pc_zb/css/index.css?v=2.0"/>
+</head>
+<body><script src="/demos/googlegg.js"></script>
+<div class="header">
+	<img src="../../static/index/pc_zb/images/logo.png"/>
+	<button onclick="window.location='pcplay?id=3'">下载APP</a></button>
+</div>
+<!--轮播图 开始 -->
+<div class="main_banner">
+	<div class="main_banner_bg"></div>
+	<div class="main_banner_wrap">
+		<canvas id="myCanvas" width="150" height="150" style="display: none;"></canvas>
+		<div class="main_banner_box" id="m_box">
+			<ul>
+				{if $zb_list}
+				{foreach $zb_list  as $k=>$zb_listv}
+				<li id="imgCard{$k}" onclick="play_zb({$zb_listv['id']})">
+				<span class="mengban"></span>
+				<img src="{$zb_listv['live_img']}" alt="" class="li_img">
+				<div class="touxiang">
+				<img src="{$zb_listv['user_img']}" class="touxiang_img"/>
+				<div class="loction">
+				<i>{$zb_listv['address']}</i>
+				<div>
+				<img src="../../static/index/pc_zb/images/live_location.png"/>
+				<i>{$zb_listv['user_name']}</i>
+				</div>
+				</div>
+				</div>
+				<i class="zhibo_p">{$zb_listv['content']}</i>
+				<i class="zhibo_p2">———　{$zb_listv['title']}　———</i>
+				<div class="renshu">
+				<img src="../../static/index/pc_zb/images/ic_white_eye.png"/>
+				<i style="margin-right: 15px;">{$zb_listv['gk_cnt']}</i>
+				<img src="../../static/index/pc_zb/images/ic_white_like.png" />
+				<i>{$zb_listv['dz_cnt']}</i>
+				</div>
+				<div class="btn_zhibo"><i class="yuandian"></i><i class="zhiboz">直播中</i></div>
+				</li>
+				{/foreach}
+				{/if}
+			</ul>
+		</div>
+
+	</div>
+</div>
+<!--轮播图 结束 -->
+
+
+</div>
+<script type="text/javascript">
+function play_zb(id) {
+	window.location.href="zbsee.html?id="+id;
+}
+</script>
+</body>
+</html>
+
+

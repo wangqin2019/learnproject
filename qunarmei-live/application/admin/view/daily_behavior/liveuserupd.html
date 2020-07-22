@@ -1,0 +1,105 @@
+{include file="public/header" /}
+<!--<link rel="stylesheet" type="text/css" media="all" href="/sldate/daterangepicker-bs3.css" />-->
+<script type="text/javascript" src="/sldate/moment.js"></script>
+<!--<script type="text/javascript" src="/sldate/daterangepicker.js"></script>-->
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/style.css">
+<style>
+.file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+.file-item .info{overflow: hidden;}
+.uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>线性修改直播人数</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="add" id="add" method="post" action="{:url('liveUserUpd')}?type=1">
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">当前直播聊天室id：</label>
+                            <div class="col-sm-2">
+                                <input id="chat_id" type="text" class="form-control" name="chat_id" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">调整人数：</label>
+                            <div class="col-sm-3">
+                                <input id="minute" type="text" class="" name="minute" placeholder="" style="width: 50px;">分钟达到<input id="nums" type="text" class="" name="nums" placeholder="" style="width: 50px;">人
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存信息</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+
+    $(function(){
+        $('#add').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        // 提交前检查
+        function checkForm(){
+            var flag = 0;var msg = '参数不能为空';
+            var chat_id = $("#chat_id").val();
+            if(chat_id.length == 0){
+                flag = -1;
+                msg = '聊天室id不能为空';
+            }
+            var minute = $("#minute").val();
+            if(minute.length == 0){
+                flag = -2;
+                msg = '分钟数不能为空';
+            }
+            var nums = $("#nums").val();
+            if(nums.length == 0){
+                flag = -3;
+                msg = '目标人数不能为空';
+            }
+            if(flag < 0){
+                layer.msg(msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    return false;
+                });
+            }
+        }
+
+        function complete(data){
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    window.location.href="{:url('index')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

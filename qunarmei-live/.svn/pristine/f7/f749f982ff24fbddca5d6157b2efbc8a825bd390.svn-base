@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,viewport-fit=cover">
+		<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+
+		<!--<script type="text/javascript" src="jquery.min.js"></script>-->
+		<link href="/static/index/css/app.css" rel="stylesheet">
+		<script type="text/javascript" src="/static/index/js/jquery.js"></script>
+		<title>去哪美</title>
+	</head>
+	<style type="text/css">
+		body{text-align: center;}
+		.title{font-size: 1.8em;font-weight: bold;margin-top: 4em;margin-bottom: 1em;}
+		.tishi_mobile{color: #BBBACD;}
+		
+		.ckeck_part{width: 100%;text-align: center;margin: 2em 0;}
+		.ckeck_part div{width: 80%;margin: 0 10%;display: inline-flex;}
+		.checknum{width: 100%;height: 3em;border: 1px solid #BBBACD;margin-left: -1px;line-height: 3em;}
+		.ckeck_part input{position: relative;top: -3.6em;left:-1px;width: 80%;margin: 0 10%;height: 3em;opacity: 0;}
+		.wait{font-size: 0.8em;color: #BBBACD;font-size: 1em;}
+		.wait span{color: red;}
+		button{background: #C5AD66;color: #fff;width: 80%;height: 3em;line-height: 3em;border:none;border-radius: 0.5em;margin-top: 4em;}
+		
+		@media screen and (min-width: 640px) {
+			/*ipad*/
+			.ckeck_part{margin-top: 6em;}
+			.checknum,.ckeck_part input{height: 5em;line-height: 5em;}
+			.ckeck_part input{top: -5.6em;}
+		}
+		.tishi {
+			position: fixed;
+			background: #000000;
+			opacity: 0.6;
+			color: #FFFFFF;
+			left: 20%;
+			width: 60%;
+			bottom: 2em;
+			line-height: 2em;
+			border-radius: 0.2em;
+			text-align: center;
+		}
+		
+		.hide {
+			display: none;
+		}
+		
+	</style>
+
+	<body>
+		<p class="title">输入验证码</p>
+		<p class="tishi_mobile">验证码已发送至<span></span></p>
+		<div class="ckeck_part">
+			<div>
+				<p class="checknum"></p>
+				<p class="checknum"></p>
+				<p class="checknum"></p>
+				<p class="checknum"></p>
+				<p class="checknum"></p>
+				<p class="checknum"></p>
+			</div>
+			<input  />
+		</div>
+		<p class="wait"><span>60秒</span>后重新获取</p>
+		<p class="getchecknum hide"><span>获取验证码</span></p>
+		<button>登录</button>
+		<div class="tishi"></div>
+	</body>
+	
+	
+	
+	
+	<script>
+		var zhiboid = getQueryString('id');
+		var code = getQueryString('code');
+		var mobile = getQueryString('mobile');
+		var mobile_show = mobile.substring(0,3)+'****'+mobile.substring(mobile.length-4,mobile.length);
+		$('.tishi_mobile span').html(mobile_show);
+		waitfun();
+		//等待
+		function waitfun(){
+			var waittime = 60;
+			$('.wait').removeClass('hide');
+			$('.getchecknum').addClass('hide');
+			var wait = setInterval(function(){
+				if(0 < waittime){
+					waittime = waittime-1;
+					$('.wait span').html(waittime+'秒');
+				}
+				else{
+					clearInterval(wait);
+					$('.wait').addClass('hide');
+					$('.getchecknum').removeClass('hide');
+				}
+			},1000)			
+		}
+		//获取验证码
+		$('.getchecknum').click(function(){
+			$.ajax({
+				type: 'post',
+				url: 'http://live.qunarmei.com/api/v4/html_api/mobileCheck',
+				dataType: 'json',
+				data: 'mobile=' + mobile+'&id='+zhiboid,
+				crossDomain: true,
+				async: false,
+				cache: false,
+				success: function(data) {
+					code = data.data.code;
+					waitfun();
+				},
+				error: function(data) {
+					console.log(data);
+				},
+			});
+		})
+		//输入监听
+		$("input").bind("input propertychange",function(event){
+			var msg = $("input").val();$('.checknum').html('');
+			if(6 < msg.length){msg = msg.substring(0,6);$(this).val(msg);}
+			
+			for(var i=0;i<6;i++){
+				$('.checknum').eq(i).html(msg[i]);
+			}
+		});
+		
+		//获取地址
+		function getQueryString(name) {
+			var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+			var r = window.location.search.substr(1).match(reg);
+			if(r != null) {
+				return unescape(r[2]);
+			}
+			return null;
+		}
+		
+		//登陆
+		$('button').click(function() {
+			var msg = $("input").val();
+			$.ajax({
+				type: 'post',
+				url: 'http://live.qunarmei.com/api/v4/html_api/codeCheck',
+				dataType: 'json',
+				data: 'mobile='+mobile+'&code='+msg+'&id='+zhiboid,
+				crossDomain: true,
+				async: false,
+				cache: false,
+				success: function(data) {
+					console.log(data)
+					if(data.code == 1){
+						window.location.href = 'http://live.qunarmei.com/index/index/pcplay?id='+zhiboid;
+					}
+					else{
+						tishi(data.msg,1000);
+					}
+				},
+				error: function(data) {
+					console.log(data);
+				},
+			});
+		})
+		//提示
+		function tishi(msg, time) {
+			$('.tishi').html(msg);
+			$('.tishi').removeClass('hide');
+			var t = setTimeout(function() {
+				$('.tishi').addClass('hide');
+			}, time)
+		}
+		
+	</script>
+
+</html>

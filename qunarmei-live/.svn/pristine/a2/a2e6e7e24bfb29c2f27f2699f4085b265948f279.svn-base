@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://video.aco.aotu.io/ -->
+<html lang="zh-CN" style="font-size: 192px;">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		
+		<title>去哪美直播</title>
+		<!-- begin REM Zoom 计算 -->
+		<script type="text/javascript">
+			(function(win) {
+				var remCalc = {};
+				var docEl = win.document.documentElement,
+					tid,
+					hasRem = true,
+					hasZoom = true,
+					designWidth = 750;
+
+				function refresh() {
+					var width = docEl.getBoundingClientRect().width;
+					// if (width > 640) { width = 640 }
+					if(hasRem) {
+						var rem = width / 10;
+						docEl.style.fontSize = rem + "px";
+						remCalc.rem = rem;
+						var actualSize = parseFloat(window.getComputedStyle(document.documentElement)["font-size"]);
+						if(actualSize !== rem && actualSize > 0 && Math.abs(actualSize - rem) > 1) {
+							var remScaled = rem * rem / actualSize;
+							docEl.style.fontSize = remScaled + "px"
+						}
+					}
+					if(hasZoom) {
+						var style = document.getElementById('J__style')
+						if(!style) {
+							style = document.createElement('style')
+							style.id = 'J__style'
+						}
+						style.innerHTML = '.__z{zoom:' + width / designWidth + '}'
+						document.getElementsByTagName('head')[0].appendChild(style)
+					}
+				}
+
+				function dbcRefresh() {
+					clearTimeout(tid);
+					tid = setTimeout(refresh, 100)
+				}
+				win.addEventListener("resize", function() {
+					dbcRefresh()
+				}, false);
+
+				win.addEventListener("pageshow", function(e) {
+					if(e.persisted) {
+						dbcRefresh()
+					}
+				}, false);
+				refresh();
+				if(hasRem) {
+					remCalc.refresh = refresh;
+					remCalc.rem2px = function(d) {
+						var val = parseFloat(d) * this.rem;
+						if(typeof d === "string" && d.match(/rem$/)) {
+							val += "px"
+						}
+						return val
+					};
+					remCalc.px2rem = function(d) {
+						var val = parseFloat(d) / this.rem;
+						if(typeof d === "string" && d.match(/px$/)) {
+							val += "rem"
+						}
+						return val
+					};
+					win.remCalc = remCalc
+				}
+			})(window);
+		</script>
+		<!-- end REM Zoom 计算 -->
+		<link href="/static/index/css/app.css" rel="stylesheet">
+		<script type="text/javascript" src="/static/index/js/jquery.js"></script>
+        <link rel="stylesheet" href="/static/index/css/zhibo.css?1">
+		<style type="text/css">
+			*{margin: 0;padding: 0;list-style: none;outline: none;text-decoration: none;}
+			body{width: 100%;height: 100%;overflow: hidden;touch-action: none;}
+			.video-js{position: fixed;left: 0;top: 0;z-index: 10;height: 100%;width: 100%;}
+			.video_span{transition:left 1s;-webkit-transition:left 1s;padding: 0.8em 0;width:60%;border-radius: 2em;color: #FFFFFF;position: fixed;left: 20%;bottom: 2em;text-align:center;font-size: 14px;z-index: 100000;background:#C5AD66;}
+			
+			.tipright{}
+			.tipleft{transition:opacity 1s;-webkit-transition:opacity 1s;position: fixed;top: 50%;left: calc(100% - 30px);height: 20px;margin-top: -10px;z-index: 999;
+				animation:tipanime 1s linear 1s infinite alternate;-moz-animation:tipanime 1s linear 1s infinite alternate;-webkit-animation:tipanime 1s linear 1s infinite alternate;-o-animation:tipanime 1s linear 1s infinite alternate;
+			}
+			.tip_hide{opacity: 0 !important;}
+			@keyframes tipanime{from {transform:scale(1);}to {transform:scale(1.2);}}
+			@-webkit-keyframes tipanime /* Safari and Chrome */{from {transform:scale(1);}to {transform:scale(1.2);}}
+			.hide_tip_none{position: fixed;top: 50%;right: 10px;height: 20px;margin-top: -10px;z-index: 999;transition:opacity 1s;-webkit-transition:opacity 1s;opacity: 1;z-index: 999;opacity: 0;
+				animation:tipanime 1s linear 1s infinite alternate;-moz-animation:tipanime 1s linear 1s infinite alternate;-webkit-animation:tipanime 1s linear 1s infinite alternate;-o-animation:tipanime 1s linear 1s infinite alternate;
+			}
+			.hideani{left: -100% !important;}
+			.touxiang{width: calc(100% - 2em);position: fixed;left: 1em;top: 1.5em;z-index: 100;display: flex;transition:left 1s;-webkit-transition:left 1s;}
+			.touxiang_img{width: 50px;height: 50px;float: left;border-radius: 50%;margin-right: 20px;}
+			
+			
+			.loction{float: left;overflow: hidden;}
+			.loction li{color: #FFFFFF;width: 100%;}
+			.loction li div{opacity: 0.6;width: auto;margin-bottom: 5px;border-radius: 10px;}
+			.loction li div span{font-size: 14px;white-space: nowrap;max-width: calc(100% - 10px);text-overflow: ellipsis;overflow: hidden;background: #000;border-radius: 10px;padding: 0 5px;}
+			.loction li div img{width: 0.8em;float: left;margin-top: 2px;}
+			.people{transition:left 1s;-webkit-transition:left 1s;padding: 0.2em 2em;position: fixed;left: 0;top: 6em;border-radius: 0 2em 2em 0;background: #C5AD66;color: #fff;z-index: 10;}
+			.zhibo_img{width: 40%;position: fixed;right: 30%;bottom: 7em;overflow: hidden;z-index: 10;}
+			.live_like_white{width: 30%;float: left;margin-left: 0;}
+			.live_message_white{width: 30%;float: right;}
+			.pc,.phone{display: none;}
+			.bg {width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: -1;}
+			.pc_logo{width: 16%;position: absolute;left: 10%;top: 15%;}
+			.pc p{width: auto;position: absolute;left: 10%;top: 35%;color: #fff;font-size: 24px;}
+			.erweima{width: 15%;position: absolute;left: 10%;top: 55%;}
+			.download{width: 20%;position: absolute;left: 30%;top: 65%;}
+			.home{width: 20%;position: absolute;right: 10%;top: 15%;}
+			#o2_main{z-index: 1;width: 100%;}
+			.vjs-control-bar{display: none !important;}
+			
+			
+			.video-js .vjs-tech{width: 100%;}
+		</style>
+		<style id="J__style">
+			.__z {
+				zoom: 2.56
+			}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+				    $(".pc").css("display","none")
+				    $(".phone").css("display","block")
+				    // start Modify by wangqin 2017-12-28
+					close_ye();
+					// end Modify by wangqin 2017-12-28
+				} else {
+				    $(".pc").css("display","block")
+				    $(".phone").css("display","none")
+				}
+			})
+
+		</script>
+		<script type="text/javascript">
+	    $(document).ready(function(){
+	      var $div = $("#computerMove");
+	      /* 绑定鼠标左键按住事件 */
+	      $div.bind("mousedown",function(event){
+	        /* 获取需要拖动节点的坐标 */
+	        var offset_x = $(this)[0].offsetLeft;//x坐标
+	        var offset_y = $(this)[0].offsetTop;//y坐标
+	        /* 获取当前鼠标的坐标 */
+	        var mouse_x = event.pageX;
+	        var mouse_y = event.pageY;
+	        /* 绑定拖动事件 */
+	        /* 由于拖动时，可能鼠标会移出元素，所以应该使用全局（document）元素 */
+	        $(document).bind("mousemove",function(ev){
+	          /* 计算鼠标移动了的位置 */
+	          var _x = ev.pageX - mouse_x;
+	          var _y = ev.pageY - mouse_y;
+	          /* 设置移动后的元素坐标 */
+	          var now_x = (offset_x + _x ) + "px";
+	          var now_y = (offset_y + _y ) + "px";
+
+	          //console.log(mouse_x)
+	          	if ((screen.width < 1360)) {
+
+	                if(_x>750){
+			          	window.location.href="zblogin.html"
+			          }
+	            } else {
+	                if(_x>1100){
+			          	window.location.href="zblogin.html"
+			          }
+	            }
+
+	          /* 改变目标元素的位置 */
+	          $div.css({"left":now_x,"top":now_y})
+
+	          // if(_x>1130){
+	          // 	window.location.href="zblogin.html"
+	          // }
+	        });
+	      });
+	      /* 当鼠标左键松开，接触事件绑定 */
+	      $(document).bind("mouseup",function(){
+	        $(this).unbind("mousemove");
+
+	      });
+	    })
+	  </script>
+
+	
+		<style>
+			.barrage .info_list{overflow-y: scroll;height: 12em;width: 100%;}
+			.barrage .info_list{position: fixed;bottom: 3em;left: 0;width: calc(100% - 5em);z-index: 999;transition:left 1s;-webkit-transition:left 1s;color: #fff;}
+			.barrage .info_list p{margin-bottom: 1em;}
+			.barrage .info_list span{background: #333333;opacity: 0.8;border-radius: 0 0.9em 0.9em 0;line-height: 2em;font-size: 0.8em;padding: 0.5em 1em;}
+			.barrage .send{position: fixed;bottom: 0.5em;left: 0;width: calc(100% - 1em);line-height: 2.5em;display: flex;margin: 0 0.5em;z-index: 999;transition:left 1s;-webkit-transition:left 1s;background: #000;}
+			.barrage .send input{width: calc(100% - 4.5em);margin-right: 0.5em;padding: 0 0.5em;}
+			.barrage .send button{width: 5em;text-align: center;border: none;line-height: 2.5em;background: #C5AD66;color: #fff;border: 0;}
+			
+			.go_app{position: fixed;bottom: 4em;right: 0.5em;z-index: 999;}
+			.ic_barrage{position: fixed;bottom: 9em;right: 0.5em;z-index: 999;text-align: center;width: 4em;}
+			.go_app img,.ic_barrage{width: 2.5em;height: 2.5em;border-radius: 50%;margin: 0 0.75em;}
+			.go_app p{width: 100%;text-align: center;color: #fff;font-size: 0.8em;margin-top: 0.5em;text-shadow:0px 2px 2px #4D4D4F;}
+		</style>
+	</head>
+
+	<body>
+		<div class="pc">
+
+				<img src="/static/index/images/bg.jpg" class="bg">
+				<img src="/static/index/images/logo.png" class="pc_logo" id="computerMove"/>
+				<p>为东方女性量身定制的寻美随身利器：在这里，你可以<br/>搜索到美容、美体、美学领域的最新讯息和全新体验，<br/>选购安全有效无添加的专业美容产品和服务，更能收获<br/>由内而外惊艳绽放的至美肌肤和形体改善。</p>
+				<img src="/static/index/images/QRcode.png" class="erweima"/>
+				<img src="/static/index/images/download.png" class="download"/>
+				<img src="/static/index/images/home.png" class="home"/>
+
+		</div>
+		<div class="phone">
+			<div id="o2_main" class="main" style=" opacity: 1;display: block; ">
+				<div class="wrapper" style="margin-top: -1381px;">
+					<video id="video" class="video show video-js vjs-big-play-centered" controls="controls" preload="auto" playsinline="" style="opacity: 1;"></video>
+				</div>
+			</div>
+	
+			
+			<img src="/static/index/images/jiantou_you.png" class="tipright hide_tip_none"/>
+			<img src="/static/index/images/jiantou_zuo.png" class="tipleft" />
+			<div id="msghide">
+				<div class="touxiang">
+					<img src="{$rest['user_img']}" class="touxiang_img"/>
+					<div class="loction">
+						<ul>
+							<li><div><span style="font-size: 18px;">{$rest['user_name']}</span></div></li>
+							<li>
+								<div style="background: #000;padding-left: 5px;">
+									<img src="/static/index/images/live_location.png"/>
+									<span>{$rest['address']}</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<p class="people"><span id='gk_cnt'>{$rest['gk_cnt']}</span>人正在观看</p>
+				<!--<a href="http://live.qunarmei.com/index/index/zhibo_down.html" class="video_span">打开去哪美APP看直播</a>-->
+				<a href="http://live.qunarmei.com/index/index/zhibo_down.html" class="go_app">
+					<img src="/static/index/images/ic_phone_logo.png"/>
+					<p>打开APP</p>
+				</a>
+				
+				<img src="/static/index/images/ic_phone_message.png" class="ic_barrage"/>
+				<div class="barrage hide">
+					<div class="info_list"></div>
+					<div class="send">
+						<input placeholder="请输入" />
+						<button>发出</button>
+					</div>
+				</div>
+			</div>
+
+			<!--<div class="zhibo_img">
+				<img src="live_like_white.png" class="live_like_white"/>
+				<img src="live_message_white.png" class="live_message_white"/>
+			</div>-->
+		</div>
+
+		<script src="http://player.qiniucc.com/sdk/latest/qiniuplayer.min.js?v=0.3.3"></script>
+        <script>
+        	var waittime = 0;
+        	clearInterval(waitstart);
+        	var waitstart;
+        	function waitminute(){
+        		clearInterval(waitstart);
+				waittime = 0;
+				$('.tipleft').removeClass('tip_hide');
+				$('.hide_tip_none').removeClass('tip_hide');
+				waitstart = setInterval(function(){
+	        		if(waittime<9){
+	        			waittime++;
+	        		}
+	        		else{
+	        			if($('.hide_tip_none').css('opacity') == 1){
+	        				$('.hide_tip_none').addClass('tip_hide');
+	        			}
+	        			else{$('.tipleft').addClass('tip_hide');}
+	        			clearInterval(waitstart);
+	        		}
+	        	},1000)
+        	}
+        	waitminute();
+        	//滑动隐藏信息
+        	var startX, moveEndX, X;
+			$("body").on("touchstart", function(e) {
+				waitminute();
+			    e.preventDefault();
+			    startX = e.originalEvent.changedTouches[0].pageX;
+			});
+			//隐藏/显示聊天室
+			$('.ic_barrage').click(function(){
+				if($('.barrage').hasClass('hide')){
+					$('.barrage').removeClass('hide');
+				}
+				else{
+					$('.barrage').addClass('hide');
+				}
+			})
+			$("body").on("touchmove", function(e) {
+			    e.preventDefault();
+			    moveEndX = e.originalEvent.changedTouches[0].pageX;
+			    X = moveEndX - startX;
+			    if (X > 100 ) {
+//			        $('#msghide').removeClass('hideani');
+			        $('.video_span').removeClass('hideani');
+			        $('.people').removeClass('hideani');
+			        $('.touxiang').removeClass('hideani');
+			        $('.tipleft').css('opacity','1');
+			        $('.hide_tip_none').css('opacity','0');
+			        
+			        $('.info_list').removeClass('hideani');
+			        $('.send').removeClass('hideani');
+			    }
+			    else if ( X < -100 ) {
+//			        $('#msghide').addClass('hideani');
+			        $('.video_span').addClass('hideani');
+			        $('.people').addClass('hideani');
+			        $('.touxiang').addClass('hideani');
+			        $('.tipleft').css('opacity','0');
+			       $('.hide_tip_none').css('opacity','1');
+			       
+			       $('.info_list').addClass('hideani');
+			        $('.send').addClass('hideani');
+			    }
+			});
+			
+        	//页面监听横竖屏
+			window.addEventListener('orientationchange', function(event){
+			    if ( window.orientation == 180 || window.orientation==0 ) {
+			        $(".video-js .vjs-tech").css("top","0em")
+//			        $(".touxiang_img").css("width","12%")
+			        $(".video_span").css({"left":"20%","width":"60%"})
+//			        $(".live_like_white").attr("src","/static/index/images/live_like_white.png")
+//			        $(".live_message_white").attr("src","/static/index/images/live_message_white.png")
+//			        $(".zhibo_img").css({"right": "30%","width":"40%","bottom":"7em"})
+//			        $(".live_like_white").css("margin-left","0")
+			    }
+			    if( window.orientation == 90 || window.orientation == -90 ) {
+			        $(".video-js .vjs-tech").css("top","0")
+//			        $(".touxiang_img").css("width","7%")
+			        $(".video_span").css({"left":"62%","width":"35%"})
+//			        $(".live_like_white").attr("src","/static/index/images/live_like.png")
+//			        $(".live_message_white").attr("src","/static/index/images/live_message.png")
+//			        $(".zhibo_img").css({"right": "42%","width":"20%","bottom":"2em"})
+//			        $(".live_like_white").css("margin-left","1em")
+			    }
+			});
+
+			var options = {
+			    controls: true,
+			    url: "{$rest['hls_url']}",
+			    type: 'hls',
+			    preload: true,
+			    autoplay: false, // 如为 true，则视频将会自动播放
+			    poster: 'http://appc.qunarmei.com/gmxwc.jpg',
+			};
+			var player = new QiniuPlayer('video', options);
+			//请求接口记录数据
+			$.ajaxSetup({
+				async : false
+			});
+			var flag = '';
+			function getHlsCnt()
+			{
+				var mydate = new Date();
+				var mytime = (Date.parse( new Date()))/ 1000; //获取当前时间 年-月-日 时:分:秒
+				//标志位
+				if(!flag)
+				{
+					$.post("getHlsCnt.html",{time:mytime},function(result){
+						flag = result;
+						console.log('flag:'+flag);
+					});
+				}else
+				{
+					$.post("getHlsCnt.html",{time:mytime,flag:flag},function(result){
+						flag = result;
+						console.log('flag:'+flag);
+					});
+				}
+
+			}
+			setInterval('getHlsCnt()',10000);
+        </script>
+		<script type="text/javascript" src="/static/index/js/bundle.js"></script>
+		<script type='text/javascript' src='/static/index/js/webim.config.js'></script>
+		<script type='text/javascript' src='/static/index/js/strophe-1.2.8.min.js'></script>
+		<script type='text/javascript' src='/static/index/js/websdk-1.4.13.js'></script>
+
+		<script type="text/javascript">
+			//ajax请求方法
+			function getAjax(url,id) {
+				var rest
+				$.ajax({
+					type:"POST",
+					async:false,
+					//提交的网址
+					url:url,
+					//提交的数据
+					data:{"id":id},
+					//成功返回之后调用的函数
+					success:function(data,statu){
+						rest = data;
+					},
+				});
+				return rest;
+			}
+
+			// 获取观看人数
+			var getGk1 = setInterval(function(){ getGk() }, 5000);
+			function getGk()
+			{
+				var url = "getCnt.html";
+				var id = "{$rest['chat_id']}";
+				var gk_cnt = getAjax(url,id);
+				$("#gk_cnt").html(gk_cnt);
+			}
+
+			// start Modify by wangqin 2017-12-28
+			//查询是否关闭直播
+			function close_ye()
+			{
+				var url = "{$rest['hls_url']}";
+				if(!url)
+				{
+					alert('您观看的直播已关闭,谢谢收看');
+					window.opener = null;
+					window.open('', '_self');
+					window.close();
+				}
+			}
+			// end Modify by wangqin 2017-12-28
+		</script>
+		
+		
+		
+		<script type='text/javascript' src="/static/index/js/tim.js"></script>
+		<script>
+			var logdata = window.location.search;
+			console.log(logdata)
+
+			$.ajax({
+				type: 'post',
+				 url:'http://live.qunarmei.com/api/html/pay_period/get_live'+logdata,
+//			    url: 'http://testc.qunarmei.com:9091/api/html/pay_period/get_live'+logdata,
+			    //url: 'http://testc.qunarmei.com:9091/api/html/pay_period/get_live?id=408&mobile=18818219125',
+			    //data: 'id=408&mobile=18818219125',
+		        contentType: false,
+		        processData: false,
+		        crossDomain: true,
+			    async: false,
+			    cache: false,
+			    success: function (res) {
+			    	var nextReqMessageID = '',joinstate = false,usermsg={};
+			    	
+			    	const group_id = res.data.group_id;
+//			    	const group_id = 'store1_2';
+			    	const user_id = res.data.user_id;
+			    	const user_sig = res.data.user_sig;
+			    	const sdk_appid = res.data.sdk_appid;
+					
+					// 创建 SDK 实例，TIM.create() 方法对于同一个 SDKAppID 只会返回同一份实例
+					let options = {
+					  SDKAppID: sdk_appid // 接入时需要将0替换为您的即时通信应用的 SDKAppID
+					};
+					let tim = TIM.create(options); // SDK 实例通常用 tim 表示
+					
+					// 设置 SDK 日志输出级别，详细分级请参见 setLogLevel 接口的说明
+					//tim.setLogLevel(0); // 普通级别，日志量较多，接入时建议使用
+					tim.setLogLevel(1); // release级别，SDK 输出关键信息，生产环境时建议使用
+					
+					
+					// 监听事件，如：
+					tim.on(TIM.EVENT.SDK_READY, function(event) {
+						joinGroup();
+						personalMsg();
+					  // 收到离线消息和会话列表同步完毕通知，接入侧可以调用 sendMessage 等需要鉴权的接口
+					  // event.name - TIM.EVENT.SDK_READY
+
+					  	$('.barrage button').click(function(){
+					  		if(joinstate == true){
+					  			let senmsg = $('input').val();
+					  			if(senmsg != ''){
+							  		// 1. 创建消息实例，接口返回的实例可以上屏
+							  		let message = tim.createTextMessage({
+							  		  to: group_id,
+							  		  conversationType: TIM.TYPES.CONV_GROUP,
+							  		  payload: {
+							  		    text: senmsg
+							  		  }
+							  		});
+							  		let promise = tim.sendMessage(message);
+								  	promise.then(function(imResponse) {
+									    // 发送成功
+									    if(usermsg.nick){
+									    	$('.info_list').append('<p><span>'+usermsg.nick+':'+$('input').val()+'</span></p>');
+									    }
+									    else{
+									    	$('.info_list').append('<p><span>'+usermsg.userID+':'+$('input').val()+'</span></p>');
+									    }
+									    $('input').val('');
+									    let scrollHeight = $('.info_list').prop("scrollHeight")+40;
+										$('.info_list').scrollTop(scrollHeight);
+								  	}).catch(function(imError) {
+									    // 发送失败
+									    alert('发送失败，请重试');
+									    console.warn('sendMessage error:', imError);
+								  	});
+					  			}
+					  		}
+					  		else{
+					  			alert('您还未开通发送弹幕功能');
+					  		}
+						  	
+						  	
+					  	})
+					  	
+					tim.on(TIM.EVENT.MESSAGE_RECEIVED, function(event) {
+//						console.log(event);
+						if(event.data[0].from != '@TIM#SYSTEM'){
+							if(event.data[0].nick){
+								$('.info_list').append('<p><span>'+event.data[0].nick+':'+event.data[0].payload.text+'</span></p>');							
+							}
+							else{
+								$('.info_list').append('<p><span>'+event.data[0].from+':'+event.data[0].payload.text+'</span></p>');		
+							}
+						}
+					  // 收到推送的单聊、群聊、群提示、群系统通知的新消息，可通过遍历 event.data 获取消息列表数据并渲染到页面
+					  // event.name - TIM.EVENT.MESSAGE_RECEIVED
+					  // event.data - 存储 Message 对象的数组 - [Message]
+					});
+					
+					tim.on(TIM.EVENT.MESSAGE_REVOKED, function(event) {
+//						console.log(event);
+					  // 收到消息被撤回的通知。使用前需要将SDK版本升级至v2.4.0或以上。
+					  // event.name - TIM.EVENT.MESSAGE_REVOKED
+					  // event.data - 存储 Message 对象的数组 - [Message] - 每个 Message 对象的 isRevoked 属性值为 true
+					});
+					
+					tim.on(TIM.EVENT.CONVERSATION_LIST_UPDATED, function(event) {
+						console.log(event);
+//						if(event.data[0].lastMessage.type = 'GROUP' && event.data[0].lastMessage.payload.operatorID != usermsg.userID && event.data[0].lastMessage.fromAccount!= usermsg.userID && event.data[0].lastMessage.payload.operatorID){
+//							$('.info_list').append('<p><span>'+event.data[0].lastMessage.messageForShow+':'+event.data[0].lastMessage.payload.operatorID+'加入群组</span></p>');
+//						}
+						
+						if(50<=$('.info_list').children().length){
+							$('.info_list').children().first().remove();
+						}
+						let scrollHeight = $('.info_list').prop("scrollHeight")+40;
+						$('.info_list').scrollTop(scrollHeight);
+					  // 收到会话列表更新通知，可通过遍历 event.data 获取会话列表数据并渲染到页面
+					  // event.name - TIM.EVENT.CONVERSATION_LIST_UPDATED
+					  // event.data - 存储 Conversation 对象的数组 - [Conversation]
+					});
+					
+					tim.on(TIM.EVENT.GROUP_LIST_UPDATED, function(event) {
+//						console.log(event);
+					  // 收到群组列表更新通知，可通过遍历 event.data 获取群组列表数据并渲染到页面
+					  // event.name - TIM.EVENT.GROUP_LIST_UPDATED
+					  // event.data - 存储 Group 对象的数组 - [Group]
+					});
+					
+					tim.on(TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, function(event) {
+//						console.log(event);
+					  // 收到新的群系统通知
+					  // event.name - TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED
+					  // event.data.type - 群系统通知的类型，详情请参见 GroupSystemNoticePayload 的 operationType 枚举值说明
+					  // event.data.message - Message 对象，可将 event.data.message.content 渲染到到页面
+					});
+					
+					
+					tim.on(TIM.EVENT.ERROR, function(event) {
+//						alert(event.data.message);
+						let promise = tim.logout();
+						promise.then(function(imResponse) {
+						  console.log(imResponse.data); // 登出成功
+						}).catch(function(imError) {
+						  console.warn('logout error:', imError);
+						});
+//						console.log(event);
+					  // 收到 SDK 发生错误通知，可以获取错误码和错误信息
+					  // event.name - TIM.EVENT.ERROR
+					  // event.data.code - 错误码
+					  // event.data.message - 错误信息
+					});
+					
+					tim.on(TIM.EVENT.SDK_NOT_READY, function(event) {
+//						console.log(event);
+//						alert('您已在其他账号登录');
+						let promise = tim.logout();
+						promise.then(function(imResponse) {
+						  console.log(imResponse.data); // 登出成功
+						}).catch(function(imError) {
+						  console.warn('logout error:', imError);
+						});
+					  // 收到 SDK 进入 not ready 状态通知，此时 SDK 无法正常工作
+					  // event.name - TIM.EVENT.SDK_NOT_READY
+					});
+					
+					tim.on(TIM.EVENT.KICKED_OUT, function(event) {
+						let promise = tim.logout();
+						promise.then(function(imResponse) {
+						  console.log(imResponse.data); // 登出成功
+						}).catch(function(imError) {
+						  console.warn('logout error:', imError);
+						});
+//						alert('您已被踢出房间');
+//						console.log(event);
+					  // 收到被踢下线通知
+					  // event.name - TIM.EVENT.KICKED_OUT
+					  // event.data.type - 被踢下线的原因，例如 :
+					  //   - TIM.TYPES.KICKED_OUT_MULT_ACCOUNT 多实例登录被踢
+					  //   - TIM.TYPES.KICKED_OUT_MULT_DEVICE 多终端登录被踢
+					  //   - TIM.TYPES.KICKED_OUT_USERSIG_EXPIRED 签名过期被踢（v2.4.0起支持）。
+					});
+					
+					  	
+					});
+					function personalMsg(){
+						let promise = tim.getMyProfile();
+						promise.then(function(imResponse) {
+							usermsg = imResponse.data;
+//						  console.log(imResponse.data); // 个人资料 - Profile 实例
+						}).catch(function(imError) {
+						  console.warn('getMyProfile error:', imError); // 获取个人资料失败的相关信息
+						});
+					}
+					
+					function joinGroup(){
+						let promise = tim.joinGroup({ groupID: group_id, type: TIM.TYPES.GRP_AVCHATROOM });
+						promise.then(function(imResponse) {
+						  switch (imResponse.data.status) {
+						    case TIM.TYPES.JOIN_STATUS_WAIT_APPROVAL: // 等待管理员同意
+						    	joinstate = false;
+//						    	console.log('imResponse');
+						      break;
+						    case TIM.TYPES.JOIN_STATUS_SUCCESS: // 加群成功
+						    	joinstate = true;
+//						      console.log(imResponse.data.group); // 加入的群组资料
+						    break;
+						    case TIM.TYPES.JOIN_STATUS_ALREADY_IN_GROUP: // 已经在群中
+						    	joinstate = true;
+//						    	console.log(imResponse);
+						    break;
+						    default:
+						      break;
+						  }
+						}).catch(function(imError){
+						  console.warn('joinGroup error:', imError); // 申请加群失败的相关信息
+						});
+					}
+					
+					
+					tim.login({userID: user_id, userSig: user_sig});
+			    }
+			});
+		</script>
+	</body>
+
+</html>

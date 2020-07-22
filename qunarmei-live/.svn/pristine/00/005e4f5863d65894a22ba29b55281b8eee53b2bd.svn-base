@@ -1,0 +1,45 @@
+<?php
+//增加命名空间
+namespace qiniu_transcoding;
+// 直播录制视频转码
+// 默认从m3u8转到mp4
+
+require_once __DIR__ . '/autoload.php';
+date_default_timezone_set('Asia/Shanghai');
+
+// 引入鉴权类
+use qiniu_transcoding\src\Qiniu\Auth;
+
+// 引入持久化类
+use qiniu_transcoding\src\Qiniu\Processing\PersistentFop;
+
+class Transcoding{
+  //初始化账号数据
+  protected $accessKey = 'kw7pkYECHtgXDQBgZzwhu9ijMVYkYdl6iamkylMO';
+  protected $secretKey = 'Hu2DVofTTCHzge1zJTyBmPVyBG0QqV0_wTPbwdkj';
+  protected $bucket = 'qunameilive';
+  //转存空间,默认保存到当前空间
+  protected $zc_bucket = 'qunarmeilive-vod';
+  //转码
+  public function tranScode($stream_name)
+  {
+    // 构建鉴权对象
+    $auth = new Auth($this->accessKey, $this->secretKey);
+    //要转码的文件所在的空间和文件名。
+    $key = $stream_name.'.m3u8';
+    //转码是使用的队列名称。 https://portal.qiniu.com/mps/pipeline
+    $pipeline = 'qunarmeivod';
+    $force = false;
+    //转码完成后通知到你的业务服务器。回调通知
+    $notifyUrl = 'http://live.qunarmei.com/api/live/videoTranscodingBack';
+    // $notifyUrl = 'http://375dec79.ngrok.com/notify.php';
+    $config = new \qiniu_transcoding\src\Qiniu\Config();
+    //$config->useHTTPS=true;
+    $pfop = new PersistentFop($auth, $config);
+    //要进行转码的转码操作。 http://developer.qiniu.com/docs/v6/api/reference/fop/av/avthumb.html
+    $fops = "avthumb/mp4|saveas/" . \qiniu_transcoding\src\Qiniu\base64_urlSafeEncode($this->zc_bucket . ":".$stream_name.".mp4");
+    list($id, $err) = $pfop->execute($this->bucket, $key, $fops, $pipeline, $notifyUrl, $force);
+    return $stream_name.".mp4";
+
+  }
+}

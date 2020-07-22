@@ -1,0 +1,59 @@
+$(function(){
+    $(".music").click(function() {
+        $(this).attr('src', $(this).attr('src') == 'imgs/on.png' ? 'imgs/off.png' : 'imgs/on.png');
+        $(this).toggleClass("music_css3")
+        var audio2 = document.getElementById("happy");
+        if($(this).hasClass("music_css3")) {
+            audio2.play()
+        } else {
+            audio2.pause()
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+})

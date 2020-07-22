@@ -1,0 +1,22 @@
+{include file="public/header"/}
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content">
+    <div class="alert alert-danger alert-dismissable">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        <div>尊敬的会员<span id="weather"></span></div>
+    </div>
+    
+    
+
+</div>
+
+{include file="public/footer" /}
+<script src="/static/admin/js/jquery.leoweather.min.js"></script>
+
+<script type="text/javascript">
+    $('#weather').leoweather({format:'，{时段}好！<span id="colock">现在时间是：<strong>{年}年{月}月{日}日 星期{周} {时}:{分}:{秒}</strong>，</span> <b>{城市}天气</b> {天气} {夜间气温}℃ ~ {白天气温}℃'});
+</script>
+
+</body>
+</html>

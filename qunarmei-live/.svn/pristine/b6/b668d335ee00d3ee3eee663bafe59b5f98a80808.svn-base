@@ -1,0 +1,305 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>直播实时信息</title>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="/static/admin/js/highcharts.js"></script>
+</head>
+<body>
+<div id="container" style="width: 1250px; height: 400px; margin: 0 auto"></div>
+<div class="hr-line-dashed"></div><br/>
+<!--设置图表宽度-->
+<div id="container1" style="width: 1250px; height: 400px; margin: 0 auto"></div>
+<script language="JavaScript">
+$(document).ready(function() {
+
+   var chart = {
+      type: 'spline',
+	  animation: Highcharts.svg, // don't animate in IE < IE 10.
+      marginRight: 20,
+	  events: {
+         load: function () {
+            // set up the updating of the chart each second
+//            var series = this.series[0];
+//            var series1 = this.series[1];
+//            setInterval(function () {
+//               var x = (new Date()).getTime(), // current time
+//               y = resp.cnt;
+//               series.addPoint([x, y], true, true);
+//               y2 = resp.bandwidth;
+//               series1.addPoint([x, y2], true, true);
+//            }, 5000);
+            var series = this.series[0];
+            setInterval(function() {
+               $.ajax({
+                  type: "GET",
+                  url: "/admin/live_line/getLiveBandwidth.html?type=add",
+                  async: false, //表示同步，如果要得到ajax处理完后台数据后的返回值，最好这样设置
+                  success: function(result){
+//                     console.log('result:'+result);
+                     results = jQuery.parseJSON(result);
+                     var cnt = results.cnt;
+                     var bdwidth = results.bandwidth;
+//                     alert('cnt:'+cnt+'-bdwidth:'+bdwidth);
+                     series.addPoint([(new Date()).getTime(), bdwidth], true, true);
+                     }
+                  }, false);
+               }, 15000);
+         }
+      }
+   };
+   var title = {
+      text: '直播实时带宽'
+   };
+   var xAxis = {
+      title:{
+         text:'时间'
+      },
+//      min:0,
+//      labels: {
+//         formatter:function(){
+//            return this.axis;
+//         }
+//      },
+      type: 'datetime',
+      tickPixelInterval: 150
+   };
+   var yAxis = {
+
+      lineWidth:1,//显示y轴线
+
+      title: {
+         text: '带宽bps'
+      },
+
+      min: 0,
+      minRange: 1,
+
+      plotLines: [{
+//         value: 0,
+         width: 1,
+         color: '#808080'
+      }] ,
+//      tickPositions: [0,500000,1000000,1500000,2000000], // 指定竖轴坐标点的值
+      labels: {
+         step : 1,//显示步长
+//         formatter:function(){
+//            if(this.value <=100) {
+//               return "第一等级("+this.value+")";
+//            }else if(this.value >100 && this.value <=200) {
+//               return "第二等级("+this.value+")";
+//            }else {
+//               return "第三等级("+this.value+")";
+//            }
+//         }
+      }
+   };
+
+   var tooltip = {
+      formatter: function () {
+      return '<b>' + this.series.name + '</b><br/>' +
+         Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+         Highcharts.numberFormat(this.y,0);
+      }
+   };
+   var plotOptions = {
+      area: {
+         pointStart: 1940,
+         marker: {
+            enabled: false,
+            symbol: 'circle',
+            radius: 2,
+            states: {
+               hover: {
+                 enabled: true
+               }
+            }
+         }
+      }
+   };
+   var legend = {
+      enabled: false
+   };
+   var exporting = {
+      enabled: false
+   };
+   var series= [{
+         name: '带宽',
+         data: (function () {
+            // generate an array of random data
+            var data = [],time = (new Date()).getTime(),i;
+            for (i = -5; i <= 0; i += 1) {
+               data.push({
+                  x: time + i * 15000,
+                  y: 0
+               });
+            }
+
+            return data;
+         }())
+      }
+   ];
+
+   var json = {};
+   json.chart = chart;
+   json.title = title;
+   json.tooltip = tooltip;
+   json.xAxis = xAxis;
+   json.yAxis = yAxis;
+   json.legend = legend;
+   json.exporting = exporting;
+   json.series = series;
+   json.plotOptions = plotOptions;
+
+
+   Highcharts.setOptions({
+      global: {
+         useUTC: false
+      }
+   });
+   $('#container').highcharts(json);
+
+
+   var chart1 = {
+      type: 'spline',
+      animation: Highcharts.svg, // don't animate in IE < IE 10.
+      marginRight: 20,
+      events: {
+         load: function () {
+            var series = this.series[0];
+            var series1 = this.series[1];
+            setInterval(function() {
+               $.ajax({
+                  type: "GET",
+                  url: "/admin/live_line/getLiveBandwidth.html?type=add",
+                  async: false, //表示同步，如果要得到ajax处理完后台数据后的返回值，最好这样设置
+                  success: function(result){
+//                     console.log('result:'+result);
+                     results = jQuery.parseJSON(result);
+                     var cnt = results.cnt;
+                     var bdwidth = results.bandwidth;
+//                     alert('cnt:'+cnt+'-bdwidth:'+bdwidth);
+                     series.addPoint([(new Date()).getTime(), cnt], true, true);
+//                     series1.addPoint([(new Date()).getTime(), (2+Math.random())], true, true);
+                  }
+               }, false);
+            }, 15000);
+
+            setInterval(function() {
+               $.ajax({
+                  type: "GET",
+                  url: "/index/index/getHlsSs.html",
+                  async: false, //表示同步，如果要得到ajax处理完后台数据后的返回值，最好这样设置
+                  success: function(result){
+                     console.log('cnt1:'+result);
+                     var cnt1 = result;
+                     series1.addPoint([(new Date()).getTime(), cnt1], true, true);
+                  }
+               }, false);
+            }, 15000);
+         }
+      },
+      //背景颜色
+      backgroundColor: '#FCFFC5'
+   };
+   var title1 = {
+      text: '直播实时在线人数'
+   };
+   var xAxis1 = {
+      title:{
+         text:'时间'
+      },
+      type: 'datetime',
+      tickPixelInterval: 150,
+      floor:0
+   };
+
+
+   var yAxis1 = {
+      title: {
+         text: '人数'
+      },
+      floor:0,
+
+      min: 0,
+      minRange: 1,
+      lineWidth:1,//显示y轴线
+      minPadding:0,
+
+      plotLines: [{
+         value: 0,
+         width: 1,
+         color: '#808080'
+      }] ,
+      labels: {
+         step : 1,//显示步长
+      },
+      showFirstLabel:false
+//      ,tickPositions: [0,20000] // 指定竖轴坐标点的值
+   };
+   var tooltip1 = {
+      formatter: function () {
+         return '<b>' + this.series.name + '</b><br/>' +
+                 Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                 Highcharts.numberFormat(this.y,0);
+      }
+   };
+   var plotOptions1 = {
+      area: {
+         pointStart: 1940,
+         marker: {
+            enabled: false,
+            symbol: 'circle',
+            radius: 2,
+            states: {
+               hover: {
+                  enabled: true
+               }
+            }
+         }
+      }
+
+   };
+   var series1= [{
+      name: '人数',
+      data: (function () {
+         var data = [],time = (new Date()).getTime(),i;
+         for (i = -5; i <= 0; i += 1) {
+            data.push({
+               x: time + i * 15000,
+               y: 0
+            });
+         }
+         return data;
+      }())
+//         data: [1,2,3,4,5]
+   },{
+      name: 'HLS人数',
+      data: (function () {
+         var data = [],time = (new Date()).getTime(),i;
+         for (i = -5; i <= 0; i += 1) {
+            data.push({
+               x: time + i * 15000,
+               y: 1
+            });
+         }
+         return data;
+      }())
+//         data: [1,2,3,4,5]
+   }
+   ];
+   var json1 = {};
+   json1.chart = chart1;
+   json1.title = title1;
+   json1.xAxis = xAxis1;
+   json1.yAxis = yAxis1;
+   json1.tooltip = tooltip1;
+   json1.legend = legend;
+   json1.series = series1;
+   json1.plotOptions = plotOptions1;
+   $('#container1').highcharts(json1);
+
+});
+</script>
+</body>
+</html>

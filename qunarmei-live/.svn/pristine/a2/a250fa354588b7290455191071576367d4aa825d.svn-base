@@ -1,0 +1,51 @@
+<?php
+
+namespace app\neibu\controller;
+use think\Controller;
+use app\neibu\service\JobService;
+/**
+ * 内部定时任务获取
+ */
+class Job extends Base
+{
+	/**
+	 * 获取物流信息
+	 * @return
+	 */
+    public function get_express()
+    {
+        $jobser = new JobService();
+        $res = $jobser->getExpress();
+        return $this->returnMsg($res['code'],$res['data'],$res['msg']);
+    }
+    /**
+     * 支付半小时后,为选择是否安心送的 is_axs=1的改为is_axs=2
+     * @return
+     */
+    public function upd_axs()
+    {
+        $jobser = new JobService();
+        $res = $jobser->updAxs();
+        return $this->returnMsg($res['code'],$res['data'],$res['msg']);
+    }
+    /**
+     * 支付15分分钟没有进行相关操作时,会发送该条提示短信
+     * @return
+     */
+    public function tip_buyter()
+    {
+        $jobser = new JobService();
+        $res = $jobser->tipBuyter();
+        return $this->returnMsg($res['code'],$res['data'],$res['msg']);
+    }
+    /**
+     * 每天执行1次定时任务
+     * @return
+     */
+    public function day_sum()
+    {
+        $jobser = new JobService();
+        $res = $jobser->daySum();
+        return $this->returnMsg($res['code'],$res['data'],$res['msg']);
+    }
+}

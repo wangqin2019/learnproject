@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<link rel="stylesheet" type="text/css" href="../../static/index/pc_zb/css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../static/index/pc_zb/css/login.css"/>
+		<script type="text/javascript" src="../../static/index/pc_zb/jquery.js"></script>
+		<script language="JavaScript">
+			function keyLogin(){
+				if (event.keyCode==13)   //回车键的键值为13
+					document.getElementById("submit").click();  //调用登录按钮的登录事件
+			}
+		</script>
+	</head>
+	<body onkeydown="keyLogin();">
+		<img src="../../static/index/pc_zb/images/bg.png" class="bg">
+		<div class="login">
+			<img src="../../static/index/pc_zb/images/img_beauty.jpg" class="login_img"/>
+			<div class="login_in">
+				<img src="../../static/index/pc_zb/images/logo_two.png"/>
+					<input type="hidden" name="ajax" value="1">
+				<div class="login_name">
+					<div class="name_one name_mar">
+						<p>用户名</p>
+						<input type="text" name="user_name" id="user_name"/>
+					</div>
+					<div class="name_one">
+						<p>密码</p>
+						<input type="password" class="name_pass" name="password" id="password"/>
+					</div>
+				</div>
+				<a onclick="check_user()" class="submit" id="submit">登录</a>
+			</div>
+		</div>
+		<script>
+			function check_user()
+			{
+				if(!$("#user_name").val() || !$("#password").val())
+				{
+					layer.msg('用户名或密码不能为空',{icon:2,time:1500,shade: 0.1}, function(index){
+						layer.close(index);
+					});
+					return false;
+				}
+				$.ajax({
+					type:"POST",
+					//提交的网址
+					url:"/index/index/zblogin.html",
+					//提交的数据
+					data:{"user_name":$("#user_name").val(),"password":$("#password").val()},
+					//返回数据的格式
+					datatype: "text",//"xml", "html", "script", "json", "jsonp", "text".
+					//成功返回之后调用的函数
+					success:function(data,statu){
+						if(data == 1)
+						{
+							layer.msg('登录成功',{icon:1,time:1500,shade: 0.1}, function(index){
+								layer.close(index);
+							});
+							location.href = 'zblist.html';
+						}else
+						{
+							layer.msg('用户名或密码不对,请重新输入',{icon:2,time:1500,shade: 0.1}, function(index){
+								layer.close(index);
+							});
+						}
+
+//						//清除已发送内容
+//						$("#subtitle_msg"+id).val("");
+//               alert('发送成功!');
+					},
+					//调用出错执行的函数
+//            error: function(XMLHttpRequest, textStatus, errorThrown){
+//                //请求出错处理
+//                alert(XMLHttpRequest.status);
+//                alert(XMLHttpRequest.readyState);
+//                alert(textStatus);
+//            }
+				});
+			}
+		</script>
+		<!--引入layer弹窗提示-->
+		<script src="../../static/admin/js/layer/layer.js"></script>
+	</body>
+</html>

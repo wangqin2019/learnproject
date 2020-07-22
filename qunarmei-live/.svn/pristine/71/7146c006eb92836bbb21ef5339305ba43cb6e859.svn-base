@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,viewport-fit=cover">
+		<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+	    <title>资格申请</title>
+	    <link rel="stylesheet" type="text/css" href="css/common.css">
+	    <script type="text/javascript" src="js/jquery.min.js"></script>
+	    <script type="text/javascript" src="js/common.js"></script>
+	    
+	    <style>
+		    body{background: #3D3D3D;}
+		    .subbtn{background: url(img/yellow_btn_bg.png);color: #3D3D3D;text-align: center;font-size: 1em;line-height: 3em;margin-top: 2em;width: calc(100% - 4em);margin-left: 2em;border-radius: 0.5em;background-size: 100%;background-position: center;background-repeat: no-repeat;}
+		    .logo{width: 8em;margin: 2em;display: block;}
+		    .title{width: 16em;margin: 0 2em;}
+		    
+		    .log_form{margin: 2em 0;}
+		    .log_form div {background: #505050;border-radius: 0.5em;width: calc(100% - 4em);margin-left: 2em;margin-bottom: 1em;overflow: hidden;}
+		    .log_form input{padding: 0 0.5em;}
+		    .verification{display: flex;}
+		    .verification input{width: calc(100% - 6em);}
+		    input::-webkit-input-placeholder {color: #D9C58A;opacity: 0.25;}
+		    input::-moz-input-placeholder {color: #D9C58A;opacity: 0.25;}
+		    input::-ms-input-placeholder {color: #D9C58A;opacity: 0.25;}
+		    input{background: #505050;line-height: 3em;height: 3em;border: none;}
+		    .verification p{width: 6em;text-align: center;color: #D9C58A;line-height: 2em;border-left: 1px solid #D9C58A;height: 2em;margin: 0.5em 0;}
+		    
+		    .tips p{color: #999999;font-size: 0.8em;width: calc(100% - 4em);margin-left: 2em;margin-bottom: 0.5em;}
+		    
+		    
+			
+			@media only screen and (device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) {
+				/*iphonex*/
+				.logo,.subbtn{margin-top: 4em;}
+				.log_form{margin: 4em 0;}
+			}
+			
+			@media screen and (min-width: 640px) {
+				/*ipad*/
+				
+			}
+	    </style>
+	</head>
+	<body>
+		<img src="img/ic_logo.png" class="logo"/>
+		<img src="img/font_title.png" class="title"/>
+		
+		<div class="log_form">
+			<div><input placeholder="去哪美平台登录账号(手机号)" id="getPhone" type="number"/></div>
+			<div class="verification">
+				<input placeholder="请输入验证码" type="number"/>
+				<p>获取验证码</p>
+			</div>
+		</div>
+		
+		<div class="tips">
+			<p>友情提示：</p>
+			<p>1. 申请前请准备好您的身份证正反面照片、申请人手持身份证人像面照片、营业执照照片，并且清楚掌握您需要开通分期交易的门店在去哪美平台的门店编号。 </p>
+			<p>2. 申请人一定要为门店的经营者或者法人。 </p>
+		</div>
+		<div class="subbtn">登录</div>
+		
+		<div class="tishi hide"><span></span></div>
+	</body>
+	<script>
+		$('.verification p').click(function(){
+			let mobile = $('#getPhone').val();
+			let check = checkPhone(mobile);
+			if(check){
+				let formData = new FormData();
+				formData.append('mobile', mobile);
+				let getcode = ajaximg('pay_period/get_code',formData);
+				if(getcode.code == 0){
+					tishi(getcode.msg);
+				}
+			}
+			else{
+				tishi('您还未填写手机号哦');
+			}
+		})
+		$('.subbtn').click(function(){
+			let mobile = $('#getPhone').val(),code = $('.verification input').val();
+			if(mobile != '' && code != ''){
+				let formData = new FormData();
+				formData.append('mobile', mobile);
+				formData.append('code', code);
+				let login = ajaximg('pay_period/login',formData);
+				if(login.code == 1){
+					window.location.href = 'apply.html?user_id='+login.data.user_id;
+				}
+				else{
+					tishi(login.msg);
+				}
+			}
+			else{
+				tishi('您还有未填写项哦');
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,viewport-fit=cover">
+		<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+
+		<!--<script type="text/javascript" src="jquery.min.js"></script>-->
+		<link href="/static/index/css/app.css" rel="stylesheet">
+		<script type="text/javascript" src="/static/index/js/jquery.js"></script>
+		<title>去哪美</title>
+	</head>
+	<style type="text/css">
+		body{text-align: center;}
+		.body {
+			position: fixed;top: 0;left: 0;
+			width: 100%;height: 100%;
+			background: url(/static/index/images/loginbg.png) no-repeat center;
+			background-size: cover;
+			text-align: center;
+			filter:(4px);
+			z-index: -1;
+		}
+		.body:after{
+		    content: "";
+		    width:100%;
+		    height:100%;
+		    position: absolute;
+		    left:0;
+		    top:0;
+		    background: inherit;
+		    filter: blur(4px);
+		    z-index: 2;
+		}
+		img {
+			border: 0
+		}
+		
+		p {
+			color: #ffffff;
+			font-size: 1em;
+		}
+		
+		input {
+			border: none;
+			width: 80%;
+			height: 3em;
+			line-height: 3em;
+			border-radius: 0.5em;
+			text-align: center;
+			margin-bottom: 1.5em;
+		}
+		
+		button {
+			background: #C6AE65;
+			color: #ffffff;
+			border: none;
+			width: 80%;
+			height: 3em;
+			line-height: 3em;
+			border-radius: 0.5em;
+		}
+		
+		.logo {
+			margin-top: 5em;
+			margin-bottom: 1em;
+			width: 5em;
+			height: 5em;
+		}
+		
+		.title {
+			font-size: 1.6em;
+			margin-top: 1em;
+			font-weight: bold;
+		}
+		
+		.detail {
+			font-size: 0.9em;
+			margin-top: 1em;
+		}
+		
+		.form {
+			position: relative;
+			top: 4em;
+			left: 0;
+			right: 0;
+		}
+		
+		.code {
+			position: relative;
+			top: 8em;
+			left: 0;
+			right: 0;
+		}
+		
+		.code img {
+			width: 6em;
+			height: 6em;
+			margin-bottom: 0.5em;
+		}
+		
+		.code p {
+			font-size: 0.9em;
+		}
+		
+		@media screen and (max-width: 375px) and (min-width: 320px) {
+			/*iphone5*/
+			.logo{margin-top: 4em;}
+			.form{top: 3em;}
+			.code {top:6em;}
+		}
+		
+		@media screen and (max-width: 414px) and (min-width: 375px) {
+			/*iphone7*/
+			.form{top: 6em;}
+			.code {top: 12em;}
+		}
+		
+		@media screen and (max-width: 639px) and (min-width: 414px) {
+			/*iphone7 plus*/
+			.form{top: 8em;}
+			.code {top: 16em;}
+		}
+		
+		@media only screen and (device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) {
+			/*iphonex*/
+			.logo{margin-top: 7em;}
+			.form{top: 6em;}
+			.code {top:12em;}
+		}
+		
+		@media screen and (min-width: 640px) {
+			/*ipad*/
+			.logo{margin-top: 10em;}
+			.title{margin-top: 2em;}
+			.form{top: 9em;}
+			.code {top:18em;}
+		}
+		
+	</style>
+
+	<body>
+		<div class="body"></div>
+		<div>
+			<img src="/static/index/images/qunar_logo.png" class="logo" />
+			<p>去哪美</p>
+			<p class="title">随时随地搜寻美</p>
+			<p class="detail">随时随地选择产品和服务，解决搜寻的烦恼</p>
+		</div>
+
+		<div class="form">
+			<input placeholder="请输入手机号码" type="tel" maxlength="11" onkeyup="value=value" />
+			<button>确定</button>
+		</div>
+
+		<div class="code">
+			<img src="http://appc.qunarmei.com/apk_down1.png" />
+			<p>识别二维码，下载去哪美APP</p>
+		</div>
+		
+	</body>
+	<script>
+		var zhiboid = getQueryString('id');
+		$('button').click(function() {
+			var mobile = $('input').val();
+			if(mobile.length != 0) {
+				$.ajax({
+					type: 'post',
+					url: 'http://live.qunarmei.com/api/v4/html_api/mobileCheck',
+					dataType: 'json',
+					data: 'mobile=' + mobile+"&id="+zhiboid,
+					crossDomain: true,
+					async: false,
+					cache: false,
+					success: function(data) {
+						if(data.data.is_register == 1){
+							window.location.href = 'http://live.qunarmei.com/index/index/pcplay?id='+zhiboid+"&mobile="+mobile;
+						}
+						else{
+							window.location.href = 'http://live.qunarmei.com/index/index/logcheck?mobile='+mobile+'&code='+data.data.code+'&id='+zhiboid;
+						}
+					},
+					error: function(data) {
+						console.log(data);
+					},
+				});
+			}
+		})
+		function getQueryString(name) {
+			var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+			var r = window.location.search.substr(1).match(reg);
+			if(r != null) {
+				return unescape(r[2]);
+			}
+			return null;
+		}
+	</script>
+
+</html>

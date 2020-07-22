@@ -1,0 +1,36 @@
+---------------------------------------------------------------
+[ 2017-10-17T13:16:57+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ error ] [10501]SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'vod'[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\thinkphp\library\think\db\Connection.php:388]
+---------------------------------------------------------------
+[ 2017-10-17T13:17:37+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ error ] [10501]SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'vod'[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\thinkphp\library\think\db\Connection.php:388]
+---------------------------------------------------------------
+[ 2017-10-17T13:17:51+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ error ] [10501]SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'vod'[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\thinkphp\library\think\db\Connection.php:388]
+---------------------------------------------------------------
+[ 2017-10-17T14:46:35+08:00 ] ::1 ::1 GET /api/live/livelist
+[ error ] [4]语法错误: unexpected '='[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\api\controller\Live.php:55]
+---------------------------------------------------------------
+[ 2017-10-17T14:47:20+08:00 ] ::1 ::1 GET /api/live/livelist
+[ error ] [4]语法错误: unexpected '='[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\api\controller\Live.php:58]
+---------------------------------------------------------------
+[ 2017-10-17T14:47:42+08:00 ] ::1 ::1 GET /api/live/livelist
+[ error ] [4]语法错误: unexpected '='[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\api\controller\Live.php:59]
+---------------------------------------------------------------
+[ 2017-10-17T14:47:49+08:00 ] ::1 ::1 GET /api/live/livelist
+[ error ] [4]语法错误: unexpected '='[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\api\controller\Live.php:59]
+---------------------------------------------------------------
+[ 2017-10-17T14:48:03+08:00 ] ::1 ::1 GET /api/live/livelist
+[ error ] [2]Invalid argument supplied for foreach()[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\api\controller\Live.php:54]
+---------------------------------------------------------------
+[ 2017-10-17T14:56:39+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ error ] [0]模板文件不存在:D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\public/../application/admin\view\livetrailer\index.html[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\thinkphp\library\think\view\driver\Think.php:80]
+---------------------------------------------------------------
+[ 2017-10-17T18:07:21+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/20171017/7749804885cfb9726749887cc6b94ac6.jpg
+[ error ] [8]未定义数组下标: 0[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\17ccdc49ef2ffda4585c2f1909ca6a8d.php:56]
+---------------------------------------------------------------
+[ 2017-10-17T19:29:52+08:00 ] ::1 ::1 GET /api/live/livetrailer
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by begin_time asc' at line 1[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\thinkphp\library\think\db\Connection.php:388]
+---------------------------------------------------------------
+[ 2017-10-17T19:38:48+08:00 ] ::1 ::1 GET /admin/vod/vodadd.html
+[ error ] [0]模板文件不存在:D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\public/../application/admin\view\vod\vodadd.html[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\thinkphp\library\think\view\driver\Think.php:80]

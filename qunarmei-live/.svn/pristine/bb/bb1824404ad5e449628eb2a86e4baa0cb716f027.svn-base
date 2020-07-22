@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://video.aco.aotu.io/ -->
+<html lang="zh-CN" style="font-size: 192px;">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="../../static/index/pc_zb/css/mobile.css?v=1.0.3">
+		<title>去哪美直播</title>
+		<!-- begin REM Zoom 计算 -->
+		<script type="text/javascript">
+			(function(win) {
+				var remCalc = {};
+				var docEl = win.document.documentElement,
+					tid,
+					hasRem = true,
+					hasZoom = true,
+					designWidth = 750;
+
+				function refresh() {
+					var width = docEl.getBoundingClientRect().width;
+					// if (width > 640) { width = 640 }
+					if(hasRem) {
+						var rem = width / 10;
+						docEl.style.fontSize = rem + "px";
+						remCalc.rem = rem;
+						var actualSize = parseFloat(window.getComputedStyle(document.documentElement)["font-size"]);
+						if(actualSize !== rem && actualSize > 0 && Math.abs(actualSize - rem) > 1) {
+							var remScaled = rem * rem / actualSize;
+							docEl.style.fontSize = remScaled + "px"
+						}
+					}
+					if(hasZoom) {
+						var style = document.getElementById('J__style')
+						if(!style) {
+							style = document.createElement('style')
+							style.id = 'J__style'
+						}
+						style.innerHTML = '.__z{zoom:' + width / designWidth + '}'
+						document.getElementsByTagName('head')[0].appendChild(style)
+					}
+				}
+
+				function dbcRefresh() {
+					clearTimeout(tid);
+					tid = setTimeout(refresh, 100)
+				}
+				win.addEventListener("resize", function() {
+					dbcRefresh()
+				}, false);
+
+				win.addEventListener("pageshow", function(e) {
+					if(e.persisted) {
+						dbcRefresh()
+					}
+				}, false);
+				refresh();
+				if(hasRem) {
+					remCalc.refresh = refresh;
+					remCalc.rem2px = function(d) {
+						var val = parseFloat(d) * this.rem;
+						if(typeof d === "string" && d.match(/rem$/)) {
+							val += "px"
+						}
+						return val
+					};
+					remCalc.px2rem = function(d) {
+						var val = parseFloat(d) / this.rem;
+						if(typeof d === "string" && d.match(/px$/)) {
+							val += "rem"
+						}
+						return val
+					};
+					win.remCalc = remCalc
+				}
+			})(window);
+		</script>
+		<!-- end REM Zoom 计算 -->
+		<link href="../../static/index/pc_zb/css/app.css" rel="stylesheet">
+		<script type="text/javascript" src="../../static/index/pc_zb/jquery.js"></script>
+        <link rel="stylesheet" href="../../static/index/pc_zb/css/zhibo.css">
+		<style type="text/css">
+			*{margin: 0;padding: 0;list-style: none;outline: none;text-decoration: none;}
+			body,html{border: none !important;}
+			.webim-logo,.webim-sign,.copyright,#components,.webim-avatar-icon,.username,#friends,#groups,#strangers{display: none !important;}
+			.video_span{padding: 0.2em 0.5em;border-radius: 1em;background: rgba(255,255,255,0.5);color: #FFFFFF;position: fixed;right: 1em;bottom: 2em;font-size: 14px;z-index: 100;}
+			.touxiang{width: 26%;position: fixed;left: 2em;top: 6.5em;z-index: 100;overflow: hidden;}
+			.touxiang_img{width: 12%;float: left;border-radius: 50%;margin-right: 20px;margin-top: 2px;}
+			.loction{float: left;overflow: hidden;margin-top: 0.5em;}
+			.loction li{color: #FFFFFF;overflow: hidden;}
+			.loction li:nth-child(1){font-size: 18px;}
+			.loction li:nth-child(2) span{font-size: 14px;float: left;}
+			.loction li:nth-child(2) img{width: 20%;float: left;margin-right: 5px;margin-top: 2px;}
+			.people{padding: 0.6em 5em;position: fixed;left: 0em;top: 12em;border-radius: 0 2em 2em 0;background: -webkit-linear-gradient(left, rgba(255,0,0,0.6) , rgba(255,0,152,0.6)); /* Safari 5.1 - 6.0 */background: -o-linear-gradient(right, rgba(255,0,0,0.6) , rgba(255,0,152,0.6)); /* Opera 11.1 - 12.0 */background: -moz-linear-gradient(right, rgba(255,0,0,0.6) , rgba(255,0,152,0.6)); /* Firefox 3.6 - 15 */background: linear-gradient(to right, rgba(255,0,0,0.6) , rgba(255,0,152,0.6)); /* 标准的语法 */color: #fff;}
+			.wrapper{margin-top: 0 !important;width: 100%;}
+			.vjs-control-bar{opacity: 0 !important;}
+			.zhubo{width: 100%;padding: 10px 0;background: rgba(0,0,0,0.4);position: absolute;left: 0;bottom: 0;z-index: 99;display:none}*/
+			.zhubo span{color: #fff;width: auto;font-size: 22px;display: block;margin: 0 auto}
+			.zhubo_ani{
+				animation: zhubo_ani 8s linear infinite;
+				-moz-animation: zhubo_ani 8s linear infinite;
+				-ms-animation: zhubo_ani 8s linear infinite;
+				-webkit-animation: zhubo_ani 8s linear infinite;
+			}
+			@keyframes zhubo_ani {
+				0% {
+					left: -20%;
+				}
+				100% {
+					left: 120%;
+				}
+			}
+			@-moz-keyframes zhubo_ani {
+				0% {
+					left: -20%;
+				}
+				100% {
+					left: 120%;
+				}
+			}
+			@-ms-keyframes zhubo_ani {
+				0% {
+					left: -20%;
+				}
+				100% {
+					left: 120%;
+				}
+			}
+			@-webkit-keyframes zhubo_ani {
+				0% {
+					left: -20%;
+				}
+				100% {
+					left: 120%;
+				}
+			}
+			.anniu{position: absolute;right: 110px;bottom: 70px;z-index: 50;display: none;}
+			.video-js .vjs-big-play-button{z-index: 999999;}
+			#login_dialog{opacity: 0 !important;}
+			.video-discuss-pane{display: none;}
+			/*.webim-leftbar,.webim-contact-wrapper,.webim-chatwindow-title,.webim-send-wrapper{display: none;}*/
+			/*.webim-chatwindow-msg{height: 100%;}*/
+			/*.w100{width: 520px !important;height: 480px !important;overflow: hidden;}*/
+			/*.w100{margin: 0;position: absolute !important;left:84px;bottom: 0px;}*/
+			/*.webim-chat{min-width: 550px !important;}*/
+			/*.webim-chatwindow{width: 100% !important;}*/
+			/*.webim-msg-container > div,.clearfix{float: left;}*/
+			/*.webim-msg-container > div{max-width: 100% !important;}*/
+			/*.webim-msg-value{width: auto !important;max-width: 390px !important;}*/
+			/*.webim-msg-container .left > p{width: auto;padding:5px 10px 5px 5px;background-color: rgba(152,152,152,0.4) !important;border-radius: 4px 0 0 4px;float: left;}*/
+			/*.left span:nth-child(3),.webim-msg-icon{display: none;}*/
+			/*.webim-msg-value{min-width: auto !important;}*/
+			/*.webim-msg-container{margin: 0 0 5px 0 !important;}*/
+			/*.webim-chat{background-color: rgba(250,250,250,0) !important;box-shadow: none !important;}*/
+			/*.webim-msg-container .left .webim-msg-value{background-color: rgba(152,152,152,0.4) !important;}*/
+			/*.webim-msg-value > div, .webim-msg-value > pre{color: #fff !important;}*/
+			/*.left span:nth-child(1){color: #FF0050;display: inline-block;margin-top: 2px}*/
+			/*.webim-msg-value{margin: 0 !important;padding: 5px !important;border-radius: 0 4px 4px 0 !important;}*/
+			/*.webim-msg-container .left .webim-msg-icon{display: none !important;}*/
+			/*.zhubo{width: 100%;padding: 10px 0;background: rgba(0,0,0,0.4);position: absolute;left: 0;bottom: 0;z-index: 99;}*/
+			/*.zhubo span{color: #fff;width: auto;font-size: 24px;display: block;text-align: center;}*/
+			/*.go_back{position: absolute;right: 5%;top: 10%;}*/
+			/*.go_back img{width: 100%;}*/
+			/*.zhubo_ani{*/
+				/*animation: zhubo_ani 8s linear infinite;*/
+				/*-moz-animation: zhubo_ani 8s linear infinite;*/
+				/*-ms-animation: zhubo_ani 8s linear infinite;*/
+				/*-webkit-animation: zhubo_ani 8s linear infinite;*/
+			/*}*/
+			/*@keyframes zhubo_ani {*/
+				/*0% {*/
+					/*left: -20%;*/
+				/*}*/
+				/*100% {*/
+					/*left: 120%;*/
+				/*}*/
+			/*}*/
+			/*@-moz-keyframes zhubo_ani {*/
+				/*0% {*/
+					/*left: -20%;*/
+				/*}*/
+				/*100% {*/
+					/*left: 120%;*/
+				/*}*/
+			/*}*/
+			/*@-ms-keyframes zhubo_ani {*/
+				/*0% {*/
+					/*left: -20%;*/
+				/*}*/
+				/*100% {*/
+					/*left: 120%;*/
+				/*}*/
+			/*}*/
+			/*@-webkit-keyframes zhubo_ani {*/
+				/*0% {*/
+					/*left: -20%;*/
+				/*}*/
+				/*100% {*/
+					/*left: 120%;*/
+				/*}*/
+			/*}*/
+			/*.anniu{position: absolute;right: 110px;bottom: 70px;z-index: 50;display: none;}*/
+		</style>
+		<style id="J__style">
+			.__z {
+				zoom: 2.56
+			}
+		</style>
+
+		<script type="text/javascript">
+			$(function(){
+				var width = document.body.scrollWidth
+				var height = document.body.scrollHeight
+				$("#video").css("width",width)
+				$("#video").css("height",height)
+
+			})
+		</script>
+		<!--<script src="../../static/index/pc_zb/js/browser-polyfill.min.js"></script>-->
+		<script src="../../static/index/pc_zb/js/lc_switch.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="../../static/index/pc_zb/css/lc_switch.css">
+	</head>
+
+	<body>
+		<div class="anniu">
+	      <p>
+	        <input type="checkbox" name="check-3" value="6" class="lcs_check lcs_tt1" autocomplete="off" />
+	      </p>
+	    </div>
+		<script type="text/javascript">
+			$(document).ready(function(e) {
+				$('input').lc_switch();
+				// triggered each time a field changes status
+				$('body').delegate('.lcs_check', 'lcs-statuschange', function() {
+					var status = ($(this).is(':checked')) ? 'checked' : 'unchecked';
+					console.log('field changed status: '+ status );
+				});
+
+				// triggered each time a field is checked
+				$('body').delegate('.lcs_check', 'lcs-on', function() {
+					$(".video-pane-body").css("display","none")
+				});
+
+
+				// triggered each time a is unchecked
+				$('body').delegate('.lcs_check', 'lcs-off', function() {
+					$(".video-pane-body").css("display","block")
+				});
+			});
+		</script>
+		<div id="o2_main" class="main" style="transform-origin: 0px 0px 0px; transform: scale(1, 1); opacity: 1; display: block;">
+			<div class="video-page">
+
+				<!--聊天部分 start-->
+				<div class="video-pane">
+					<div class="video-pane-head">
+						<div class="video-pane-info">
+							<div class="video-info">
+								<div class="user-img">
+									<img src="{$list['user_img']}" width="45">
+								</div>
+								<div class="user-info-text">
+									<div class="user-info-name">{$list['user_name']}</div>
+									<div class="user-info-num">
+										<i class="user-icon-fans"></i><span id="user-icon-fans">{$list['gk_cnt']}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<a href="javascript:void(0);" class="video-close" onclick="quitBigGroup()"></a>
+					</div>
+					<div class="video-pane-body">
+						<div class="video-discuss">
+							<ul class="video-sms-list" id="video_sms_list">
+
+
+							</ul>
+							<div class="video-discuss-pane">
+								<div class="video-discuss-tool" id="video-discuss-tool">
+									<!--<span class="like-icon zoomIn green"></span>-->
+									<a href="javascript:void(0);" class="video-discuss-sms" onclick="smsPicClick()"></a>
+
+									<a href="javascript:void(0);" class="video-discuss-like" onclick="sendGroupLoveMsg()"></a>
+								</div>
+								<div class="video-discuss-form" id="video-discuss-form" style="display: none">
+									<input type="text" class="video-discuss-input" id="send_msg_text">
+									<a href="javascript:void(0);" class="video-discuss-face" onclick="showEmotionDialog()"></a>
+									<button class="video-discuss-button" onclick="onSendMsg()">发送</button>
+								</div>
+								<div class="video-discuss-emotion" id="video-discuss-emotion" style="display: none">
+									<div class="video-emotion-pane">
+										<ul id="emotionUL">
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--聊天部分 end-->
+			</div>
+
+			<div id="login_dialog">
+				<div id="login_dialog_all">
+					<div class="install_div">
+						<p for="login_account" class="login_dialog_p">identifier</p>
+						<input type="text" class="" id="login_account" value="" placeholder="请输入identifier" maxlength="100">
+					</div>
+					<div class="install_div">
+						<p for="login_pwd" class="login_dialog_p">UserSig</p>
+						<input type="text" class="l" id="login_pwd" value="" placeholder="请输入UserSig">
+					</div>
+				</div>
+				<div class="install_button_div">
+					<button type="button" class="" onclick="colseLogin()">
+						关闭
+					</button>
+					<button type="button" id="yes_btn" class="" onclick="independentModeLogin()">
+						确定
+					</button>
+				</div>
+			</div>
+			<div class="wrapper">
+				<video id="video" class="video show video-js vjs-big-play-centered" preload="auto" playsinline="" style="opacity: 1;"></video>
+			</div>
+		</div>
+
+		<!--<a href="zblist.html" class="go_back"><img src="../../static/index/pc_zb/images/home.png" alt=""></a>-->
+		<!--<div class="touxiang">-->
+			<!--<img src="{$list['user_img']}" class="touxiang_img"/>-->
+			<!--<div class="loction">-->
+				<!--<ul>-->
+					<!--<li>{$list['user_name']}</li>-->
+					<!--<li>-->
+						<!--<img src="../../static/index/pc_zb/images/live_location.png"/>-->
+						<!--<span>{$list['address']}</span>-->
+					<!--</li>-->
+				<!--</ul>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<p class="people" ><span id='gk_cnt'>{$list['gk_cnt']+1}</span>人正在观看.....</p>-->
+
+			<div class="zhubo">
+				<span style="color: #fff;width: auto;font-size: 22px;display: block;margin: 0 auto;text-align: center">dfdssdffds</span>
+			</div>
+
+
+
+		<script type="text/javascript">
+			$(function(){
+				$('#login_account').val("{$user['name']}")
+				$('#login_pwd').val("{$user['pwd']}")
+				$("body").on("click",".vjs-big-play-button",function(){
+					$("#yes_btn").trigger('click')
+//					setTimeout(function(){
+//						$("#video_sms_list li").each(function(){
+//							var wenzi = $(this).children().children().children(".user-name-org").html()
+//							if(wenzi == "@TIM#SYSTEM"){
+//								$(this).css("display","none")
+//							}
+//						})
+//					},1500);
+					setTimeout(function(){
+						var myVar = setInterval(function(){ bianli() }, 1000);
+						function bianli(){
+							$("#video_sms_list li").each(function(){
+						    	var lenth = $(this).children(".video-sms-pane").children(".video-sms-text").children("span:eq(0)").html()
+
+						    	var wenzi = $(this).children(".video-sms-pane").children(".video-sms-text").children("span:eq(1)").html()
+								var str_before = wenzi.split('data')[0];
+								$(this).children(".video-sms-pane").children(".video-sms-text").children("span:eq(1)").html(str_before);
+						    	//alert(lenth);
+								if(lenth=="admin"){
+						    		$(".zhubo").css("display","block")
+									$(".zhubo span").html(str_before)
+//						    		$(".zhubo span").html(wenzi)
+//						    		$(".zhubo span").addClass("zhubo_ani")
+						    	}
+						    })
+						}
+					},2000);
+					setTimeout(function(){
+						$(".anniu").css("display","block")
+					},1000);
+
+				})
+
+
+			})
+
+		</script>
+
+		<script src="http://player.qiniucc.com/sdk/latest/qiniuplayer.min.js?v=0.3.3"></script>
+		<script>
+
+			var options = {
+				controls: true,
+				url: "{$list['hls_url']}",
+				type: 'hls',
+				preload: true,
+				autoplay: false, // 如为 true，则视频将会自动播放
+//				poster: 'https://player.qiniucc.com/qiniu-620x205.png',
+			};
+			var player = new QiniuPlayer('video', options);
+		</script>
+		<script type="text/javascript" src="../../static/index/pc_zb/js/bundle.js"></script>
+
+
+
+		<!--引入webim sdk-->
+		<script type="text/javascript" src="../../static/index/pc_zb/js/webim.js?v=1"></script>
+		<script type="text/javascript" src="../../static/index/pc_zb/js/json2.js"></script>
+		<!--TLS web sdk(只用于托管模式，独立模式不用引入)-->
+		<script type="text/javascript" src="https://tls.qcloud.com/libs/api.min.js"></script>
+		<!--webim demo js-->
+		<script type="text/javascript" src="../../static/index/pc_zb/js/demo_base.js"></script>
+		<script type="text/javascript" src="../../static/index/pc_zb/js/demo_group_notice.js"></script>
+
+		<script type="text/javascript">
+
+			//帐号模式，0-表示独立模式，1-表示托管模式
+			var accountMode = 0;
+
+			//官方 demo appid,需要开发者自己修改（托管模式）
+			var sdkAppID = 1400047679;
+			var accountType = 18638;
+
+			var avChatRoomId = '@TGS#a6QCZE6ET';  //默认房间群ID，群类型必须是直播聊天室（AVChatRoom），这个为官方测试ID(托管模式)
+
+			if (webim.Tool.getQueryString("groupid")) {
+				avChatRoomId = webim.Tool.getQueryString("groupid");//用户自定义房间群id
+			}
+
+			var selType = webim.SESSION_TYPE.GROUP;
+			var selToID = avChatRoomId;//当前选中聊天id（当聊天类型为私聊时，该值为好友帐号，否则为群号）
+			var selSess = null;//当前聊天会话
+
+			//默认群组头像(选填)
+			var selSessHeadUrl = 'img/2017.jpg';
+
+
+			//当前用户身份
+			var loginInfo = {
+				'sdkAppID': sdkAppID, //用户所属应用id,必填
+				'appIDAt3rd': sdkAppID, //用户所属应用id，必填
+				'accountType': accountType, //用户所属应用帐号类型，必填
+				'identifier': null, //当前用户ID,必须是否字符串类型，选填
+				'identifierNick': "null", //当前用户昵称，选填
+				'userSig': null, //当前用户身份凭证，必须是字符串类型，选填
+				'headurl': 'img/2016.gif'//当前用户默认头像，选填
+			};
+			//监听（多终端同步）群系统消息方法，方法都定义在demo_group_notice.js文件中
+			//注意每个数字代表的含义，比如，
+			//1表示监听申请加群消息，2表示监听申请加群被同意消息，3表示监听申请加群被拒绝消息等
+			var onGroupSystemNotifys = {
+				//"1": onApplyJoinGroupRequestNotify, //申请加群请求（只有管理员会收到,暂不支持）
+				//"2": onApplyJoinGroupAcceptNotify, //申请加群被同意（只有申请人能够收到,暂不支持）
+				//"3": onApplyJoinGroupRefuseNotify, //申请加群被拒绝（只有申请人能够收到,暂不支持）
+				//"4": onKickedGroupNotify, //被管理员踢出群(只有被踢者接收到,暂不支持)
+				"5": onDestoryGroupNotify, //群被解散(全员接收)
+				//"6": onCreateGroupNotify, //创建群(创建者接收,暂不支持)
+				//"7": onInvitedJoinGroupNotify, //邀请加群(被邀请者接收,暂不支持)
+				//"8": onQuitGroupNotify, //主动退群(主动退出者接收,暂不支持)
+				//"9": onSetedGroupAdminNotify, //设置管理员(被设置者接收,暂不支持)
+				//"10": onCanceledGroupAdminNotify, //取消管理员(被取消者接收,暂不支持)
+				"11": onRevokeGroupNotify, //群已被回收(全员接收)
+				"255": onCustomGroupNotify//用户自定义通知(默认全员接收)
+			};
+
+
+			//监听连接状态回调变化事件
+			var onConnNotify = function (resp) {
+				switch (resp.ErrorCode) {
+					case webim.CONNECTION_STATUS.ON:
+						//webim.Log.warn('连接状态正常...');
+						break;
+					case webim.CONNECTION_STATUS.OFF:
+						webim.Log.warn('连接已断开，无法收到新消息，请检查下你的网络是否正常');
+						break;
+					default:
+						webim.Log.error('未知连接状态,status=' + resp.ErrorCode);
+						break;
+				}
+			};
+
+
+			//监听事件
+			var listeners = {
+				"onConnNotify": onConnNotify, //选填
+				"jsonpCallback": jsonpCallback, //IE9(含)以下浏览器用到的jsonp回调函数,移动端可不填，pc端必填
+				"onBigGroupMsgNotify": onBigGroupMsgNotify, //监听新消息(大群)事件，必填
+				"onMsgNotify": onMsgNotify,//监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
+				"onGroupSystemNotifys": onGroupSystemNotifys, //监听（多终端同步）群系统消息事件，必填
+				"onGroupInfoChangeNotify": onGroupInfoChangeNotify//监听群资料变化事件，选填
+			};
+
+			var isAccessFormalEnv = true;//是否访问正式环境
+
+			if (webim.Tool.getQueryString("isAccessFormalEnv") == "false") {
+				isAccessFormalEnv = false;//访问测试环境
+			}
+
+			var isLogOn = true;//是否在浏览器控制台打印sdk日志
+
+			//其他对象，选填
+			var options = {
+				'isAccessFormalEnv': isAccessFormalEnv,//是否访问正式环境，默认访问正式，选填
+				'isLogOn': isLogOn//是否开启控制台打印日志,默认开启，选填
+			};
+
+			var curPlayAudio = null;//当前正在播放的audio对象
+
+			var openEmotionFlag = false;//是否打开过表情
+
+			if (accountMode == 1) {
+				//托管模式
+				//判断是否已经拿到临时身份凭证
+				if (webim.Tool.getQueryString('tmpsig')) {
+					if (loginInfo.identifier == null) {
+						webim.Log.info('start fetchUserSig');
+						//获取正式身份凭证，成功后会回调tlsGetUserSig(res)函数
+						TLSHelper.fetchUserSig();
+					}
+				} else {
+					//未登录,无登录态模式
+					//sdk登录
+					sdkLogin();
+				}
+			} else {
+				//独立模式
+				$('#login_dialog').show();
+				//sdkLogin();
+			}
+			if(/debug/gi.test(location.hash)){
+				document.write('<script src="http://sdklog.isd.com/js/vconsole.min.js"></scr'+'ipt>');
+			}
+
+			function colseLogin(){
+				$('#login_dialog').hide();
+			}
+		</script>
+
+		<!--<script src="../../static/index/pc_zb/js/webim.config.js"></script>-->
+		<!--<script>-->
+		    <!--if (WebIM.config.isWindowSDK) {-->
+		        <!--document.title = "环信Demo";-->
+		    <!--}-->
+		    <!--if (WebIM.config.isDebug) {-->
+		        <!--document.write("<script src='../../static/index/pc_zb/js/strophe-1.2.8.js'><\/script>");-->
+		    <!--} else {-->
+
+		        <!--document.write("<script src='../../static/index/pc_zb/js/strophe-1.2.8.min.js'><\/script>");-->
+		    <!--}-->
+		<!--</script>-->
+
+
+		<!--<script src='../../static/index/pc_zb/js/websdk-1.4.13.js'></script>-->
+
+		<!--<script>-->
+		    <!--if (WebIM.config.isWebRTC) {-->
+		        <!--document.write("<script src='../../static/index/pc_zb/js/adapter.js'><\/script>");-->
+		        <!--document.write("<script src='../../static/index/pc_zb/js/webrtc-1.4.13.js'><\/script>");-->
+		    <!--}-->
+		<!--</script>-->
+
+		<!--<script src="/static/index/pc_zb/js/demo-1.4.13.js" type="text/javascript"></script>-->
+		<!--<script type="text/javascript">-->
+			<!--$(function(){-->
+
+				<!--$('.webim-input[type="text"]').val("{$user['name']}")-->
+				<!--$('.webim-input[type="password"]').val("123456")-->
+				<!--$("body").on("click","#o2_main",function(){-->
+					<!--$(".webim-button").trigger('click')-->
+					<!--$("#chatrooms").trigger('click')-->
+					<!--setTimeout(function(){-->
+						<!--var arr = new Array();-->
+						<!--$(".webim-contact-wrapper").children("div:eq(2)").children("div").each(function(index){-->
+							<!--var id = $(this).attr("id")-->
+							<!--arr.push(id)-->
+							<!--var idnum = $(".give_id").html()-->
+							<!--if(id==idnum){-->
+								<!--var index = $(this).index()-->
+								<!--$(".webim-contact-item:eq("+ index +")").trigger('click')-->
+							<!--}-->
+						<!--})-->
+
+					<!--},1000);-->
+					<!--setTimeout(function(){-->
+
+						<!--var myVar = setInterval(function(){ bianli() }, 1500);-->
+						<!--function bianli(){-->
+							<!--$(".webim-msg-container").each(function(){-->
+						    	<!--var lenth = $(this).last().children().children(".left").children("span:eq(0)").html()-->
+						    	<!--var reg = new RegExp("^[0-9]*$");-->
+
+						    	<!--if(reg.test(lenth))-->
+						    	<!--{-->
+						    		<!--var username = getUserName(lenth);-->
+						    		<!--$(this).last().children().children(".left").children("span:eq(0)").html(username)-->
+
+						    	<!--}-->
+						    	<!--//alert(lenth)-->
+						    	<!--var wenzi = $(this).last().children().children(".clearfix").children(".webim-msg-value").children("pre:last").html()-->
+						    	<!--if(lenth=="15821462605"){-->
+						    		<!--$(this).css("display","none")-->
+						    		<!--$(".zhubo").css("display","block")-->
+						    		<!--$(".zhubo span").html(wenzi)-->
+						    		<!--// $(".zhubo span").addClass("zhubo_ani")-->
+						    	<!--}-->
+
+
+						    <!--})-->
+
+						<!--}-->
+					<!--},2000);-->
+					<!--setTimeout(function(){-->
+					    <!--$(".anniu").css("display","block")-->
+					<!--},1000);-->
+
+
+
+				<!--})-->
+
+
+			<!--})-->
+
+			<!--//通过号码获取昵称-->
+			<!--function getUserName(mobile) {-->
+				<!--var url = 'getName.html?mobile='+mobile;-->
+				<!--var user_name = getAjax(url);-->
+				<!--return user_name;-->
+			<!--}-->
+
+			<!--//ajax请求方法-->
+			<!--function getAjax(url) {-->
+				<!--var rest-->
+				<!--$.ajax({-->
+					<!--type:"GET",-->
+					<!--async:false,-->
+					<!--//提交的网址-->
+					<!--url:url,-->
+					<!--//提交的数据-->
+					<!--data:'',-->
+					<!--//成功返回之后调用的函数-->
+					<!--success:function(data,statu){-->
+						<!--rest = data;-->
+					<!--},-->
+				<!--});-->
+				<!--return rest;-->
+			<!--}-->
+
+			<!--// 获取观看人数-->
+			<!--var getGk1 = setInterval(function(){ getGk() }, 2000);-->
+			<!--function getGk()-->
+			<!--{-->
+				<!--var url = "getCnt.html?id={$list['chat_id']}&type=pc";-->
+				<!--var gk_cnt = getAjax(url);-->
+				<!--$("#gk_cnt").html(gk_cnt);-->
+			<!--}-->
+
+		<!--</script>-->
+
+		<!--<script src="http://player.qiniucc.com/sdk/latest/qiniuplayer.min.js?v=0.3.3"></script>-->
+        <!--<script>-->
+
+			<!--var options = {-->
+			    <!--controls: true,-->
+			    <!--url: "{$list['hls_url']}",-->
+			    <!--type: 'hls',-->
+			    <!--preload: true,-->
+			    <!--autoplay: false, // 如为 true，则视频将会自动播放-->
+			    <!--// poster: 'https://player.qiniucc.com/qiniu-620x205.png',-->
+			<!--};-->
+			<!--var player = new QiniuPlayer('video', options);-->
+        <!--</script>-->
+		<!--<script type="text/javascript" src="../../static/index/pc_zb/js/bundle.js"></script>-->
+
+	     <script type="text/javascript">
+			// 获取观看人数
+			 var getGk1 = setInterval(function(){ getGk() }, 5000);
+			 function getGk()
+			 {
+				 var url = "getCnt.html";
+				 var id = "{$list['chat_id']}";
+				 var gk_cnt = postAjax(url,id);
+				 $("#user-icon-fans").html(gk_cnt);
+			 }
+
+			//ajax请求方法
+			function postAjax(url,id) {
+				var rest
+				$.ajax({
+					type:"POST",
+					async:false,
+					//提交的网址
+					url:url,
+					//提交的数据
+					data:{"id":id},
+					//成功返回之后调用的函数
+					success:function(data,statu){
+//						alert('url:'+url+'-data:'+data)
+						rest = data;
+					},
+//					error: function (XMLHttpRequest, textStatus, errorThrown) {
+//						alert('url:'+url);
+//                		alert(XMLHttpRequest.status+'-'+XMLHttpRequest.readyState+'-'+textStatus);
+//					}
+				});
+				return rest;
+			}
+		 </script>
+
+	</body>
+
+</html>

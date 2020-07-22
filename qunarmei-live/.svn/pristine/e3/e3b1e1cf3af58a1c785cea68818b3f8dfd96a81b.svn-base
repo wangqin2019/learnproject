@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <META HTTP-EQUIV="expires" CONTENT="0">
+		<title></title>
+	</head>
+	<style type="text/css">
+		.bg{width: 100%;position: fixed;top: 0;left: 0;}
+		*{margin: 0;padding: 0;}
+		.button{width: 30%;position: fixed;bottom: 40px;left: 35%;}
+	</style>
+
+	<body>
+		<img src="https://pgimg1.qunarmei.com/axs_poster0327.jpg" class="bg"/>
+		<img src="btn.png"  onclick="callAppVideo(window.sendjson)" class="button"/>
+	</body>
+	<script>
+		var live_id = getQueryString('live_id');
+		var type = getQueryString('type');
+		var is_list = getQueryString('is_list');
+		var categroy_id = getQueryString('categroy_id');
+		
+		
+		if(is_list == 0){//直播
+			
+		}
+		else if(is_list == 1){//列表
+			
+		}
+		else{
+			
+		}
+		
+		//获取地址
+		function getQueryString(name) {
+		  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+		  var r = window.location.search.substr(1).match(reg);
+		  if (r != null) {
+		    return unescape(r[2]);
+		  }
+		  return null;
+		}
+		
+		//Android
+		var send = {
+			live_id:live_id,
+			type:type,
+			is_list:is_list,
+			categroy_id:categroy_id
+		};
+		//IOS
+		var sendjson = JSON.stringify(send);
+		//Androidapp监听方法
+		function callAppVideo(send) {
+			try {playVidio.playVidio(send)}
+			catch (e) {alert('请在APP中打开');}
+		}
+	</script>
+</html>

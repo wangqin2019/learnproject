@@ -1,0 +1,279 @@
+<?php
+
+namespace app\admin\controller;
+use app\admin\model\LiveModel;
+use think\Db;
+
+class Live extends Base
+{
+    //调用直播相关接口url
+    protected $url = 'http://localhost/pili_test/rtmp_test.php';
+
+    /**
+     * [liveList 直播列表]
+     * @return 
+     * @author 
+     */
+    public function liveList(){
+        // 请求调用接口数据
+        // $url = 'https://wms.chengmei.com/api/stock/getBranchStock';
+        // $url = 'http://localhost/Test/tt.php';
+        // $data = array('allshuxing'=>'NW3700B3L','bid'=>'666-666','type'=>1);
+        // $rest = http($url,$data, 'GET', array("Content-type: text/html; charset=utf-8"));
+        // $rest = http($url,$data, 'POST', array("Content-type: text/html; charset=utf-8"));
+        // $rest = curlPost($url,$data);
+        // echo 'rest:'.$rest;
+
+        //获取session信息
+        // print_r($_SESSION);
+
+        $key = input('key');
+        $map = [];
+        if($key&&$key!=="")
+        {
+            $map['title'] = ['like',"%" . $key . "%"];          
+        }       
+        $Nowpage = input('get.page') ? input('get.page'):1;
+        $limits = config('list_rows');// 获取总条数
+        $count = Db::name('live')->where($map)->count();//计算总页面
+        $allpage = intval(ceil($count / $limits));
+        $pre = ($Nowpage-1)*$limits;
+        //获取用户信息
+        $uid = $_SESSION['think']['uid'];
+        if($uid!=1)
+        {
+            $map['flag'] = ['<',1];
+            $isadmin = 0;
+        }else
+        {
+            $isadmin = 1;
+        }
+        $lists = Db::name('live')->alias('l')->join('admin ad','ad.id=l.user_id')->where($map)->limit($pre,$limits)->field('l.*,ad.username')->select();
+        foreach($lists as $k=>&$v)
+        {
+            $cat_name = $this->catList($v['category_id']);
+            $v['cat_name'] = $cat_name[0]['cat_name'];
+            //  $lists[$k]['create_time']=date('Y-m-d H:i:s',(int)$v['create_time']);
+            $lists[$k]['insert_time']=date('Y-m-d H:i:s',$v['insert_time']);
+            if($v['statu'] == 0)
+            {
+                $v['statu'] = '直播未开始';
+            }elseif($v['statu'] == 1)
+            {
+                $v['statu'] = '直播中';
+            }elseif($v['statu'] == 2)
+            {
+                $v['statu'] = '直播结束';
+            }
+            $v['audience'] = $this->getNum($type='see',$v['id']);
+            $v['point_count'] = $this->getNum($type='point',$v['id']);
+        }
+        $this->assign('isadmin', $isadmin);    
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数 
+        $this->assign('val', $key);
+        if(input('get.page'))
+        {
+            return json($lists);
+        }
+        return $this->fetch();
+    }
+
+
+    /**
+     * [liveAdd 添加直播]
+     * @return 
+     * @author 
+     */
+    public function liveAdd()
+    {
+        //分类列表
+        $category = $this->catList();
+        if(request()->isAjax()){
+
+            $param = input('post.');
+            if($param)
+            {
+                //流名:live+id
+                $last_id = Db::name('live')->field('id')->order('id desc')->limit(1)->select();
+                $live_stream_name = 'live'.($last_id[0]['id']+1);
+                //通过七牛接口获取推流地址
+                $data = array('type'=>'live_add','stream_name'=>$live_stream_name);
+                $resp = http($this->url,$data, 'GET');
+                $resp = json_decode($resp);
+           
+                if($resp->code == 1)
+                {
+                    $data_v = $resp->data;
+                    $push_url = $data_v->push_url;
+                    $see_url = $data_v->rtmp_url;
+                    $hls_url = $data_v->hls_url;
+                    $screen_shot = $data_v->screen_shot;
+                }
+                
+                // $see_url = http($this->url,$data, 'GET');
+                // $hls_url = http($this->url,$data, 'GET');
+
+                //获取用户信息
+                $uid = $_SESSION['think']['uid'];
+
+                $data = array('title'=>$param['title'],'push_url'=>$push_url,'see_url'=>$see_url,'hls_url'=>$hls_url,'insert_time'=>time(),'user_id'=>$uid,'content'=>$param['content'],'address'=>$param['address'],'live_stream_name'=>$live_stream_name,'user_name'=>$param['user_name'],'user_img'=>$param['user_img'],'live_img'=>$screen_shot,'category_id'=>$category);
+                //绑定聊天室
+                $rest1 = $this->chatChange($type='bd');
+                $data['chat_id'] = $rest1;
+                $rest = Db::name('live')->insert($data);
+                if($rest)
+                {
+                  $msg='添加成功';
+                }
+                $flag = array('code'=>1,'data'=>$data,'msg'=>$msg);
+                return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+            }
+            
+        }
+        $this->assign('category',$category);
+
+        return $this->fetch();
+    }
+
+
+    /**
+     * [liveEdit 编辑]
+     * @return 
+     * @author 
+     */
+    public function liveEdit()
+    {
+        $id = input('param.id');
+        //分类列表
+        $category = $this->catList();
+        if(request()->isAjax()){
+
+            $param = input('post.');
+            
+            $ret = Db::name('live')->where('id', $id)->update(['title' => $param['title'],'user_name' => $param['user_name'],'user_img' => $param['user_img'],'content' => $param['content'],'category_id' => $param['category']]);
+            $flag = array('code'=>1,'data'=>'','msg'=>'修改成功');
+            return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+        }
+        $list = Db::name('live')->where(array('id'=>$id))->select();
+        $this->assign('category',$category);
+        $this->assign('list',$list);
+        return $this->fetch();
+    }
+
+
+    /**
+     * [liveDel 删除]
+     * @return 
+     * @author 
+     */
+    public function liveDel()
+    {
+        $id = input('param.id');
+        //获取用户信息
+        $uid = $_SESSION['think']['uid'];
+        if($uid != 1)
+        {
+            $rest = Db::name('live')->where('id',$id)->update(['flag'=>1]);
+        }else
+        {
+            $rest = Db::name('live')->where('id',$id)->delete();
+        }
+        return $this->returnMsg(1,'','删除成功');
+    }
+
+    /**
+     * [liveClose 关闭直播]
+     * @return 
+     * @author
+     */
+    public function liveClose()
+    {
+        $id = input('param.id');
+        
+        if($id)
+        {
+            //调用禁用流方法
+            //调用直播接口禁用流
+            $stream = Db::name('live')->where('id',$id)->field('live_stream_name')->select();
+            //关闭推流
+            $data = array('type'=>'close_stream','stream_name'=>$stream[0]['live_stream_name']);
+            $resp = http($this->url,$data, 'GET');
+            $resp = json_decode($resp);
+            if($stream[0]['live_stream_name'] && $resp->code==1)
+            {
+                //解绑聊天室
+                $rest1 = $this->chatChange($type='jb',$id);
+                //修改直播状态
+                $rest = Db::name('live')->where('id',$id)->update(['statu'=>2]);
+                return $this->returnMsg(1,'','关闭成功');
+            }
+            
+        }else
+        {
+            return $this->returnMsg(0,'','关闭失败');
+        }
+        
+    }
+    //返回json数据
+    public function returnMsg($code=1,$data='',$msg='')
+    {
+       $ret = array('code'=>$code,'data'=>$data,'msg'=>$msg);
+       return json($ret);   
+    }
+
+
+    //获取观看点赞人数
+    public function getNum($type='see',$id=1)
+    {
+        if($type=='point')
+        {
+          $rest = Db::field('count(id) cnt')->table('think_live_user')->where("live_id=$id and point_flag=1")->select();
+        }else
+        {
+          $rest = Db::field('count(id) cnt')->table('think_live_user')->where("live_id=$id and audience_flag=1")->select();
+        }
+        $num = $rest[0]['cnt'];
+
+        return $num;
+    }
+
+    //绑定解绑聊天室
+    public function chatChange($type='bd',$id='')
+    {
+        if($type=='bd')
+        {
+            //绑定聊天室id与直播间id
+            $chat_data = Db::name('chat')->field('chat_id')->where('flag=0')->limit(1)->select();
+            if($chat_data)
+            {
+                $chat_id = $chat_data[0]['chat_id'];
+                //修改是否绑定标记
+                $rest1 = Db::name('chat')->where("chat_id=$chat_id")->update(array('flag'=>1,'log_time'=>date('Y-m-d H:i:s',time())));
+                return $chat_id;
+            }
+        }else
+        {
+            //解绑 $id 直播间id
+            $chat_id = Db::table('think_chat chat,think_live live')->where('chat.chat_id=live.chat_id and live.id='.$id)->update(array('chat.flag'=>0,'upd_time'=>date('Y-m-d H:i:s',time())));
+            $live_id = Db::name('live')->where('id='.$id)->update(array('chat_id'=>''));
+            return true;
+        }
+        
+    }
+
+    //直播分类列表
+    public function catList($id='')
+    {
+        if($id)
+        {
+            $map = 'category_id='.$id;
+        }else
+        {
+            $map = '1=1';
+        }
+        $rest = Db::name('live_category')->field('category_id cat_id,category_name cat_name')->where($map)->select();
+        return $rest;
+    }
+
+}

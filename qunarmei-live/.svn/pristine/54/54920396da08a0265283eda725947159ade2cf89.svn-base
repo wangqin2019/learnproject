@@ -1,0 +1,35 @@
+---------------------------------------------------------------
+[ 2019-12-05T09:26:23+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/user_score?user_id=16829
+[ log ] 1575509183-请求数据:%2Fapi%2Fv4%2Fscore_exchange%2Fuser_score=&user_id=16829
+---------------------------------------------------------------
+[ 2019-12-05T09:30:59+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/user_score?user_id=16829
+[ log ] 1575509459-请求数据:%2Fapi%2Fv4%2Fscore_exchange%2Fuser_score=&user_id=16829
+---------------------------------------------------------------
+[ 2019-12-05T09:31:14+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/user_score?user_id=16829
+[ log ] 1575509473-请求数据:%2Fapi%2Fv4%2Fscore_exchange%2Fuser_score=&user_id=16829
+---------------------------------------------------------------
+[ 2019-12-05T09:31:58+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/user_score?user_id=16829
+[ log ] 1575509517-请求数据:%2Fapi%2Fv4%2Fscore_exchange%2Fuser_score=&user_id=16829
+---------------------------------------------------------------
+[ 2019-12-05T09:32:53+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/user_score?user_id=16829
+[ log ] 1575509573-请求数据:%2Fapi%2Fv4%2Fscore_exchange%2Fuser_score=&user_id=16829
+---------------------------------------------------------------
+[ 2019-12-05T09:33:08+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/user_score?user_id=16829
+[ log ] 1575509587-请求数据:%2Fapi%2Fv4%2Fscore_exchange%2Fuser_score=&user_id=16829
+[ log ] 1575509587-下发数据:{"code":1,"data":{"sum_score":-156,"act_scores":[{"act_id":1,"act_name":"紫衣天使在行动","score_name":"拓客&转客积分","act_score":-156,"score_date":"积分于2019年12月31日前有效","available_score":"可用积分 16","no_available_score":"不可用积分 0","no_available_tip":"因为部分顾客订单尚未完成核销,所以您有部分积分暂不可用,请在相关交易平台上做好订单核销过程,谢谢！"}],"score_rule":"1、新顾客参与“紫衣天使在行动”拓客活动，购买活动商品，所属美容师可获得积分（1元=1积分）；\n2、新顾客参与“紫衣天使在行动”转客活动，购买活动商品，所属美容师可获得积分（10元=1积分）；\n3、积分仅限在指定页面使用，不兑换现金，也不可转让，过期自动清零；\n4、诚美有权对本积分活动内容做出修改与解释。\n"},"msg":"获取成功"}
+---------------------------------------------------------------
+[ 2019-12-05T09:40:09+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/user_score?user_id=16829
+[ log ] 1575510008-请求数据:%2Fapi%2Fv4%2Fscore_exchange%2Fuser_score=&user_id=16829
+[ log ] 1575510008-下发数据:{"code":1,"data":{"sum_score":-156,"act_scores":[{"act_id":1,"act_name":"紫衣天使在行动","score_name":"拓客&转客积分","act_score":-156,"score_date":"积分于2019年12月31日前有效","available_score":"可用积分 -156","no_available_score":"不可用积分 0","no_available_tip":"因为部分顾客订单尚未完成核销,所以您有部分积分暂不可用,请在相关交易平台上做好订单核销过程,谢谢!"}],"score_rule":"1、新顾客参与“紫衣天使在行动”拓客活动，购买活动商品，所属美容师可获得积分（1元=1积分）；\n2、新顾客参与“紫衣天使在行动”转客活动，购买活动商品，所属美容师可获得积分（10元=1积分）；\n3、积分仅限在指定页面使用，不兑换现金，也不可转让，过期自动清零；\n4、诚美有权对本积分活动内容做出修改与解释。\n"},"msg":"获取成功"}
+---------------------------------------------------------------
+[ 2019-12-05T09:45:24+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/user_score?user_id=16829
+[ log ] 1575510323-请求数据:%2Fapi%2Fv4%2Fscore_exchange%2Fuser_score=&user_id=16829
+[ log ] 1575510323-下发数据:{"code":1,"data":{"sum_score":-156,"act_scores":[{"act_id":1,"act_name":"紫衣天使在行动","score_name":"拓客&转客积分","act_score":-156,"score_date":"积分于2019年12月31日前有效","available_score":"可用积分 -156","no_available_score":"不可用积分 0","no_available_tip":"因为部分顾客订单尚未完成核销,所以您有部分积分暂不可用,请在相关交易平台上做好订单核销过程,谢谢!"}],"score_rule":"1、新顾客参与“紫衣天使在行动”拓客活动，购买活动商品，所属美容师可获得积分（1元=1积分）；\n2、新顾客参与“紫衣天使在行动”转客活动，购买活动商品，所属美容师可获得积分（10元=1积分）；\n3、积分仅限在指定页面使用，不兑换现金，也不可转让，过期自动清零；\n4、诚美有权对本积分活动内容做出修改与解释。\n"},"msg":"获取成功"}
+---------------------------------------------------------------
+[ 2019-12-05T09:56:03+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/redeem_now?goods_id=21547&goods_num=1&user_id=16829&store_id=2&property_ids=1&remark=
+[ log ] 1575510963-请求数据:%2Fapi%2Fv4%2Fscore_exchange%2Fredeem_now=&goods_id=21547&goods_num=1&user_id=16829&store_id=2&property_ids=1&remark=
+[ log ] 1575510963-下发数据:{"code":0,"data":[],"msg":"用户积分不足,请稍候再试"}
+---------------------------------------------------------------
+[ 2019-12-05T10:07:18+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/redeem_now?goods_id=21547&goods_num=1&user_id=16829&store_id=2&property_ids=1&remark=
+[ log ] 1575511638-请求数据:%2Fapi%2Fv4%2Fscore_exchange%2Fredeem_now=&goods_id=21547&goods_num=1&user_id=16829&store_id=2&property_ids=1&remark=
+[ log ] 1575511638-下发数据:{"code":0,"data":[],"msg":"用户积分不足,请稍候再试"}

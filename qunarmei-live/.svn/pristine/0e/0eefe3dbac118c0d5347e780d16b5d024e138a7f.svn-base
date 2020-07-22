@@ -1,0 +1,184 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<script type="text/javascript" src="/static/admin/js/plugins/layer/laydate/laydate.js"></script>
+<script src="/static/admin/js/layui/layui/layui.js"></script>
+<script src="/static/admin/js/layui/excel.js"></script>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>办事处直播订单统计</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('index')}">
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <input type="text" id="key"  name="key" value="{$val}" placeholder="输入需查询的门店编号" />
+                            支付时间:<input type="text" id="begin_time"   name="dt1" value="{$dt1}" placeholder="" />-<input type="text" id="end_time"   name="dt2" value="{$dt2}" placeholder="" />
+                                <button type="button" class="btn btn-primary" onclick="exportExcel()">导出Excel</button>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>类别</th>
+                                <th>办事处</th>
+                                <th>客户编号</th>
+                                <th>客户名称</th>
+                                <th>线上业绩</th>
+                                <th>线上已发配赠金额</th>
+                                <th>线上已发消费券金额</th>
+                                <th>线下打款累计(U8)</th>
+                                <th>线下已发配赠(U8)</th>
+                                <th>业绩合计</th>
+                                <th>剩余配赠</th>
+                                <th>订单明细</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].id}}</td>
+                                    <td>{{d[i].type}}</td>
+                                    <td>{{d[i].st_department}}</td>
+                                    <td>{{d[i].sign}}</td>
+                                    <td>{{d[i].title}}</td>
+                                    <td>{{d[i].sum_price}}</td>
+                                    <td>{{d[i].gift_price}}</td>
+                                    <td>{{d[i].tick_price}}</td>
+                                    <td>{{d[i].offline_price}}</td>
+                                    <td>{{d[i].offline_gift_price}}</td>
+                                    <td>{{d[i].total_price}}</td>
+                                    <td>{{d[i].surplus_gift_price}}</td>
+                                    <th><a href="order_detail?store_id={{d[i].id}}&dt1={$dt1}&dt2={$dt2}">订单明细</a></th>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+
+<script type="text/javascript">
+    //layui 时间日期控件
+    var begin_time = {
+        elem: '#begin_time', //选择ID为START的input
+        format: 'YYYY-MM-DD', //自动生成的时间格式
+//         min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16', //最大日期
+        istime: true, //必须填入时间
+        istoday: false,  //是否是当天
+        start: laydate.now(0,"YYYY-MM-DD"),  //设置开始时间为当前时间
+        choose: function(datas){
+//            end.min = datas; //开始日选好后，重置结束日的最小日期
+//            end.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+    laydate(begin_time);
+    //layui 时间日期控件
+    var end_time = {
+        elem: '#end_time', //选择ID为START的input
+        format: 'YYYY-MM-DD', //自动生成的时间格式
+//         min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16', //最大日期
+        istime: true, //必须填入时间
+        istoday: false,  //是否是当天
+        start: laydate.now(0,"YYYY-MM-DD"),  //设置开始时间为当前时间
+        choose: function(datas){
+//            end.min = datas; //开始日选好后，重置结束日的最小日期
+//            end.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+    laydate(end_time);
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var dt1=$('#begin_time').val();
+        var dt2=$('#end_time').val();
+        $.getJSON('{:url("order_depart/index")}', {page: curr || 1,key:key,dt1:dt1,dt2:dt2}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+    var datav ;
+    // 导出excel数据
+    function exportExcel() {
+        url = "{:url('index')}?key={$val}&dt1={$dt1}&dt2={$dt2}&export=1";// 请求接口url
+        var data = ajaxGet(url);
+        // 导出excel数据下载
+        // res.data json数据(表头+表体)
+        LAY_EXCEL.exportExcel(data.data, data.msg+'.xlsx', 'xlsx');
+        return false;
+    }
+    // ajax Get请求
+    function ajaxGet(url) {
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            async:false,// 同步
+            success: function(res) {
+                // LAY_EXCEL.exportExcel(res.data, 'hello.xlsx', 'xlsx');
+                datav = res
+            }
+        });
+        // console.log(datav);
+        return datav;
+    }
+</script>
+</body>
+</html>

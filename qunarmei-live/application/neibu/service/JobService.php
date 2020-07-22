@@ -1,0 +1,608 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2019/10/14
+ * Time: 15:36
+ */
+
+namespace app\neibu\service;
+use app\api\service\BaseSer;
+use pili_test\Rtmp;
+use think\Db;
+/**
+ * 定时器处理类
+ */
+set_time_limit(0);
+class JobService extends BaseSer
+{
+    // 获取物流信息接口地址
+    protected $expressUrl = 'http://erpapi2.chengmei.com:7779/web/axs.php';
+
+    // 直播间用户记录url
+    protected $userLogurl = 'http://live.qunarmei.com/api/job_queue/outQueue';
+
+    /**
+     * 修改未考核考生状态为截止
+     */
+    protected function updStudentAssessmentEnd()
+    {
+        $rest = [];
+        // 1.查询过期的操作
+        $dt = time();
+        $map['delete_time'] = 0;
+        $map['end_time'] = ['<',$dt];
+        $res = Db::table('think_live_assess')->where($map)->field('id')->column('id');
+        if($res){
+            // 2.根据操作查询未考核的考生
+            $mapu['assess_id'] = ['in',$res];
+            $mapu['status'] = 0 ;
+            $res_stu = Db::table('think_live_assess_user')->where($mapu)->field('id')->column('id');
+            if($res_stu){
+                $mapu1['id'] = ['in',$res_stu];
+                $data['status'] = 3;
+                $data['update_time'] = time();
+                Db::table('think_live_assess_user')->where($mapu1)->update($data);
+                $rest = $res_stu;
+            }
+        }
+        return $rest;
+    }
+    /**
+     * 修改未打分考官状态为截止
+     */
+    protected function updExaminerAssessmentEnd()
+    {
+        $rest = [];
+        // 1.查询打分有效时间
+        $mapc['name'] = 'score_effective_time';
+        $res_yx = Db::table('think_assess_config')->where($mapc)->field('val')->value('val');
+
+        // 2.查询过期的操作
+        $dt = time();
+        $map['delete_time'] = 0;
+        $map['end_time'] = ['<',($dt - $res_yx * 24 * 3600)];
+        $res = Db::table('think_live_assess')->where($map)->field('id')->column('id');
+        if($res){
+            // 3.根据操作查询未打分的考官
+            $maps['u.assess_id'] = ['in',$res];
+            $maps['u.delete_time'] = 0;
+            $maps['u.status'] = ['in',[0,4,5]];// 没有打过分和更新过的
+            $maps['s.score'] = 0 ;
+            $res_stu = Db::table('think_live_assess_score s')->join(['think_live_assess_user' => 'u'],['s.assess_user_id = u.id'],'LEFT')->where($maps)->field('s.id')->column('s.id');
+            if($res_stu){
+                $mapu1['id'] = ['in',$res_stu];
+                $data['status'] = 3;
+                $data['update_time'] = time();
+                Db::table('think_live_assess_score')->where($mapu1)->update($data);
+                $rest = $res_stu;
+            }
+        }
+        return $rest;
+    }
+    /**
+     * 未打分考官短信提醒
+     */
+    protected function sendExaminerSms()
+    {
+        $rest = [];
+        // 1.查询打分有效时间
+        $mapc['id'] = ['in',[1,2,3]];
+        $res_yx = Db::table('think_assess_config')->where($mapc)->field('id,name,val')->select();
+        $examiner_mobiles = [];
+        $dt_yx = 0;
+        $dt_sms = 0;
+        if($res_yx){
+            foreach ($res_yx as $v) {
+                if($v['name'] == 'score_effective_time'){
+                    $dt_yx = $v['val'];
+                }elseif($v['name'] == 'sms_tips'){
+                    $dt_sms = $v['val'];
+                }elseif($v['name'] == 'assess_mobile'){
+                    $examiner_mobiles = $v['val'];
+                }
+            }
+        }
+        if($examiner_mobiles){
+            $examiner_mobiles = explode(',',$examiner_mobiles);
+        }
+        // 2.查询过期的操作
+        $dt = time();
+        $map['delete_time'] = 0;
+        $map['sms_flag'] = 0;
+        $map['end_time'] = ['<',($dt - $dt_yx * 24 * 3600 + $dt_sms * 24 * 3600 )];
+        $res = Db::table('think_live_assess')->where($map)->field('id')->column('id');
+        if($res){
+            // 3.根据操作查询未打分的考官
+            $maps['u.assess_id'] = ['in',$res];
+            $maps['u.delete_time'] = 0;
+            $maps['s.score'] = 0 ;
+            $res_stu = Db::table('think_live_assess_score s')->join(['think_live_assess_user' => 'u'],['s.assess_user_id = u.id'],'LEFT')->where($maps)->field('count(u.id) cnt,s.mobile')->group('s.mobile')->select();
+            if($res_stu){
+                // 短信通知每个考官
+                foreach ($res_stu as $v) {
+                    $str1['num'] = $v['cnt'];
+                    $arr1['mobile'] = $v['mobile'];
+                    $arr1['cnt'] = $v['cnt'];
+                    $arr1['sms_mobile'] = '';
+                    // 在考官列表中的发送短信提醒
+                    if(in_array($v['mobile'],$examiner_mobiles)){
+                        $str = json_encode($str1);
+                        send_sms($v['mobile'],127,$str);
+                        $arr1['sms_mobile'] = $v['mobile'];
+                    }
+                    $rest[] = $arr1;
+                }
+            }
+            // 更新项目为已发送通知操作
+            $mapa['id'] = ['in',$res];
+            $dataa['sms_flag'] = 1;
+            Db::table('think_live_assess')->where($mapa)->update($dataa);
+        }
+        return $rest;
+    }
+    // 短信发送测试
+    protected function smsSend($arr)
+    {
+        $str = json_encode($arr);
+        send_sms('15921324164',127,$str);
+    }
+    /**
+     * 每小时更新直播考核数据
+     * @return
+     */
+    public function updAssess()
+    {
+        $rest['overdue_assess_user_id'] = $this->updStudentAssessmentEnd();
+        $rest['overdue_score_id'] = $this->updExaminerAssessmentEnd();
+        $rest['sms_examiner'] = $this->sendExaminerSms();
+        if($rest['overdue_assess_user_id'] || $rest['overdue_score_id'] || $rest['sms_examiner']){
+            $this->code = 1;
+            $this->msg = '截止考核更新成功';
+            if($rest['sms_examiner']){
+                $this->msg = '过期前通知考官成功';
+            }
+            $this->data = $rest;
+        }else{
+            $this->code = 0;
+            $this->msg = '截止考核暂无需要更新数据';
+        }
+        return $this->returnArr();
+    }
+    /**
+     * 每10分钟查询七牛云直播流状态,更新数据库状态
+     * @return
+     */
+    public function qiniuLive()
+    {
+        $rtmp_ser = new Rtmp();
+        $res = $rtmp_ser->getStreamLive();
+        if($res){
+            $res_live = [];$streams = [];
+            // 如果七牛云有直播流
+            if(isset($res['keys']) && is_array($res['keys']) && $res['keys']){
+
+                foreach ($res['keys'] as $v) {
+                    $streams[] = $v;
+                }
+                // 查询数据库是否一致,不一致则修改
+                $map['statu'] = 1;
+                $live_stream_name = Db::table('think_live')->where($map)->column('live_stream_name');
+                $resa = array_diff($streams,$live_stream_name);// 七牛
+                $resb = array_diff($live_stream_name,$streams);// 数据库
+                $this->data['qiniu_live'] = $streams;
+                // 更改为直播
+                if($resa){
+                    $mapl['live_stream_name'] = ['in',$resa];
+                    $data['statu'] = 1;
+                    $res_live = Db::table('think_live')->where($mapl)->update($data);
+                }
+                $this->data['mysql_live'] = $live_stream_name;
+                // 更改为结束
+                if($resb){
+                    $mapl['live_stream_name'] = ['in',$resb];
+                    $data['statu'] = 0;
+                    $res_live = Db::table('think_live')->where($mapl)->update($data);
+                }
+                $this->msg = '七牛直播状态同步成功';
+            }else{
+                // 如果没有,则查询数据库是否存在,有则修改
+                $mapl['statu'] = 1;
+                $res_live = Db::table('think_live')->where($mapl)->column('id');
+                if($res_live){
+                    $this->data['mysql_live'] = $res_live;
+                    $mapl['id'] = ['in',$res_live];
+                    $data['statu'] = 3;
+                    $res_live = Db::table('think_live')->where($mapl)->update($data);
+                }
+            }
+            if($streams){
+                $this->code = 1;
+            }else{
+                $this->msg = '七牛暂无直播';
+            }
+        }
+        return $this->returnArr();
+    }
+    /**
+     * 每天定时删除过期有效券
+     * @return
+     */
+    public function overdueCard()
+    {
+        $ids = [];
+        // 查询每天type=24过期有效期改掉状态和时间
+        $map['u.type'] = ['in',[24,27]];
+        $map['u.status'] = 0;
+        $map['u.aead_time'] = ['<',strtotime(date('Y-m-d'))];//
+        $map1['u.aead_time'] = ['>',0];
+        $res = Db::table('pt_ticket_user u')->join(['ims_bj_activity_ticket_info'=>'i'],['u.ticket_info_id=i.id'],'LEFT')->field('i.*,u.id ticket_id,u.ticket_info_id')->where($map)->where($map1)->order('u.aead_time asc')->select();
+        if($res){
+            foreach ($res as $v) {
+                if($v['ticket_info_id']){
+                    // 更新
+                    $mapt['id'] = $v['ticket_id'];
+                    $data['status'] = 2;
+                    $data['update_time'] = date('Y-m-d H:i:s');// 更新时间
+                    $data['draw_pic'] = $v['expired_img'];
+                    Db::table('pt_ticket_user')->where($mapt)->update($data);
+                    $ids[] = $mapt['id'];
+                }
+            }
+        }
+        if($ids){
+            $this->code = 1;
+            $this->msg = '过期直播消费奖券已更新';
+            $this->data = $ids;
+        }
+        return $this->returnArr();
+    }
+    /**
+     * 定时同步用户进出聊天室记录到mysql
+     */
+    public function userLogToMysql()
+    {
+        set_time_limit(0);
+        // 查询目前正在直播的聊天室id
+        $map['statu'] = 1;
+        $res = Db::table('think_live')->where($map)->select();
+        if($res){
+            foreach ($res as $v) {
+                $url = $this->userLogurl.'?chat_id='.$v['chat_id'];
+                $res = curl_get($url);
+            }
+            $this->code = 1;
+            $this->msg = '同步成功';
+        }else{
+            $this->code = 0;
+            $this->msg = '暂无正在进行的直播';
+        }
+        return $this->returnArr();
+    }
+    /**
+     * 每日执行1次的定时任务
+     */
+    public function daySum()
+    {
+        // 1.没进订单详情的,有物流单号的,我每次拉取物流信息 , 已签收的保存到物流信息表 
+        $res = $this->saveLogtic();
+        // 2.已签收 and status=2的订单,签收时间超过7天,我把status改为3
+        $res1 = $this->autoOrder();
+        $this->code = 0;
+        if ($res) {
+            $this->code = 1;
+            $this->msg = $res['msg'].';';
+            $this->data['save_logtic'] = $res['data'];
+        }
+        if ($res1) {
+            $this->code = 1;
+            $this->msg .= $res1['msg'];
+            $this->data['auto_order'] = $res1['data'];
+        }
+        return $this->returnArr();
+    }
+    // 保存已签收订单进入物流信息表
+    protected function saveLogtic()
+    {
+        $ids = [];
+        // 查询未签收订单是否签收
+        // $map['o.id'] = 299961;
+        $map['o.status'] = ['in',[1,2]];
+        $map['a.express_number'] = ['neq',''];
+        $res = Db::table('ims_bj_shopn_order o')->join(['ims_bj_shopn_order_address'=>'a'],['o.id=a.order_id'],'LEFT')->field(' o.ordersn,a.express_code,a.express_number,a.id,a.express_code')->where($map)->order('o.payTime asc')->select();
+        if ($res) {
+            $address_ids = [];
+            foreach ($res as $k => $v) {
+                $address_ids[] = $v['id'];
+            }
+            // 查询已签收订单地址id
+            $addr_sign_id = [];
+            if ($address_ids) {
+                $mapaddr['address_id'] = ['in',$address_ids];
+                $mapaddr['state'] = 3;
+                $resaddr = Db::table('ims_bj_shopn_order_express')->where($mapaddr)->select();
+                if ($resaddr) {
+                    foreach ($resaddr as $ka => $va) {
+                        $addr_sign_id[] = $va['address_id'];
+                    }
+                }
+            }
+            // 删除已签收的订单
+            if ($addr_sign_id) {
+                foreach ($res as $k => $v) {
+                    if (in_array($v['id'], $addr_sign_id)) {
+                        unset($res[$k]);
+                    }
+                }
+            }
+            foreach ($res as $k => $v) {
+                // 查询物流快递信息,已签收-保存-该状态
+                $ship_code = $v['express_code'];
+                $logtic = $v['express_number'];
+                if (strstr($v['express_number'], ',')) {
+                    $express_number1 = explode(',', $v['express_number']);
+                    $logtic = $express_number1[0];
+                }
+                $reskd = kdn_express($ship_code,$logtic);
+                if ($reskd['State'] == 3) {
+                     $traces = $reskd['Traces'];
+                     $arrp = array_pop($traces);
+                     $accept_time = $arrp['AcceptTime'];
+                     $datae['address_id'] = $v['id'];
+                     $datae['e_business_id'] = config('kdn.eBusinessID');
+                     $datae['order_code'] = $v['ordersn'];
+                     $datae['shipper_code'] = $v['express_code'];
+                     $datae['logistic_code'] = $v['express_number'];
+                     $datae['state'] = 3;
+                     $datae['traces'] = json_encode($reskd['Traces'],JSON_UNESCAPED_UNICODE);
+                     $datae['sign_for_time'] = $accept_time;
+                     $datae['create_time'] = date('Y-m-d H:i:s');
+                     $id = Db::table('ims_bj_shopn_order_express')->insertGetId($datae);
+                     $ids[] = $id;
+                 }
+            }
+        }
+        $this->code = 0;
+        $this->msg = '暂无签收订单需要插入物流表';
+        if ($ids) {
+            $this->code = 1;
+            $this->msg = '已签收订单插入物流表成功';
+            $this->data = $ids;
+        }
+        return $this->returnArr();
+
+    }
+    // 物流信息表订单签收时间超过7天自动改为已完成status=3
+    protected function autoOrder()
+    {
+        // 查询已签收订单
+        $map['a.express_number'] = ['neq',''];
+        $map['e.state'] = 3;
+        $map['e.type'] = 0;
+        $map['e.sign_for_time'] = ['<', date('Y-m-d', strtotime('-7 days'))];
+        $res = Db::table('ims_bj_shopn_order_express e')->join(['ims_bj_shopn_order_address'=>'a'],['a.id=e.address_id'],'LEFT')->field('a.order_id')->where($map)->group('a.order_id')->select();
+        $ids = [];
+        $res1 = [];
+        if ($res) {
+            foreach ($res as $k => $v) {
+                $ids[] = $v['order_id'];
+            }
+            // 更新状态
+            $mapo['id'] = ['in',$ids];
+            $mapo['status'] = ['in',[1,2]];
+            $datao['status'] = 3;
+            $res1 = Db::table('ims_bj_shopn_order')->where($mapo)->update($datao);
+        }
+        $this->code = 0;
+        $this->msg = '暂无已签收订单超过7天未改订单状态';
+        if ($ids && $res1) {
+            $this->code = 1;
+            $this->msg = '已签收订单超过7天自动签收';
+            $this->data = $ids;
+        }
+        return $this->returnArr();
+    }
+
+    /**
+     * 支付15分分钟没有进行相关操作时,会发送该条提示短信
+     * @return
+     */
+     public function tipBuyter()
+     {
+        set_time_limit(0);
+        $map['is_asx'] = 1;
+        $map['payTime'] = ['<',time()-900];
+        $res = Db::table('ims_bj_shopn_order o')->join(['ims_bj_shopn_member'=>'m'],['m.id=o.uid'],'LEFT')->field('o.ordersn,m.mobile')->where($map)->order('payTime asc')->limit(100)->select();
+        $this->code = 0;
+        $this->msg = '暂无超时未选择订单需要提醒';
+        if ($res) {
+            $arr2 = [];
+            // 发送提示短信
+            $id_template = 117;
+            foreach ($res as $k => $v) {
+                $mobile = $v['mobile'];
+                $arr['order_sn'] = $v['ordersn'];
+                $str = json_encode($arr);
+                send_sms($mobile,$id_template,$str);
+                $arr1['order_sn'] = $v['ordersn'];
+                $arr1['mobile'] = $v['mobile'];
+                $arr2[] = $arr1;
+            }
+            $this->code = 1;
+            $this->msg = '未选择订单超时提醒已发送成功';
+            $this->data = $arr2;
+        }
+        return $this->returnArr();
+     }
+     /**
+     * 支付半小时后,为选择是否安心送的 is_axs=1的改为is_axs=2
+     * @return
+     */
+    public function updAxs()
+    {
+        // 查询已支付但未选择是否安心送超过半小时的订单
+        $map['is_asx'] = 1;
+        $map['payTime'] = ['<',time()-1800];
+        $this->code = 0;
+        $this->msg = '暂无未选择安心送超时订单';
+        $res = Db::table('ims_bj_shopn_order')->where($map)->order('payTime asc')->select();
+        if ($res) {
+            $orderid = [];
+            foreach ($res as $k => $v) {
+                $orderid[] = $v['id'];
+            }
+            $mapu['id'] = ['in',$orderid];
+            $mapu['is_asx'] = 1;
+            $datau['is_asx'] = 0;
+            $resu = Db::table('ims_bj_shopn_order')->where($mapu)->update($datau);
+            if ($resu) {
+                $this->code = 1;
+                $this->msg = '未选择安心送订单已超时改为到店取货';
+                $this->data = implode(',', $orderid);
+            }
+        }
+        return $this->returnArr();
+    }
+    /**
+     * 获取物流信息
+     */
+    public function getExpress()
+    {
+        // 查询没有更新物流号的订单
+        $map['express_number'] = '';
+        $res = Db::table('ims_bj_shopn_order_address')->where($map)->order('id asc')->limit(100)->select();
+        if ($res) {
+            $this->code = 1;
+            $this->msg = '订单物流信息获取成功';
+
+            $orderid = [];
+            foreach ($res as $k => $v) {
+                $orderid[] = 'APP'.$v['order_id'];
+            }
+            // 获取物流信息接口
+            // http://erpapi2.chengmei.com:7779/web/axs.php?orderno=QNMA202003011517045553319
+            $orderids = implode(',', $orderid);
+            $url = $this->expressUrl.'?orderno='.$orderids;
+            $rest = curl_get($url);
+            // $rest = '{"code":1,"data":[{"order_sn":"APP299715","express_name":"中通快递","express_code":"ZTO","express_number":"75324374974726"}],"msg":"物流信息获取成功"}';
+            if ($rest) {
+                $rest1 = json_decode($rest,true);
+                if ($rest1['code']==1) {
+                    // 启动事务
+                    Db::startTrans();
+                    try{
+                        $orders = [];
+                        // 解析返回数据
+                        foreach ($rest1['data'] as $k => $v) {
+                            $arr1['order_sn'] = $v['order_sn'];
+                            $arr1['express_name'] = $v['express_name'];
+                            $arr1['express_code'] = $v['express_code'];
+                            $arr1['express_number'] = $v['express_number'];
+                            // 更新物流信息
+                            $mapo['order_id'] = substr($v['order_sn'],3);
+                            $datao['express_code'] = $v['express_code'];
+                            $datao['express_name'] = $v['express_name'];
+                            $datao['express_number'] = $v['express_number'];
+                            $datao['update_time'] = date('Y-m-d H:i:s');
+                            Db::table('ims_bj_shopn_order_address')->where($mapo)->update($datao);
+                            $orders[] = $mapo['order_id'];
+                            // 更新订单状态为已发货
+                            // $datao1['status'] = 2;
+                            // $mapo1['id'] = $mapo['order_id'];
+                            // $mapo1['status'] = 1;
+                            // $flag = Db::table('ims_bj_shopn_order')->where($mapo1)->update($datao1);
+                            // if ($flag) {
+                            //     $orders[] = $mapo['order_id'];
+                            // }
+                            // 发送短信通知用户
+                            $mapo2['o.id'] = $mapo['order_id'];
+                            $reso = Db::table('ims_bj_shopn_order o')->join(['ims_bj_shopn_member'=>'m'],['m.id=o.uid'],'LEFT')->field('o.id,o.ordersn,m.mobile')->where($mapo2)->order('payTime asc')->limit(1)->find();
+                            if ($reso) {
+                                $id_template = 119;
+                                $arro['order_sn'] = $reso['ordersn'];
+                                $arro['express_name'] = $datao['express_name'];
+                                $arro['express_number'] = $datao['express_number'];
+                                $str = json_encode($arro,JSON_UNESCAPED_UNICODE);
+                                send_sms($reso['mobile'],$id_template,$str);
+
+                                // 查询用户角色
+                                $mapr['mobile'] = $reso['mobile'];
+                                $resrole = Db::table('ims_bj_shopn_member')->where($mapr)->limit(1)->find();
+                                if ($resrole) {
+                                    // 如果是顾客
+                                    if (strlen($resrole['code'])<1 && $resrole['isadmin']==0){
+                                        // 发短信通知上级美容师
+                                        $mapp['id'] = $resrole['staffid'];
+                                        $resp = Db::table('ims_bj_shopn_member')->where($mapp)->limit(1)->find();
+                                        $arrp = $arro;
+                                        $id_template = 122;
+                                        $arrp['role'] = '美容师';
+                                        $arrp['name'] = '';
+                                        if ($resp) {
+                                            $arrp['name'] = $resp['realname'];
+                                            $str = json_encode($arrp,JSON_UNESCAPED_UNICODE);
+                                            send_sms($resp['mobile'],$id_template,$str);
+                                        }
+                                        // 发短信通知该门店店老板
+                                        $mapboss['storeid'] = $resrole['storeid'];
+                                        $mapboss['isadmin'] = 1;
+                                        $resboss = Db::table('ims_bj_shopn_member')->where($mapboss)->limit(1)->find();
+                                        if ($resboss) {
+                                            $arrp['name'] = $resboss['realname'];
+                                            $str = json_encode($arrp,JSON_UNESCAPED_UNICODE);
+                                            send_sms($resboss['mobile'],$id_template,$str);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        // 提交事务
+                        Db::commit();
+                        if ($orders) {
+                            $orders = implode(',', $orders);
+                            $this->msg = '订单物流信息更新成功';
+                        }else{
+                            $this->msg = '暂无订单物流信息更新';
+                        }
+                        $this->data = $orders; 
+                    } catch (\Exception $e) {
+                        // 回滚事务
+                        Db::rollback();
+                        $this->msg = $e->getMessage();
+                    }
+                }else{
+                    $this->msg = $rest1['msg'];
+                }
+            }
+        }else{
+            $this->code = 0;
+            $this->msg = '暂无订单物流信息更新';
+        }
+        // ims_bj_shopn_order_address
+        return $this->returnArr();
+    }
+    
+    /**************************单个方法逻辑处理**************************************/
+    /**
+     * 获取考官,号码,名称,部门等相关信息
+     */
+    protected function getExaminer()
+    {
+        $rest = [];
+        $map['name'] = 'assess_mobile';
+        $res = Db::table('think_assess_config')->where($map)->value('val');
+        if($res){
+            $mobile = explode(',',$res);
+            $mapd['mobile'] = ['in',$mobile];
+            $res_ding = Db::table('think_ding_mobile')->where($mapd)->field('name,mobile,depart')->select();
+            foreach ($res_ding as $v) {
+                $rest1['name'] = $v['name'];
+                $rest1['mobile'] = $v['mobile'];
+                $rest1['depart'] = $v['depart'];
+                $rest[] = $rest1;
+            }
+        }
+        return $rest;
+    }
+    /******************************************************************************/
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="format-detection" content="telephone=no, email=no"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="renderer" content="webkit" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="/static/index/css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/index/css/index.css"/>
+		<script type="text/javascript" src="/static/index/js/jquery.js"></script>
+		<script type="text/javascript">
+			$(function(){
+			    var u = navigator.userAgent;
+				var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+				var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+				if(isAndroid){
+					$(".Android").css("display","block")
+					$(".Android").click(function(){
+				        var the_href=$("a").attr("href");//获得下载链接
+				        var ua = navigator.userAgent.toLowerCase();
+				        if(ua.match(/MicroMessenger/i)=="micromessenger") {  //是否微信打开
+				            $(".bg").css("display","block")
+				        }
+				     })
+				}else if(isiOS){
+					$(".ios").css("display","block")
+					$(".ios .open").click(function(){
+				        var the_href=$(this).attr("href");//获得下载链接
+				        var ua = navigator.userAgent.toLowerCase();
+				        if(ua.match(/MicroMessenger/i)=="micromessenger") {  //是否微信打开
+				            $(".bg").css("display","block")
+				        }
+				     })
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<div>
+			<img src="{$res['content']}" alt="" width="100%">
+		</div>
+
+		<div class="bg">
+			<img src="/static/index/images/youlanqi.png"/>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,132 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: php
+ * Date: 2019/10/12
+ * Time: 14:03
+ * Description: 盲盒活动
+ */
+
+namespace app\admin\controller;
+
+use app\api\model\Branch;
+use app\api\model\DrawScene;
+use app\api\model\TicketUser;
+use app\api\model\User;
+use think\Db;
+set_time_limit(0);
+ini_set("memory_limit","80M");
+class Card extends Base {
+    // 卡券类型
+    protected $typeVal = [
+        '23' => '周末抽奖券',
+        '24' => '美播间消费券',
+    ];
+    // 卡券状态
+    protected $statuVal = [
+        '-1' => '未激活',
+        '0' => '未使用',
+        '1' => '已使用',
+        '2' => '已过期'
+    ];
+    /**
+     * 卡券列表
+     */
+    public function index(){
+        $storeid = input('storeid');
+        $scene_prefix = input('scene_prefix');
+
+        $export = input('export',0);
+        $key = input('key');
+        $map = [];
+        if($key&&$key!==""){
+            $map['sign|mobile'] = ['like','%'.$key.'%'];
+        }
+        if($storeid){
+            $map['storeid'] = $storeid;
+        }
+
+        $Nowpage = input('get.page') ? input('get.page'):1;
+        $limits = 50;// 获取总条数
+
+        $map['type'] = ['in',[23,24]];
+        if($scene_prefix){
+            $map['type'] = $scene_prefix;
+        }
+        $count =  TicketUser::where($map)->count();//计算总页面
+        $allpage = intval(ceil($count / $limits));
+        $pre = ($Nowpage-1)*$limits;
+
+        // 卡券列表
+//        ID 所属市场	所属美容院 用户姓名 电话 卡券编号 卡券类型 卡券	添加时间	核销时间	核销状态	分享状态
+
+        // 生成导出报表
+        if($export){
+            $limits = 9000;
+        }
+        $lists = TicketUser::where($map)->page($Nowpage,$limits)->select();
+        $rest = [];
+//        echo 'lists<pre>'; print_r(json($lists));die;
+        if($lists){
+            $user_ids = [];
+            foreach ($lists as $k=>$v) {
+                $user_ids[] = $v['user_id'];
+                $lists[$k]['type'] = $this->typeVal[$v['type']];
+                $lists[$k]['status'] = $this->statuVal[$v['status']];
+                $lists[$k]['update_time'] = $v['update_time']==null?'':$v['update_time'];
+            }
+            $mapu['id'] = ['in',$user_ids];
+            $resu = User::all($mapu);
+            if($resu){
+                foreach ($resu as $vu) {
+                    foreach ($lists as $k=>$v) {
+                        if($v['user_id'] == $vu['id']){
+                            $lists[$k]['realname'] = $vu['realname'];
+                        }
+                    }
+                }
+            }
+        }
+        if($export){
+            $data = [];
+            foreach ($lists as $v) {
+                $arr1['id'] = $v['id'];
+                $arr1['depart'] = $v['depart'];
+                $arr1['branch'] = $v['branch'];
+                $arr1['sign'] = $v['sign'];
+                $arr1['realname'] = $v['realname'];
+                $arr1['mobile'] = $v['mobile'];
+                $arr1['ticket_code'] = $v['ticket_code'];
+                $arr1['type'] = $v['type'];
+                $arr1['price'] = $v['price'];
+                $arr1['status'] = $v['status'];
+                $arr1['insert_time'] = $v['insert_time'];
+                $arr1['update_time'] = $v['update_time'];
+                $data[] = $arr1;
+            }
+            $filename = "卡券列表".date('YmdHis');
+            $header = ['ID','办事处','门店名称','门店编号','用户名称','用户号码','卡券编号','卡券名称','卡券价值','卡券状态','添加时间','使用时间'];
+            $widths = ['10','10','10','10','10','10','10','10','10','10','10','10'];
+            excelExport($filename, $header, $data, $widths);//生成数据
+            die();
+        }
+        // 门店列表
+        $res_bwk = Branch::all();
+        // 奖券配置列表
+        $res_draw = DrawScene::all();
+        $this->assign('storeid', $storeid);
+        $this->assign('scene_prefix', $scene_prefix);
+        $this->assign('res_bwk', $res_bwk);
+        $this->assign('res_draw', $res_draw);
+        $this->assign('Nowpage', $Nowpage);
+
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数
+        $this->assign('count', $count);
+        $this->assign('val', $key);
+        if(input('get.page')){
+            return json($lists);
+        }
+        return $this->fetch();
+    }
+}

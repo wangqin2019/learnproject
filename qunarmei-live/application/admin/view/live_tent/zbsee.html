@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://video.aco.aotu.io/ -->
+<html lang="zh-CN" style="font-size: 192px;">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
+		<meta name="format-detection" content="telephone=no">
+		<title>去哪美直播</title>
+		<!-- begin REM Zoom 计算 -->
+		<script type="text/javascript">
+			(function(win) {
+				var remCalc = {};
+				var docEl = win.document.documentElement,
+					tid,
+					hasRem = true,
+					hasZoom = true,
+					designWidth = 750;
+
+				function refresh() {
+					var width = docEl.getBoundingClientRect().width;
+					// if (width > 640) { width = 640 }
+					if(hasRem) {
+						var rem = width / 10;
+						docEl.style.fontSize = rem + "px";
+						remCalc.rem = rem;
+						var actualSize = parseFloat(window.getComputedStyle(document.documentElement)["font-size"]);
+						if(actualSize !== rem && actualSize > 0 && Math.abs(actualSize - rem) > 1) {
+							var remScaled = rem * rem / actualSize;
+							docEl.style.fontSize = remScaled + "px"
+						}
+					}
+					if(hasZoom) {
+						var style = document.getElementById('J__style')
+						if(!style) {
+							style = document.createElement('style')
+							style.id = 'J__style'
+						}
+						style.innerHTML = '.__z{zoom:' + width / designWidth + '}'
+						document.getElementsByTagName('head')[0].appendChild(style)
+					}
+				}
+
+				function dbcRefresh() {
+					clearTimeout(tid);
+					tid = setTimeout(refresh, 100)
+				}
+				win.addEventListener("resize", function() {
+					dbcRefresh()
+				}, false);
+
+				win.addEventListener("pageshow", function(e) {
+					if(e.persisted) {
+						dbcRefresh()
+					}
+				}, false);
+				refresh();
+				if(hasRem) {
+					remCalc.refresh = refresh;
+					remCalc.rem2px = function(d) {
+						var val = parseFloat(d) * this.rem;
+						if(typeof d === "string" && d.match(/rem$/)) {
+							val += "px"
+						}
+						return val
+					};
+					remCalc.px2rem = function(d) {
+						var val = parseFloat(d) / this.rem;
+						if(typeof d === "string" && d.match(/px$/)) {
+							val += "rem"
+						}
+						return val
+					};
+					win.remCalc = remCalc
+				}
+			})(window);
+		</script>
+		<!-- end REM Zoom 计算 -->
+		<link href="../../static/index/pc_zb/css/app.css" rel="stylesheet">
+		<script type="text/javascript" src="../../static/index/pc_zb/jquery.js"></script>
+        <link rel="stylesheet" href="../../static/index/pc_zb/css/zhibo.css">
+		<style type="text/css">
+			*{margin: 0;padding: 0;list-style: none;outline: none;text-decoration: none;}
+			body,html{border: none !important;}
+			.webim-logo,.webim-sign,.copyright,#components,.webim-avatar-icon,.username,#friends,#groups,#strangers{display: none !important;}
+			.video_span{padding: 0.2em 0.5em;border-radius: 1em;background: rgba(255,255,255,0.5);color: #FFFFFF;position: fixed;right: 1em;bottom: 2em;font-size: 14px;z-index: 100;}
+			.touxiang{width: 26%;position: fixed;left: 2em;top: 6.5em;z-index: 100;overflow: hidden;}
+			.touxiang_img{width: 12%;float: left;border-radius: 50%;margin-right: 20px;margin-top: 2px;}
+			.loction{float: left;overflow: hidden;margin-top: 0.5em;}
+			.loction li{color: #FFFFFF;overflow: hidden;}
+			.loction li:nth-child(1){font-size: 18px;}
+			.loction li:nth-child(2) span{font-size: 14px;float: left;}
+			.loction li:nth-child(2) img{width: 20%;float: left;margin-right: 5px;margin-top: 2px;}
+			.people{padding: 0.6em 5em;position: fixed;left: 0em;top: 12em;border-radius: 0 2em 2em 0;background: -webkit-linear-gradient(left, rgba(255,0,0,0.6) , rgba(255,0,152,0.6)); /* Safari 5.1 - 6.0 */background: -o-linear-gradient(right, rgba(255,0,0,0.6) , rgba(255,0,152,0.6)); /* Opera 11.1 - 12.0 */background: -moz-linear-gradient(right, rgba(255,0,0,0.6) , rgba(255,0,152,0.6)); /* Firefox 3.6 - 15 */background: linear-gradient(to right, rgba(255,0,0,0.6) , rgba(255,0,152,0.6)); /* 标准的语法 */color: #fff;}
+			.wrapper{margin-top: 0 !important;width: 100%;}
+			.vjs-control-bar{opacity: 0 !important;}
+			.webim-leftbar,.webim-contact-wrapper,.webim-chatwindow-title,.webim-send-wrapper{display: none;}
+			.webim-chatwindow-msg{height: 100%;}
+			.w100{width: 520px !important;height: 480px !important;overflow: hidden;}
+			.w100{margin: 0;position: absolute !important;left:84px;bottom: 0px;}
+			.webim-chat{min-width: 550px !important;}
+			.webim-chatwindow{width: 100% !important;}
+			.webim-msg-container > div,.clearfix{float: left;}
+			.webim-msg-container > div{max-width: 100% !important;}
+			.webim-msg-value{width: auto !important;max-width: 390px !important;}
+			.webim-msg-container .left > p{width: auto;padding:5px 10px 5px 5px;background-color: rgba(152,152,152,0.4) !important;border-radius: 4px 0 0 4px;float: left;}
+			.left span:nth-child(3),.webim-msg-icon{display: none;}
+			.webim-msg-value{min-width: auto !important;}
+			.webim-msg-container{margin: 0 0 5px 0 !important;}
+			.webim-chat{background-color: rgba(250,250,250,0) !important;box-shadow: none !important;}
+			.webim-msg-container .left .webim-msg-value{background-color: rgba(152,152,152,0.4) !important;}
+			.webim-msg-value > div, .webim-msg-value > pre{color: #fff !important;}
+			.left span:nth-child(1){color: #FF0050;display: inline-block;margin-top: 2px}
+			.webim-msg-value{margin: 0 !important;padding: 5px !important;border-radius: 0 4px 4px 0 !important;}
+			.webim-msg-container .left .webim-msg-icon{display: none !important;}
+			.zhubo{width: 100%;padding: 10px 0;background: rgba(0,0,0,0.4);position: absolute;left: 0;bottom: 0;z-index: 99;display: none;}
+			.zhubo span{color: #fff;position: relative;left: -20%;z-index: 100;width: auto;font-size: 22px;}
+			.zhubo_ani{
+				animation: zhubo_ani 8s linear infinite;
+				-moz-animation: zhubo_ani 8s linear infinite;
+				-ms-animation: zhubo_ani 8s linear infinite;
+				-webkit-animation: zhubo_ani 8s linear infinite;
+			}
+			@keyframes zhubo_ani {
+				0% {
+					left: -20%;
+				}
+				100% {
+					left: 120%;
+				}
+			}
+			@-moz-keyframes zhubo_ani {
+				0% {
+					left: -20%;
+				}
+				100% {
+					left: 120%;
+				}
+			}
+			@-ms-keyframes zhubo_ani {
+				0% {
+					left: -20%;
+				}
+				100% {
+					left: 120%;
+				}
+			}
+			@-webkit-keyframes zhubo_ani {
+				0% {
+					left: -20%;
+				}
+				100% {
+					left: 120%;
+				}
+			}
+			.anniu{position: absolute;right: 110px;bottom: 70px;z-index: 50;display: none;}
+		</style>
+		<style id="J__style">
+			.__z {
+				zoom: 2.56
+			}
+		</style>
+
+		<script type="text/javascript">
+			$(function(){
+				var width = document.body.scrollWidth
+				var height = document.body.scrollHeight
+				$("#video").css("width",width)
+				$("#video").css("height",height)
+
+			})
+		</script>
+		<script src="../../static/index/pc_zb/js/browser-polyfill.min.js"></script>
+		<script src="../../static/index/pc_zb/js/lc_switch.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="../../static/index/pc_zb/css/lc_switch.css">
+	</head>
+
+	<body>
+		<div class="anniu">
+	      <p>
+	        <input type="checkbox" name="check-3" value="6" class="lcs_check lcs_tt1" autocomplete="off" />
+	      </p>
+	    </div>
+	    <script type="text/javascript">
+		$(document).ready(function(e) {
+			$('input').lc_switch();
+			// triggered each time a field changes status
+			$('body').delegate('.lcs_check', 'lcs-statuschange', function() {
+				var status = ($(this).is(':checked')) ? 'checked' : 'unchecked';
+				console.log('field changed status: '+ status );
+			});
+
+			// triggered each time a field is checked
+			$('body').delegate('.lcs_check', 'lcs-on', function() {
+				$(".zimu").css("display","none")
+			});
+
+
+			// triggered each time a is unchecked
+			$('body').delegate('.lcs_check', 'lcs-off', function() {
+				$(".zimu").css("display","block")
+			});
+		});
+		</script>
+		<div id="o2_main" class="main" style="transform-origin: 0px 0px 0px; transform: scale(1, 1); opacity: 1; display: block;">
+			<div class="wrapper">
+				<video id="video" class="video show video-js vjs-big-play-centered" preload="auto" playsinline="" style="opacity: 1;"></video>
+			</div>
+		</div>
+
+		<div class="touxiang">
+			<img src="{$list['user_img']}" class="touxiang_img"/>
+			<div class="loction">
+				<ul>
+					<li>{$list['user_name']}</li>
+					<li>
+						<img src="../../static/index/pc_zb/images/live_location.png"/>
+						<span>{$list['address']}</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<p class="people">{$list['gk_cnt']}人正在观看.....</p>
+		<div class="zimu">
+		<div class="zhubo">
+			<span></span>
+		</div>
+		<span class="give_id">{$list['chat_id']}</span>
+		<section id='main' class='w100'>
+		    <article id='demo'></article>
+		    <article id='components'></article>
+		</section>
+		</div>
+		<script src="../../static/index/pc_zb/js/webim.config.js"></script>
+		<script>
+		    if (WebIM.config.isWindowSDK) {
+		        document.title = "环信Demo";
+		    }
+		    if (WebIM.config.isDebug) {
+		        document.write("<script src='../../static/index/pc_zb/js/strophe-1.2.8.js'><\/script>");
+		    } else {
+
+		        document.write("<script src='../../static/index/pc_zb/js/strophe-1.2.8.min.js'><\/script>");
+		    }
+		</script>
+
+
+		<script src='../../static/index/pc_zb/js/websdk-1.4.13.js'></script>
+
+		<script>
+		    if (WebIM.config.isWebRTC) {
+		        document.write("<script src='../../static/index/pc_zb/js/adapter.js'><\/script>");
+		        document.write("<script src='../../static/index/pc_zb/js/webrtc-1.4.13.js'><\/script>");
+		    }
+		</script>
+
+		<script src="/static/index/pc_zb/js/demo-1.4.13.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+
+				$('.webim-input[type="text"]').val("{$user['name']}")
+				$('.webim-input[type="password"]').val("{$user['pwd']}")
+				$("body").on("click",".vjs-big-play-button",function(){
+					$(".webim-button").trigger('click')
+					$("#chatrooms").trigger('click')
+					setTimeout(function(){
+						var arr = new Array();
+						$(".webim-contact-wrapper").children("div:eq(2)").children("div").each(function(index){
+							var id = $(this).attr("id")
+							arr.push(id)
+							var idnum = $(".give_id").html()
+							if(id==idnum){
+								var index = $(this).index()
+								$(".webim-contact-item:eq("+ index +")").trigger('click')
+							}
+						})
+
+					},1000);
+					setTimeout(function(){
+						var myVar = setInterval(function(){ bianli() }, 3000);
+						function bianli(){
+							$(".webim-chatwindow-msg").each(function(){
+						    	var lenth = $(this).children(".webim-msg-container").children().children(".left").children("span:eq(0)").html()
+						    	var wenzi = $(this).children(".webim-msg-container").children().children(".clearfix").children(".webim-msg-value").children("pre:last").html()
+						    	if(lenth=="15821462605"){
+						    		$(".zhubo").css("display","block")
+						    		$(".zhubo span").html(wenzi)
+						    		$(".zhubo span").addClass("zhubo_ani")
+						    	}
+						    })
+						}
+					},2000);
+					setTimeout(function(){
+					    $(".anniu").css("display","block")
+					},1000);
+
+				})
+
+
+			})
+
+		</script>
+
+		<script src="http://player.qiniucc.com/sdk/latest/qiniuplayer.min.js?v=0.3.3"></script>
+        <script>
+
+			var options = {
+			    controls: true,
+			    url: "{$list['hls_url']}",
+			    type: 'hls',
+			    preload: true,
+			    autoplay: false, // 如为 true，则视频将会自动播放
+			    poster: 'https://player.qiniucc.com/qiniu-620x205.png',
+			};
+			var player = new QiniuPlayer('video', options);
+        </script>
+		<script type="text/javascript" src="../../static/index/pc_zb/js/bundle.js"></script>
+
+
+
+	</body>
+
+</html>

@@ -1,0 +1,15 @@
+---------------------------------------------------------------
+[ 2019-12-04T11:38:35+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v3/app_ver/myCardList?user_id=20301&store_id=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.036504s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `pt_ticket_user` [ RunTime:0.018002s ]
+[ sql ] [ SQL ] SELECT `u`.* FROM `pt_ticket_user` `u` LEFT JOIN `ims_bj_shopn_member` `m` ON `u`.`mobile`=`m`.`mobile` WHERE  `m`.`id` = '20301'  AND `u`.`status` IN (-1,0,1)  AND (   (u.ticket_code != '000000' or u.ticket_code is null) and u.type not in (18,19) ) ORDER BY insert_time desc [ RunTime:0.021503s ]
+---------------------------------------------------------------
+[ 2019-12-04T14:35:11+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/score_exchange/user_score?user_id=16829
+[ sql ] [ DB ] CONNECT:[ UseTime:0.158020s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_score_category` [ RunTime:0.061007s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_score_category` WHERE  `is_show` = 1 ORDER BY create_time desc [ RunTime:0.067009s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_sum_user` [ RunTime:0.064509s ]
+[ sql ] [ SQL ] SELECT * FROM `think_sum_user` WHERE  `user_id` = 16829 LIMIT 1 [ RunTime:0.046506s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_scores_record` [ RunTime:0.032505s ]
+[ sql ] [ SQL ] SELECT SUM(scores) AS tp_sum FROM `think_scores_record` WHERE  `user_id` = 16829  AND `type` IN ('missshop','missshop_transfer','missshop_exchange') LIMIT 1 [ RunTime:0.085011s ]
+[ sql ] [ SQL ] UPDATE `think_sum_user`  SET `missshop_scores`=-156,`missshop_scores_upd_time`='2019-12-04 14:35:11'  WHERE  `id` = 71 [ RunTime:0.056007s ]

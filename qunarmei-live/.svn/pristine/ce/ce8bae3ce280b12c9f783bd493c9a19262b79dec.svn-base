@@ -1,0 +1,2754 @@
+---------------------------------------------------------------
+[ 2017-09-30T09:08:32+08:00 ] ::1 ::1 GET /admin
+[ info ] localhost:8888/admin [运行时间：0.146009s][吞吐率：6.85req/s] [内存消耗：2,579.36kb] [文件加载：36]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:08:32+08:00 ] ::1 ::1 GET /admin/login/index.html
+[ info ] localhost:8888/admin/login/index.html [运行时间：0.107006s][吞吐率：9.35req/s] [内存消耗：2,528.56kb] [文件加载：34]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/login/index_html' => '',
+)
+[ info ] [ RUN ] app\admin\controller\Login->index[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Login.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\login.html [ array (
+  0 => 'verify_type',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:08:36+08:00 ] ::1 ::1 POST /admin/login/dologin.html
+[ info ] localhost:8888/admin/login/dologin.html [运行时间：0.239013s][吞吐率：4.18req/s] [内存消耗：5,110.30kb] [文件加载：49]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'dologin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost:8888/admin/login/index.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://localhost:8888',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '30',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/login/dologin_html' => '',
+  'username' => 'admin',
+  'password' => '123456',
+)
+[ info ] [ RUN ] app\admin\controller\Login->doLogin[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Login.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:08:38+08:00 ] ::1 ::1 GET /admin/index/index.html
+[ info ] localhost:8888/admin/index/index.html [运行时间：0.138008s][吞吐率：7.25req/s] [内存消耗：4,822.76kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/login/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/index/index_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Index->index[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Index.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\index.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:08:38+08:00 ] ::1 ::1 GET /admin/index/indexpage.html
+[ info ] localhost:8888/admin/index/indexpage.html [运行时间：0.187011s][吞吐率：5.35req/s] [内存消耗：4,764.87kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'indexpage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/index/indexpage_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Index->indexPage[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Index.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\index\index.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+  4 => 'member',
+  5 => 'info',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:08:40+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ info ] localhost:8888/admin/messages/index.html [运行时间：0.087005s][吞吐率：11.49req/s] [内存消耗：4,804.50kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'messages',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/messages/index_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Messages->index[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\messages\index.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+  4 => 'Nowpage',
+  5 => 'allpage',
+  6 => 'val',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:08:40+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ info ] localhost:8888/admin/messages/index.html?page=1&key= [运行时间：0.074004s][吞吐率：13.51req/s] [内存消耗：4,814.14kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'messages',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/messages/index.html',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/messages/index_html' => '',
+  'page' => '1',
+  'key' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Messages->index[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:08:42+08:00 ] ::1 ::1 GET /admin/messages/ypush.html
+[ info ] localhost:8888/admin/messages/ypush.html [运行时间：0.074004s][吞吐率：13.51req/s] [内存消耗：4,810.53kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'messages',
+    2 => 'ypush',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/messages/ypush_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Messages->ypush[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\messages\ypush_list.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+  4 => 'Nowpage',
+  5 => 'allpage',
+  6 => 'val',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:08:42+08:00 ] ::1 ::1 GET /admin/messages/ypush.html?page=1&key=
+[ info ] localhost:8888/admin/messages/ypush.html?page=1&key= [运行时间：0.073004s][吞吐率：13.70req/s] [内存消耗：4,820.23kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'messages',
+    2 => 'ypush',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/messages/ypush.html',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/messages/ypush_html' => '',
+  'page' => '1',
+  'key' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Messages->ypush[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:08:44+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ info ] localhost:8888/admin/live/livelist.html [运行时间：0.150008s][吞吐率：6.67req/s] [内存消耗：5,143.02kb] [文件加载：50]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/live/livelist_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\live\livelist.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+  4 => 'isadmin',
+  5 => 'Nowpage',
+  6 => 'allpage',
+  7 => 'val',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:08:44+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ info ] localhost:8888/admin/live/livelist.html?page=1&key= [运行时间：0.081004s][吞吐率：12.35req/s] [内存消耗：4,889.91kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/live/livelist.html',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/live/livelist_html' => '',
+  'page' => '1',
+  'key' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:12:00+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.060004s][吞吐率：16.67req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:36:12+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ info ] localhost:8888/admin/live/livelist.html [运行时间：0.080005s][吞吐率：12.50req/s] [内存消耗：4,879.80kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/live/livelist_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\live\livelist.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+  4 => 'isadmin',
+  5 => 'Nowpage',
+  6 => 'allpage',
+  7 => 'val',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:36:12+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ info ] localhost:8888/admin/live/livelist.html?page=1&key= [运行时间：0.098006s][吞吐率：10.20req/s] [内存消耗：4,889.91kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/live/livelist.html',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/live/livelist_html' => '',
+  'page' => '1',
+  'key' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:36:26+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ info ] localhost:8888/admin/messages/index.html [运行时间：0.074005s][吞吐率：13.51req/s] [内存消耗：4,804.50kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'messages',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/messages/index_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Messages->index[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\messages\index.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+  4 => 'Nowpage',
+  5 => 'allpage',
+  6 => 'val',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:36:26+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ info ] localhost:8888/admin/messages/index.html?page=1&key= [运行时间：0.069004s][吞吐率：14.49req/s] [内存消耗：4,814.14kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'messages',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/messages/index.html',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/messages/index_html' => '',
+  'page' => '1',
+  'key' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Messages->index[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:36:27+08:00 ] ::1 ::1 GET /admin/messages/ypush.html
+[ info ] localhost:8888/admin/messages/ypush.html [运行时间：0.069004s][吞吐率：14.49req/s] [内存消耗：4,810.53kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'messages',
+    2 => 'ypush',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/messages/ypush_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Messages->ypush[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\messages\ypush_list.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+  4 => 'Nowpage',
+  5 => 'allpage',
+  6 => 'val',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:36:28+08:00 ] ::1 ::1 GET /admin/messages/ypush.html?page=1&key=
+[ info ] localhost:8888/admin/messages/ypush.html?page=1&key= [运行时间：0.065004s][吞吐率：15.38req/s] [内存消耗：4,820.23kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'messages',
+    2 => 'ypush',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/messages/ypush.html',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/messages/ypush_html' => '',
+  'page' => '1',
+  'key' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Messages->ypush[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:36:30+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ info ] localhost:8888/admin/live/livelist.html [运行时间：0.096005s][吞吐率：10.42req/s] [内存消耗：4,879.80kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/live/livelist_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\live\livelist.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+  4 => 'isadmin',
+  5 => 'Nowpage',
+  6 => 'allpage',
+  7 => 'val',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T09:36:30+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ info ] localhost:8888/admin/live/livelist.html?page=1&key= [运行时间：0.086005s][吞吐率：11.63req/s] [内存消耗：4,889.91kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost:8888/admin/live/livelist.html',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'localhost:8888',
+)
+[ info ] [ PARAM ] array (
+  '/admin/live/livelist_html' => '',
+  'page' => '1',
+  'key' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Live.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:18:30+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.059003s][吞吐率：16.95req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:18:52+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.091005s][吞吐率：10.99req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:20:18+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.094005s][吞吐率：10.64req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:20:35+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.095005s][吞吐率：10.53req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:21:56+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.068004s][吞吐率：14.71req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:24:49+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.087005s][吞吐率：11.49req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:25:22+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.086005s][吞吐率：11.63req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:26:23+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.058003s][吞吐率：17.24req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:27:01+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.115007s][吞吐率：8.70req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:28:02+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.086005s][吞吐率：11.63req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:28:30+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.100006s][吞吐率：10.00req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:30:49+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.116007s][吞吐率：8.62req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:31:07+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.107006s][吞吐率：9.35req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:32:43+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.101006s][吞吐率：9.90req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:35:55+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.052003s][吞吐率：19.23req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:36:13+08:00 ] ::1 ::1 GET /lunhui_tp5/public/admin
+[ info ] localhost/lunhui_tp5/public/admin [运行时间：0.018001s][吞吐率：55.55req/s] [内存消耗：1,906.46kb] [文件加载：25]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'lunhui_tp5',
+    1 => 'public',
+    2 => 'admin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+  '/admin' => '',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:36:25+08:00 ] ::1 ::1 GET /lunhui_tp5/public/index.php/admin
+[ info ] localhost/lunhui_tp5/public/index.php/admin [运行时间：0.064004s][吞吐率：15.62req/s] [内存消耗：4,817.03kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Index->index[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Index.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\index.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:36:25+08:00 ] ::1 ::1 GET /lunhui_tp5/public/index.php/admin/index/indexpage.html
+[ info ] localhost/lunhui_tp5/public/index.php/admin/index/indexpage.html [运行时间：0.092005s][吞吐率：10.87req/s] [内存消耗：4,760.04kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'indexpage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost/lunhui_tp5/public/index.php/admin',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Index->indexPage[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Index.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\index\index.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+  4 => 'member',
+  5 => 'info',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:36:50+08:00 ] ::1 ::1 GET /lunhui_tp5/public/
+[ info ] localhost/lunhui_tp5/public/ [运行时间：0.089005s][吞吐率：11.24req/s] [内存消耗：4,817.02kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Index->index[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Index.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\index.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:36:50+08:00 ] ::1 ::1 GET /lunhui_tp5/public/admin/index/indexpage.html
+[ info ] localhost/lunhui_tp5/public/admin/index/indexpage.html [运行时间：0.027002s][吞吐率：37.03req/s] [内存消耗：1,907.94kb] [文件加载：25]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'lunhui_tp5',
+    1 => 'public',
+    2 => 'admin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ECS[visit_times]=1; Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; pgv_pvi=6244756480; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1504664509; PHPSESSID=ql0pq2la05st9mom1st4nipif2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost/lunhui_tp5/public/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+  '/admin/index/indexpage_html' => '',
+  'index' => 'indexpage',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:37:49+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.090005s][吞吐率：11.11req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:39:34+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.078004s][吞吐率：12.82req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:46:56+08:00 ] ::1 ::1 GET /lunhui_tp5/public/index.php/admin/login/index.html
+[ info ] localhost/lunhui_tp5/public/index.php/admin/login/index.html [运行时间：0.026002s][吞吐率：38.46req/s] [内存消耗：2,523.41kb] [文件加载：34]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; ECS[visit_times]=3; __guid=111872281.4383926724620080000.1504511030703.8572; monitor_count=3',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Login->index[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Login.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\login.html [ array (
+  0 => 'verify_type',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:47:08+08:00 ] ::1 ::1 GET /lunhui_tp5/public/
+[ info ] localhost/lunhui_tp5/public/ [运行时间：0.046002s][吞吐率：21.74req/s] [内存消耗：2,574.48kb] [文件加载：36]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; ECS[visit_times]=3; __guid=111872281.4383926724620080000.1504511030703.8572; monitor_count=4',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:47:08+08:00 ] ::1 ::1 GET /lunhui_tp5/public/admin/login/index.html
+[ info ] localhost/lunhui_tp5/public/admin/login/index.html [运行时间：0.018001s][吞吐率：55.55req/s] [内存消耗：1,907.02kb] [文件加载：25]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'lunhui_tp5',
+    1 => 'public',
+    2 => 'admin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; ECS[visit_times]=3; __guid=111872281.4383926724620080000.1504511030703.8572; monitor_count=4; PHPSESSID=8nga4a17pq3mh4opmbf7i8s0r1',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+  '/admin/login/index_html' => '',
+  'login' => 'index',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:47:16+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.110007s][吞吐率：9.09req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:47:36+08:00 ] ::1 ::1 GET /lunhui_tp5/public/admin/login/index.html
+[ info ] localhost/lunhui_tp5/public/admin/login/index.html [运行时间：0.025002s][吞吐率：40.00req/s] [内存消耗：1,907.02kb] [文件加载：25]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'lunhui_tp5',
+    1 => 'public',
+    2 => 'admin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; ECS[visit_times]=3; __guid=111872281.4383926724620080000.1504511030703.8572; PHPSESSID=8nga4a17pq3mh4opmbf7i8s0r1; monitor_count=6',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+  '/admin/login/index_html' => '',
+  'login' => 'index',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:47:55+08:00 ] ::1 ::1 GET /lunhui_tp5/public/index.php/admin/login/index.html
+[ info ] localhost/lunhui_tp5/public/index.php/admin/login/index.html [运行时间：0.023001s][吞吐率：43.48req/s] [内存消耗：2,523.39kb] [文件加载：34]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; ECS[visit_times]=3; __guid=111872281.4383926724620080000.1504511030703.8572; PHPSESSID=8nga4a17pq3mh4opmbf7i8s0r1; monitor_count=7',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Login->index[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Login.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\login.html [ array (
+  0 => 'verify_type',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:48:04+08:00 ] ::1 ::1 POST /lunhui_tp5/public/index.php/admin/login/dologin.html
+[ info ] localhost/lunhui_tp5/public/index.php/admin/login/dologin.html [运行时间：0.066003s][吞吐率：15.15req/s] [内存消耗：4,189.77kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'dologin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; ECS[visit_times]=3; __guid=111872281.4383926724620080000.1504511030703.8572; PHPSESSID=8nga4a17pq3mh4opmbf7i8s0r1; monitor_count=8',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/lunhui_tp5/public/index.php/admin/login/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://localhost',
+  'cache-control' => 'max-age=0',
+  'content-length' => '27',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'live',
+  'password' => 'live',
+)
+[ info ] [ RUN ] app\admin\controller\Login->doLogin[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Login.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:48:12+08:00 ] ::1 ::1 POST /lunhui_tp5/public/index.php/admin/login/dologin.html
+[ info ] localhost/lunhui_tp5/public/index.php/admin/login/dologin.html [运行时间：0.062004s][吞吐率：16.13req/s] [内存消耗：4,189.77kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'dologin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; ECS[visit_times]=3; __guid=111872281.4383926724620080000.1504511030703.8572; PHPSESSID=8nga4a17pq3mh4opmbf7i8s0r1; monitor_count=10',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/lunhui_tp5/public/index.php/admin/login/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://localhost',
+  'cache-control' => 'max-age=0',
+  'content-length' => '29',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'live',
+  'password' => '123456',
+)
+[ info ] [ RUN ] app\admin\controller\Login->doLogin[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Login.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:48:20+08:00 ] ::1 ::1 POST /lunhui_tp5/public/index.php/admin/login/dologin.html
+[ info ] localhost/lunhui_tp5/public/index.php/admin/login/dologin.html [运行时间：0.093005s][吞吐率：10.75req/s] [内存消耗：5,105.50kb] [文件加载：49]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'dologin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; ECS[visit_times]=3; __guid=111872281.4383926724620080000.1504511030703.8572; PHPSESSID=8nga4a17pq3mh4opmbf7i8s0r1; monitor_count=12',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/lunhui_tp5/public/index.php/admin/login/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://localhost',
+  'cache-control' => 'max-age=0',
+  'content-length' => '30',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'admin',
+  'password' => '123456',
+)
+[ info ] [ RUN ] app\admin\controller\Login->doLogin[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Login.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:48:43+08:00 ] ::1 ::1 GET /lunhui_tp5/public/index.php/admin/index/index.html
+[ info ] localhost/lunhui_tp5/public/index.php/admin/index/index.html [运行时间：0.072004s][吞吐率：13.89req/s] [内存消耗：4,816.96kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; ECS[visit_times]=3; __guid=111872281.4383926724620080000.1504511030703.8572; PHPSESSID=8nga4a17pq3mh4opmbf7i8s0r1; monitor_count=13',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Index->index[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Index.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\index.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:48:44+08:00 ] ::1 ::1 GET /lunhui_tp5/public/index.php/admin/index/indexpage.html
+[ info ] localhost/lunhui_tp5/public/index.php/admin/index/indexpage.html [运行时间：0.101006s][吞吐率：9.90req/s] [内存消耗：4,759.83kb] [文件加载：48]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'indexpage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Phpstorm-7d238be1=1059a510-4699-4eb3-94b8-2b2ae1096f4d; ECS[visit_times]=3; __guid=111872281.4383926724620080000.1504511030703.8572; PHPSESSID=8nga4a17pq3mh4opmbf7i8s0r1; monitor_count=14',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://localhost/lunhui_tp5/public/index.php/admin/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'localhost',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\admin\controller\Index->indexPage[ F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Index.php ]
+[ info ] [ VIEW ] F:\software\phpstudy\WWW\lunhui_tp5\public/../application/admin\view\index\index.html [ array (
+  0 => 'username',
+  1 => 'portrait',
+  2 => 'rolename',
+  3 => 'menu',
+  4 => 'member',
+  5 => 'info',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:51:33+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.073004s][吞吐率：13.70req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:53:17+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.099006s][吞吐率：10.10req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:54:51+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.078004s][吞吐率：12.82req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:55:01+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.064003s][吞吐率：15.62req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:55:06+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.117006s][吞吐率：8.55req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:56:10+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.051003s][吞吐率：19.61req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T10:57:33+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.076004s][吞吐率：13.16req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:09:00+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.055003s][吞吐率：18.18req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:10:10+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.094005s][吞吐率：10.64req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:11:32+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.079004s][吞吐率：12.66req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:12:17+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.076004s][吞吐率：13.16req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:12:47+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.082005s][吞吐率：12.19req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:13:06+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.099005s][吞吐率：10.10req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:13:07+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.069004s][吞吐率：14.49req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:13:09+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.113006s][吞吐率：8.85req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:13:12+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.069004s][吞吐率：14.49req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:14:18+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.083005s][吞吐率：12.05req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:17:02+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.060003s][吞吐率：16.67req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:18:02+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.150008s][吞吐率：6.67req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:18:49+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.117007s][吞吐率：8.55req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:19:49+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.092005s][吞吐率：10.87req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:21:39+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.089005s][吞吐率：11.24req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:26:55+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.056003s][吞吐率：17.86req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:27:32+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.095006s][吞吐率：10.53req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:30:09+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.099006s][吞吐率：10.10req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:33:40+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.073004s][吞吐率：13.70req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:41:39+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.057003s][吞吐率：17.54req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-09-30T11:42:13+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ info ] 192.168.3.56:8888/api/live/livelist [运行时间：0.082005s][吞吐率：12.19req/s] [内存消耗：3,981.73kb] [文件加载：43]
+[ info ] [ LANG ] F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'live',
+    2 => 'livelist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'content-length' => '0',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en;q=1',
+  'user-agent' => 'QuNaMei/1.8 (iPhone; iOS 11.0; Scale/2.00)',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'host' => '192.168.3.56:8888',
+)
+[ info ] [ PARAM ] array (
+  '/api/live/livelist' => '',
+)
+[ info ] [ CACHE ] INIT file
+[ info ] [ RUN ] app\api\controller\Live->liveList[ F:\software\phpstudy\WWW\lunhui_tp5\application\api\controller\Live.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File

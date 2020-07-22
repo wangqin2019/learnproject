@@ -1,0 +1,1414 @@
+---------------------------------------------------------------
+[ 2017-10-18T09:21:40+08:00 ] ::1 ::1 POST /admin/login/dologin.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.008000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_admin` [ RunTime:0.019001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_group` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_group` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.019001s ]
+[ sql ] [ SQL ] SELECT `name` FROM `think_auth_rule` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_admin`  SET `loginnum`=334,`last_login_ip`='0.0.0.0',`last_login_time`=1508289700,`token`='1ac2fc424c64cdf80db98a246f439287'  WHERE  `id` = 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_log` [ RunTime:0.026002s ]
+[ sql ] [ SQL ] INSERT INTO `think_log` (`admin_id` , `admin_name` , `description` , `status` , `ip` , `add_time`) VALUES (1 , 'admin' , '用户【admin】登录成功' , 1 , '0.0.0.0' , 1508289700) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:21:43+08:00 ] ::1 ::1 GET /admin/index/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.012000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:21:43+08:00 ] ::1 ::1 GET /admin/index/indexpage.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_member` [ RunTime:0.015001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_member` WHERE  `create_time` >= 1508256000 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:23:08+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.026002s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.038002s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.024001s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:23:08+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:46:36+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.042003s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:46:36+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:46:38+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/2.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 2 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:47:52+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:47:53+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:48:06+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:48:06+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:48:13+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:48:13+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:48:16+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.022001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:48:17+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:48:18+08:00 ] ::1 ::1 GET /admin/vod/vodadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:50:15+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:50:15+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:50:16+08:00 ] ::1 ::1 GET /admin/vod/vodadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:54:46+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:54:46+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T09:54:47+08:00 ] ::1 ::1 GET /admin/vod/vodadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:18:18+08:00 ] ::1 ::1 POST /admin/upload/uploadface.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:18:55+08:00 ] ::1 ::1 POST /admin/vod/liveadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:19:00+08:00 ] ::1 ::1 POST /admin/vod/liveadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:20:10+08:00 ] ::1 ::1 POST /admin/vod/liveadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:20:16+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:20:16+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:20:18+08:00 ] ::1 ::1 GET /admin/vod/vodadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:20:25+08:00 ] ::1 ::1 POST /admin/upload/uploadface.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:21:21+08:00 ] ::1 ::1 POST /admin/vod/vodadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:23:41+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:23:41+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:23:42+08:00 ] ::1 ::1 GET /admin/vod/vodadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:24:32+08:00 ] ::1 ::1 POST /admin/upload/uploadface.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:24:36+08:00 ] ::1 ::1 POST /admin/vod/vodadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:24:42+08:00 ] ::1 ::1 POST /admin/vod/vodadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:25:24+08:00 ] ::1 ::1 POST /admin/vod/vodadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] INSERT INTO `think_vod` (`type` , `play_url` , `pic_url` , `title` , `content` , `log_time`) VALUES (0 , 'http://pili-vod.qunarmei.com/vod/test.mp4' , '20171018\\599b30050b686a1f7cc12cdff4a780a1.jpg' , '测试点播' , '初闻不识曲中意' , '2017-10-18 10:25:24') [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:25:26+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:25:26+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:27:45+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:27:46+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:28:45+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:28:46+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:29:38+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:29:39+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:30:11+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:30:12+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:30:16+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T10:30:16+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:40:25+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:40:25+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:40:29+08:00 ] ::1 ::1 GET /admin/vod/vodEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:45:59+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.012000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:45:59+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:46:00+08:00 ] ::1 ::1 GET /admin/vod/vodEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:46:03+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:46:03+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:46:04+08:00 ] ::1 ::1 GET /admin/vod/vodEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:47:05+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:47:05+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:47:06+08:00 ] ::1 ::1 GET /admin/vod/vodEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:47:19+08:00 ] ::1 ::1 POST /admin/upload/uploadface.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:47:34+08:00 ] ::1 ::1 POST /admin/vod/vodedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:47:41+08:00 ] ::1 ::1 POST /admin/vod/vodedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:47:58+08:00 ] ::1 ::1 POST /admin/vod/vodedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] UPDATE `think_vod`  SET `type`=0,`play_url`='http://pili-vod.qunarmei.com/vod/test.mp4',`pic_url`='20171018\\7b90965df19cabd96eee931ffc47ebff.jpg',`content`='初闻不识曲中意,再听已是曲中人',`title`='测试点播1'  WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:48:00+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T13:48:00+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T15:45:07+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:04:27+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:06:11+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:06:22+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:06:23+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:07:39+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:08:26+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:11:26+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:12:47+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_ring_letter`  SET `token`='YWMtuF-bkrI3EeeQ08OhFUNjDgAAAAAAAAAAAAAAAAAAAAGbc5DAQS8R543u2Ze1X8V_AgMAAAFfI8eZjgBPGgATs3AIZOYAxS1FLXBtZJ1Z6qNHJXYQJYEpDPYmSuuNQQ',`expires`=5003438,`log_time`='2017-10-18 16:12:47'  WHERE  (  id=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:14:13+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:15:37+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.023002s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:17:53+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.024001s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:18:50+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:20:04+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:20:33+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:20:44+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:21:23+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:21:51+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.029002s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:21:51'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:21:51'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:21:51'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:21:51'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:21:51'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:34:34+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.024001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:34:34'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:35:42+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.021001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:35:41'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:35:41'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:35:41'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:35:41'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:35:41'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:35:41'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:35:41'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:35:41'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:35:41'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:35:41'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:35:42'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:35:42'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:35:42'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:35:42'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:35:42'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:35:48+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.025002s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:35:47'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:35:47'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:35:47'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:35:47'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:35:47'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:35:47'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:35:47'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:35:47'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:35:47'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:35:47'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:35:48'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:35:48'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:35:48'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.002001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:35:48'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:35:48'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:36:41+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.025002s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:36:41'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:36:41'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:36:41'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:36:41'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:36:41'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:39:06+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.012000s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.021001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:39:05'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:39:05'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:39:05'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:39:05'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:39:05'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500423340035' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:39:05'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:39:05'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:39:05'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:39:05'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:39:05'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '27967370625026' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:39:06'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:39:06'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:39:06'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:39:06'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:39:06'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500531343361' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:39:49+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.026001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:39:49'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.002001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:39:49'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:39:49'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:39:49'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:39:49'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500423340035' [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:40:33+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.026001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500423340035' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '27967370625026' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:40:32'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:40:33'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:40:33'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500531343361' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:46:10+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id`,`live`.`see_count_times` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.023001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:46:09'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:46:09'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:46:09'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:46:09'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:46:09'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500423340035' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:46:09'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:46:09'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:46:09'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:46:09'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:46:09'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '27967370625026' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:46:10'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:46:10'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:46:10'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:46:10'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:46:10'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500531343361' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:46:41+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id`,`live`.`see_count_times` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.022001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.004001s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:46:40'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:46:40'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:46:40'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:46:40'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:46:40'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500423340035' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:46:40'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:46:40'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:46:40'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:46:40'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:46:40'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '27967370625026' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:46:41'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:46:41'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:46:41'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:46:41'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:46:41'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500531343361' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:55:11+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id`,`live`.`see_count_times` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.026001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500423340035' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.012000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '27967370625026' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:55:11'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500531343361' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:56:15+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id`,`live`.`see_count_times` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.025002s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:56:14'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:56:14'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:56:14'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:56:14'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:56:14'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500423340035' [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.013000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:56:15'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:56:15'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:56:15'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:56:15'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:56:15'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '27967370625026' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:56:15'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:56:15'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:56:15'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:56:15'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:56:15'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500531343361' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:56:54+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id`,`live`.`see_count_times` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:56:53'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:56:53'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:56:53'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:56:53'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:56:53'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500423340035' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:56:53'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:56:53'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:56:53'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:56:53'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:56:53'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '27967370625026' [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:56:54'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:56:54'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:56:54'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:56:54'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:56:54'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500531343361' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:57:15+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id`,`live`.`see_count_times` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.017001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:13'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:13'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:13'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:57:13'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:13'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500423340035' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:14'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:14'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:14'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:57:14'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:14'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '27967370625026' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002001s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:15'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:15'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:15'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:57:15'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:15'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500531343361' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:57:28+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id`,`live`.`see_count_times` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.020001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.002001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500423340035' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '27967370625026' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:28'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500531343361' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T16:57:44+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id`,`live`.`see_count_times` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ring_letter` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_chatroom` [ RunTime:0.023001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500423340035' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '27967370625026' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `token`,`log_time`,`expires` FROM `think_ring_letter` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=29500512468993 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=27967370625026 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='0',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=29500482060289 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='3',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=29500531343361 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_chatroom` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_chatroom`  SET `chat_owner`='15821462605',`chat_cnt`='1',`log_time`='2017-10-18 16:57:44'  WHERE  (  chat_id=29500423340035 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `chat_id`,`chat_cnt` FROM `think_chatroom` WHERE  `chat_id` = '29500531343361' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-18T17:07:04+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-18T17:07:04+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.001000s ]

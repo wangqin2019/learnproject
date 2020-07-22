@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="format-detection" content="telephone=no, email=no"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="renderer" content="webkit" />
+		<title>会员邀请</title>
+		<link rel="stylesheet" type="text/css" href="/static/index/css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/index/css/index.css"/>
+		<script type="text/javascript" src="/static/index/js/jquery.js"></script>
+		<script type="text/javascript">
+			$(function(){
+			    var u = navigator.userAgent;
+				var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+				var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+				if(isAndroid){
+					$(".Android").css("display","block")
+					$(".Android").click(function(){
+				        var the_href=$("a").attr("href");//获得下载链接
+				        var ua = navigator.userAgent.toLowerCase();
+				        if(ua.match(/MicroMessenger/i)=="micromessenger") {  //是否微信打开
+				            $(".bg").css("display","block")
+				        }
+				     })
+				}else if(isiOS){
+					$(".ios").css("display","block")
+					$(".ios .open").click(function(){
+				        var the_href=$(this).attr("href");//获得下载链接
+				        var ua = navigator.userAgent.toLowerCase();
+				        if(ua.match(/MicroMessenger/i)=="micromessenger") {  //是否微信打开
+				            $(".bg").css("display","block")
+				        }
+				     })
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<div class="top">
+			<img src="/static/index/images/bg_store_header_img.png" class="top_bg"/>
+			<img src="/static/index/images/logo_xz.png" class="logo"/>
+		</div>
+        <div class="yaoqing">
+            <ul>
+
+                <li><center><span style="color: red;font-size: 20px;">手机用户  {$list['mobile']}</span></center></li>
+				<br/>
+                <li><center><span style="color: #9e9e9e;font-size: 15px;">邀请您下载注册"<font color="red">去哪美APP"</font></span></center></li>
+				<br/>
+                <li><center><span style="color: #9e9e9e;font-size: 15px;">更多惊喜等着您</span></center></li>
+				<br/>
+                <li><center><span style="color: #9e9e9e;font-size: 15px;">赶快下载吧</span></center></li>
+            </ul>
+        </div>
+		<div class="Android">
+			<a class="download" href="http://live.qunarmei.com/apk/qunarmei.apk">立即下载</a>
+		</div>
+
+		<div class="ios">
+			<a class="download" href="https://itunes.apple.com/us/app/%E5%8E%BB%E5%93%AA%E7%BE%8E/id1188580031?l=zh&ls=1&mt=8">立即下载</a>
+		</div>
+
+		<div class="bg">
+			<img src="/static/index/images/youlanqi.png"/>
+		</div>
+	</body>
+</html>

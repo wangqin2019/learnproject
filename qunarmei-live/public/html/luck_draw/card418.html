@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,viewport-fit=cover">
+		<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+		<title>去哪美</title>
+		<style type="text/css">
+			body {
+				width: 100%;
+				overflow-x: hidden;
+				margin: 0;
+				padding: 0;
+				background-size: cover;
+			}
+			
+			img {
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div style="text-align: center;color: red;">
+			<p>周末嘉年华-直播抽奖券</p>
+			<p>直播抽奖券:开奖后凭借中奖产品名称和奖券二维码到店领取</p>
+			<p>每个奖券只能使用一次</p>
+		</div>
+		<center>
+			<img src="image/gift_list.png" id='qrcode' style="width: 200px;height: 200px;" />
+		</center>
+		
+		<div style="text-align: center;color: red;">
+			<p id="goodsName"></p>
+		</div>
+		<!-- <center>
+			<img src="image/gift_list.png" id='goodsImg' style="width: 200px;height: 200px;" />
+		</center> -->
+
+	</body>
+	<script type="text/javascript">
+		var arr = getRequest();
+		// document.getElementById('goodsImg').src = arr.goods_img;
+		if (arr.goods_title) {
+			document.getElementById('goodsName').innerHTML = '中奖产品：'+arr.goods_title;
+		}
+		document.getElementById('qrcode').src = arr.qrcode;
+
+		function getRequest() {
+			var url = window.location.search; //获取url中"?"符后的字串   
+			var theRequest = new Object();
+			if(url.indexOf("?") != -1) {
+				var str = url.substr(1);
+				strs = str.split("&");
+				for(var i = 0; i < strs.length; i++) {
+					theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
+				}
+			}
+			return theRequest;
+		}
+	</script>
+
+</html>

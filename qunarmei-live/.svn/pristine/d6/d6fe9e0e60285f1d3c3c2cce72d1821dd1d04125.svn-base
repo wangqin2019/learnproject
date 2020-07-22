@@ -1,0 +1,221 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2017/11/14
+ * Time: 10:10
+ */
+//命名空间
+namespace app\api\controller;
+use app\api\model\Live;
+// 引入extend下的第三方扩展邮件类
+use phpmailer_kz\SendMail;
+// 引入vendor下composer安装的第三方扩展邮件类
+//use phpmailer\phpmailer\SendMail11;
+// 通过loader加载vendor扩展类
+use think\Loader;
+use app\api\service\RedisSer;
+//api测试使用
+class Test extends Base
+{
+    protected $code = 0;
+    protected $data = [];
+    protected $msg = '获取失败';
+
+
+    public function testRedis()
+    {
+        $redisSer = new RedisSer();
+        $key = 'testRedis_';
+        $val = [
+            'func' => 'testRedis',
+            'time' => date('Y-m-d H:i:s')
+        ];
+        $val = json_encode($val);
+        $redisSer->pushQueue($key,$val);
+        echo '加入队列成功';
+    }
+    public function testOutRedis()
+    {
+        $redisSer = new RedisSer();
+        $key = 'testRedis_';
+        $res = $redisSer->pullQueue($key);
+        echo '<pre>';print_r($res);
+        echo '出队列成功';
+    }
+    public function course()
+    {
+        $url = 'http://test.chengmei.com/it_api/courseapi.php';
+        $str = 'user=tiyantest&time='.time().'&msg=已学习完成第四课时';
+        $token = md5($str.'&pwd=qunarmei');
+        $str = $str.'&api_token='.$token;
+        $url = $url.'?'.$str;
+        print_r($url);die;
+        $res = curl_get($url);
+        echo '<pre>';print_r($res) ;
+    }
+
+
+    public function test()
+     {
+    //   $live = Live::get(1);
+         $live = new Live();
+         $list = $live->listLive();
+         return $list;
+     }
+
+    /*
+     * 功能: 发送邮件
+     * 请求: toMail=>收件人邮箱;多个时,通过数组传值
+     * 返回: json=>发送结果通知
+     *
+     * */
+    public function sendM($toMail='wangqin@chengmei.com')
+    {
+
+        $mail = new SendMail();
+//        $toMail = 'wangqin@chengmei.com';
+        $subject = '邮件测试';
+        $content = '你好, <b>朋友</b>! <br/>这是一封来自<a href="http://www.jb51.net"
+target="_blank">jb51.net</a>的测试邮件！<br/>';
+        $attachment = 'C:\Users\wq\Pictures\1223\nan.jpg';
+        $res = $mail->sendMailS($toMail, $subject, $content, $attachment);
+        if($res)
+        {
+            $this->code = 1;
+            $this->data = $res;
+            $this->msg = '邮件发送成功';
+        }
+        return $this->returnMsg($this->code,$this->data,$this->msg);
+    }
+    /*
+     * 功能: 生成pdf
+     * 请求: toMail=>收件人邮箱;多个时,通过数组传值
+     * 返回: json=>发送结果通知
+     *
+     * */
+    public function makePdf()
+    {
+
+        // 加载pdf扩展
+        Loader::import('tcpdf.tcpdf');
+//        vendor('tcpdf.tcpdf');
+        $pdf = new \TCPDF('A4-L');
+        $pdf->AddPage();
+        $pdf->writeHTML('<h2 style="color:red;text-align:center;">Hello World</h3>', true, false, true, false, '');
+//        $pdf->Output('1.pdf', 'I');
+         $pdf->Output('2.pdf', 'D');
+        // 在"D"输出方式下，下载下来的1.pdf文件能正常打开并显示
+        return $this->returnMsg($this->code,$this->data,$this->msg);
+    }
+
+    /*
+     * 功能: 测试异步调用方法
+     * 请求: api/test/test1 => 模块/控制器/方法
+     * 返回:
+     * */
+    public function yibu_test()
+    {
+        $res = $this->asyncronous('api/test/test1');
+        if($res['flag'])
+        {
+            $this->code=1;
+            $this->msg = $res['msg'];
+        }
+        return $this->returnMsg($this->code,$this->data,$this->msg);
+    }
+
+    function test1()
+    {
+        $sum = 0;
+        for($i=1;$i<1000000;$i++)
+        {
+            $sum+=$i;
+        }
+        $msg = date('Y-m-d H:i:s').'-sum:'.$sum;
+        file_put_contents('a.txt',$msg);
+//        return $sum;
+    }
+
+    /*
+     * 异常捕获
+     * */
+    public function dealExcep(){
+        try{
+//            $res = 3/0;
+//            return 11;
+            
+        //////当前查询出来的数据
+        $redata = array(
+            0=>['id'=>1,'name'=>'张三','age'=>22,'hobby'=>'学习'],
+            1=>['id'=>1,'name'=>'张三','age'=>22,'hobby'=>'骑行'],
+            2=>['id'=>2,'name'=>'李四','age'=>20,'hobby'=>'旅游'],
+            3=>['id'=>2,'name'=>'李四','age'=>20,'hobby'=>'测试']
+        );
+            $data1 = [];
+            $data2 = [];
+
+            foreach ($redata as $k=>$v) {
+                // 过滤掉相同id键值数据
+                if(!isset($data1[$v['id']])){
+                    $data1[$v['id']] = $v;
+                }
+                // 根据id将hobby组装成二维数组
+                $data2[$v['id']][] = $v['hobby'];
+            }
+
+            foreach ($data1 as $k=>$v) {
+                // 根据id赋值hobby值
+                $data1[$k]['hobby'] = $data2[$k];
+            }
+            $data1 = array_values($data1);
+            echo '<pre>';print_r($data1);
+        //怎么样才能转换成下面这种形式的？  写了一上午 愣是没写出来
+//        $arr = array(
+//            0=>[
+//                'id'=>1,'name'=>'张三','age'=>22,'hobby'=> ['学习', '骑行']
+//            ],
+//            1=>[
+//                'id'=>2,'name'=>'李四','age'=>20,'hobby'=> ['旅游']
+//            ]
+//        );
+            
+        }catch(\Exception $e){
+            return $this->returnMsg(400,(object)[],$e->getMessage());
+//            throw new \Exception('参数错误');
+        }
+    }
+
+    /*
+     * 关联查询
+     *
+     * */
+    public function userInfo()
+    {
+        $arr['user_id'] = input('user_id');
+        $user_sev = new \app\api\service\Test();
+        $res = $user_sev->getUserFans($arr);
+        return $res;
+    }
+
+    /*
+     * 直播点赞数
+     *
+     * */
+    public function zbDianzanNum()
+    {
+        $rest = [
+            'code' => 0,
+            'data' => (object)[],
+            'msg' => '直播暂未开启,请耐心等候'
+        ];
+        $testser = new \app\api\service\Test();
+        $res = $testser->zbDianzanNum();
+        if(!empty($res)){
+            $rest['code'] = 1;
+            $rest['data'] = ['dianzanNum'=>$res];
+            $rest['msg'] = '获取成功';
+        }
+        return $this->returnMsg($rest['code'],$rest['data'],$rest['msg']);
+    }
+}

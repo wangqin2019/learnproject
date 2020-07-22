@@ -1,0 +1,149 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>待审核门店列表</h5>
+        </div>
+        <div class="ibox-content">        
+            <div class="row">
+                <div class="col-sm-12">   
+                <div  class="col-sm-2" style="width: 100px">
+                    <div class="input-group" >  
+                        <!--<a href="{:url('user_ad')}"><button class="btn btn-outline btn-primary" type="button">添加新账号</button></a>-->
+                    </div>
+                </div>                                            
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('storeExa')}">
+                        <div class="col-sm-3">
+                            <div class="input-group">
+
+                            </div>
+                        </div>
+                    </form>                         
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr class="long-tr">
+                            <th>ID</th>
+                            <th>门店名称</th>
+                            <th>店老板姓名</th>
+                            <th>老板手机号</th>
+                            <th>门店简介</th>
+                            <th>门店地址</th>
+                            <th>填写人手机号</th>
+                            <th>门店状态</th>
+                            <th>申请时间</th>
+                            <th width="15%">操作</th>
+                        </tr>
+                        </thead>
+                        {if $lists}
+                            {foreach $lists as $list}
+                            <tr>
+                                <td>{$list['id']}</td>
+                                <td>{$list['title']}</td>
+                                <td>{$list['name_lb']}</td>
+                                <td>{$list['mobile_lb']}</td>
+                                <td><textarea name="" id="" cols="20" rows="7">{$list['summary']}</textarea></td>
+                                <td><textarea name="" id="" cols="20" rows="7">{$list['address']}</textarea></td>
+                                <td>{$list['mobile_txr']}</td>
+                                <td>{$list['status']}</td>
+                                <td>{$list['createtime']}</td>
+                                <td>
+                                    <a href="javascript:;" onclick="edit_ad({$list['id']})" class="btn btn-primary btn-xs btn-outline">
+                                        <i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+                                    <a href="javascript:;" onclick="del_ad({$list['id']})" class="btn btn-danger btn-xs btn-outline">
+                                        <i class="fa fa-trash-o"></i> 删除</a>
+                                </td>
+                            </tr>
+                            {/foreach}
+                        {else}
+                            暂无数据
+                        {/if}
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+    /**
+     * [Ajaxpage laypage分页]
+     * @param {[type]} curr [当前页]
+     * @Author[田建龙 864491238@qq.com]
+     */ 
+    function Ajaxpage(curr){
+
+        var key=$('#key').val();
+        $.getJSON('{:url("storeExa")}', {
+            page: curr || 1,key:key
+        }, function(data){      //data是后台返回过来的JSON数据
+
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画           
+            if(data==''){
+                $("#article_list").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                article_list(data); //模板赋值
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+//    Ajaxpage();
+
+/**
+ * [edit_ad 编辑广告]
+ * @Author[田建龙 864491238@qq.com]
+ */ 
+function edit_ad(id){
+    location.href = './storeExaEdit/id/'+id+'.html';
+}
+
+/**
+ * [del_ad 删除广告]
+ * @Author[田建龙 864491238@qq.com]
+ */
+function del_ad(id){
+    layer.confirm('确认删除?', {icon: 3, title:'提示'}, function(index){
+        $.getJSON('./ding_del', {'id' : id}, function(res){
+            if(res.code == 1){
+                layer.msg(res.msg,{icon:1,time:1500,shade: 0.1});
+                Ajaxpage(1,5)
+            }else{
+                layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+            }
+        });
+
+        layer.close(index);
+    })
+
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>卡券列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+            <div class="row">
+                <div class="col-sm-12">   
+                </div>                                            
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('index')}">
+                        <div class="col-sm-12">
+
+                            <div class="input-group" style="margin-top: -5px;width: 200px;">
+                                <select class="form-control m-b chosen-select" name="storeid" id="storeid" style="width: 200px;">
+                                    <option value="">请选择门店</option>
+                                    {if !empty($res_bwk)}
+                                    {foreach name="res_bwk" item="vo"}
+                                    <option value="{$vo.id}" {if condition="$storeid eq $vo['id']"}selected{/if}>{$vo.sign}{$vo.title}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;width: 150px;">
+                                <select class="form-control m-b chosen-select" name="scene_prefix" id="scene_prefix" style="width: 150px;">
+                                    <option value="">请选择抽奖类型</option>
+                                    {if !empty($res_draw)}
+                                    {foreach name="res_draw" item="vo"}
+                                    <option value="{$vo.scene_prefix}" {if condition="$scene_prefix eq $vo['scene_prefix']"}selected{/if}>{$vo.scene_name}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-5">
+                            <!--<a href="{:url('branchAdd')}"><button class="btn btn-outline btn-primary" type="button">批量开通门店和商品</button></a> -->
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的门店编号或用户号码" />
+                                <span class="input-group-btn"> 
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button> &nbsp;
+
+                                    <a href="#" class="btn btn-primary" onclick="reportExcel()"><i class="fa fa-download"></i> 导出数据Excel</a>
+                                </span>
+                                <!--&nbsp;<a href="{:url('index',['export'=>1,'key'=>$val])}" class="btn btn-primary"><i class="fa fa-download"></i> 导出门店</a>-->
+                            </div>
+                        </div>
+                    </form>                         
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th width="3%">ID</th>
+                                <th width="5%">所属办事处</th>
+                                <th width="5%">门店名称</th>
+                                <th width="5%">门店编号</th>
+                                <th width="8%">用户名称</th>
+                                <th width="8%">用户号码</th>
+                                <th width="8%">卡券编号</th>
+                                <th width="8%">卡券名称-卡券价值</th>
+                                <th width="8%">卡券状态</th>
+                                <th width="8%">卡券图片</th>
+                                <th width="5%">添加时间</th>
+                                <th width="5%">使用时间</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].id}}</td>
+                                    <td>{{d[i].depart}}</td>
+                                    <td>{{d[i].branch}}</td>
+                                    <td>{{d[i].sign}}</td>
+                                    <td>{{d[i].realname}}</td>
+                                    <td>{{d[i].mobile}}</td>
+                                    <td>{{d[i].ticket_code}}</td>
+                                    <td>{{d[i].type}}-{{d[i].price}}</td>
+                                    <td>{{d[i].status}}</td>
+                                    <td><a href="{{d[i].draw_pic}}" target="_blank"><img src="{{d[i].draw_pic}}" alt="" width="150px"></a> </td>
+                                    <td>{{d[i].insert_time}}</td>
+                                    <td>{{d[i].update_time}}</td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style="text-align:right;"></div>
+                    <div style="text-align: right;">
+                        共{$count}条数据，<span id="allpage"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+    /**
+     * [Ajaxpage laypage分页]
+     * @param {[type]} curr [当前页]
+     */
+    Ajaxpage();
+
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        $.getJSON('{:url("index")}', {
+            page: curr || 1,key:key
+        }, function(data){      //data是后台返回过来的JSON数据
+			$(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+ 
+
+//编辑
+function edit_b(id){
+    location.href = './branchEdit?id='+id;
+}
+
+//删除
+function del_article(id){
+    lunhui.confirm(id,'{:url("branchDel")}');
+}
+function ad_state(val,kaiguan){
+    $.post('{:url("upd_anxinsong")}',
+    {id:val,kaiguan:kaiguan},
+    function(data){
+         
+        if(data.code==1){
+            var a;
+            if (kaiguan == 'open') {
+                a = '<span class="label label-info">开启</span>'
+            }else{
+                a = '<span class="label label-danger">禁用</span>'
+            }
+            $('#zt'+val).html(a);
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }else{
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }         
+        
+    });
+    return false;
+}
+// 315活动开关-控制
+function act_state(val,kaiguan){
+    $.post('{:url("upd_actflag315")}',
+    {id:val,kaiguan:kaiguan},
+    function(data){
+         
+        if(data.code==1){
+            var a;
+            if (kaiguan == 1) {
+                a = '<span class="label label-info">参与</span>'
+            }else{
+                a = '<span class="label label-danger">不参与</span>'
+            }
+            $('#zt1'+val).html(a);
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }else{
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }         
+        
+    });
+    return false;
+}
+
+    //导出csv数据
+    function reportCsv()
+    {
+        var key=$('#key').val();
+        $.get('{:url("index")}?export=1&key='+key,{},function(result){
+            console.log(result);
+            window.location.href = result;
+        });
+    }
+    //导出excel数据
+    function reportExcel()
+    {
+        var key=$('#key').val();
+        $.get('{:url("index")}?export=2&key='+key,{},function(result){
+            console.log(result);
+            window.location.href = result;
+        });
+    }
+
+    // 点击弹窗遮罩层选择活动列表
+    function act_list(id){
+        layer.open({
+            type: 2,
+            area: ['768px', '600px'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: '{:url("branch/act_list")}?storeid='+id
+        });
+    }
+</script>
+</body>
+</html>

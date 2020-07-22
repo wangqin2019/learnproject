@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <META HTTP-EQUIV="expires" CONTENT="0">
+
+		<link rel="stylesheet" href="css/common.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<title>抽奖</title>
+		<style type="text/css">
+			.title{margin: 2em 15%;width: 70%;}
+			
+			.gift img{width: 65%;height: auto;margin: 0 17.5%;}
+			.gift p{color: #c6aa5f;font-size: 0.8em;text-align: center;width: 100%;margin: 0;}
+			.luck_draw {
+				width: 20em;
+				height: 20em;
+				margin-left: calc(50% - 10em);
+				background: url(image/alert_bg.jpg) center no-repeat;
+				background-size: 100%;
+			}
+			.luck_draw_list{
+				width: 90%;
+				position: relative;
+				top: 3em;
+				left: 5%;
+				display: flex;
+			}
+			.luck_draw_list div{
+				width: 100%;
+				margin: 0.5em auto;
+			}
+			.luck_draw div img{
+				width: 90%;
+				margin: 0 5%;
+			}
+			
+			#detailShow{
+				position: fixed;top:50%;left:50%;width: 18em;height: 22.5em;margin-left: -9em;margin-top: -11.25em;background: #FFFFFF;border-radius: 1em;z-index: 999;
+				background: url(image/win_bg.jpg) center no-repeat;
+				background-size: cover;
+			}
+			#detailShow .goods{width: 80%;margin: 1em 10%;}
+			.win_title{width: 80%;height: auto;margin: 1em 10% 0 10%;}
+			.gift_bg{width: 100%;text-align: center;}
+			.gift_bg img{width: 12em;}
+			.gift_show{position: absolute;top: 7.5em;left:0;width: 100%;text-align: center;}
+			.gift_show img{height: 8em;width: auto;margin: 0 auto;}
+			#detailShow p{color: #3a3a3a;width: 100%;font-size: 0.8em;text-align: center;margin-top: 0;}
+			.alert{
+				animation:alertAni 0.5s;
+				-webkit-animation:alertAni 0.5s;
+			}
+			.share_btn{width: 100%;text-align: center;margin-top: 1em;}
+            .share_btn button{
+            	width: 8em;height: 2em;line-height: 2em;border-radius: 1em;
+            	color: #FFFFFF;border: none;font-size: 1em;
+            }
+			@keyframes alertAni
+            {
+                from{transform: scale(0);}
+                to{transform: scale(1);}
+            }
+            @-webkit-keyframes alertAni
+            {
+                from{transform: scale(0);}
+                to{transform: scale(1);}
+            }
+            
+            
+			@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2){
+				/*iphone5*/
+				.luck_draw{width: 16em;height: 16em;margin-left: calc(50% - 8em);}
+				.luck_draw div img{height: 4em;}
+			}
+            @media only screen and (device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) {
+				/*iphonex*/
+				.gift{margin-top: 2em;}
+				.luck_draw{margin-top: 3em;}
+			}
+		</style>
+	</head>
+
+	<body>
+		<img src="image/bg.jpg" class="bg_img"/>
+		<img src="image/title.png" class="title"/>
+		<div class="gift">
+			<img src="image/gift_list.png" >
+			<p>*具体礼品请以收到的实物为准</p>
+		</div>
+		
+		<div class="luck_draw">
+			<div class="luck_draw_list">
+				<div><img src="image/card_1.png" /></div>
+				<div><img src="image/card_2.png" /></div>
+				<div><img src="image/card_3.png" /></div>
+			</div>
+			<div class="luck_draw_list">
+				<div><img src="image/card_4.png" /></div>
+				<div><img src="image/card_5.png" /></div>
+				<div><img src="image/card_6.png" /></div>
+			</div>
+		</div>
+			
+		
+		<div class="mask hide"></div>
+		<div id="detailShow" class="hide">
+			<img src="image/alert_title.png" class="win_title"/>
+			<div class="gift_bg"><img src="image/start.png"/></div>
+			
+			<div class="gift_show" ><img src=""/></div>
+			<p>miss shop氨基酸免洗卸妆水小样x1支</p>
+			
+			<div class="share_btn"><button class="button_bg">下一步</button></div>
+		</div>
+		<div class="tishi hide"></div>
+	</body>
+	<script type="text/javascript">
+		var uid = getQueryString('uid');
+		var order_sn = getQueryString('order_sn');
+		//弹窗
+		$('.luck_draw img').click(function(){
+			var get_lucky = ajaxpost('get_lucky','uid='+uid+'&order_sn='+order_sn);
+			if(get_lucky.code == 1){
+				$('.gift_show img').attr('src',get_lucky.data.image);
+				$('#detailShow p').html(get_lucky.data.name);
+				
+				$('.mask').removeClass('hide');
+				$('#detailShow').removeClass('hide');
+				$('#detailShow').addClass('alert');
+				$('.parent').unbind("click");
+			}
+			else{
+				tishi(get_lucky.msg, 1000)
+			}
+		})
+		//跳转seal
+		$('#detailShow').click(function(){
+			window.location.href = 'seal.html?uid='+uid+'&order_sn='+order_sn;
+		})
+		
+	</script>
+
+</html>

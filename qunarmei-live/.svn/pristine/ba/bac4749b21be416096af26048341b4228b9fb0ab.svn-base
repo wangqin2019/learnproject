@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+
+		<link rel="stylesheet" href="css/weui.min.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<title>诚美学霸计划</title>
+		<style type="text/css">
+			html,body{width: 100%;overflow-x: hidden;background: #FBF4EA;}
+			img{width: 100%;display: inherit;}
+			.button{width: 80%;margin: 1em auto;}
+			button{
+				color: #431C01 !important;
+				font-size: 1.2em !important;
+				letter-spacing: 0.5em;
+				font-weight: bold;
+				box-shadow: 2px 2px 2px #BBB7AE;
+				background: -webkit-linear-gradient(left, #E4D1B0 , #F2E9C8, #E4D1B0); /* Safari 5.1 - 6.0 */
+				background: -o-linear-gradient(right, #E4D1B0, #F2E9C8, #E4D1B0); /* Opera 11.1 - 12.0 */
+				background: -moz-linear-gradient(right, #E4D1B0, #F2E9C8, #E4D1B0); /* Firefox 3.6 - 15 */
+				background: linear-gradient(to right, #E4D1B0 , #F2E9C8, #E4D1B0); /* 标准的语法 */
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="img"></div>
+		<div class="button"><button class="weui-btn" onclick="callAndroid()">立即换购</button></div>
+	</body>
+	<script type="text/javascript">
+		function callAndroid() {test.hello("js调用了android中的hello方法");}
+		for(var i=1;i<=29;i++){
+			if(i<10){i = '0'+i;}
+			$('.img').append('<img src="img/goods/detail_'+i+'.png" />')
+		}
+	</script>
+</html>

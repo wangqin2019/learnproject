@@ -1,0 +1,36 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2020/7/10
+ * Time: 17:26
+ */
+
+namespace app\api\model;
+
+
+use think\Model;
+
+class AssessUser extends Model
+{
+	// 直播考核详情-appc端
+	protected $table = 'think_live_assess_user';
+
+	/**
+	 * 一对多关联 think_live_assess_score
+	 * @return \think\model\relation\HasMany
+	 */
+	public function assessScore()
+	{
+		return $this->hasMany('assessScore','assess_user_id','id');
+	}
+
+	/**
+	 * 一对一属于 think_live_assess
+	 * @return \think\model\relation\BelongsTo
+	 */
+	public function assess()
+	{
+		return $this->belongsTo('Assess','assess_id','id');
+	}
+}

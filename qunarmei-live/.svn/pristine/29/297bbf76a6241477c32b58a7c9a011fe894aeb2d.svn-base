@@ -1,0 +1,479 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2020/7/10
+ * Time: 17:27
+ */
+
+namespace app\api\service;
+use app\api\model\Assess;
+use app\api\model\AssessConfig;
+use app\api\model\AssessScore;
+use app\api\model\AssessUser;
+use app\api\model\Live;
+use app\api\model\User;
+
+
+/**
+ * 考核服务类
+ */
+class AssessMentService extends BaseSer
+{
+	/**
+	 * @param int $mobile 号码
+	 * @param string $serach 搜索
+	 * @param int $page 分页
+	 * @return array
+	 * 获取考核列表
+	 */
+	public function getAssessList($mobile , $serach = '' , $page = 1)
+	{
+		$rest = [];$rest1 = [];$rest2 = [];
+		$limit = 30;// 每页30条
+		// 1.查询当前用户角色
+		$role = $this->getRole($mobile);
+
+		$rest['type'] = $role;
+		$rest['person_list'] = [];
+		$rest['examiner_list'] = [];
+		// 2.查询个人考核列表
+		$map['a.delete_time'] = 0;
+		if($serach){
+			$map['a.assess_name|p.assess_project'] = ['like' , '%'.$serach.'%'];
+		}
+		if($role == 1){
+			$map['au.delete_time'] = 0;
+			$map['au.mobile'] = $mobile;
+			$res = $this->getAssessUserAssessProject($map);
+			if($res){
+				// 考核名称,项目类型,项目名称,起止时间,提交时间,直播时间,考核状态
+				foreach ($res as $v) {
+					$arr1['assess_uid'] = $v['assess_uid'];
+					$arr1['assess_name'] = $v['assess_name'];
+					$arr1['assess_type'] = $v['assess_type'];// 1:直播,2:录像
+					$arr1['assess_project'] = $v['assess_project'];
+					$arr1['begin_end_time'] = '';
+					$arr1['submit_time'] = '';
+					$arr1['live_time'] = '';
+					$arr1['begin_end_time'] = date('Y.m.d H:i',$v['begin_time']).' 至 '.date('Y.m.d H:i',$v['end_time']);
+					if($v['assess_type'] == 1){
+						$arr1['live_time'] = date('Y.m.d H:i',$v['live_time']);
+					}
+					if($v['live_id']){
+						$arr1['submit_time'] = date('Y.m.d H:i',$v['update_time']);
+					}
+
+					$arr1['status'] = $v['status'];// 0:待考核,1:待完成,2:已完成,3:已截止
+					$rest1[] = $arr1;
+				}
+				$rest['person_list'] = $rest1;
+			}
+		}elseif($role == 2){
+		// 查询考官考核列表  考核名称,项目类型,项目名称,考核人数
+			$res = $this->getAssessProject($map);
+			if($res){
+				$ids = [];
+				foreach ($res as $k => $v) {
+					$res[$k]['num'] = 0 ;
+					$ids[] = $v['id'];
+				}
+				// 查询每个项目考核人数
+				$mapu['assess_id'] = ['in',$ids];
+				$res_user = AssessUser::where($mapu)->field('assess_id , count(id) cnt')->group('assess_id')->select();
+				if($res_user){
+					foreach ($res_user as $vu) {
+						foreach ($res as $k => $v) {
+							if($v['id'] == $vu['assess_id']){
+								$res[$k]['num'] = $vu['cnt'];
+							}
+						}
+					}
+				}
+				foreach ($res as $v) {
+					$arr1['assess_id'] = $v['id'];
+					$arr1['assess_name'] = $v['assess_name'];
+					$arr1['assess_type'] = $v['assess_type'];
+					$arr1['assess_project'] = $v['assess_project'];
+					$arr1['begin_end_time'] = $v['begin_time']==0?'':date('Y.m.d H:i',$v['begin_time']).' 至 '.date('Y.m.d H:i',$v['end_time']);
+					$arr1['num'] = $v['num'];
+					$rest2[] = $arr1;
+				}
+				$rest['examiner_list'] = $rest2;
+			}
+		}
+
+		$this->code = 1;
+		if($rest){
+			$this->msg = '获取成功';
+			$this->data = $rest;
+		}
+		return $this->returnArr();
+	}
+
+	/**
+	 * 考核录像详情
+	 * @param int $assess_id 考核id
+	 * @return array
+	 */
+	public function assessDetail($assess_id)
+	{
+
+		$rest['live_info'] = [];
+		$rest['score_info'] = [];
+		$this->code = 1;
+
+		// 查询用户是否已提交录像
+		$mapl = [];
+		$map['au.id'] = $assess_id;
+		$res_au = AssessUser::alias('au')->where($map)->field('id,live_id')->limit(1)->find();
+		if($res_au['live_id']){
+			// 已提交录像,直接查询
+			$mapl['l.id'] = $res_au['live_id'];
+		}else{
+			// 未提交录像,查询已录制列表
+			$mapl['l.assess_user_id'] = $assess_id;
+		}
+		$res_live = Live::alias('l')->where($mapl)->field('l.id,l.user_name,l.user_img,l.address,l.see_url,l.statu,l.live_img,l.chat_id,l.db_statu,l.db_length')->select();
+		if($res_live){
+			foreach ($res_live as $v) {
+				$arr1['live_id'] = $v['id'];
+				$arr1['user_img'] = $v['user_img'];
+				$arr1['user_name'] = $v['user_name'];
+				$arr1['address'] = $v['address'];
+				$arr1['live_img'] = $v['live_img'];
+				$arr1['db_length'] = $v['db_length'];
+				$arr1['statu'] = $v['statu'];
+				$arr1['db_statu'] = $v['db_statu'];
+				if($arr1['statu'] == 2){
+					$arr1['db_statu'] = 1;
+				}
+				$arr1['play_url'] = $v['see_url'];
+				$arr1['chat_id'] = $v['chat_id'];
+				$rest['live_info'][] = $arr1 ;
+			}
+		}
+		// 得分
+		$maps['assess_user_id'] = $assess_id;
+		$maps['score'] = ['>',0];
+		$res_score = AssessScore::where($maps)->field('mobile,user_name,score,create_time')->order('id desc')->select();
+		if($res_score){
+			foreach ($res_score as $v) {
+				$arr2['user_name'] = $v['user_name'];
+				$arr2['create_time'] = $v['create_time']==0?'':date('Y.m.d H:i',$v['create_time']);
+				$arr2['score'] = $v['score'];
+				$rest['score_info'][] = $arr2;
+			}
+		}
+		if($rest){
+			$this->msg = '获取成功';
+			$this->data = $rest;
+		}
+		return $this->returnArr();
+	}
+
+	/**
+	 * 考核详情-提交录像
+	 * @param int $assess_id 考核详情id
+	 * @param int $live_id 直播间id
+	 * @return array
+	 */
+	public function submitVideo($assess_id , $live_id)
+	{
+		$this->code = 0;
+		// 查询是否已提交
+		$map['id'] = $assess_id;
+		$res = AssessUser::where($map)->field('id,live_id')->limit(1)->find();
+		if(empty($res['live_id'])){
+			$data['live_id'] = $live_id;
+			$data['update_time'] = time();
+			$data['status'] = 2;
+			AssessUser::where($map)->update($data);
+			$this->code = 1;
+			$this->msg = '提交成功!';
+			$this->data['status'] = $data['status'];
+
+			// 考官状态变更为待打分状态
+			$maps['assess_user_id'] = $assess_id;
+			$datas['status'] = 4;
+			AssessScore::where($maps)->update($datas);
+		}else{
+			$this->msg = '已提交过,请勿重复提交!';
+		}
+		return $this->returnArr();
+	}
+
+	/**
+	 * 考生列表
+	 * @param int $assess_id 考核列表id
+	 * @param string $mobile 考官号码
+	 * @param int $page 当前页
+	 * @return string json
+	 */
+	public function examineeList($assess_id , $mobile , $page = 1 )
+	{
+		$rest = [];
+		$this->code = 1;
+
+		$limit = 50;
+
+		// 查询考核类型 直播 or 录像
+		$mapa['id'] = $assess_id;
+		$res_asses = Assess::where($mapa)->field('id,assess_type,begin_time,end_time')->limit(1)->find();
+
+		$map['assess_id'] = $assess_id;
+		$map['delete_time'] = 0;
+		$res = AssessUser::where($map)->field('id,user_name,mobile,department,status,live_time')->order('status desc')->page($page,$limit)->select();
+		if($res){
+			// 用户名称,用户号码,用户所在部门,当前状态
+			foreach ($res as $v) {
+				$arr1['assess_id'] = $v['id'];
+				$arr1['user_name'] = $v['user_name'];
+				$arr1['mobile'] = $v['mobile'];
+				$arr1['department'] = $v['department'];
+				$arr1['status'] = 0;// 0:待考核,1:待完成,2:已完成,3:已截止,4:待打分,5:考生未考核考官状态显示为空
+				$arr1['live_time'] = '';
+				// 直播时间
+				if($res_asses['assess_type'] == 1){
+					$arr1['live_time'] = $v['live_time']==0?'':date('Y.m.d H:i',$v['live_time']);
+				}
+				// 考官状态
+				$maps['assess_user_id'] = $v['id'];
+				$maps['mobile'] = $mobile;
+				$res_score = AssessScore::where($maps)->field('id,status')->limit(1)->find();
+				if($res_score){
+					$arr1['status'] = $res_score['status'];
+				}else{
+					$arr1['status'] = $v['status']==2?4:0;
+					if($v['status'] == 0){
+						$arr1['status'] = 5;
+					}
+				}
+				$rest[] = $arr1;
+			}
+			$this->msg = '获取成功';
+			$this->data = $rest;
+		}
+		return $this->returnArr();
+	}
+
+	/**
+	 * 考生录像详情
+	 * @param int $assess_id 考生列表id
+	 * @param string $mobile 考官号码
+	 * @return array
+	 */
+	public function examineeDetail($assess_id , $mobile)
+	{
+		$this->code = 1;
+		/**
+		 * 考核名称,项目类型,项目名称,起止时间,提交时间,状态
+		录像(直播间id,直播头像,直播用户名称,位置,封面图,总时长,直播状态,聊天室id,观看类型)
+		打分(考官名称,打分时间,打分数)
+		 */
+		$map['au.id'] = $assess_id;
+		$res = $this->getAssessUserAssessProject($map);
+		if($res){
+			$res = $res[0];
+			$arr1['assess_name'] = $res['assess_name'];
+			$arr1['assess_type'] = $res['assess_type'];
+			$arr1['assess_project'] = $res['assess_project'];
+			$arr1['begin_end_time'] = $res['begin_time']==0?'':date('Y.m.d H:i',$res['begin_time']) .' 至 '.date('Y.m.d H:i',$res['end_time']);
+			$arr1['status'] = $res['status'];
+			$arr1['live_time'] = '';
+			$arr1['submit_time'] = '';
+			if($res['assess_type'] == 1){
+				$arr1['live_time'] = $res['live_time']==0?'':date('Y.m.d H:i',$res['live_time']);
+			}elseif($res['assess_type'] == 2){
+				$arr1['submit_time'] = date('Y.m.d H:i',$res['update_time']);
+			}
+			$arr1['live_info'] = [];
+			$arr1['score_info'] = [];
+			$mapl = null;
+			if($res['live_id']){
+				$mapl['id'] = $res['live_id'];
+			}elseif($res['assess_type'] == 1){
+				// 直播期间未绑定
+				$mapl['assess_user_id'] = $assess_id;
+			}
+			// 查询对应录像信息
+			if($mapl){
+				$res_l = Live::alias('l')->where($mapl)->field('l.id,l.user_name,l.user_img,l.address,l.see_url,l.statu,l.live_img,l.chat_id,l.db_statu,l.db_length')->limit(1)->find();
+				if($res_l){
+					$arr2['live_id'] = $res_l['id'];
+					$arr2['user_img'] = $res_l['user_img'];
+					$arr2['user_name'] = $res_l['user_name'];
+					$arr2['address'] = $res_l['address'];
+					$arr2['live_img'] = $res_l['live_img'];
+					$arr2['db_length'] = $res_l['db_length']==null?'':$res_l['db_length'];
+					$arr2['statu'] = $res_l['statu'];
+					$arr2['db_statu'] = $res_l['db_statu'];
+					if($arr2['statu'] == 2){
+						$arr2['db_statu'] = 1;
+					}
+					$arr2['play_url'] = $res_l['see_url'];
+					$arr2['chat_id'] = $res_l['chat_id'];
+					$arr1['live_info'][] = $arr2;
+				}
+			}
+			// 查询得分
+			$maps['assess_user_id'] = $assess_id;
+			$maps['mobile'] = $mobile;
+			$maps['score'] = ['>',0];
+			$res_score = AssessScore::where($maps)->field('mobile,user_name,score,create_time')->order('id desc')->select();
+			if($res_score){
+				foreach ($res_score as $v) {
+					$arr3['user_name'] = $v['user_name'];
+					$arr3['create_time'] = $v['create_time']==0?'':date('Y.m.d H:i',$v['create_time']);
+					$arr3['score'] = $v['score'];
+					$arr1['score_info'][] = $arr3;
+				}
+			}
+			$rest = $arr1;
+			$this->msg = '获取成功';
+			$this->data = $rest;
+		}
+		if(empty($rest)){
+			$this->code = 1;
+			$this->msg = '暂无数据';
+			$this->data = (object)[];
+		}
+		return $this->returnArr();
+	}
+
+	/**
+	 * 提交分数
+	 * @param int $assess_id 考生列表id
+	 * @param int $score 分数
+	 * @param string $mobile 打分人号码
+	 * @return string json
+	 */
+	public function submitScore($assess_id , $score ,$mobile)
+	{
+		// 1.查询是否在分制内
+		$mapf['name'] = 'point_system';
+		$res_fz = AssessConfig::where($mapf)->value('val');
+		if($score > $res_fz){
+			$this->code = 0;
+			$this->msg = '分数不在设置的'.$res_fz.'分制内,请重新打分!';
+			$this->data = (object)[];
+			return $this->returnArr();
+		}
+		// 查询是否已打过分
+		$map['assess_user_id'] = $assess_id;
+		$map['mobile'] = $mobile;
+		$res = AssessScore::where($map)->field('id,score,user_name,create_time')->limit(1)->find();
+		if($res){
+			if($res['score']){
+				$this->msg = '已提交过分数,请勿重复提交!';
+				return $this->returnArr();
+			}else{
+				$dataa['score'] = $score;
+				$dataa['update_time'] = time();
+				$dataa['status'] = 2;
+				AssessScore::where($map)->update($dataa);
+
+				$rest['user_name'] = $res['user_name'];
+				$rest['score'] = $score;
+				$rest['mobile'] = $mobile;
+				$rest['create_time'] = date('Y.m.d H:i',$res['create_time']);
+				$rest['status'] = $dataa['status'];
+				$this->code = 1;
+				$this->msg = '分数提交成功';
+				$this->data = $rest;
+				return $this->returnArr();
+			}
+		}
+
+		if($score > $res_fz){
+			$this->code = 0;
+			$this->msg = '分数不在设置的'.$res_fz.'分制内,请重新打分!';
+			$this->data = (object)[];
+			return $this->returnArr();
+		}
+
+		$data['mobile'] = $mobile;
+		$data['score'] = $score;
+		$data['user_name'] = '';
+		// 数据表查询用户名称
+		$mapu['mobile'] = $mobile;
+		$resu = User::where($mapu)->field('id,realname,mobile')->limit(1)->find();
+		if($resu){
+			$data['user_name'] = $resu['realname'];
+		}
+		$data['assess_user_id'] = $assess_id;
+		$data['create_time'] = time();
+		$data['status'] = 2;
+		AssessScore::create($data);
+		$rest['user_name'] = $data['user_name'];
+		$rest['score'] = $score;
+		$rest['mobile'] = $mobile;
+		$rest['create_time'] = date('Y.m.d H:i',$data['create_time']);
+		$rest['status'] = $data['status'];
+		$this->code = 1;
+		$this->msg = '分数提交成功!';
+		$this->data = $rest;
+
+		return $this->returnArr();
+
+	}
+
+	/******************************单个逻辑方法****************************************************************/
+	/**
+	 * 查询当前用户角色
+	 * @param int $mobile 号码
+	 * @return int $role 1:考员,2:考官
+	 */
+	public function getRole($mobile)
+	{
+		$role = 1;// 1:考员,2:考官
+		$map['name'] = 'assess_mobile';
+		$res = AssessConfig::get($map);
+		if($res){
+			$arr = explode(',',$res['val']);
+//			dump($mobile);dump($arr);dump(in_array($mobile , $arr));die;
+			if(in_array($mobile , $arr)){
+				$role = 2;
+			}
+		}
+		return $role;
+	}
+
+	/**
+	 * 查询考生考核信息相关列表
+	 * @param array $map 查询条件
+	 * @param int $page 当前页,默认第1页
+	 * @param int $limit 每页条数,默认50条
+	 * @return array $arr
+	 */
+	protected function getAssessUserAssessProject($map , $page = 1 , $limit = 50)
+	{
+		$res = AssessUser::alias('au')
+			->join(['think_live_assess' => 'a'],['a.id = au.assess_id'],'LEFT')
+			->join(['think_live_assess_project' => 'p'],['a.project_id = p.id'],'LEFT')
+			->where($map)
+			->field('a.id,a.assess_name,a.assess_type,a.begin_time,a.end_time,a.create_time,a.update_time,au.id assess_uid,au.assess_id,au.mobile,au.user_name,au.department,au.create_time,au.update_time,au.live_time,au.status,au.live_id,p.assess_project')
+			->order('au.id desc')
+			->page($page,$limit)
+			->select();
+		return $res;
+	}
+	/**
+	 * 查询考核信息列表
+	 * @param array $map 查询条件
+	 * @param int $page 当前页,默认第1页
+	 * @param int $limit 每页条数,默认50条
+	 * @return array $arr
+	 */
+	protected function getAssessProject($map , $page = 1 , $limit = 50)
+	{
+		$res = Assess::alias('a')
+			->join(['think_live_assess_project' => 'p'],['a.project_id = p.id'],'LEFT')
+			->where($map)->field('a.id,a.assess_name,a.assess_type,p.assess_project,a.begin_time,a.end_time')
+			->order('id desc')
+			->page($page,$limit)
+			->select();
+		return $res;
+	}
+	/**********************************************************************************************************/
+}

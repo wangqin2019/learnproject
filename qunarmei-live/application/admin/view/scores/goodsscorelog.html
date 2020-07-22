@@ -1,0 +1,108 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>积分日志列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('goodsScorelog')}">
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的商品名称" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr class="long-tr">
+                            <th>ID</th>
+                            <th>活动名称</th>
+                            <th>用户姓名</th>
+                            <th>用户电话</th>
+                            <th>商品名称</th>
+                            <th>用户积分</th>
+                            <th>得到积分详细信息</th>
+                            <th>订单编号</th>
+                            <th>积分时间</th>
+                        </tr>
+                        </thead>
+                        {if $list}
+                            {foreach $list as $v}
+                            <tr class="long-td">
+                                <td>{$v.id}</td>
+                                <td>{$v.act_name}</td>
+                                <td>{$v.realname}</td>
+                                <td>{$v.mobile}</td>
+                                <td>{$v.title}</td>
+                                <td>{$v.scores}</td>
+                                <td>{$v.msg}</td>
+                                <td>{$v.remark}</td>
+                                <td>{$v.log_time}</td>
+                            </tr>
+                             {/foreach}
+                        {else}
+                        <tr class="long-td">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {/if}
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        laypage({
+            cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+            pages:'{$allpage}',//总页数
+            skip: true,//是否开启跳页
+            skin: '#1AB5B7',//分页组件颜色
+            curr: curr || 1,
+            groups: 3,//连续显示分页数
+            jump: function(obj, first){
+                if(!first){
+                    Ajaxpage(obj.curr)
+                }
+                $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

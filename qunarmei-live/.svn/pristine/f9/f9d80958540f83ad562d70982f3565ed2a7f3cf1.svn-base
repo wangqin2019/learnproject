@@ -1,0 +1,6 @@
+---------------------------------------------------------------
+[ 2020-02-09T11:38:42+08:00 ] 127.0.0.1 127.0.0.1 GET /api/Job_queue/delLiveSeeConf
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`c`    WHERE  `id` IN (?)' at line 1
+---------------------------------------------------------------
+[ 2020-02-09T12:12:01+08:00 ] 127.0.0.1 127.0.0.1 GET /api/Job_queue/delLiveSeeConf
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`c`    WHERE  `id` IN (?)' at line 1

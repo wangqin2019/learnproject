@@ -1,0 +1,76 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>申请门店-审核</h5>
+        </div>
+        <div class="ibox-content">
+
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr class="long-tr">
+                            <th width="3%">ID</th>
+                            <th width="5%">门店名称</th>
+                            <th width="5%">门店编号</th>
+                            <th width="7%">门店地址</th>
+                            <th width="4%">门店老板手机号</th>
+                            <th width="4%">门店老板姓名</th>
+                            <th width="4%">所属办事处</th>
+                            <th width="4%">审核状态</th>
+                            <th width="4%">简介</th>
+                            <th width="5%">内容</th>
+                            <th width="4%">审核时间</th>
+                            <th width="4%">创建时间</th>
+                            <th width="6%"></th>
+                        </tr>
+                        </thead>
+                        {foreach $lists as $list}
+                            <tr class="long-td">
+                                <td>{$list['id']}</td>
+                                <td>{$list['title']}</td>
+                                <td>{$list['sign']}</td>
+                                <td><textarea name="" id="" cols="10" rows="7">{$list['address']}</textarea></td>
+                                <td>{$list['mobile_lb']}</td>
+                                <td>{$list['name_lb']}</td>
+                                <td>{$list['bsc']}</td>
+                                <td>{$list['status']}</td>
+                                <td>{$list['summary']}</td>
+                                <td>{$list['content']}</td>
+                                <td>{$list['reviewtime']}</td>
+                                <td>{$list['createtime']}</td>
+                                <td>
+                                    <a href="javascript:;" onclick="edit_h({$list['id']})" class="btn btn-primary btn-xs btn-outline">
+                                        <i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+                                    <a href="javascript:;" onclick="del_h({$list['id']})" class="btn btn-danger btn-xs btn-outline">
+                                        <i class="fa fa-trash-o"></i> 删除</a>
+                                </td>
+                            </tr>
+                        {/foreach}
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style="text-align:right;"></div>
+                    <div style="text-align: right;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{include file="public/footer" /}
+<script>
+    function edit_h(id){
+        location.href = './store_check_edit/id/'+id+'.html';
+    }
+    function del_h(id){
+        location.href = './store_check_del/id/'+id+'.html';
+    }
+</script>
+</body>
+</html>

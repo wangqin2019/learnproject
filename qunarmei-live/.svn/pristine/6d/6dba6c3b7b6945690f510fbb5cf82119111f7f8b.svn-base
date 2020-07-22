@@ -1,0 +1,43 @@
+<?php 
+/**
+ * This file is part of workerman.
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the MIT-LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @author walkor<walkor@workerman.net>
+ * @copyright walkor<walkor@workerman.net>
+ * @link http://www.workerman.net/
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+use \Workerman\Worker;
+
+// 自动加载类
+//require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/workerman/workerman/Autoloader.php';
+
+// task worker，使用Text协议
+$task_worker = new Worker('Text://0.0.0.0:12345');
+// task进程数可以根据需要多开一些
+$task_worker->count = 10;
+$task_worker->name = 'TaskWorker';
+//只有php7才支持task->reusePort，可以让每个task进程均衡的接收任务
+//$task->reusePort = true;
+$task_worker->onMessage = function($connection, $task_data)
+{
+    $connection->send('ok');
+    echo $task_data;
+    //$connection->send('ok');
+    // 假设发来的是json数据
+    //$task_data = json_decode($task_data, true);
+    //print_r($task_data);
+    // 根据task_data处理相应的任务逻辑.... 得到结果，这里省略....
+    //$task_result ='122211';
+     // 发送结果
+     //$connection->send(json_encode($task_result));
+};
+if(!defined('GLOBAL_START'))
+{
+    Worker::runAll();
+}

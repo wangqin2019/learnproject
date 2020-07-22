@@ -1,0 +1,4 @@
+<?php
+//000000000000
+ exit();?>
+a:15:{s:14:"web_site_title";s:27:"去哪美后台管理系统";s:20:"web_site_description";s:27:"去哪美后台管理系统";s:16:"web_site_keyword";s:27:"去哪美后台管理系统";s:12:"web_site_icp";s:22:"陇ICP备15002349号-1";s:13:"web_site_cnzz";s:0:"";s:13:"web_site_copy";s:66:"Copyright © 2017 去哪美后台管理系统 All rights reserved.";s:14:"web_site_close";s:1:"1";s:9:"list_rows";s:2:"10";s:14:"admin_allow_ip";s:0:"";s:13:"alisms_appkey";s:0:"";s:16:"alisms_appsecret";s:0:"";s:15:"alisms_signname";s:0:"";s:8:"draw_sms";s:1:"0";s:18:"order_allow_mobile";s:239:"13621934965#15821462605#13024197389#13918662810#15921324164#15821881959#13564501181#13817703747#17501681398#13524478125#18818219125#13621934965#18717884032#13615608181#15710023207#18279011245#18602716559#13615608181#13817703747#18774840910";s:17:"assessment_mobile";s:11:"15921324164";}

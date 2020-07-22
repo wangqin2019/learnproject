@@ -1,0 +1,107 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2017/12/7
+ * Time: 9:42
+ */
+
+namespace pili_test;
+use think\Db;
+
+require_once dirname(__DIR__) . '/pili_test/lib/Pili_v2.php';
+
+class Lianmai
+{
+
+    //相关配置参数
+    protected $ak="kw7pkYECHtgXDQBgZzwhu9ijMVYkYdl6iamkylMO";
+    protected $sk="Hu2DVofTTCHzge1zJTyBmPVyBG0QqV0_wTPbwdkj";
+
+    protected $mac = null;
+    protected $client = null;
+
+    public function __construct()
+    {
+        $this->mac = new \pili_test\lib\Qiniu\Pili\Mac($this->ak, $this->sk);
+        $this->client = new \pili_test\lib\Qiniu\Pili\RoomClient($this->mac);
+    }
+
+    /*
+     * 功能:创建room
+     * 请求:$owner_id 用户id , $room_name 房间名称 , $live_name 直播流名称
+     * 返回:room_name 房间名称
+     * */
+    public function creRoom($owner_id='',$room_name='',$live_name='')
+    {
+        $ret=0;
+        $data = array('live_name'=>$live_name,'mobile'=>$owner_id,'room_name'=>$room_name,'cre_time'=>date('Y-m-d H:i:s'));
+        $res = Db::name('room')->insert($data);
+        if($res)
+        {
+            $ret = Db::name('room')->getLastInsID();
+            //创建房间
+            // $resp = $this->client->createRoom($owner_id, $ret);
+            $resp = $this->client->createRoom($owner_id, $room_name);
+        }
+        return $ret;
+    }
+
+    /*
+     * 功能:获取room
+     * 请求:room_name 房间名称
+     * 返回:room相关信息 Array ( [owner_id] => 902 [room_name] => 1234 [room_status] => 0 [user_max] => 4 )
+     * */
+    public function getRoom($room_name='')
+    {
+        $resp = $this->client->getRoom($room_name);
+        return $resp;
+    }
+
+    /*
+     * 功能:删除room
+     * 请求:$room_name 房间名称
+     * 返回:
+     * */
+    public function delRoom($room_name='')
+    {
+        $resp = $this->client->deleteRoom($room_name);
+        return $resp;
+//        print_r($resp);
+    }
+
+    /*
+     * 功能:获取room房间里的人数
+     * 请求:$room_name 房间名称
+     * 返回:加入房间人数
+     * */
+    public function getRoomUserNum($room_name='')
+    {
+        $resp = $this->client->getRoomUserNum($room_name);
+        $active_users = $resp['active_users'];
+        $user_num = count($active_users);
+        return $user_num;
+    }
+
+    /*
+     * 功能:获取roomToken的鉴权
+     * 请求:$room_name 房间名称 ,$user_id 用户id
+     * 返回:resp 房间token
+     * */
+    public function roomToken($room_name='',$user_id='')
+    {
+        $resp = $this->client->roomToken($room_name,$user_id, 'admin', (time()+3600));
+        return $resp;
+    }
+
+    /*
+     * 功能:踢人
+     * 请求:$room_name 房间名称,$user_id 用户id
+     * 返回:
+     * */
+    public function kickPlay($room_name='',$user_id='')
+    {
+        $resp = $this->client->kickingPlayer($room_name,$user_id);
+        return $resp;
+    }
+}

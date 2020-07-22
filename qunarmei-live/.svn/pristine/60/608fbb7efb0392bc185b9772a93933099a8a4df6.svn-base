@@ -1,0 +1,133 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>文章评论列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+            <div class="row">
+                <div class="col-sm-12">   
+                <div  class="col-sm-2" style="width: 100px">
+                    <div class="input-group" >  
+
+                    </div>
+                </div>                                            
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('more_comment')}">
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询评论内容" />
+                                <input type="hidden" id="article_id" class="form-control" name="article_id" value="{$article_id}">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button> 
+                                </span>
+                            </div>
+                        </div>
+                    </form>                         
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th width="3%">ID</th>
+                                <th width="5%">文章标题</th>
+                                <th width="5%">用户</th>
+                                <th width="5%">回复上一条评论的id</th>
+                                <th width="8%">评论内容</th>
+                                <th width="8%">评论日期</th>
+                                <th width="10%">操作</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].id}}</td>
+                                    <td>{{d[i].article_title}}</td>
+                                    <td>{{d[i].author}}</td>
+                                    <td>{{d[i].pre_comment_id}}</td>
+                                    <td><textarea rows="3" cols="17">{{d[i].comment_content}}</textarea></td>
+                                    <td>{{d[i].comment_time}}</td>
+                                    <td>
+                                        <a href="javascript:;" onclick="more_comment_del({{d[i].id}})" class="btn btn-danger btn-xs btn-outline">
+                                            <i class="fa fa-trash-o"></i> 删除</a>
+                                    </td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style="text-align:right;"></div>
+                    <div style="text-align: right;">
+                        共{$count}条数据，<span id="allpage"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+    /**
+     * [Ajaxpage laypage分页]
+     * @param {[type]} curr [当前页]
+     */
+    Ajaxpage();
+
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var article_id = $('#article_id').val();
+        $.getJSON('{:url("content/more_comment")}', {
+            page: curr || 1,key:key,article_id:article_id
+        }, function(data){      //data是后台返回过来的JSON数据
+			$(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+    //删除评论
+    function more_comment_del(id){
+        lunhui.confirm(id,'{:url("more_comment")}?type=del');
+    }
+</script>
+</body>
+</html>

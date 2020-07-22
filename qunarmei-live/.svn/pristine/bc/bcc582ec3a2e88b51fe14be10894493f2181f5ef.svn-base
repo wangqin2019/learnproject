@@ -1,0 +1,207 @@
+{include file="public/header" /}
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/style.css">
+<style>
+.file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+.file-item .info{overflow: hidden;}
+.uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加直播字幕</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal" name="addSubtitle" id="addSubtitle" method="post" action="{:url('addSubtitle')}">
+                        <input type="hidden" name="id" value="{$list[0]['id']}" id="live_id"/>
+                        <input type="hidden" name="chat_id" value="{$list[0]['chat_id']}" id="chat_id"/>
+                        <input type="hidden" name="type" value="add" id="tp"/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播标题：</label>
+                            <div class="input-group col-sm-4">
+                                <label class="col-sm-3 control-label">{$list[0]['title']}</label>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播字幕消息：</label>
+                            <div class="input-group col-sm-4" id="addIn">
+                                <!--<textarea rows="7" cols="35" name="subtitle_msg" id="subtitle_msg">-->
+
+                                <!--</textarea>-->
+                                <input type="text" name="subtitle_msg" value="" size="30" id="subtitle_msg0">&nbsp;
+                                <select name="intscroll" id="intscroll0">
+                                    <option value="0">字幕静止</option>
+                                    <option value="1">字幕滚动</option>
+                                </select>&nbsp;<button class="btn btn-primary" type="button" onclick="sendMsg(0)">
+                                <i class="fa fa-send"></i> 发送</button>&nbsp;<button class="btn btn-primary" type="button" onclick="addInput(0)"><i class="fa fa-add"></i> 添加</button>&nbsp
+                            </div>
+                        </div>
+
+                        <!--<div class="hr-line-dashed"></div>-->
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-sm-4 col-sm-offset-3">-->
+                                <!--<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 发送</button>&nbsp;&nbsp;&nbsp;-->
+                                <!--<a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript" src="/static/admin/webupload/webuploader.min.js"></script>
+
+<script type="text/javascript">
+    var $list = $('#fileList');
+    //上传图片,初始化WebUploader
+    var uploader = WebUploader.create({
+
+        auto: true,// 选完文件后，是否自动上传。
+        swf: '/static/admin/webupload/Uploader.swf',// swf文件路径
+        server: "{:url('Upload/uploadface')}",// 文件接收服务端。
+        duplicate :true,// 重复上传图片，true为可重复false为不可重复
+        pick: '#imgPicker',// 选择文件的按钮。可选。
+
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/jpg,image/jpeg,image/png'
+        },
+
+        'onUploadSuccess': function(file, data, response) {
+            $("#data_photo").val(data._raw);
+            $("#img_data").attr('src', '/uploads/face/' + data._raw).show();
+        }
+    });
+
+    uploader.on( 'fileQueued', function( file ) {
+        $list.html( '<div id="' + file.id + '" class="item">' +
+            '<h4 class="info">' + file.name + '</h4>' +
+            '<p class="state">正在上传...</p>' +
+        '</div>' );
+    });
+
+    // 文件上传成功
+    uploader.on( 'uploadSuccess', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传成功！');
+    });
+
+    // 文件上传失败，显示上传出错。
+    uploader.on( 'uploadError', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传出错!');
+    });
+
+    //提交
+    $(function(){
+//        $('#addSubtitle').ajaxForm({
+//            beforeSubmit: checkForm,
+//            success: complete,
+//            dataType: 'json'
+//        });
+        
+        function checkForm(){
+            // console.log('title:'+$('#title').val());
+//            if( '' == $.trim($('#subtitle_msg').val())){
+//                layer.msg('请输入发送消息',{icon:2,time:1500,shade: 0.1}, function(index){
+//                layer.close(index);
+//                });
+//                return false;
+
+            return true;
+        }
+
+
+        function complete(data){
+            if(data.code==1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+//                    window.location.href="{:url('live/addSubtitle')}";
+//                    alert('发送成功!');
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1});
+                return false;   
+            }
+        }
+
+
+    });
+
+    //添加输入框
+    var i = 0;
+    function addInput(id)
+    {
+        i = i+1;
+        $('#addIn').append(
+                '<div id="input'+i+'"><input type="text" name="subtitle_msg" value="" size="30" id="subtitle_msg'+i+'">&nbsp; <select name="intscroll" id="intscroll'+i+'"> <option value="0">字幕静止</option> <option value="1">字幕滚动</option> </select>&nbsp;<button class="btn btn-primary" type="button" onclick="sendMsg('+i+')"><i class="fa fa-send"></i> 发送</button>&nbsp;<button class="btn btn-primary" type="button" onclick="addInput('+i+')"><i class="fa fa-add"></i> 添加</button>&nbsp<button class="btn btn-danger" type="button" onclick="delInput('+i+')"><i class="fa fa-trash-o"></i> 删除</button>&nbsp</div>');
+    }
+
+    //删除输入框
+    function delInput(id)
+    {
+        $('#input'+id).remove();
+    }
+
+    //发送消息
+    function sendMsg(id)
+    {
+        $.ajax({
+            type:"POST",
+            //提交的网址
+            url:"/admin/live/addsubtitle.html",
+            //提交的数据
+            data:{"intscroll":$("#intscroll"+id).val(),"chat_id":$("#chat_id").val(),"id":$("#live_id").val(),"type":'add',"subtitle_msg":$("#subtitle_msg"+id).val()},
+            //返回数据的格式
+            datatype: "text",//"xml", "html", "script", "json", "jsonp", "text".
+            //成功返回之后调用的函数
+            success:function(data,statu){
+                layer.msg('发送成功',{icon:6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                //清除已发送内容
+                $("#subtitle_msg"+id).val("");
+//               alert('发送成功!');
+            },
+            //调用出错执行的函数
+//            error: function(XMLHttpRequest, textStatus, errorThrown){
+//                //请求出错处理
+//                alert(XMLHttpRequest.status);
+//                alert(XMLHttpRequest.readyState);
+//                alert(textStatus);
+//            }
+        });
+
+    }
+    //IOS开关样式配置
+   var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+    var config = {
+        '.chosen-select': {},                    
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+</body>
+</html>

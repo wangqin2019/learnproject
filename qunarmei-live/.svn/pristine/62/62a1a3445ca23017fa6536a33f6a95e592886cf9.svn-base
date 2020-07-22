@@ -1,0 +1,621 @@
+<?php
+
+namespace app\admin\controller;
+use think\Db;
+
+/* 直播订单详情
+ * */
+class LiveOrder extends Base
+{
+    //服务器报表路径
+    private $url = 'http://live.qunarmei.com/csv/';
+    /**
+     * 功能: 订单列表
+     * 请求: key 建议搜索
+     * 返回:
+     */
+    public function index(){
+
+        $key = input('key');
+        $map = ''; $map1='';
+        $content = input('content')==''?'':input('content');
+        $st_source = input('st_source')==''?'':input('st_source');
+        $ordersn = input('ordersn');
+
+        if( $content && $content!=="")
+        {
+            // echo "<pre>";print_r($content);die;
+            if($content == 5)
+            {
+                $map = " and ord.content like '%套盒%' ";
+            }else
+            {
+                $map = " and (ord.content like '%内衣%' or ord.content like '%调整带%' or ord.content like '%文胸%' or ord.content like '%长筒袜%')";
+            }
+
+        }
+        if($st_source)
+        {
+            // $map .= " and ord.st_source='$st_source' "  ;
+            if($st_source == 'app')
+            {
+                $map .= " and ord.st_source in ('android','ios') "  ;
+            }else
+            {
+                $map .= " and ord.st_source='wechat' "  ;
+            }
+        }
+        if($ordersn){
+            $map .= " and ord.ordersn='{$ordersn}'";
+        }
+        $Nowpage = input('get.page') ? input('get.page'):1;
+        $limits = 20;// 获取总条数
+
+        $dt2 = strtotime(date('Y-m-d',time()));$dt1 = $dt2-3600*24;
+        //搜索支付时间
+        if(input('dt1') && input('dt2'))
+        {
+            $dt1 = strtotime(input('dt1'));
+            $dt2 = strtotime(input('dt2'));
+        }
+        $count = Db::table('ims_bj_shopn_order ord')
+            ->join(['ims_bj_shopn_order_goods'=>'ordg'],['ord.id=ordg.orderid'],'LEFT')
+            ->join(['ims_bwk_branch'=>'ibb'],['ord.storeid=ibb.id'],'LEFT')
+            ->join(['ims_bj_shopn_member'=>'mem'],['mem.id=ord.uid'],'LEFT')
+            ->join(['sys_bank_interestrate'=>'sbi'],['sbi.id_interestrate=ord.id_interestrate'],'LEFT')
+            ->join(['sys_bank'=>'sb'],['sbi.id_bank = sb.id_bank'],'LEFT')
+            ->where('ord.payTime>='.$dt1.' and ord.payTime<'.$dt2.$map )
+            ->group('ord.id')
+            ->count();//计算总页面
+        // $count = Db::table('ims_bj_shopn_order ord,ims_bj_shopn_order_goods ordg,ims_bwk_branch ibb,ims_bj_shopn_member mem,sys_bank_interestrate sbi,sys_bank sb')->where('ord.id=ordg.orderid and ibb.id=mem.storeid and ord.uid=mem.id and ord.storeid=ibb.id and ord.payTime>='.$dt1.' and ord.payTime<'.$dt2.' and ord.id_interestrate=sbi.id_interestrate and sbi.id_bank=sb.id_bank  '.$map )->field('ord.*,mem.realname,ibb.title,ibb.sign,ibb.sign,ibb.location_p,ibb.address,mem.mobile')->group('ord.id')->count();//计算总页面
+        $allpage = intval(ceil($count / $limits));
+        $pre = ($Nowpage-1)*$limits;
+//        print_r($count);
+        $lists = Db::table('ims_bj_shopn_order ord')
+            ->join(['ims_bj_shopn_order_goods'=>'ordg'],['ord.id=ordg.orderid'],'LEFT')
+            ->join(['ims_bwk_branch'=>'ibb'],['ord.storeid=ibb.id'],'LEFT')
+            ->join(['ims_bj_shopn_member'=>'mem'],['mem.id=ord.uid'],'LEFT')
+            ->join(['sys_bank_interestrate'=>'sbi'],['sbi.id_interestrate=ord.id_interestrate'],'LEFT')
+            ->join(['sys_bank'=>'sb'],['sbi.id_bank = sb.id_bank'],'LEFT')
+            ->where('ord.payTime>='.$dt1.' and ord.payTime<'.$dt2.$map )
+            ->limit($pre,$limits)
+            ->field('ord.id_interestrate,ord.ums_instalment,ord.ordersn,ord.id as orderid,ibb.title,ibb.sign,ibb.location_p,ibb.address,mem.realname,mem.mobile,ord.content,ord.price,ord.createtime,ord.payTime,sb.id_bank,sb.st_abbre_bankname bkname,sbi.no_period,ord.st_source,ord.id_interestrate')
+            ->group('ord.id')
+            ->select();
+        $lists1 = Db::table('ims_bj_shopn_order ord')
+            ->join(['ims_bj_shopn_order_goods'=>'ordg'],['ord.id=ordg.orderid'],'LEFT')
+            ->join(['ims_bwk_branch'=>'ibb'],['ord.storeid=ibb.id'],'LEFT')
+            ->join(['ims_bj_shopn_member'=>'mem'],['mem.id=ord.uid'],'LEFT')
+            ->join(['sys_bank_interestrate'=>'sbi'],['sbi.id_interestrate=ord.id_interestrate'],'LEFT')
+            ->join(['sys_bank'=>'sb'],['sbi.id_bank = sb.id_bank'],'LEFT')
+            ->join(['ims_bj_shopn_goods'=>'gd'],['gd.id = ordg.goodsid'],'LEFT')
+            ->where('ord.payTime>='.$dt1.' and ord.payTime<'.$dt2.$map )
+            ->field('ord.id_interestrate,ord.ums_instalment,ord.ordersn,ord.ordersn,ord.id as orderid,ibb.title,ibb.sign,ibb.location_p,ibb.address,mem.realname,mem.mobile,ord.content,ord.price,ord.createtime,ord.payTime,sb.id_bank,sb.st_abbre_bankname bkname,sbi.no_period,ord.st_source,ord.id_interestrate,gd.pcate')
+            ->group('ord.id')
+            ->select();
+        // $lists = Db::table('ims_bj_shopn_order ord,ims_bj_shopn_order_goods ordg,ims_bwk_branch ibb,ims_bj_shopn_member mem,sys_bank_interestrate sbi,sys_bank sb')->where('ord.id=ordg.orderid and ibb.id=mem.storeid and ord.uid=mem.id and ord.storeid=ibb.id and ord.payTime>='.$dt1.' and ord.payTime<'.$dt2.' and ord.id_interestrate=sbi.id_interestrate and sbi.id_bank=sb.id_bank '.$map )->limit($pre,$limits)->field('ord.ordersn,ord.id as orderid,ibb.title,ibb.sign,ibb.location_p,ibb.address,mem.realname,mem.mobile,ord.content,ord.price,ord.createtime,ord.payTime,sb.st_abbre_bankname bkname,sbi.no_period,ord.st_source')->order('ord.payTime desc')->group('ord.id')->select();
+//                print_r($lists);
+        // start Modify by wangqin 2018-03-20
+        $sum_data = array('sum_price'=>0,'zb_fenqi'=>0,'avg_price'=>0,'zb_app'=>0,'zb_ny'=>0,'ny_sum_order'=>0,'zb_fenqi_price'=>0,'zb_app_price'=>0);
+        // 添加相关统计及占比
+        // $lists1 = Db::table('ims_bj_shopn_order ord,ims_bwk_branch ibb,ims_bj_shopn_member mem,sys_bank_interestrate sbi,sys_bank sb,ims_bj_shopn_order_goods ordg')->join(['ims_bj_shopn_goods'=>'gd'],'gd.id=ordg.goodsid','LEFT')->where('ord.id=ordg.orderid and ibb.id=mem.storeid and ord.uid=mem.id and ord.storeid=ibb.id and ord.payTime>='.$dt1.' and ord.payTime<'.$dt2.' and ord.id_interestrate=sbi.id_interestrate and sbi.id_bank=sb.id_bank '.$map )->field('ord.ordersn,ord.id as orderid,ibb.title,ibb.sign,ibb.location_p,ibb.address,mem.realname,mem.mobile,ord.content,ord.price,ord.createtime,ord.payTime,sb.st_abbre_bankname bkname,sbi.no_period,ord.st_source,ord.id_interestrate,gd.pcate')->group('ord.id') ->select();
+        $sum_price=0;  //总金额
+        $zb_fenqi=0;  //分期占比 %
+        $avg_price=0;  //平均成交总金额
+        $zb_app=0;  //App支付占比
+        $zb_ny=0;  //内衣总金额占比
+        $ny_sum_order=0;  //内衣订单占比
+        $fq = 0;$app_num=0;$ny_num=0;$ny_price=0; $j=0;$zb_fenqi_price=0;$fq_price=0;$app_price=0;$zb_app_price=0;
+        // end Modify by wangqin 2018-03-20
+        $sum_data = array('sum_price'=>0,'zb_fenqi'=>'0%','avg_price'=>0,'zb_app'=>'0%','zb_ny'=>'0%','ny_sum_order'=>'0%','zb_fenqi_price'=>'0%','zb_app_price'=>'0%','sum_ord_num'=>0);
+        if($lists)
+        {
+            $i=1;
+            //分页时,显示每页的id
+            if($Nowpage>1)
+            {
+                $i = ($Nowpage-1)*$limits+1;
+            }
+            foreach($lists as &$v)
+            {
+                if($v['id_bank'] == 10){
+                    $v['no_period'] = $v['ums_instalment']==0?1:$v['ums_instalment'];
+                }
+                $v['id'] = $i;
+                $v['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
+                $v['payTime'] = date('Y-m-d H:i:s',$v['payTime']);
+                $v['realname'] = $v['realname']==''?'':$v['realname'];
+                $v['address'] = str_replace(',','|',$v['address']);
+                // 根据商品数量竖线分割
+                $mapp['orderid'] = $v['orderid'];
+                $res_g = Db::table('ims_bj_shopn_order_goods og')->field('content,total')->where($mapp)->select();
+                if($res_g){
+                    $content1 = '';
+                    foreach($res_g as $vg){
+                        if($vg['total']>1){
+                            for($n=0;$n<$vg['total'];$n++){
+                                $content1 .= $vg['content'].'|';
+                            }
+                        }else{
+                            $content1 .= $vg['content'].'|';
+                        }
+                    }
+                    if($content1){
+                        $content1 = rtrim($content1,'|');
+                    }
+                    $v['content'] = $content1;
+                }
+                $v['no_period'] = $v['no_period']==0?1:$v['no_period'];
+                // $v['content'] = str_replace(',','|',$v['content']);
+                $i++;
+            }
+            // start Modify by wangqin 2018-03-20
+            foreach($lists1 as $k1=>$v1)
+            {
+                if($v1['id_bank'] == 10){
+                    $v1['no_period'] = $v1['ums_instalment']==0?1:$v1['ums_instalment'];
+                    $lists1[$k1]['no_period'] = $v1['ums_instalment'];
+                }
+                $sum_price+=$v1['price'];
+                if($v1['no_period']>1)
+                {
+                    $fq++;
+                    $fq_price+=$v1['price'];
+                }
+                // app订单
+                if($v1['st_source']=='android' || $v1['st_source']=='ios')
+                {
+                    $app_num++;
+                    $app_price+=$v1['price'];
+                }
+                // 内衣
+                if($v1['pcate']==17)
+                {
+                    $ny_num++;
+                    $ny_price += $v1['price'];
+                }
+                $j++;
+            }
+            if($j){
+                $zb_fenqi = $fq/$j;
+                $avg_price = $sum_price/$j;
+                $zb_app = $app_num/$j;
+                $ny_sum_order = $ny_num/$j;
+            }
+            if($sum_price){
+                $zb_fenqi_price = $fq_price/$sum_price;
+                $zb_app_price = $app_price/$sum_price;
+                $zb_ny = $ny_price/$sum_price;
+            }
+            $sum_data = array('sum_price'=>$sum_price,'zb_fenqi'=>((round($zb_fenqi,3)*100).'%'),'avg_price'=>round($avg_price),'zb_app'=>(round($zb_app,3)*100).'%','zb_ny'=>(round($zb_ny,3)*100).'%','ny_sum_order'=>(round($ny_sum_order,3)*100).'%','zb_fenqi_price'=>(round($zb_fenqi_price,3)*100).'%','zb_app_price'=>(round($zb_app_price,3)*100).'%','sum_ord_num'=>$j);
+
+            // end Modify by wangqin 2018-03-20
+        }
+
+        //导出xls报表
+        $export = input('export',0);
+        if($export){
+            $data=array();
+            foreach ($lists1 as $k2 => $v2) {
+                $data[$k2]['ordersn'] = "\t".$v2['ordersn'];
+                $data[$k2]['title'] = $v2['title'];
+                $data[$k2]['sign'] = $v2['sign'];
+                $data[$k2]['location_p'] = $v2['location_p'];
+                $data[$k2]['address'] = $v2['address'];
+                $data[$k2]['realname'] = $v2['realname'];
+                $data[$k2]['mobile'] = $v2['mobile'];
+                $data[$k2]['content'] = $v2['content'];
+                // 根据商品数量竖线分割
+                $mapg['orderid'] = $v2['orderid'];
+                $res_g = Db::table('ims_bj_shopn_order_goods og')->field('content,total')->where($mapg)->select();
+                if($res_g){
+                    $content = '';
+                    foreach($res_g as $vg){
+                        if($vg['total']>1){
+                            for($i=0;$i<$vg['total'];$i++){
+                                $content .= $vg['content'].'|';
+                            }
+                        }else{
+                            $content .= $vg['content'].'|';
+                        }
+                    }
+                    if($content){
+                        $content = rtrim($content,'|');
+                    }
+                    $data[$k2]['content'] = $content;
+                }
+                $data[$k2]['price'] = $v2['price'];
+                $data[$k2]['createtime'] = date('Y-m-d H:i:s',$v2['createtime']);
+                $data[$k2]['payTime'] = date('Y-m-d H:i:s',$v2['payTime']);
+                $data[$k2]['bkname'] = $v2['bkname'];
+                $data[$k2]['no_period'] = $v2['no_period']==0?1:$v2['no_period'];
+                $data[$k2]['st_source'] = $v2['st_source'];
+            }
+            $filename = "去哪美日订单".date('YmdHis');
+            $header = array ('订单编号','门店名称','门店编号','省份','地址','用户名','手机号','商品名称','价格','下单时间   ','付款时间','支付类型','分期数','订单来源');
+            $widths=array('10','20','10','10','10','10','10','10','10','10','10','10','10','10');
+            if($data) {
+                excelExport($filename, $header, $data, $widths);//生成数据
+            }
+            die();
+        }
+        $this->assign('ordersn', $ordersn);
+        $this->assign('sum_data', $sum_data);
+        $this->assign('dt1', date('Y-m-d',$dt1));
+        $this->assign('dt2', date('Y-m-d',$dt2));
+        $this->assign('st_source', $st_source);
+        $this->assign('content', $content);
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数
+        $this->assign('val', $key);
+        $this->assign('lists', $lists);
+//        print_r($lists);
+
+        //翻页
+        if(input('get.page'))
+        {
+            return json($lists);
+        }
+
+        return $this->fetch();
+    }
+
+    // start Modify by wangqin 2017-12-19 增加出货记录查询及报表导出
+    public function shipping_records(){
+
+        $key = input('key');
+        $map = ''; $map1='';
+        $content = input('content')==''?'':input('content');
+        $st_source = input('st_source')==''?'':input('st_source');
+        $sign = input('sign')==''?'':input('sign');
+        if($content!=="")
+        {
+            if($content == 5)
+            {
+                $map = " and ord.content like '%套盒%' ";
+            }else
+            {
+                $map = " and (ord.content like '%内衣%' or ord.content like '%调整带%' or ord.content like '%文胸%')";
+            }
+
+        }
+        if($st_source)
+        {
+            $map .= " and ord.st_source='$st_source' "  ;
+        }
+        if($sign)
+        {
+            $map .= " and ibb.sign='$sign' "  ;
+        }
+        $Nowpage = input('get.page') ? input('get.page'):1;
+        $limits = 20;// 获取总条数
+
+        $dt2 = time();$dt1 = $dt2-3600*24;
+        //搜索支付时间
+        if(input('dt1') && input('dt2'))
+        {
+            $dt1 = strtotime(input('dt1'));
+            $dt2 = strtotime(input('dt2'));
+        }
+        $count = Db::table('ims_bj_shopn_order ord,ims_bwk_branch ibb')->where('ibb.id=ord.storeid and ord.payTime>='.$dt1.' and ord.payTime<'.$dt2.' and ord.status not in (-1,0) '.$map )->field('ord.*')->count();//计算总页面
+        $allpage = intval(ceil($count / $limits));
+        $pre = ($Nowpage-1)*$limits;
+//        print_r($count);
+
+        if(input('report') == 1)
+        {
+            $limits = $count;
+        }
+
+        $lists = Db::table('ims_bj_shopn_order ord,ims_bwk_branch ibb')->where('ibb.id=ord.storeid and ord.payTime>='.$dt1.' and ord.payTime<'.$dt2.' and ord.status not in (-1,0) '.$map )->limit($pre,$limits)->field('ord.*')->select();
+//                print_r($lists);
+        if($lists)
+        {
+            $i=1;
+            //分页时,显示每页的id
+            if($Nowpage>1)
+            {
+                $i = ($Nowpage-1)*$limits+1;
+            }
+            foreach($lists as &$v)
+            {
+//                $v['id'] = $i;
+                $v['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
+                $v['payTime'] = date('Y-m-d H:i:s',$v['payTime']);
+                $v['content'] = str_replace(',','|',$v['content']);
+                $v['qunarmei_pay_parameter'] = str_replace(',','|',$v['qunarmei_pay_parameter']);
+                $i++;
+            }
+        }
+
+        //导出报表
+//        echo 'report:'. input('get.report');
+        if(input('report') == 1)
+        {
+            #id	weid	storeid	uid	pid	staffid	from_user	ordersn	price	content	status	sendtype	paytype	transid	goodstype	remark	addressid	expresscom	expresssn	express	goodsprice	dispatchprice	dispatch	createtime	shareid	is_qunarmei_pay	qunarmei_pay_parameter	closetime	payTime
+
+            $headerArr = array('订单id','weid','storeid','uid','pid','staffid','from_user','ordersn','price','content','status','sendtype','paytype','transid','goodstype','remark','addressid','expresscom','expresssn','express','goodsprice','dispatchprice','dispatch','createtime','shareid','is_qunarmei_pay','qunarmei_pay_parameter','closetime','payTime','id_interestrate','st_source','order_del','order_flag','timeout');
+            $name = 'shipping_records';
+            foreach($lists as &$v1)
+            {
+                $v1['ordersn'] = str_replace('"', '""', "\t".$v1['ordersn']);
+                $v1['transid'] = str_replace('"', '""', "\t".$v1['transid']);
+            }
+            $res = reportCsv($headerArr,$lists,$name);
+            // $url = 'http://localhost:81/csv/';
+            //服务器
+            $url = 'http://live.qunarmei.com/csv/';
+            $res = $url.$res;
+            //浏览器下载
+            return $res;
+        }
+
+        $this->assign('dt1', date('Y-m-d',$dt1));
+        $this->assign('dt2', date('Y-m-d',$dt2));
+        $this->assign('st_source', $st_source);
+        $this->assign('content', $content);
+        $this->assign('sign', $sign);
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数
+        $this->assign('val', $key);
+        $this->assign('lists', $lists);
+//        print_r($lists);
+
+        //翻页
+        if(input('get.page'))
+        {
+            return json($lists);
+        }
+
+        return $this->fetch();
+    }
+    // end Modify by wangqin 2017-12-19
+
+    // start Modify by wangqin 2018-01-23 增加门店每日订单统计
+    public function store_order_statistics(){
+
+        $title = input('title');
+        $map = '';
+
+        $Nowpage = input('get.page') ? input('get.page'):1;
+        $limits = 20;// 获取总条数
+
+        $dt2 = time();$dt1 = $dt2-3600*24; $lists = array();
+        //搜索支付时间
+        if(input('dt1') && input('dt2'))
+        {
+            $dt1 = strtotime(input('dt1'));
+            $dt2 = strtotime(input('dt2'));
+        }
+        if($title)
+        {
+            $map = " and ibb.title rlike '$title' ";
+        }
+        $count = Db::table('ims_bj_shopn_order ord,ims_bwk_branch ibb')->where('ibb.id=ord.storeid and ord.payTime>='.$dt1.' and ord.payTime<'.$dt2.' and ord.status not in (-1,0) '.$map )->field('ord.storeid')->group('ord.storeid')->count();//计算总页面
+        $allpage = intval(ceil($count / $limits));
+        $pre = ($Nowpage-1)*$limits;
+//        print_r($count);
+
+        if(input('report') == 1)
+        {
+            $limits = $count;
+        }
+
+        $list2 = $lists1 = Db::table('ims_bj_shopn_order ord,ims_bwk_branch ibb')->where('ibb.id=ord.storeid and ord.payTime>='.$dt1.' and ord.payTime<'.$dt2.' and ord.status not in (-1,0)'.$map )->order('ord.storeid asc')->group('ord.storeid')->field('ord.*,ibb.title')->select();
+        if($list2)
+        {
+            foreach($list2 as $v2)
+            {
+                $i=1;
+                //分页时,显示每页的id
+                if($Nowpage>1)
+                {
+                    $i = ($Nowpage-1)*$limits+1;
+                }
+                $lists1 = Db::table('ims_bj_shopn_order ord,ims_bwk_branch ibb')->where('ibb.id=ord.storeid and ord.payTime>='.$dt1.' and ord.payTime<'.$dt2.' and ord.status not in (-1,0) and ibb.id='.$v2['storeid'].$map )->order('ord.storeid asc')->field('ord.*,ibb.title')->select();
+                //初始化
+                $fenqi_sum_price=0; $fei_fenqi_sum_price=0;$sum_price_398=0;
+                if($lists1)
+                {
+                    foreach($lists1 as $v)
+                    {
+                        if($v['id_interestrate']>0 && $v['id_interestrate']<6 )
+                        {
+                            //分期总价
+                            $fenqi_sum_price += $v['price'];
+                        }else
+                        {
+                            if($v['price']!=398)
+                            {
+                                //非分期总价
+                                $fei_fenqi_sum_price  += $v['price'];
+                            }else
+                            {
+                                //398总价
+                                $sum_price_398 += $v['price'];;
+                            }
+                        }
+
+                    }
+                    $data_csv = array(
+                        'id'=>$i,
+                        'title'=>$v2 ['title'],//门店
+                        'fenqi_sum_price'=>$fenqi_sum_price,//分期总价
+                        'fei_fenqi_sum_price'=>$fei_fenqi_sum_price,//非分期总价
+                        'sum_price_398'=>$sum_price_398,//398总价
+                    );
+                    $lists[] = $data_csv;
+                    $i++;
+                }
+
+            }
+        }
+
+        if(input('report') == 1)
+        {
+            $headerArr = array('记录ID','门店名称','分期总价','非分期总价(除398)','398');
+            $name = 'store_order_statistics';
+            $res = reportCsv($headerArr,$lists,$name);
+            $res = $this->url.$res;
+            //浏览器下载
+            return $res;
+        }
+        $this->assign('dt1', date('Y-m-d',$dt1));
+        $this->assign('dt2', date('Y-m-d',$dt2));
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数
+        $this->assign('title', $title);
+        $this->assign('lists', $lists);
+        //翻页
+        if(input('get.page'))
+        {
+            return json($lists);
+        }
+
+        return $this->fetch();
+    }
+    // end Modify by wangqin 2017-12-19
+    //
+    // start Modify by wangqin 2018-03-01 增加每月398返利订单统计
+    public function fanli(){
+
+        $title = input('title');
+        $map = ''; $data=array();
+
+        $Nowpage = input('get.page') ? input('get.page'):1;
+        $limits = 20;// 获取总条数
+
+        $dt2 = strtotime(date('Y-m-01', time()));$dt1 = strtotime(date('Y-m-01', strtotime('-1 month'))); $lists = array();
+        //搜索支付时间
+        if(input('dt1') && input('dt2'))
+        {
+            $dt1 = strtotime(input('dt1'));
+            $dt2 = strtotime(input('dt2'));
+        }
+
+        $lists = Db::query("SELECT branch.id,branch.location_p '门店省份',branch.title '门店名称',branch.sign '门店编号',ifnull(member.realname,(SELECT realname from ims_bj_shopn_member where storeid=comm.storeid and isadmin=1)) '返利用户',ifnull(member.mobile,(SELECT mobile from ims_bj_shopn_member where storeid=comm.storeid and isadmin=1)) '返利用户电话',CONCAT('\'',comm.ordersn ) '产生返利订单号',goods.title '产品名称',goods.marketprice '产品价格',comm.commission '返利金额',FROM_UNIXTIME(comm.paytime,'%Y-%m-%d %T') '订单支付时间' FROM ims_bj_shopn_commission comm LEFT JOIN ims_bwk_branch branch ON comm.storeid = branch.id LEFT JOIN ims_bj_shopn_member AS member ON comm.uid = member.id LEFT JOIN ims_bj_shopn_goods AS goods ON comm.goodsid = goods.id WHERE comm.`status` IN (1, 2, 3, 7) and comm.paytime>=$dt1 and comm.paytime<$dt2 and comm.commission>0 and branch.sign<>'666-666' ORDER BY branch.title,comm.ordersn,comm.commission");//计算总页面
+
+        if($lists)
+        {
+            foreach($lists as $k=>&$v)
+           {
+                   $v['id'] = $k+1;
+                   $v['产生返利订单号']  = ltrim($v['产生返利订单号'],"'");
+                   #订单号导出文本字符串
+                   $v['产生返利订单号'] = str_replace('"', '""', "\t".$v['产生返利订单号']);
+                   $data[] = $v;
+           }
+        }
+        if(input('report') == 1)
+        {
+
+            $headerArr = array('ID','门店省份','门店名称','门店编号','返利用户','返利用户电话','产生返利订单号','产品名称','产品价格','返利金额','订单支付时间');
+            $name = '398fanli';
+            $res = reportCsv($headerArr,$data,$name);
+            $url = 'http://live.qunarmei.com/csv/';
+            $res = $url.$res;
+            //浏览器下载
+            return $res;
+        }
+        $this->assign('dt1', date('Y-m-d',$dt1));
+        $this->assign('dt2', date('Y-m-d',$dt2));
+        $this->assign('title', $title);
+        $this->assign('lists', $data);
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', 1); //总页数
+        //翻页
+        if(input('get.page'))
+        {
+            return json($lists);
+        }
+
+        return $this->fetch();
+    }
+    // end Modify by wangqin 2018-03-01
+    /**
+     * 订单详情,每笔订单拆分成按商品记录
+     */
+    public function orderdetail(){
+        $Nowpage = input('get.page') ? input('get.page'):1;
+        $limits = 50;// 获取总条数
+        $dt2 = strtotime(date('Y-m-d',time()));$dt1 = $dt2-3600*24;
+        //搜索支付时间
+        if(input('dt1') && input('dt2')) {
+            $dt1 = strtotime(input('dt1'));
+            $dt2 = strtotime(input('dt2'));
+        }
+        $count = Db::table('ims_bj_shopn_order ord')
+            ->join(['ims_bj_shopn_order_goods'=>'ordg'],['ord.id=ordg.orderid'],'LEFT')
+            ->join(['ims_bj_shopn_goods'=>'g'],['g.pid=ordg.goodsid and g.storeid=ord.storeid'],'LEFT')
+            ->join(['ims_bwk_branch'=>'ibb'],['ord.storeid=ibb.id'],'LEFT')
+            ->join(['ims_bj_shopn_member'=>'mem'],['mem.id=ord.uid'],'LEFT')
+            ->where('ord.payTime>='.$dt1.' and ord.payTime<'.$dt2 )
+            ->group('ordg.id')
+            ->count();//计算总页面
+        $allpage = intval(ceil($count / $limits));
+        $pre = ($Nowpage-1)*$limits;
+
+        $export = input('export',0);
+        if($export) {
+            $limits = $count;
+        }
+        // 门店编号 门店名称 用户名 手机号    订单编号    商品名 商品数量 价格 下单日期    付款日期    订单来源
+        $lists = Db::table('ims_bj_shopn_order ord')
+            ->join(['ims_bj_shopn_order_goods'=>'ordg'],['ord.id=ordg.orderid'],'LEFT')
+            ->join(['ims_bj_shopn_goods'=>'g'],['g.pid=ordg.goodsid and g.storeid=ord.storeid'],'LEFT')
+            ->join(['ims_bwk_branch'=>'ibb'],['ord.storeid=ibb.id'],'LEFT')
+            ->join(['ims_bj_shopn_member'=>'mem'],['mem.id=ord.uid'],'LEFT')
+            ->where('ord.payTime>='.$dt1.' and ord.payTime<'.$dt2 )
+            ->limit($pre,$limits)
+            ->field('ibb.sign,ibb.title,mem.realname,mem.mobile,ord.ordersn,g.title goods_title,ordg.total,g.marketprice,ord.createtime,ord.payTime,ord.st_source')
+            ->group('ordg.id')
+            ->select();
+        //导出xls报表
+        $id = ($Nowpage-1)*$limits;
+
+        $data=array();
+        foreach ($lists as $k => $v) {
+            // 去除换行符
+            $v['sign'] = str_replace(PHP_EOL, '', $v['sign']);
+            $v['title'] = str_replace(PHP_EOL, '', $v['title']);
+            $v['realname'] = str_replace(PHP_EOL, '', $v['realname']);
+            $v['mobile'] = str_replace(PHP_EOL, '', $v['mobile']);
+            $v['ordersn'] = str_replace(PHP_EOL, '', $v['ordersn']);
+            $v['goods_title'] = str_replace(PHP_EOL, '', $v['goods_title']);
+
+            $data[$k]['sign'] = $v['sign'];
+            $data[$k]['title'] = $v['title'];
+            $data[$k]['realname'] = $v['realname'];
+            $data[$k]['mobile'] = $v['mobile'];
+            $data[$k]['ordersn'] = "\t".$v['ordersn'];
+            $data[$k]['goods_title'] = $v['goods_title'];
+            $data[$k]['total'] = $v['total'];
+            $data[$k]['price'] = round($v['total'] * $v['marketprice'],2);
+            $data[$k]['createtime'] =  date('Y-m-d H:i:s',$v['createtime']);
+            $data[$k]['payTime'] =  date('Y-m-d H:i:s',$v['payTime']);
+            $data[$k]['st_source'] = $v['st_source'];
+
+            $lists[$k] = $data[$k];
+            $lists[$k]['id'] = $id + $k + 1;
+        }
+        if($export){
+            $filename = "去哪美日订单".date('YmdHis');
+            $header = array ('门店编号','门店名称','用户名','手机号','订单编号','商品名称','商品数量','价格','下单日期','付款日期','订单来源');
+            $widths=array('10','10','10','10','20','10','10','10','10','10','10');
+            if($data) {
+                excelExport($filename, $header, $data, $widths);//生成数据
+            }
+            die();
+        }
+        $this->assign('dt1', date('Y-m-d',$dt1));
+        $this->assign('dt2', date('Y-m-d',$dt2));
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数
+        $this->assign('lists', $lists);
+        //翻页
+        if(input('get.page')) {
+            return json($lists);
+        }
+        return $this->fetch();
+    }
+}

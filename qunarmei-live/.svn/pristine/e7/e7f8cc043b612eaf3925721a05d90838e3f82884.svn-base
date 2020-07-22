@@ -1,0 +1,4 @@
+export QINIU_ACCESS_KEY=kw7pkYECHtgXDQBgZzwhu9ijMVYkYdl6iamkylMO
+export QINIU_SECRET_KEY=Hu2DVofTTCHzge1zJTyBmPVyBG0QqV0_wTPbwdkj
+export QINIU_TEST_BUCKET=qunamei-app
+export QINIU_TEST_DOMAIN=appc.qunarmei.com

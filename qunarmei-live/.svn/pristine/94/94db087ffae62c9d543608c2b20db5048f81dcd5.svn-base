@@ -1,0 +1,42 @@
+---------------------------------------------------------------
+[ 2017-10-18T09:48:18+08:00 ] ::1 ::1 GET /admin/vod/vodadd.html
+[ error ] [0]模板文件不存在:D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\public/../application/admin\view\vod\vodadd.html[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\thinkphp\library\think\view\driver\Think.php:80]
+---------------------------------------------------------------
+[ 2017-10-18T09:50:16+08:00 ] ::1 ::1 GET /admin/vod/vodadd.html
+[ error ] [8]未定义变量: category[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\f6ff937c0a121b3445f66a7df532b6e2.php:76]
+---------------------------------------------------------------
+[ 2017-10-18T10:24:36+08:00 ] ::1 ::1 POST /admin/vod/vodadd.html
+[ error ] [8]Use of undefined constant play_url - assumed 'play_url'[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\admin\controller\Vod.php:55]
+---------------------------------------------------------------
+[ 2017-10-18T10:24:42+08:00 ] ::1 ::1 POST /admin/vod/vodadd.html
+[ error ] [8]Use of undefined constant play_url - assumed 'play_url'[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\admin\controller\Vod.php:55]
+---------------------------------------------------------------
+[ 2017-10-18T13:47:34+08:00 ] ::1 ::1 POST /admin/vod/vodedit.html
+[ error ] [8]未定义数组索引: see_count[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\admin\controller\Vod.php:93]
+---------------------------------------------------------------
+[ 2017-10-18T13:47:41+08:00 ] ::1 ::1 POST /admin/vod/vodedit.html
+[ error ] [8]未定义数组索引: see_count[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\admin\controller\Vod.php:93]
+---------------------------------------------------------------
+[ 2017-10-18T15:44:50+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ error ] [8]未定义变量: map[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\api\controller\Live.php:339]
+---------------------------------------------------------------
+[ 2017-10-18T15:46:07+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ error ] [64]Cannot use app\admin\controller as controller because the name is already in use[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\api\controller\Live.php:6]
+---------------------------------------------------------------
+[ 2017-10-18T15:49:31+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ error ] [0]类不存在:app\api\controller\Admin[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\thinkphp\library\think\Loader.php:424]
+---------------------------------------------------------------
+[ 2017-10-18T15:49:59+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ error ] [0]类不存在:app\api\controller\Admin[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\thinkphp\library\think\Loader.php:424]
+---------------------------------------------------------------
+[ 2017-10-18T15:50:00+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ error ] [0]类不存在:app\api\controller\Admin[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\thinkphp\library\think\Loader.php:424]
+---------------------------------------------------------------
+[ 2017-10-18T15:52:39+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ error ] [1]Class 'admin\controller\RingLetter' not found[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\api\controller\Live.php:336]
+---------------------------------------------------------------
+[ 2017-10-18T15:55:06+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ error ] [0]类不存在:app\api\getChatrooms\Admin[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\thinkphp\library\think\Loader.php:424]
+---------------------------------------------------------------
+[ 2017-10-18T15:55:52+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ error ] [1]Call to undefined function app\api\controller\R()[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\api\controller\Live.php:336]

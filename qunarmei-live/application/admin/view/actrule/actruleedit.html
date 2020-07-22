@@ -1,0 +1,138 @@
+{include file="public/header" /}
+<!--<link rel="stylesheet" type="text/css" media="all" href="/sldate/daterangepicker-bs3.css" />-->
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>编辑活动商品规则</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="edit" id="edit" method="post" action="{:url('actruleedit')}">
+                        <input id="id" type="hidden" class="form-control" name="id" placeholder="" value="{$id}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动促销名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="rules_name" type="text" class="form-control" name="rules_name" placeholder="" value="{$list.rules_name}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">规则类型：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control m-b chosen-select" name="type" id="type">
+                                    <option value="">==请选择==</option>
+                                    <option value="1" {if condition="$list['type'] eq 1 "}selected{/if}>满多少支付多少</option>
+                                    <option value="2" {if condition="$list['type'] eq 2 "}selected{/if}>任满3件,价格固定</option>
+                                    <option value="3" {if condition="$list['type'] eq 3 "}selected{/if}>满3减1</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商品id：(父商品id,多个,分割)</label>
+                            <div class="input-group col-sm-4">
+                                <input id="goods_id" type="text" class="form-control" name="goods_id" placeholder="" value="{$list.goods_id}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商品数量：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="goods_num" type="text" class="form-control" name="goods_num" placeholder="" value="{$list.goods_num}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">支付总金额：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="price" type="text" class="form-control" name="price" placeholder="" value="{$list.price}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">优惠立减金额：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="discount_price" type="text" class="form-control" name="discount_price" placeholder="" value="{$list.discount_price}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">实际售出价格：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="sale_price" type="text" class="form-control" name="sale_price" placeholder="" value="{$list.sale_price}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">补差价数量：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="spread_num" type="text" class="form-control" name="spread_num" placeholder="" value="{$list.spread_num}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">状&nbsp;态：</label>
+                            <div class="col-sm-6">
+                                <div class="radio i-checks">
+                                    <input type="radio" name='status' value="1" {if $list['status'] eq 1}checked="checked{/if}"/>开启&nbsp;&nbsp;
+                                    <input type="radio" name='status' value="0" {if $list['status'] eq 0 }checked="checked{/if}"/>关闭
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">方案优惠类型</label>
+                            <div class="col-sm-6">
+                                <div class="radio i-checks">
+                                    <input type="radio" name='activity_type' value="1" {if $list['activity_type'] eq 1}checked="checked{/if}"/>买送&nbsp;&nbsp;
+                                    <input type="radio" name='activity_type' value="0" {if $list['activity_type'] eq 0}checked="checked{/if}"/>买赠
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">买送或买赠数量：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="reduction_num" type="text" class="form-control" name="reduction_num" placeholder="" value="{$list.reduction_num}">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit" name="submit" value="1"><i class="fa fa-save"></i> 保存信息</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+
+    $(function(){
+        $('#edit').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        function checkForm(){
+
+        }
+
+        function complete(data){
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    window.location.href="{:url('index')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+
+    });
+
+
+</script>
+</body>
+</html>

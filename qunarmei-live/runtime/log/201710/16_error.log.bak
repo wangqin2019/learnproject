@@ -1,0 +1,51 @@
+---------------------------------------------------------------
+[ 2017-10-16T19:09:59+08:00 ] ::1 ::1 GET /admin/live/liveadd.html
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list'[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\thinkphp\library\think\db\Connection.php:388]
+---------------------------------------------------------------
+[ 2017-10-16T19:15:35+08:00 ] ::1 ::1 GET /admin/live/liveadd.html
+[ error ] [8]未定义变量: data[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\admin\controller\Live.php:316]
+---------------------------------------------------------------
+[ 2017-10-16T19:16:17+08:00 ] ::1 ::1 GET /admin/live/liveadd.html
+[ error ] [8]未定义变量: v[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\751a0a0f40feff7f6896129487aa30cd.php:101]
+---------------------------------------------------------------
+[ 2017-10-16T19:16:54+08:00 ] ::1 ::1 GET /admin/live/liveadd.html
+[ error ] [8]未定义变量: v[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\751a0a0f40feff7f6896129487aa30cd.php:101]
+---------------------------------------------------------------
+[ 2017-10-16T19:17:09+08:00 ] ::1 ::1 GET /admin/live/liveadd.html
+[ error ] [8]未定义变量: v[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\751a0a0f40feff7f6896129487aa30cd.php:101]
+---------------------------------------------------------------
+[ 2017-10-16T19:17:35+08:00 ] ::1 ::1 GET /admin/live/liveadd.html
+[ error ] [4]语法错误: unexpected '$v' (T_VARIABLE)[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\751a0a0f40feff7f6896129487aa30cd.php:100]
+---------------------------------------------------------------
+[ 2017-10-16T19:26:38+08:00 ] ::1 ::1 GET /admin/live/liveEdit/id/8.html
+[ error ] [4]语法错误: unexpected 'name' (T_STRING), expecting ']'[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\fa51efda403d5347758e7622a9711ac8.php:97]
+---------------------------------------------------------------
+[ 2017-10-16T19:28:07+08:00 ] ::1 ::1 GET /admin/live/liveEdit/id/8.html
+[ error ] [8]未定义变量: v[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\fa51efda403d5347758e7622a9711ac8.php:97]
+---------------------------------------------------------------
+[ 2017-10-16T19:28:21+08:00 ] ::1 ::1 GET /admin/live/liveEdit/id/8.html
+[ error ] [8]未定义数组下标: 0[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\fa51efda403d5347758e7622a9711ac8.php:97]
+---------------------------------------------------------------
+[ 2017-10-16T19:37:11+08:00 ] ::1 ::1 GET /admin/live/liveEdit/id/8.html
+[ error ] [8]未定义数组索引: id[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\fa51efda403d5347758e7622a9711ac8.php:98]
+---------------------------------------------------------------
+[ 2017-10-16T19:37:55+08:00 ] ::1 ::1 GET /admin/live/liveEdit/id/8.html
+[ error ] [8]未定义变量: v[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\fa51efda403d5347758e7622a9711ac8.php:101]
+---------------------------------------------------------------
+[ 2017-10-16T19:38:54+08:00 ] ::1 ::1 POST /admin/live/liveedit.html
+[ error ] [2]json_decode() expects parameter 1 to be string, array given[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\admin\controller\Live.php:156]
+---------------------------------------------------------------
+[ 2017-10-16T19:39:00+08:00 ] ::1 ::1 POST /admin/live/liveedit.html
+[ error ] [2]json_decode() expects parameter 1 to be string, array given[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\admin\controller\Live.php:156]
+---------------------------------------------------------------
+[ 2017-10-16T19:39:34+08:00 ] ::1 ::1 POST /admin/live/liveedit.html
+[ error ] [2]json_decode() expects parameter 1 to be string, array given[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\admin\controller\Live.php:156]
+---------------------------------------------------------------
+[ 2017-10-16T19:47:22+08:00 ] ::1 ::1 GET /admin/live/liveEdit/id/8.html
+[ error ] [2]Illegal string offset 'id'[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\fa51efda403d5347758e7622a9711ac8.php:100]
+---------------------------------------------------------------
+[ 2017-10-16T19:47:54+08:00 ] ::1 ::1 GET /admin/live/liveEdit/id/8.html
+[ error ] [4]语法错误: unexpected ']', expecting ',' or ';'[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\fa51efda403d5347758e7622a9711ac8.php:100]
+---------------------------------------------------------------
+[ 2017-10-16T19:50:14+08:00 ] ::1 ::1 GET /admin/live/liveEdit/id/8.html
+[ error ] [8]未定义变量: v2[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\runtime\temp\fa51efda403d5347758e7622a9711ac8.php:100]

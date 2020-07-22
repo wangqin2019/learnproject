@@ -1,0 +1,49 @@
+<?php
+/*
+  上传远程URL图片到七牛
+*/
+
+require_once __DIR__ . './autoload.php';
+date_default_timezone_set('Asia/Shanghai');
+// 引入鉴权类
+use Qiniu\Auth;
+
+// 引入上传类
+use Qiniu\Storage\BucketManager;
+
+function upload_img_url($img_url)
+{
+  // 需要填写你的 Access Key 和 Secret Key
+  $accessKey = 'kw7pkYECHtgXDQBgZzwhu9ijMVYkYdl6iamkylMO';
+  $secretKey = 'Hu2DVofTTCHzge1zJTyBmPVyBG0QqV0_wTPbwdkj';
+  $bucket = 'qunamei-app';
+
+  // 构建鉴权对象
+  $auth = new Auth($accessKey, $secretKey);
+
+  // 生成上传 Token
+  $token = $auth->uploadToken($bucket);
+
+  // 上传到七牛后保存的文件名
+  $key = date('YmdHis').'_'.mt_rand(1111,9999).'.jpg';
+  $url = 'http://appc.qunarmei.com/'.$key;
+  // 初始化 BucketManager 对象并进行文件的上传。
+  $bucketMgr = new BucketManager($auth);
+
+  // 调用 BucketManager 的 fetch 方法进行文件的上传。
+  list($ret, $err) = $bucketMgr->fetch($img_url, $bucket, $key);
+  echo "\n====> putFile result: \n";
+  if ($err !== null) {
+      // var_dump($err);
+  } else {
+      // var_dump($ret);
+    return $url;
+  }
+}
+// $img_url = 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png';
+// $rest = upload_img_url($img_url);
+// echo "rest:".$rest;
+//上传远程图片url到七牛
+$img_url = $_POST['img_url'];
+$rest = upload_img_url($img_url);
+return $rest;

@@ -1,0 +1,177 @@
+{include file="public/header" /}
+<style>
+.file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+.file-item .info{overflow: hidden;}
+.uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>抽奖 前台抽奖地址：http://live.qunarmei.com/index/lucky_draw</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div>
+                                <div class="input-group" >
+                                    <a href="{:url('add_draw')}"><button class="btn btn-outline btn-primary" type="button"><i class="fa fa-star"></i> 新增奖项</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="{:url('export')}" class="btn btn-outline btn-primary"><i class="fa fa-download"></i> 中奖名单</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="{:url('import')}" class="btn btn-outline btn-primary"><i class="fa fa-send"></i> 发送短信</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:;" class="btn btn-outline btn-danger" onclick="distroy_draw()"><i class="fa fa-refresh"></i> 清空中奖</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="wrapper wrapper-content animated fadeInRight">
+                        <div class="row">
+                            <form class="form-horizontal"  action="">
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">选择奖项：</label>
+                                    <div class="input-group col-sm-4">
+                                        <div class="radio i-checks">
+                                           {volist name="$list" id="vo"}
+                                            <div>
+                                            <input type="radio" name='draw_type' value="{$vo.id}" />{$vo.draw_rank}：{$vo.draw_name} 共{$vo.draw_num}名 已抽{$vo.count}名&nbsp;&nbsp; <a href="{:url('edit_draw',['id'=>$vo.id])}">[编辑]</a>&nbsp; <a href="javascript:;" onclick="del_draw('{$vo.id}')">[删除]</a>&nbsp; <a href="javascript:;" onclick="ready_draw(this,'{$vo.draw_rank}')">[准备抽]</a><br/><br/>
+                                            </div>
+                                            {/volist}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">中奖人数：</label>
+                                    <div class="input-group col-sm-3">
+                                        <input id="number" type="number" maxlength="11" class="form-control" name="number" placeholder="输入中奖人数">
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-2 col-sm-offset-1">
+                                        <button class="btn btn-primary" type="button" id="draw_begin" onclick="begin_now()"><i class="fa fa-play"></i> 开始</button>&nbsp;&nbsp;&nbsp;
+                                        <button class="btn btn-danger" type="button" id="draw_end" onclick="vote_end()"><i class="fa fa-stop"></i> 结束</button>&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+
+    function ready_draw(obj,rank) {
+        var thisObj=$(obj);//js对象转jquery对象
+        $.ajax({
+            type:"post",
+            async:false,
+            url:"{:url('draw/vote_ready')}",
+            data: {rank:rank},
+            dataType:"json",
+            success:function(result){
+                if (result.code==1) {
+                    layer.msg(result.msg, {icon: 1,time:2000,shade: 0.1}, function(index){
+                        layer.close(index);
+                    });
+
+                }
+            }
+        });
+    }
+
+    function begin_now(){
+        var num=$('#number').val();
+        var draw_type=$("input[name='draw_type']:checked").val();
+        if(!num){
+            layer.msg('请输入中奖人数',{time:1500}, function(index){
+                layer.close(index);
+            });
+            return false;
+        }
+        $.ajax({
+            type:"post",
+            async:false,
+            url:"{:url('draw/vote_begin')}",
+            data: {num:num,draw_type:draw_type},
+            dataType:"json",
+            success:function(result){
+                if (result.code==1) {
+                    layer.msg(result.msg, {icon: 1,time:2000,shade: 0.1}, function(index){
+                        layer.close(index);
+                    });
+
+                }
+            }
+        });
+        $('#draw_begin').hide();
+    }
+    function vote_end(){
+        $.ajax({
+            type:"post",
+            async:false,
+            url:"{:url('draw/vote_end')}",
+            data: {},
+            dataType:"json",
+            success:function(result){
+                if (result.code==1) {
+                    layer.msg(result.msg, {icon: 1,time:2000,shade: 0.1}, function(index){
+                        //layer.close(index);
+                        window.location.href="{:url('index')}";
+                    });
+                }
+            }
+        });
+        $('#number').val('');
+        $('#draw_begin').show();
+    }
+
+    /**
+     * [del_draw 删除奖项]
+     */
+    function del_draw(id){
+        layer.confirm('确认删除此奖项?', {icon: 3, title:'提示'}, function(index){
+            $.getJSON('./del_draw', {'id' : id}, function(res){
+                if(res.code == 1){
+                    layer.msg(res.msg,{icon:1,time:1500,shade: 0.1});
+                    window.location.href="{:url('index')}";
+                }else{
+                    layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+                }
+            });
+
+            layer.close(index);
+        })
+    }
+
+    /**
+     * [distroy_draw 清空奖项]
+     */
+    function distroy_draw(){
+        layer.confirm('确认要清空所有中奖记录吗?', {icon: 3, title:'提示'}, function(index){
+            $.getJSON('./distroy_draw', {}, function(res){
+                if(res.code == 1){
+                    layer.msg(res.msg,{icon:1,time:1500,shade: 0.1},function(index){
+                        layer.close(index);
+                        window.location.href="{:url('index')}";
+                    });
+                }else{
+                    layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+                }
+            });
+            layer.close(index);
+        })
+    }
+
+</script>
+</body>
+</html>

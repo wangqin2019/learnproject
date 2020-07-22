@@ -1,0 +1,5 @@
+---------------------------------------------------------------
+[ 2020-01-14T16:56:09+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?type=2&ver=1&user_id=16829
+[ sql ] [ DB ] CONNECT:[ UseTime:0.031504s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_user_log` [ RunTime:0.015502s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_user_log` WHERE  `user_id` = 16829  AND `type` = 2  AND `val` = '1' LIMIT 1 [ RunTime:0.015501s ]

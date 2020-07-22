@@ -1,0 +1,40 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2018/12/4
+ * Time: 10:30
+ */
+
+namespace app\api\model;
+
+use think\Db;
+use think\Model;
+class AppVerFunc extends Model
+{
+
+    /*
+     * 功能: 关于去哪美
+     * 请求: user_id=>用户id,store_id=>门店id
+     * */
+    public static function aboutQunarmei()
+    {
+        $map['id_apptype'] = 1;
+        $res = Db::table('app_version_update')->field('*')->where($map)->limit(1)->find();
+        return $res;
+    }
+    /*
+     * 功能: 关于去哪美
+     * 请求:$arr=>[ user_id=>用户id,store_id=>门店id,status=>状态(0=>可使用卡券,1=>已用卡券/过期券),type=>奖券类型(0=>店老板抽奖券)]]
+     * */
+    public static function cardSel($arr)
+    {
+        $map['m.id'] = $arr['user_id'];
+        $map['u.status'] = ['in',$arr['status']];
+        // $map['u.type'] = $arr['type'];
+        // $map['u.ticket_code'] = ['neq','000000'];
+        $map1 = " (u.ticket_code != '000000' or u.ticket_code is null) and (u.type < 18 or u.type=23 or u.type=24)";
+        $res = Db::table('pt_ticket_user u')->join(['ims_bj_shopn_member'=>'m'],['u.mobile=m.mobile'],'LEFT')->field('u.*')->where($map)->where($map1)->order('insert_time desc')->select();
+        return $res;
+    }
+}

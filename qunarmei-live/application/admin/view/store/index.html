@@ -1,0 +1,302 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+
+        <div class="section">
+            <div class="storeapple">
+                <span class="span1">门店审核</span>
+            </div>
+            <div class="storeaudi">
+                <ul>
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('index')}">
+                    <li class="storeaudi_li">
+                        <input type="text" name="key" value="{$val}" id="" placeholder="搜素关键词（可按门店名称、编号、老板姓名等关键词进行搜索）" />
+                        <button>搜索</button>
+                    </li>
+                    </form>
+                    <li class="storeaudi_li1">
+                        <button onclick="shenhe('no')">不通过</button>
+                        <button onclick="shenhe('yes')">通过</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="storelist">
+                <div class="storelist_top">
+                    <ul class="storelist_bg">
+                        <li>
+                            <img src="/static/admin/images/normal.png" class="allyesno"/>
+                            <span>全选</span>
+                        </li>
+                        <li>门店名称</li>
+                        <li>老板姓名</li>
+                        <li>老板手机</li>
+                        <li>状态</li>
+                        <li>分配门店编号</li>
+                    </ul>
+                </div>
+                <div class="storelist_center">
+                    {foreach $lists as $k=>$v}
+                    <ul>
+                        <li><img src="/static/admin/images/normal.png" class="yesno" id="{$v['id']}"/></li>
+
+                        <li><a href="{:url('store_info')}?type=bsc&id={$v['title']}">{$v['title']}</a></li>
+                        <li>{$v['name_lb']}</li>
+                        <li>{$v['mobile_lb']}</li>
+                        {if $v['status']==2}
+                        <li class="shenheshibai">审核失败</li>
+                        {elseif $v['status']==3}
+                        <li class="chushenzhong">初审中</li>
+                        {elseif $v['status']==4}
+                        <li class="shenhechengg">审核成功</li>
+                        {else}
+                        <li class="daishenhe">待审核</li>
+                        {/if}
+                        <li>
+                            <input type="hidden"  value="{$v['id']}" id="id{$k}">
+                            <input type="text"  value="{$v['sign']}" id="sign{$k}" name="sign{$v['id']}" onblur="check_store({$k})"/>
+                            <span name="is_wong" id="is_wong{$k}" style="display: none">
+                                <img src="/static/admin/images/wrong.png" id="img_w{$k}"/>
+                                <span id="img_c{$k}">该门店编号已存在</span>
+                            </span>
+                        </li>
+
+                    </ul>
+                    {/foreach}
+                    <!--<ul class="storelist_bg">-->
+                        <!--<li><img src="/static/admin/images/normal.png" class="yesno"/></li>-->
+                        <!--<li>上海诚美化妆品有限公司</li>-->
+                        <!--<li>sadasdsd</li>-->
+                        <!--<li>2314132132</li>-->
+                        <!--<li class="shenhechengg">审核成功</li>-->
+                        <!--<li>-->
+                            <!--<input type="text" name="is_ok" id="is_ok" value="" style="display: none"/>-->
+                            <!--<img src="/static/admin/images/ok.png"/>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<ul>-->
+                        <!--<li><img src="/static/admin/images/normal.png" class="yesno"/></li>-->
+                        <!--<li>上海诚美化妆品有限公司</li>-->
+                        <!--<li>sadasdsd</li>-->
+                        <!--<li>2314132132</li>-->
+                        <!--<li class="shenheshibai">审核失败</li>-->
+                        <!--<li><input type="text" name="" id="" value="" /></li>-->
+                    <!--</ul>-->
+                    <!--<ul class="storelist_bg">-->
+                        <!--<li><img src="/static/admin/images/normal.png" class="yesno"/></li>-->
+                        <!--<li>上海诚美化妆品有限公司</li>-->
+                        <!--<li>sadasdsd</li>-->
+                        <!--<li>2314132132</li>-->
+                        <!--<li class="chushenzhong">初审中</li>-->
+                        <!--<li><input type="text" name="" id="" value="" /></li>-->
+                    <!--</ul>-->
+                    <!--<ul>-->
+                        <!--<li><img src="/static/admin/images/normal.png" class="yesno"/></li>-->
+                        <!--<li>上海诚美化妆品有限公司</li>-->
+                        <!--<li>sadasdsd</li>-->
+                        <!--<li>2314132132</li>-->
+                        <!--<li>待审核</li>-->
+                        <!--<li><input type="text" name="" id="" value="" /></li>-->
+                    <!--</ul>-->
+                    <!--<ul class="storelist_bg">-->
+                        <!--<li><img src="/static/admin/images/normal.png" class="yesno"/></li>-->
+                        <!--<li>上海诚美化妆品有限公司</li>-->
+                        <!--<li>sadasdsd</li>-->
+                        <!--<li>2314132132</li>-->
+                        <!--<li>待审核</li>-->
+                        <!--<li><input type="text" name="" id="" value="" /></li>-->
+                    <!--</ul>-->
+                    <!--<ul>-->
+                        <!--<li><img src="/static/admin/images/normal.png" class="yesno"/></li>-->
+                        <!--<li>上海诚美化妆品有限公司</li>-->
+                        <!--<li>sadasdsd</li>-->
+                        <!--<li>2314132132</li>-->
+                        <!--<li>待审核</li>-->
+                        <!--<li><input type="text" name="" id="" value="" /></li>-->
+                    <!--</ul>-->
+                    <!--<ul class="storelist_bg">-->
+                        <!--<li><img src="/static/admin/images/normal.png" class="yesno"/></li>-->
+                        <!--<li>上海诚美化妆品有限公司</li>-->
+                        <!--<li>sadasdsd</li>-->
+                        <!--<li>2314132132</li>-->
+                        <!--<li>待审核</li>-->
+                        <!--<li><input type="text" name="" id="" value="" /></li>-->
+                    <!--</ul>-->
+                    <!--<ul>-->
+                        <!--<li><img src="/static/admin/images/normal.png" class="yesno"/></li>-->
+                        <!--<li>上海诚美化妆品有限公司</li>-->
+                        <!--<li>sadasdsd</li>-->
+                        <!--<li>2314132132</li>-->
+                        <!--<li>待审核</li>-->
+                        <!--<li><input type="text" name="" id="" value="" /></li>-->
+                    <!--</ul>-->
+                    <!--<ul class="storelist_bg">-->
+                        <!--<li><img src="/static/admin/images/normal.png" class="yesno"/></li>-->
+                        <!--<li>上海诚美化妆品有限公司</li>-->
+                        <!--<li>sadasdsd</li>-->
+                        <!--<li>2314132132</li>-->
+                        <!--<li>待审核</li>-->
+                        <!--<li><input type="text" name="" id="" value="" /></li>-->
+                    <!--</ul>-->
+                </div>
+            </div>
+
+            <div id="AjaxPage" style=" text-align: right;"></div>
+            <div id="allpage" style=" text-align: right;"></div>
+            <div style="float: right;">{$p->render}</div>
+        </div>
+    </div>
+    <div style="float: right;">共{$p->pageNum}页,当前第{$p->page}页</div>
+</div>
+</div>
+
+
+
+{include file="public/footer" /}
+<link rel="stylesheet" href="/static/admin/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/static/admin/css/storeauditing.css?v=1" />
+<script type="text/javascript">
+
+
+//编辑文章
+function edit_article(id){
+    location.href = './edit_article/id/'+id+'.html';
+}
+
+//删除文章
+function del_article(id){
+    lunhui.confirm(id,'{:url("del_article")}');
+}
+
+//文章状态
+function article_state(id){
+    lunhui.status(id,'{:url("article_state")}');
+}
+
+    //	选择
+
+    $(".yesno").click(function(e) {
+        if($(this).hasClass("bsc_chick")){
+            $(this).attr("src","/static/admin/images/normal.png");
+            $(this).removeClass("bsc_chick");
+        }
+        else{
+            $(this).attr("src","/static/admin/images/Active.png");
+            $(this).addClass("bsc_chick");
+        }
+    })
+    $(".allyesno").click(function(e) {
+        if($(this).hasClass("bsc_chick")){
+            $(this).attr("src","/static/admin/images/normal.png");
+            $(this).parent().parent().parent().siblings(".storelist_center").children().children().children(".yesno").attr("src","/static/admin/images/normal.png");
+            $(this).removeClass("bsc_chick");
+        }
+        else{
+            $(this).attr("src","/static/admin/images/Active.png");
+            $(this).parent().parent().parent().siblings(".storelist_center").children().children().children(".yesno").attr("src","/static/admin/images/Active.png");
+            $(this).addClass("bsc_chick");
+        }
+    })
+
+    //检查门店是否存在
+    function check_store(k)
+    {
+        sign = $("#sign"+k).val()
+        id = $("#id"+k).val()
+        if(!sign)
+        {
+            return false;
+        }
+        url = "{:url('check_store')}"
+        $.get(url,{sign:sign,id:id}, function(result){
+
+            if(result == 1)
+            {
+                //已存在
+                $("#img_w"+k).attr("src","/static/admin/images/wrong.png")
+                $("#img_c"+k).css("display","block")
+                $("#is_wong"+k).css("display","block")
+
+            }
+            if(result == 2)
+            {
+                //不存在
+                $("#img_w"+k).attr("src","/static/admin/images/ok.png")
+                $("#is_wong"+k).css("display","block")
+                $("#img_c"+k).css("display","none")
+            }
+            console.log('result:'+result);
+        });
+    }
+    //审核是否通过
+    function shenhe(pan)
+    {
+        ids = '';sign='';
+        flag = 1
+        //循环获取单个
+        $(".yesno").each(function(){
+            id = $(this).attr('id');
+            vals = $("#"+id).attr('src')
+
+            if(vals == '/static/admin/images/Active.png')
+            {
+                sign = $("input[name='sign"+id+"']").val()
+                ids = ids+id+'|'+sign+'@'
+                if(sign)
+                {
+                    flag = 2;
+                }else
+                {
+                    flag = 3;
+                }
+
+                //检查门店编号是否已存在
+
+
+            }
+        });
+        //请求审核接口
+//        console.log('ids:'+ids+'-sign:'+sign+'-flag:'+flag)
+        url = "{:url('shenhe_store')}"
+        if(flag == 1)
+        {
+//           alert('请先选择门店')
+            layer.msg('请先选择门店',{icon:7,time:3000,shade: 0.1}, function(index){
+//                layer.close(index);
+            });
+           return false;
+        }
+        if(flag == 3)
+        {
+//            alert('请填写门店编号')
+            layer.msg('请填写门店编号',{icon:7,time:3000,shade: 0.1}, function(index){
+//                layer.close(index);
+            });
+            return false;
+        }
+
+        $.get(url,{ids:ids,type:pan}, function(result) {
+            //审核成功,刷新当前页面
+            console.log('result:' + result)
+            if(result == -1)
+            {
+                layer.msg('门店编号已存在',{icon:7,time:3000,shade: 0.1}, function(index){
+
+                });
+                return false;
+            }
+
+            layer.msg('审核成功',{icon:1,time:3000,shade: 0.1}, function(index){
+                window.location.reload()
+            });
+//            window.location.reload()
+        })
+
+
+    }
+
+
+</script>
+</body>
+</html>

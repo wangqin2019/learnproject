@@ -1,0 +1,51 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2020/1/9
+ * Time: 11:41
+ */
+
+namespace app\api\controller\v4;
+
+
+use app\api\controller\v3\Common;
+use app\api\service\LiveMobileService;
+
+/**
+ * 手机端直播相关接口
+ */
+class LiveMobile extends Common
+{
+    // 服务类
+    protected $liveSer;
+    /**
+     * 初始化方法
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->liveSer = new LiveMobileService();
+    }
+    
+    /**
+     * 断流续播
+     * @param string $mobile 主播号码
+     */
+    public function continue_live()
+    {
+        $mobile = input('mobile');
+        $res = $this->liveSer->continueLive($mobile);
+        return $this->returnMsg($res['code'],$res['data'],$res['msg']);
+    }
+    /**
+     * 是否有可续接的流直播
+     * @param string $mobile 主播号码
+     */
+    public function whether_continue()
+    {
+        $mobile = input('mobile');
+        $res = $this->liveSer->whetherContinue($mobile);
+        return $this->returnMsg($res['code'],$res['data'],$res['msg']);
+    }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <META HTTP-EQUIV="expires" CONTENT="0">
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<title>missshop订单取货二维码</title>
+		<style type="text/css">
+			body {
+				width: 100%;
+				overflow-x: hidden;
+				margin: 0;
+				padding: 0;
+				/*background: url(image/bg.jpg) center no-repeat;*/
+				background-size: cover;
+			}
+			
+			
+            img{width: 100%;margin-bottom: 0.5em;}
+		</style>
+	</head>
+
+	<body>
+		<div style="text-align: center;color: red;">
+			<p>取货码:需要到店美容师扫码取货</p>
+		</div>
+		<center>
+			<img src="image/gift_list.png" id='qrcode' style="width: 200px;height: 200px;" />
+		</center>
+		
+	</body>
+	<script type="text/javascript">
+		var qrcode_url = getQueryString('qrcode');
+		$("#qrcode").attr ("src", qrcode_url);
+	</script>
+
+</html>

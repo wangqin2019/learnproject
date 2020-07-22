@@ -1,0 +1,192 @@
+<html>
+<head>
+   <meta charset="UTF-8" />
+   <title>用户注册统计</title>
+   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+   <script src="/static/admin/js/highcharts.js"></script>
+   <link rel="stylesheet" type="text/css" media="all" href="/sldate/daterangepicker-bs3.css" />
+   <script type="text/javascript" src="/static/admin/js/plugins/layer/laydate/laydate.js"></script>
+</head>
+<body>
+<form action="{:url('getMember')}?type=zx">
+   <div align="center">
+   开始日期:<input id="begin_time" type="text" name="dt1" class="form-control laydate-icon" value="{$dt1}">&nbsp;
+   结束日期:<input id="end_time" type="text" name="dt2" class="form-control laydate-icon" value="{$dt2}">&nbsp;
+      <input type="submit" name="submit" value="搜索">
+      <!--start Modify by wangqin 2017-11-16-->
+      &nbsp;&nbsp;&nbsp;<button value="" type="button" onclick="creExcel()">下载注册用户数据</button>
+      <!--end Modify by wangqin 2017-11-16-->
+   </div>
+</form>
+<div id="container" style="width: 1000px; height: 350px; margin: 0 auto"></div>
+<div class="hr-line-dashed"></div><br/>
+
+<div id="container1" style="width: 1000px; height: 350px; margin: 0 auto"></div>
+<script language="JavaScript">
+//每1分钟刷新一次当前页面
+   window.onload = function(){
+      setTimeout("location.reload()",60000);
+   }
+
+
+
+   $(document).ready(function() {
+
+      var title = {
+         text: '用户注册按日统计'
+      };
+      var subtitle = {
+         text: ''
+      };
+      var xAxis = {
+         categories: [{$xdt3}] ,
+         title: {text: '日期'}
+      };
+      var yAxis = {
+         title: {
+            text: '注册用户数'
+         },
+         plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+         }]
+      };
+
+      //Y轴点 字符后缀及单位
+      var tooltip = {
+         valueSuffix: ''
+      }
+
+      var legend = {
+         layout: 'vertical',
+         align: 'right',
+         verticalAlign: 'middle',
+         borderWidth: 0
+      };
+
+      var plotOptions = {
+         line: {
+            dataLabels: {
+               enabled: true
+            }
+         }
+      };
+
+      var series =  [
+
+         {
+            name: '每日注册用户',
+            data: [{$datav[0]}]
+         }
+      ];
+
+      var json = {};
+
+      json.title = title;
+      json.subtitle = subtitle;
+      json.xAxis = xAxis;
+      json.yAxis = yAxis;
+      json.tooltip = tooltip;
+      json.legend = legend;
+      json.series = series;
+      json.plotOptions = plotOptions;
+
+      $('#container').highcharts(json);
+
+      //layui 时间日期控件
+      var begin_time = {
+         elem: '#begin_time', //选择ID为START的input
+         format: 'YYYY-MM-DD', //自动生成的时间格式
+//         min: laydate.now(), //设定最小日期为当前日期
+         max: '2099-06-16', //最大日期
+         istime: true, //必须填入时间
+         istoday: false,  //是否是当天
+         start: laydate.now(0,"YYYY-MM-DD"),  //设置开始时间为当前时间
+         choose: function(datas){
+//            end.min = datas; //开始日选好后，重置结束日的最小日期
+//            end.start = datas //将结束日的初始值设定为开始日
+         }
+      };
+      laydate(begin_time);
+      //layui 时间日期控件
+      var end_time = {
+         elem: '#end_time', //选择ID为START的input
+         format: 'YYYY-MM-DD', //自动生成的时间格式
+//         min: laydate.now(), //设定最小日期为当前日期
+         max: '2099-06-16', //最大日期
+         istime: true, //必须填入时间
+         istoday: false,  //是否是当天
+         start: laydate.now(0,"YYYY-MM-DD"),  //设置开始时间为当前时间
+         choose: function(datas){
+//            end.min = datas; //开始日选好后，重置结束日的最小日期
+//            end.start = datas //将结束日的初始值设定为开始日
+         }
+      };
+      laydate(end_time);
+   });
+
+   //增加图表
+   var chart1 = {type:'column' , backgroundColor: '#FCFFC5'};
+   var title1 = {
+      text: '用户注册存量按日统计'
+   };
+   var xAxis1 = {
+      categories: [{$xdt3}] ,
+      title: {text: '日期'}
+   };
+   var yAxis1 = {
+      title: {
+         text: '注册总用户数'
+      },
+      plotLines: [{
+         value: 0,
+         width: 1,
+         color: '#808080'
+      }]
+   };
+   var legend1 = {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle',
+      borderWidth: 0
+   };
+   var plotOptions1 = {
+      column:{
+         dataLabels:{
+            enabled:true // dataLabels设为true
+         }
+      }
+   };
+   var series1 =  [
+      {
+         name: '注册总用户',
+         data: [{$datav3[0]}]
+      }
+   ];
+   var json1 = {};
+   json1.chart = chart1;
+   json1.title = title1;
+   json1.xAxis = xAxis1;
+   json1.yAxis = yAxis1;
+   json1.legend = legend1;
+   json1.series = series1;
+   json1.plotOptions = plotOptions1;
+   $('#container1').highcharts(json1);
+
+   function creExcel()
+   {
+//      window.location="/admin/live_line/regExcel.html?dt1={$dt1}&dt2={$dt2}";
+      //导出csv数据
+      var dt1=$('#begin_time').val();
+      var dt2=$('#end_time').val();
+      $.post('{:url("live_line/regExcel")}',{report:1,dt1:dt1,dt2:dt2},function(result){
+         console.log(result);
+         window.location.href = result;
+      });
+
+   }
+
+</script>
+</body>
+</html>

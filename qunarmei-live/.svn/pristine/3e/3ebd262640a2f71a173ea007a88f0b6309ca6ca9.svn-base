@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <META HTTP-EQUIV="expires" CONTENT="0">
+		<title></title>
+		<style type="text/css">
+			body{background: url(https://pin.qunarmei.com/static/xcx/liveBG.png) no-repeat;background-attachment:fixed;background-size:cover ;overflow-x: hidden;}
+			.title{width: 100%;text-align: center;}
+			.body{width: 100%;}
+			.tel{width: 90%;margin: 0 5%;text-align: justify;font-size: 0.8em;}
+			.tel p{display: inline-table;min-width: 25%;text-align: center;}
+		</style>
+	</head>
+	<body>
+		<!--<p class="title">0000000000</p>
+		<img src="" class="body"/>
+		<div class="tel">
+			<p>12121212123</p>
+			<p>12121212123</p>
+			<p>12121212123</p>
+			<p>12121212123</p>
+			<p>12121212123</p>
+			<p>12121212123</p>
+			<p>12121212123</p>
+			<p>12121212123</p>
+			<p>12121212123</p>
+			<p>12121212123</p>
+			<p>12121212123</p>
+			<p>12121212123</p>
+		</div>-->
+	</body>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="/static/index/js/jquery.js"></script> -->
+	<script type="text/javascript">
+		var name = window.location.href.split('?type=')[1];
+		var obj={name:name}
+		$.ajax({
+			type: 'post',
+		    url: 'https://pin.qunarmei.com/api/Boos_lottery/getDrawTickets',
+		    dataType: 'json',
+		    data: obj,
+		    success: function (res) {
+		    	console.log(res);
+	    		if(res.data !=''){
+	    			for(var i=0;i<res.data.length;i++){
+	    				$('body').append('<div><img src="'+res.data[i].info.pic1+'" class="body"/><div class="tel" id="'+i+'"></div></div>');
+	    				for(var j=0;j<res.data[i].tickets.length;j++){
+	    					$('#'+i).append('<p>'+res.data[i].tickets[j]+'</p>')
+	    				}
+	    			}
+	    		}
+		    },
+		    crossDomain: true,
+		});
+	</script>
+</html>

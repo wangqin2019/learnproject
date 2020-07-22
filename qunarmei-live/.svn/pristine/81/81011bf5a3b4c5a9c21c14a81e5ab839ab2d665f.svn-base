@@ -1,0 +1,122 @@
+.bg {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: -1;
+}
+
+.login{
+	width: 1200px;
+	height: 740px;
+	overflow: hidden;
+	position: absolute;
+	top: 50%;
+	margin-top: -370px;
+	left: 50%;
+	margin-left: -600px;
+	z-index: 10;
+	box-shadow: 0px 19px 44px rgba(147,46,68,0.32);
+}
+@media only screen and (max-width:1400px ) {
+	.login{width: 900px;height: 556px;margin-left: -450px;margin-top: -278px;}
+}
+
+.login_img{
+	float: left;
+	width:560px;
+	height: 740px;
+	border-radius: 4px 0 0 4px;
+}
+@media only screen and (max-width:1400px ) {
+	.login_img{width: 420px;height: 556px;}
+}
+
+.login_in{
+	width: 640px;
+	height: 740px;
+	float: left;
+	background: #fff;
+	border-radius: 0 4px 4px 0;
+}
+@media only screen and (max-width:1400px ) {
+	.login_in{width: 480px;height: 556px;}
+}
+
+
+.login_in img{
+	width: 20%;
+	margin: 8% auto 0;
+	display: block;
+}
+
+.login_name{
+	width: 70%;
+	margin: 5% auto 0;
+}
+
+.name_one{
+	width: 100%;
+	position: relative;
+}
+
+.name_one p{
+	width: auto;
+	color: #d9d9d9;
+	font-size: 22px;
+	margin-bottom: 1em
+}
+@media only screen and (max-width: 1400px) {
+	.name_one p{
+		margin-bottom: 0.5em;
+	}
+}
+
+
+.name_one input{
+	width: 100%;
+	padding: 0.5em 0;
+	border-bottom: 1px solid #d80e39;
+	font-size: 22px;
+	color: #212121;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #d9d9d9;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #d9d9d9;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #d9d9d9;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #d9d9d9;
+}
+
+.submit{
+	width: 35%;
+	display: block;
+	margin: 5em auto 0;
+	padding: 0.5em 0;
+	text-align: center;
+	border-radius: 2em;
+	color: #d80e39;
+	border: 1px solid #d80e39;
+	font-size: 22px;
+}
+@media only screen and (max-width: 1400px) {
+	.submit{
+		margin-top: 2em;
+	}
+}
+
+.name_mar{
+	margin-bottom: 6em;
+}
+@media only screen and (max-width: 1400px) {
+	.name_mar{
+		margin-bottom: 4em;
+	}
+}

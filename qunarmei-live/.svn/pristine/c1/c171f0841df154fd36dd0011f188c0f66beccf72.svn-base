@@ -1,0 +1,1009 @@
+---------------------------------------------------------------
+[ 2017-09-30T09:08:36+08:00 ] ::1 ::1 POST /admin/login/dologin.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_admin` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_group` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_group` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT `name` FROM `think_auth_rule` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `think_admin`  SET `loginnum`=324,`last_login_ip`='0.0.0.0',`last_login_time`=1506733716,`token`='1ac2fc424c64cdf80db98a246f439287'  WHERE  `id` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_log` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] INSERT INTO `think_log` (`admin_id` , `admin_name` , `description` , `status` , `ip` , `add_time`) VALUES (1 , 'admin' , '用户【admin】登录成功' , 1 , '0.0.0.0' , 1506733716) [ RunTime:0.051003s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:08:38+08:00 ] ::1 ::1 GET /admin/index/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:08:38+08:00 ] ::1 ::1 GET /admin/index/indexpage.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_member` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_member` WHERE  `create_time` >= 1506700800 LIMIT 1 [ RunTime:0.048002s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:08:40+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:08:40+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:08:42+08:00 ] ::1 ::1 GET /admin/messages/ypush.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `ims_bj_shopn_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:08:42+08:00 ] ::1 ::1 GET /admin/messages/ypush.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_message` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `ims_bj_shopn_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:08:44+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:08:44+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:12:00+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:36:12+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:36:12+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:36:26+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:36:26+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:36:27+08:00 ] ::1 ::1 GET /admin/messages/ypush.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_message` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `ims_bj_shopn_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:36:28+08:00 ] ::1 ::1 GET /admin/messages/ypush.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_message` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `ims_bj_shopn_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:36:30+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T09:36:30+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:18:30+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:18:52+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:20:18+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:20:35+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:21:56+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:24:49+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:25:22+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:26:23+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:27:01+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:28:02+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:28:30+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:30:49+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.017001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:31:07+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:32:43+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:35:55+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:36:25+08:00 ] ::1 ::1 GET /lunhui_tp5/public/index.php/admin
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:36:25+08:00 ] ::1 ::1 GET /lunhui_tp5/public/index.php/admin/index/indexpage.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_member` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_member` WHERE  `create_time` >= 1506700800 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:36:50+08:00 ] ::1 ::1 GET /lunhui_tp5/public/
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:37:49+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:39:34+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:47:16+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:48:04+08:00 ] ::1 ::1 POST /lunhui_tp5/public/index.php/admin/login/dologin.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_admin` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_admin` WHERE  `username` = 'live' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_log` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] INSERT INTO `think_log` (`admin_id` , `admin_name` , `description` , `status` , `ip` , `add_time`) VALUES (22 , 'live' , '用户【live】登录失败：密码错误' , 2 , '0.0.0.0' , 1506739684) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:48:12+08:00 ] ::1 ::1 POST /lunhui_tp5/public/index.php/admin/login/dologin.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_admin` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_admin` WHERE  `username` = 'live' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_log` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] INSERT INTO `think_log` (`admin_id` , `admin_name` , `description` , `status` , `ip` , `add_time`) VALUES (22 , 'live' , '用户【live】登录失败：密码错误' , 2 , '0.0.0.0' , 1506739692) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:48:20+08:00 ] ::1 ::1 POST /lunhui_tp5/public/index.php/admin/login/dologin.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_admin` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_group` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_group` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `name` FROM `think_auth_rule` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_admin`  SET `loginnum`=325,`last_login_ip`='0.0.0.0',`last_login_time`=1506739700,`token`='1ac2fc424c64cdf80db98a246f439287'  WHERE  `id` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_log` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] INSERT INTO `think_log` (`admin_id` , `admin_name` , `description` , `status` , `ip` , `add_time`) VALUES (1 , 'admin' , '用户【admin】登录成功' , 1 , '0.0.0.0' , 1506739700) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:48:43+08:00 ] ::1 ::1 GET /lunhui_tp5/public/index.php/admin/index/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:48:44+08:00 ] ::1 ::1 GET /lunhui_tp5/public/index.php/admin/index/indexpage.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_member` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_member` WHERE  `create_time` >= 1506700800 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:51:33+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:53:17+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:54:51+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:55:01+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:55:06+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:56:10+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T10:57:33+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:09:00+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:10:10+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:11:32+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:12:17+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:12:47+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:13:06+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:13:07+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.004001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:13:09+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:13:12+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:14:18+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:17:02+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:18:02+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:18:49+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:19:49+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:21:39+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:26:55+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:27:32+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:30:09+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.016001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:33:40+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:41:39+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-30T11:42:13+08:00 ] 192.168.3.56 192.168.7.64 POST /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `live`.`id`,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url FROM `think_live` `live` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=6 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=7 and point_flag=1 ) [ RunTime:0.000000s ]

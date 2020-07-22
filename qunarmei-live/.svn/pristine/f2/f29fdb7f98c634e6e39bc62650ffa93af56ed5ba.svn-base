@@ -1,0 +1,107 @@
+.top{
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.top .top_bg{
+	width: 100%;
+	display: block;
+}
+
+.top .logo{
+	width: 20%;
+	display: block;
+	position: absolute;
+	left: 40%;
+	top: 25%;
+}
+
+.top p{
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	left: 0;
+	bottom: 25%;
+	color: #fff;
+}
+
+.top h3{
+	font-size: 16px;
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	left: 0;
+	top: 15%;
+	color: #fff;
+}
+
+.yaoqing{
+	width: 100%;
+	margin-bottom: 3em;
+	padding: 4em 0 0 1em;
+}
+
+.yaoqing p{
+	width: 100%;
+	text-align: left;
+	font-size: 14px;
+	color: #9e9e9e;
+	margin-bottom: 1em;
+}
+
+.yaoqing li{
+	width: 100%;
+	text-align: left;
+	font-size: 14px;
+}
+
+.yaoqing li:nth-child(1){
+	color: #9e9e9e;
+	margin-bottom: 0.3em;
+}
+
+.yaoqing li:nth-child(2),.yaoqing li:nth-child(3),.yaoqing li:nth-child(4){
+	color: #9e9e9e;
+	margin-bottom: 0.3em;
+}
+
+a{
+	width: 70%;
+	display: block;
+	margin: 0 auto;
+	border: none;
+	background: #e10031;
+	border-radius: 2em;
+	color: #fff;
+	margin-top: 3em;
+	padding: 0.5em 0;
+	text-align: center;
+}
+
+.download{
+	margin-top: 1em;
+}
+
+.Android,.ios{
+	display: none;
+}
+
+.bg{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.6);
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 10;
+	display: none;
+}
+
+.bg img{
+	width: 80%;
+	position: fixed;
+	left: 12%;
+	top: 3%;
+	z-index: 20;
+}

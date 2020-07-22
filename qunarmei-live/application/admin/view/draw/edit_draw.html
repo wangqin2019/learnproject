@@ -1,0 +1,149 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>编辑奖项</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal" name="drawEdit" id="drawEdit" method="post" action="{:url('edit_draw')}">
+                        <div class="form-group">
+                            <input id="id" type="hidden" name="id" value="{$info.id}">
+                            <label class="col-sm-3 control-label">选择奖项：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control m-b chosen-select" name="draw_rank" id="draw_rank">
+                                    <option value="">==请选择奖项==</option>
+                                    <option value="一等奖" {if condition="$info['draw_rank'] eq '一等奖' "}selected{/if}>一等奖</option>
+                                    <option value="二等奖" {if condition="$info['draw_rank'] eq '二等奖' "}selected{/if}>二等奖</option>
+                                    <option value="三等奖" {if condition="$info['draw_rank'] eq '三等奖' "}selected{/if}>三等奖</option>
+                                    <option value="幸运奖" {if condition="$info['draw_rank'] eq '幸运奖' "}selected{/if}>幸运奖</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">奖品名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="draw_name" type="text" class="form-control" name="draw_name" value="{$info.draw_name}" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">奖品数量：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="draw_num" type="text" class="form-control" name="draw_num" value="{$info.draw_num}">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">奖品排序：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="orderby" type="text" class="form-control" name="orderby" value="{$info.orderby}">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">短信模版id：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="sms_id" type="number" class="form-control" name="sms_id" value="{$info.sms_id}">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+
+<script type="text/javascript">
+    //提交
+    $(function(){
+        $('#drawEdit').ajaxForm({
+            beforeSubmit: checkForm,
+            success: complete,
+            dataType: 'json'
+        });
+
+        function checkForm(){
+            if( '' == $.trim($('#draw_rank').val())){
+                layer.msg('请输入奖项',{icon:2,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+
+            if( '' == $.trim($('#draw_name').val())){
+                layer.msg('请选择奖品名称',{icon:2,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+
+            if( '' == $.trim($('#draw_num').val())){
+                layer.msg('请选择奖品数量',{icon:2,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+            if( '' == $.trim($('#sms_id').val())){
+                layer.msg('请选择奖品对应短信模版id',{icon:2,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+
+
+        function complete(data){
+            if(data.code==1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    window.location.href="{:url('draw/index')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1});
+                return false;
+            }
+        }
+
+    });
+
+
+
+    //IOS开关样式配置
+    var elem = document.querySelector('.js-switch');
+    var switchery = new Switchery(elem, {
+        color: '#1AB394'
+    });
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+</body>
+</html>

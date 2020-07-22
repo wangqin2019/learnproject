@@ -1,0 +1,186 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<script type="text/javascript" src="/static/admin/js/plugins/layer/laydate/laydate.js"></script>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>订单详情列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+
+                <div class="col-sm-12">                                    
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('orderdetail')}">
+                        <select name="order_type" id="order_type" ><option value="">-请选择订单类型-</option><option value="1" {if ($order_type==1)}selected{/if}>普通订单商品</option><option value="2" {if ($order_type==2)}selected{/if}>315活动门票商品</option><option value="3" {if ($order_type==3)}selected{/if}>315活动直播商品</option><option value="4" {if ($order_type==4)}selected{/if}>327活动门票商品</option><option value="5" {if ($order_type==5)}selected{/if}>327活动直播商品</option><option value="6" {if ($order_type==6)}selected{/if}>329活动门票商品</option><option value="7" {if ($order_type==7)}selected{/if}>329活动直播商品</option><option value="9" {if ($order_type==9)}selected{/if}>412活动门票商品</option><option value="10" {if ($order_type==10)}selected{/if}>412活动直播商品</option><option value="11" {if ($order_type==11)}selected{/if}>412活动之后门票商品</option><option value="12" {if ($order_type==12)}selected{/if}>412活动之后直播商品</option></select>&nbsp;
+                        <input type="text" id="ordersn" name="ordersn" placeholder="订单号查询" value="{$ordersn}">
+                        <input type="text" id="key" name="key" placeholder="门店编号查询" value="{$val}">
+                        支付时间:<input type="text" id="begin_time"   name="dt1" value="{$dt1}" placeholder="" />-<input type="text" id="end_time"   name="dt2" value="{$dt2}" placeholder="" />
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                        <a class="btn btn-primary"  href="{:url('orderdetail',['ordersn'=>$ordersn,'dt1'=>$dt1,'dt2'=>$dt2,'order_type'=>$order_type,'report'=>2])}"><i class="fa fa-download"></i> 市场导出</a>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary" onclick="reportCsv()">CSV导出</button>
+                        </span>
+                    </form>                         
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>订单类型</th>
+                                <th>市场</th>
+                                <th>门店</th>
+                                <th>订单编号</th>
+                                <th>订单金额</th>
+                                <th>购买商品</th>
+                                <th>包含子商品</th>
+                                <th>下单时间</th>
+                                <th>支付时间</th>
+                                <th>付款银行</th>
+                                <th>分期数</th>
+                                <th>订单来源</th>
+                                <th>客户备注</th>
+                                <th>自定义备注</th>
+                                <th>是否安心送</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                            <tr class="long-td">
+                                <td>{{d[i].id}}</td>
+                                <td>{{d[i].order_type}}</td>
+                                <td>{{d[i].bsc}}</td>
+                                <td>{{d[i].store_name}}-{{d[i].store_sign}}</td>
+                                <td><textarea rows="3" cols="8">{{d[i].ordersn}}</textarea></td>
+                                <td>{{d[i].price}}</td>
+                                <td style="text-align: left" width="250px;">{{d[i].buy_goods}}</td>
+                                 <td style="text-align: left" width="250px;">{{d[i].buy_goods_zi}}</td>
+                                <td>{{d[i].createtime}}</td>
+                                <td>{{d[i].payTime}}</td>
+                                <td>{{d[i].bank}}</td>
+                                <td>{{d[i].fenqi}}</td>
+                                <td>{{d[i].st_source}}</td>
+                                <td><textarea rows="3" cols="8">{{d[i].remark}}</textarea></td>
+                                <td><textarea rows="3" cols="8">{{d[i].own_remark}}</textarea></td>
+                                <td>{{d[i].isaxs}}</td>  
+                            </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="article_list"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var dt1=$('#begin_time').val();
+        var dt2=$('#end_time').val();
+        var ordersn=$('#ordersn').val();
+        var key=$('#key').val();
+        var order_type=$('#order_type').val();
+        $.getJSON('{:url("Market/orderdetail")}', {page: curr || 1,ordersn:ordersn,dt1:dt1,dt2:dt2,key:key,order_type:order_type}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画 
+            if(data==''){
+                $("#article_list").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据111</td>');
+            }else{
+                article_list(data); 
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+    //layui 时间日期控件
+    var begin_time = {
+        elem: '#begin_time', //选择ID为START的input
+        format: 'YYYY-MM-DD', //自动生成的时间格式
+//         min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16', //最大日期
+        istime: true, //必须填入时间
+        istoday: false,  //是否是当天
+        start: laydate.now(0,"YYYY-MM-DD"),  //设置开始时间为当前时间
+        choose: function(datas){
+//            end.min = datas; //开始日选好后，重置结束日的最小日期
+//            end.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+    laydate(begin_time);
+    //layui 时间日期控件
+    var end_time = {
+        elem: '#end_time', //选择ID为START的input
+        format: 'YYYY-MM-DD', //自动生成的时间格式
+//         min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16', //最大日期
+        istime: true, //必须填入时间
+        istoday: false,  //是否是当天
+        start: laydate.now(0,"YYYY-MM-DD"),  //设置开始时间为当前时间
+        choose: function(datas){
+//            end.min = datas; //开始日选好后，重置结束日的最小日期
+//            end.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+    laydate(end_time);
+    /**
+     * [article_list 接收异步获取的数据渲染到模板]
+     * @Author[田建龙 864491238@qq.com]
+     */
+    function article_list(list){
+
+        var tpl = document.getElementById('list-template').innerHTML;
+        laytpl(tpl).render(list, function(html){
+            document.getElementById('article_list').innerHTML = html;
+        });
+    }
+    //导出csv数据
+    function reportCsv() {
+        var dt1=$('#begin_time').val();
+        var dt2=$('#end_time').val();
+        var ordersn=$('#ordersn').val();
+        var key=$('#key').val();
+        var order_type=$('#order_type').val();
+        $.post('{:url("Market/orderdetail")}',{report:1,type:2,ordersn:ordersn,dt1:dt1,dt2:dt2,key:key,order_type:order_type},function(result){
+             console.log(result);
+            window.location.href = result;
+        });
+    }
+
+
+//编辑
+function ordEdit(id){
+    location.href = './ordEdit/id/'+id+'.html';
+}
+</script>
+</body>
+</html>

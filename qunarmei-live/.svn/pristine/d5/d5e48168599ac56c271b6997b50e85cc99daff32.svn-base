@@ -1,0 +1,387 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2020/5/14
+ * Time: 11:31
+ */
+
+namespace app\admin\controller;
+
+use think\Db;
+
+set_time_limit(0);
+/**
+ * 办事处订单报表
+ */
+class OrderDepart extends Base
+{
+	public function index()
+	{
+		// 办事处只能查询自己下面的门店
+		$bsc = 0;$storeids = [];
+		if($_SESSION['think']['rolename'] == '办事处'){
+			$bsc = 1;
+		}
+		if($bsc){
+			$uid = $_SESSION['think']['uid'];
+			$map_bwk = null;
+			// 查询办事处对应下的门店
+			$mobile_rule_ser = new MobileRule();
+			$storeids = $mobile_rule_ser->getAdminBranch($uid);
+		}
+
+		$key = input('key');
+		$map = [];$map1 = [];$map_tick = [];$map_tick1 = [];
+		if($key&&$key!=="") {
+			$map['b.sign'] = ['like',"%" . $key . "%"];
+		}
+		$dt1 = input('dt1',date('Y-m-d',strtotime('-1 day')));
+		$dt2 = input('dt2',date('Y-m-d'));
+		if($dt1){
+			$map['o.payTime'] = ['>=',strtotime($dt1)];
+			$map_tick['insert_time'] = ['>=',$dt1];
+		}
+		if($dt2){
+			$dt22 = strtotime($dt2);
+			if($dt2 == $dt1){
+				$dt22 = strtotime($dt1) + 3600*24;// 相等基础上,再加1天日期查询
+			}
+			$map1['o.payTime'] = ['<',$dt22];
+			$map_tick1['insert_time'] = ['<',date('Y-m-d',$dt22)];
+		}
+		$map['g.pcate'] = 31;
+		$map['g.ticket_type'] = 0;
+
+		if($storeids){
+			$map['o.storeid'] = ['in',$storeids];
+		}
+		$order_sql = Db::table('ims_bj_shopn_order o')
+			->join(['ims_bj_shopn_order_goods'=>'og'],['o.id=og.orderid'],'left')
+			->join(['ims_bj_shopn_goods'=>'g'],['g.id=og.goodsid'],'left')
+			->field('o.id')
+			->group('o.id')
+			->where($map)
+			->where($map1)
+			->order('b.id desc')
+			->buildSql();
+
+		$Nowpage = input('get.page') ? input('get.page'):1;
+		$limits = 50;// 获取总条数
+		$export = input('export');// 导出报表
+		if($export){
+			$limits = 2000;
+		}
+		$map_order = ' o.id in '.$order_sql;
+		$count = Db::table('ims_bj_shopn_order o')
+			->join(['ims_bwk_branch'=>'b'],['o.storeid=b.id'],'left')
+			->join(['sys_departbeauty_relation'=>'r'],['r.id_beauty=b.id'],'left')
+			->join(['sys_department'=>'d'],['d.id_department=r.id_department'],'left')
+			->field('o.id orderid,b.id,b.title,b.sign,d.st_department,sum(o.price) sum_price')
+			->group('b.id')
+			->where($map_order)
+			->order('b.id desc')
+			->count();  //总数据
+		$allpage = intval(ceil($count / $limits));
+		$lists = Db::table('ims_bj_shopn_order o')
+//			->join(['ims_bj_shopn_order_goods'=>'og'],['o.id=og.orderid'],'left')
+//			->join(['ims_bj_shopn_goods'=>'g'],['g.id=og.goodsid'],'left')
+			->join(['ims_bwk_branch'=>'b'],['o.storeid=b.id'],'left')
+			->join(['sys_departbeauty_relation'=>'r'],['r.id_beauty=b.id'],'left')
+			->join(['sys_department'=>'d'],['d.id_department=r.id_department'],'left')
+			->field('o.id orderid,b.id,b.sign,b.title,b.sign,d.st_department,sum(o.price) sum_price')
+			->group('b.id')
+			->where($map_order)
+			->page($Nowpage,$limits)
+			->order('b.id desc')
+			->select();
+		foreach ($lists as $k => $v){
+			$lists[$k]['type'] = 'app订单';
+			$lists[$k]['gift_price'] = 0;
+			$lists[$k]['tick_price'] = 0;
+
+			// 查询直播订单id
+			unset($map['b.sign']);
+			$map_ord = $map;
+			$map_ord['o.storeid'] = $v['id'];
+			$res_ord = Db::table('ims_bj_shopn_order o')
+				->join(['ims_bj_shopn_order_goods'=>'og'],['o.id=og.orderid'],'left')
+				->join(['ims_bj_shopn_goods'=>'g'],['g.id=og.goodsid'],'left')
+				->field('o.id,o.storeid')
+				->where($map_ord)
+				->group('o.id')
+				->select();
+			if($res_ord){
+				$order_ids = [];
+				foreach ($res_ord as $vo) {
+					$order_ids[] = $vo['id'];
+				}
+				// 线上已发配赠金额
+				$map_og['group'] = ['>',0];
+				$map_og['orderid'] = ['in',$order_ids];
+				$res_og = Db::table('ims_bj_shopn_order_goods og')
+					->where($map_og)
+					->field('group')
+					->group('group')
+					->select();
+				if($res_og){
+					foreach ($res_og as $v_og) {
+						if($v_og['group']){
+							$act_rule_id = explode('-',$v_og['group'])[0];
+							// 根据规则查询优惠价格
+							$map_act['id'] = $act_rule_id;
+							$res_rule = Db::table('ims_bj_shopn_goods_activity_rules a')->where($map_act)->field('gift_price')->limit(1)->find();
+							if($res_rule && $res_rule['gift_price']){
+								$lists[$k]['gift_price'] += $res_rule['gift_price'];
+							}
+						}
+					}
+				}
+				// 线上已发消费券金额
+				$map_tick['storeid'] = $v['id'];
+				$map_tick['type'] = 24;
+				$res_tick = Db::table('pt_ticket_user t')->where($map_tick)->where($map_tick1)->field(' sum(par_value) price,orderid ')->limit(1)->find();
+				if($res_tick){
+					$lists[$k]['tick_price'] += $res_tick['price'];
+				}
+			}
+			// 线上业绩 订单金额*0.38
+			$lists[$k]['sum_price'] = $lists[$k]['sum_price'] * 0.38;
+			// 线上已发配赠金额 线上已发配赠金额*0.38
+			$lists[$k]['gift_price'] = $lists[$k]['gift_price'] * 0.38;
+			// 线上已发消费券金额 线上已发消费券金额*0.38
+			$lists[$k]['tick_price'] = $lists[$k]['tick_price'] * 0.38;
+			// 剩余配赠
+			$lists[$k]['offline_price'] = 0;
+			$lists[$k]['offline_gift_price'] = 0;
+			$lists[$k]['total_price'] = 0;
+			$lists[$k]['surplus_gift_price'] = 0;
+			// 线下打款累计（U8）
+			$url = config('erp_url').'web/getGiftData.php?type=2&cCusCode='.$v['sign'].'&beginDate='.$dt1.'&endDate='.$dt2;
+			$res_erp = curl_get($url);
+//			var_dump($url);var_dump($res_erp);die;
+			if($res_erp){
+				$res_erp_data = json_decode($res_erp,true);
+				if($res_erp_data['status'] == 200){
+					$lists[$k]['offline_price'] = $res_erp_data['data'];
+				}
+			}
+			// 线下已发配赠
+			$url = config('erp_url').'web/getGiftData.php?type=1&cCusCode='.$v['sign'].'&beginDate='.$dt1.'&endDate='.$dt2.'&giveName=2020年线上直播配赠|2020年二季度渠道消费券配赠';
+			$res_erp = curl_get($url);
+			if($res_erp){
+				$res_erp_data = json_decode($res_erp,true);
+				if($res_erp_data['status'] == 200){
+					$lists[$k]['offline_gift_price'] = $res_erp_data['data'];
+				}
+			}
+			// 业绩合计
+			$lists[$k]['total_price'] = $lists[$k]['sum_price'] + $lists[$k]['offline_price'];
+			// 剩余配赠
+			if($lists[$k]['total_price'] >= 100000){
+				$lists[$k]['surplus_gift_price'] = $lists[$k]['total_price'] - $lists[$k]['gift_price'] - $lists[$k]['tick_price'] - $lists[$k]['offline_gift_price'];
+			}else{
+				$lists[$k]['surplus_gift_price'] = 0;
+			}
+		}
+		$export = input('export');// 导出报表
+		if($export){
+			$header = array('类别','办事处','客户编号','客户名称','线上业绩','线上已发配赠金额','线上已发消费券金额','线下打款累计','线下已发配赠','业绩合计','剩余配赠');
+			$data1[0] = $header;
+			foreach ($lists as $v) {
+				$data = [];
+				$data[] = $v['type'];
+				$data[] = $v['st_department'];
+				$data[] = $v['sign'];
+				$data[] = $v['title'];
+				$data[] = $v['sum_price'];
+				$data[] = $v['gift_price'];
+				$data[] = $v['tick_price'];
+				$data[] = $v['offline_price'];
+				$data[] = $v['offline_gift_price'];
+				$data[] = $v['total_price'];
+				$data[] = $v['surplus_gift_price'];
+				$data1[] = $data;
+			}
+			$datav['data'] = $data1;// 具体数据
+			$datav['msg'] = '办事处直播订单统计'.date('YmdHis');// 数据表名称
+			echo json_encode($datav,JSON_UNESCAPED_UNICODE);die;
+		}
+		$this->assign('Nowpage', $Nowpage); //当前页
+		$this->assign('allpage', $allpage); //总页数
+		$this->assign('val', $key);
+		$this->assign('dt1', $dt1); // 支付开始时间
+		$this->assign('dt2', $dt2); // 支付结速时间
+//		echo '<pre>';print_r($lists);die;
+		if(input('get.page'))
+		{
+			return json($lists);
+		}
+		return $this->fetch();
+	}
+
+	/**
+	 * 门店订单详情查询
+	 * @param int $store_id 门店id
+	 * @param string $dt1 开始日期
+	 * @param string $dt2 截止日期
+	 */
+	public function order_detail()
+	{
+		$export = input('export');
+		$store_id = input('store_id');
+		$dt1 = input('dt1');
+		$dt2 = input('dt2');
+		$ordersn = input('ordersn');
+		$Nowpage = input('get.page') ? input('get.page'):1;
+		$limits = 50;// 获取总条数
+		if($export){
+			$limits = 2000;
+		}
+		if($ordersn){
+			$map['ord.ordersn'] = $ordersn;
+		}
+		$order_sum['price'] = 0;//订单总金额
+		$order_sum['num'] = 0;//订单总数量
+		$map['ord.storeid'] = $store_id;
+		$map['ord.payTime'] = ['>=',strtotime($dt1)];
+		$map1['ord.payTime'] = ['<=',strtotime($dt2)];
+		$map['g.pcate'] = 31;
+		$map['g.ticket_type'] = 0;
+		$count = Db::table('ims_bj_shopn_order ord')
+			->join(['ims_bwk_branch'=>'ibb'],['ord.storeid=ibb.id'],'LEFT')
+			->join(['ims_bj_shopn_order_goods'=>'og'],['og.orderid=ord.id'],'LEFT')
+			->join(['ims_bj_shopn_goods'=>'g'],['g.id=og.goodsid'],'LEFT')
+			->join(['ims_bj_shopn_member'=>'mem'],['mem.id=ord.uid'],'LEFT')
+			->join(['sys_bank_interestrate'=>'sbi'],['sbi.id_interestrate=ord.id_interestrate'],'LEFT')
+			->join(['sys_bank'=>'sb'],['sbi.id_bank = sb.id_bank'],'LEFT')
+			->join(['sys_departbeauty_relation'=>'r'],['r.id_beauty=ibb.id'],'LEFT')
+			->join(['sys_department'=>'d'],['r.id_department=d.id_department'],'LEFT')
+			->where($map)
+			->where($map1)
+			->group('date_format(FROM_UNIXTIME(ord.payTime), \'%Y-%m-%d\')')
+			->count();  //总数据
+		$allpage = intval(ceil($count / $limits));
+		$lists = Db::table('ims_bj_shopn_order ord')
+			->join(['ims_bj_shopn_order_goods'=>'og'],['og.orderid=ord.id'],'LEFT')
+			->join(['ims_bj_shopn_goods'=>'g'],['g.id=og.goodsid'],'LEFT')
+			->join(['ims_bwk_branch'=>'ibb'],['ord.storeid=ibb.id'],'LEFT')
+			->join(['ims_bj_shopn_member'=>'mem'],['mem.id=ord.uid'],'LEFT')
+			->join(['sys_bank_interestrate'=>'sbi'],['sbi.id_interestrate=ord.id_interestrate'],'LEFT')
+			->join(['sys_bank'=>'sb'],['sbi.id_bank = sb.id_bank'],'LEFT')
+			->join(['sys_departbeauty_relation'=>'r'],['r.id_beauty=ibb.id'],'LEFT')
+			->join(['sys_department'=>'d'],['r.id_department=d.id_department'],'LEFT')
+			->where($map)
+			->where($map1)
+			->page($Nowpage,$limits)
+			->field('d.st_department bsc,ord.remark,ord.is_asx,ord.id,ord.price,ord.id_interestrate,ord.ums_instalment,ord.ordersn,ord.id as orderid,ibb.title,ibb.sign,ibb.location_p,ibb.address,ibb.receive_address sh_address,ibb.receive_consignee sh_name,ibb.receive_mobile sh_mobile,mem.realname,mem.mobile,ord.content,sum(ord.price) sum_price,ord.createtime,ord.createtime,ord.payTime,sb.id_bank,sb.st_abbre_bankname bkname,sbi.no_period,ord.st_source,ord.id_interestrate,date_format(FROM_UNIXTIME(ord.payTime), \'%Y-%m-%d\') pt_time')
+			->group('pt_time')
+			->order('pt_time desc')
+			->select();
+		dump($lists);die;
+		if($lists){
+			foreach ($lists as $k=>$v) {
+				$order_sum['price'] += $v['price'];
+				$lists[$k]['fenqi'] = $v['ums_instalment']?$v['ums_instalment']:$v['no_period'];
+				$lists[$k]['buy_goods'] = '';
+				$lists[$k]['buy_goods_zi'] = '';
+				$lists[$k]['is_asx'] = $v['is_asx']?'是':'否';
+
+				$lists[$k]['sh_address'] = $v['sh_address']==null?'':$v['sh_address'];
+				$lists[$k]['sh_name'] = $v['sh_name']==null?'':$v['sh_name'];
+				$lists[$k]['sh_mobile'] = $v['sh_mobile']==null?'':$v['sh_mobile'];
+				$lists[$k]['createtime'] = $v['createtime']==0?'':date('Y-m-d H:i:s',$v['createtime']);
+				$lists[$k]['payTime'] = $v['payTime']==null?'':date('Y-m-d H:i:s',$v['payTime']);
+
+				// 查询ims_bj_shopn_order_goods表
+				$map_og['orderid'] = $v['id'];
+				$res_og = Db::table('ims_bj_shopn_order_goods')->where($map_og)->select();
+				if($res_og){
+					$content = [];$content_zi = [];
+					foreach ($res_og as $vg) {
+						$content[] = $vg['content'];
+						// 查询商品对应的子商品
+						if($vg['is_gift'] == 0){
+							$map_og_zi['pid'] = $vg['goodsid'];
+							$res_gd = Db::table('ims_bj_shopn_goods_zi')->where($map_og_zi)->select();
+							if($res_gd){
+								foreach ($res_gd as $vgd) {
+									$content_zi[] = $vgd['title'];
+								}
+							}else{
+								$content_zi[] = $vg['content'];
+							}
+						}else{
+							$content_zi[] = $vg['content'];
+						}
+					}
+					$lists[$k]['buy_goods'] = implode(',',$content);
+					$lists[$k]['buy_goods_zi'] = implode(',',$content_zi);
+				}
+
+			}
+			$order_sum['num'] = count($lists);
+		}
+		// 导出数据
+		if($export){
+			$header = ['ID','市场','门店','编号','订单编号','用户名','用户电话','订单金额','购买商品','包含子商品','下单时间','支付时间','付款银行','分期数','订单来源','客户备注','是否安心送','收货人名称','收货人电话','收货人地址'];
+			$data1[0] = $header;
+			foreach ($lists as $v) {
+				$data = [];
+				$data[] = $v['id'];
+				$data[] = $v['bsc'];
+				$data[] = $v['title'];
+				$data[] = $v['sign'];
+				$data[] = $v['ordersn'];
+				$data[] = $v['realname'];
+				$data[] = $v['mobile'];
+				$data[] = $v['price'];
+				$data[] = $v['buy_goods'];
+				$data[] = $v['buy_goods_zi'];
+				$data[] = $v['createtime'];
+				$data[] = $v['payTime'];
+				$data[] = $v['bkname'];
+				$data[] = $v['fenqi'];
+				$data[] = $v['st_source'];
+				$data[] = $v['remark'];
+				$data[] = $v['is_asx'];
+				$data[] = $v['sh_name'];
+				$data[] = $v['sh_mobile'];
+				$data[] = $v['sh_address'];
+				$data1[] = $data;
+			}
+			$datav['data'] = $data1;// 具体数据
+			$datav['msg'] = '办事处订单详情'.date('YmdHis');// 数据表名称
+			echo json_encode($datav,JSON_UNESCAPED_UNICODE);die;
+		}
+
+		$list[0] = [
+			'dt' => '2020-05-20',
+			'bsc' => '诚美',
+			'title' => '技术部测试',
+			'sign' => '666-666',
+			'sum_price' => '10000',
+			'gift_price' => '3880',
+			'tick_price' => '2020',
+			'offline_price' => '2000',
+			'offline_gift_price' => '3000',
+		];
+		$lists = [];
+		$lists[] = $list[0];
+
+//		dump($lists);die;
+		$this->assign('Nowpage', $Nowpage); //当前页
+		$this->assign('allpage', $allpage); //总页数
+		$this->assign('count', $count); //总条数
+//		$this->assign('val', $key);
+		$this->assign('ordersn', $ordersn);
+		$this->assign('store_id', $store_id);
+		$this->assign('dt1', $dt1); // 支付开始时间
+		$this->assign('dt2', $dt2); // 支付结速时间
+		$this->assign('order_sum', $order_sum);
+		if(input('get.page')){
+			return json($lists);
+		}
+		return $this->fetch();
+	}
+}

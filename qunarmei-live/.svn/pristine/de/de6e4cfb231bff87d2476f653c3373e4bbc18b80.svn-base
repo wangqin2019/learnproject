@@ -1,0 +1,110 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>看美魔女直播，抽万元大奖</title>
+	<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" type="text/css" href="../../static/index/css/reset_ld.css"/>
+	<link rel="stylesheet" type="text/css" href="../../static/index/css/index_ld.css"/>
+	<script type="text/javascript" src="../../static/index/js/jquery.js"></script>
+	<script type="text/javascript" src="../../static/index/js/index_ld.js"></script>
+	<script type="text/javascript" src="../../static/index/js/music.js"></script>
+</head>
+<body>
+	<div class="all">
+		<div class="all_pic">
+			<input type="text" name="" class="jiang2" id="jiang2" placeholder="请输入人数" style="display: none"/>
+			<input type="text" name="draw_type" class="draw_type" id="draw_type" style="display: none"/>
+			<div class="num">
+    			<p class="num_p"></p>
+				<div class="num_div" id="num"></div>
+			</div>
+			<div class="down" style="display:none">下载中奖名单</div>
+			<div class="begin">
+				<button class="button1" id="sign" style="display: none"></button>
+				<input type="hidden" id="Interval">
+			</div>
+		</div>
+		<img id="currentPrize" src="../../static/index/images/area.png" />
+		<img src="../../static/index/images/meinv.png" alt="" class="meinv">
+		<div id="wsState"></div>
+	</div>
+	<script>
+        var sockInit = {
+            wsServer:'ws://139.196.232.193:1234',
+            heartBeat:1000,
+            sock:null,
+            isOpen:false,
+            init(){
+                clearTimeout(window.sockTimerHeartBeat);
+                var _this = this;
+                this.sock = new WebSocket(_this.wsServer);
+                this.sock.onopen = function(evt) {
+                    console.log('init连接');
+                    console.log(evt);
+                    _this.isOpen = true;
+                    var uid = 'uid1';
+                    _this.sock.send(uid);
+                    $('#wsState').html('<div class="rgbLight green"></div>')
+                };
+                this.sock.onclose = function(evt) {
+                    $('#wsState').html('<div class="rgbLight red"></div>')
+                    console.log('init关闭');
+                    console.log(evt);
+                    _this.isOpen = false;
+                    clearTimeout(window.sockTimerHeartBeat);
+                    _this.reConnect(_this.heartBeat);
+                }
+                this.sock.onmessage = function(evt) {
+                    console.log('init接收到信息');
+                    console.log(evt);
+                    var dataObj = eval("(" + evt.data + ")");
+                    if(dataObj.flag == 0){
+                        $('#num').html('');
+                        var jiangpin = dataObj.rank;
+                        jiangpin = unescape(jiangpin.replace(/\u/g, "%u"));
+                        console.log(jiangpin);
+                        if(jiangpin == '一等奖'){
+                            $("#currentPrize").attr('src','../../static/index/images/prize_1.png');
+                        }else if(jiangpin == '二等奖'){
+                            $("#currentPrize").attr('src','../../static/index/images/prize_2.png');
+                        }else if(jiangpin == '三等奖'){
+                            $("#currentPrize").attr('src','../../static/index/images/prize_3.png');
+                        }else {
+                            $("#currentPrize").attr('src','../../static/index/images/prize_4.png');
+                        }
+                    }else if(dataObj.flag == 1){
+                        if (dataObj.status) {
+                            console.log('starst');
+                            $('#jiang2').val(dataObj.num);
+                            $('#draw_type').val(dataObj.draw_type);
+                            init.html = '';
+                            init.start(dataObj);
+                        } else {
+                            console.log('end');
+                            $('#jiang2').val('');
+                            init.end();
+                        }
+                    }
+                };
+                this.sock.onerror = function(evt) {
+                    $('#wsState').html('<div class="rgbLight red"></div>')
+                    console.log('init错误');
+                    console.log(evt);
+                    _this.isOpen = false;
+                    clearTimeout(window.sockTimerHeartBeat);
+                    _this.reConnect(_this.heartBeat);
+                }
+            },
+            reConnect(heartBeat){
+                $('#wsState').html('<div class="rgbLight yellow"></div>')
+                var _this = this;
+                window.sockTimerHeartBeat = setTimeout(function(){
+                    _this.init();
+                },heartBeat)
+            }
+        }
+        sockInit.init();
+	</script>
+</body>
+</html>

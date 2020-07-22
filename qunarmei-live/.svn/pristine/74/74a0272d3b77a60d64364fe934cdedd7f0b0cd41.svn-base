@@ -1,0 +1,71 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<script type="text/javascript" src="/static/admin/js/plugins/layer/laydate/laydate.js"></script>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>门店信息</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div  class="col-sm-2" style="width: 100px">
+                        <div class="input-group" >
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr class="long-tr">
+                            <th>门店名称</th>
+                            <th>所属办事处</th>
+                            <th>门店电话</th>
+                            <th>店老板姓名</th>
+                            <th>老板手机号</th>
+                            <th>营业时间</th>
+                            <th>门店简介</th>
+                            <th>门店地址</th>
+                            <th>注册时间</th>
+                        </tr>
+                        </thead>
+
+                            {foreach $lists as $k=>$v}
+                            <tr class="long-td">
+                                <td>{$v['title']}</td>
+                                <td>{$v['department']}</td>
+                                <td>{$v['md_mobile']}</td>
+                                <td>{$v['dlb_name']}</td>
+                                <td>{$v['dlb_mobile']}</td>
+                                <td>{$v['open_time']}</td>
+                                <td><textarea cols="20" rows="5">{$v['summary']}</textarea></td>
+                                <td>{$v['address']}</td>
+                                <td>{$v['cretime']}</td>
+                            </tr>
+                            {/foreach}
+
+                        <tbody id="list-content"></tbody>
+                    </table>
+
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+</div>
+
+{include file="public/footer" /}
+
+</body>
+</html>

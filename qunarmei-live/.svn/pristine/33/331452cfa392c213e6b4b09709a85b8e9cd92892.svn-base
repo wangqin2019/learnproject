@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <META HTTP-EQUIV="expires" CONTENT="0">
+	    <title>在线交易开通分期支付协议</title>
+	    <link rel="stylesheet" type="text/css" href="css/common.css">
+	    <script type="text/javascript" src="js/jquery.min.js"></script>
+	    <script type="text/javascript" src="js/common.js"></script>
+	    
+	    <style>
+	    	.apply_info,.goods_list{position: fixed;top: 0;left: 0;background: #FFFFFF;width: 100%;height: 100%;font-size: 1em;line-height: 1.5em;padding: 0 1em;overflow-y: scroll;}
+	    	.apply_info .bold{font-weight: bold;}
+	    	.apply_info .underline{text-decoration: underline;}
+	    	.apply_info .noindent{text-indent:0em !important;}
+	    	.apply_info div{margin-bottom: 1em;text-indent:2em;}
+	    	.apply_info p{text-indent:2em;margin: 0.5em;}
+	    	.apply_info .apply_title{margin-top: 1em;font-size: 1.2em;text-align: center;}
+	    	.apply_info .apply_date{margin-top: 1em;font-size: 0.8em;text-align: center;}
+	    	.apply_info ul{width: 20em;margin: 0 auto;border-top: 1px solid #cccccc;border-right: 1px solid #cccccc;}
+	    	.apply_info li{display: flex;border-bottom: 1px solid #cccccc;}
+	    	.apply_info li p{display: inline-block;margin: 0;text-align: center;width: 4em;text-indent:0em !important;border-left: 1px solid #cccccc;}
+	    	.apply_info li .form_bank{width: 8em !important;}
+	    	.apply_info .form_title{height: 3em;line-height: 3em;}
+	    	.apply_info .form_out{border-top:3em #D6D3D6 solid;width:0px !important;height:0px;border-left:8em #BDBABD solid !important;position:relative;}
+			.apply_info .form_out .bank{font-style:normal;display:block;position:absolute;bottom:0;left:-7.5em;width:4em;text-align: left;line-height: 1.5em;}
+			.apply_info .form_out .num{font-style:normal;display:block;position:absolute;top:-3em;right:0.5em;width:4em;text-align: right;line-height: 2em;}
+			
+			/*表单*/
+			.return_btn,.subbtn,.goods_save{background: url(img/black_btn_bg.png);text-align: center;font-size: 1em;line-height: 3em;margin-top: 0.5em;background-size: 100%;background-position: center;background-repeat: no-repeat;}
+			.subbtn{width: 100%;color: #E0CE99;}
+			.return_btn{width: calc(100% - 4em);margin-left: 2em;border-radius: 0.5em;margin-bottom: 1em;color: #ffffff;}
+			
+			.form_title{color: #999999;font-size: 0.8em;padding: 0 1em;width: 100%;line-height: 2.5em;}
+	    	.part,.input_part{width: 100%;padding: 0 1em;margin-bottom: 0.5em;background: #FFFFFF;}
+	    	.part{padding-bottom: 1em;}
+	    	.name,.identity_card{line-height: 3em;display: flex;}
+	    	.name{border-bottom: 1px solid #F1F1F4;}
+	    	.name p,.identity_card p{width: 5em;color: #333333;}
+			.name input,.identity_card input{width: calc(100% - 5em);height: 3em;border: none;padding: 0 0.5em;}
+			textarea::-webkit-input-placeholder,input::-webkit-input-placeholder {color: #CDCDCD;}
+		    textarea::-moz-input-placeholder,input::-moz-input-placeholder {color: #CDCDCD;}
+		    textarea::-ms-input-placeholder,input::-ms-input-placeholder {color: #CDCDCD;}
+		    .part_title{line-height: 3em;color: #333333;}
+		    .part_title span{color: #999999;}
+		    .card_img{display: flex;width: 100%;}
+		    .card_img div{width: calc(100% - 0.5em);background: #fbf8f0;border-radius: 0.5em;text-align: center;overflow: hidden;position: relative;}
+		    .card_img input{position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity: 0;}
+		    .card_img img,.upload_one_img img{width: 8em;margin: 1em auto;}
+		    .card_img p,.upload_one_img p{background: #E0CE99;width: 100%;line-height: 2em;color: #FFFFFF;border: none !important;}
+		    
+		    .upload_one_img{width: 100%;background: #fbf8f0;border-radius: 0.5em;text-align: center;overflow: hidden;position: relative;}
+		    .upload_one_img input{position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity: 0;}
+		    .apply_info_btn label{display: flex;width: 100%;}
+		    .apply_info_btn input{margin-top: 1.2em;}
+		    .apply_info_btn p{width: calc(100% - 25px);margin-left: 10px;margin-top: 1em;color: #333333;}
+		    .apply_info_btn span{color: #A8892E;}
+		    .part textarea{width: 100%;border: none;min-height: 4em;}
+		    .agree_tips,.tips{color: #E72626;font-size: 0.6em;}
+		    .agree_tips{line-height: 2em;margin-bottom: 0.5em;margin-left: 1em;}
+		    .tips{text-align: center;margin-top: 4em;}
+		    .date{font-size: 0.6em;width: 100%;padding: 0 1em;line-height: 2em;}
+		    .form_img{width: 100%;}
+		    
+		    .stages_part{padding-bottom: 0;}
+		    .stages_part div{line-height: 3em;}
+		    .stages_part p{width: 5em;color: #333333;display: inline-block;}
+		    .stages_part input,.stages_part div div{float: right;text-align: right;max-width: calc(100% - 5em);}
+		    .stages_part_btn{border-bottom: 1px solid #F1F1F4;}
+		    .stages_part input{margin-top: calc(1.5em - 10px);}
+		    .stages_part img{width:1em;height: 1em;vertical-align: middle;}
+		    
+		    /*商品列表*/
+		   .goods_list_info{line-height: 3em;padding-bottom: 4em;}
+		   .goods_list label{border-bottom: 1px solid #F1F1F4;display: flex;}
+		   .goods_list input{margin-top: calc(1.5em - 6px);}
+		   .goods_list p{width: calc(100% - 35px);margin-left: 10px;}
+		   .goods_btn{position: fixed;bottom: 0;left: 0;z-index: 999;padding: 0.5em 1em;background: #FFFFFF;width: 100%;display: flex;border-top: 1px solid #F1F1F4;box-shadow: 1px 1px 10px #000;}
+		   .goods_btn label{width: 6em;line-height: 3em;}
+		   .goods_save{color: #FFFFFF;margin: 0;width: calc(100% - 6em);}
+	    </style>
+	</head>
+	<body>
+		<div class="form">
+			<p class="form_title">信息填写</p>
+			<div class="input_part">
+				<div class="name"><p>真实姓名</p><input placeholder="请填写经营者或者法人身份证姓名" type="text"/></div>
+				<div class="identity_card"><p>身份证号</p><input placeholder="请填写经营者或者法人身份证号" type="text"/></div>
+			</div>
+			
+			<div class="part">
+				<p class="part_title">请拍摄并上传身份证照片<span>(经营者或法人)</span></p>
+				<div class="card_img">
+					<div style="margin-right: 1em;">
+						<img src="img/card_just.png" />
+						<p>点击上传人像面</p>
+						<input type="file" id="justImg" class="uploadimg" data-img=""/>
+					</div>
+					<div>
+						<img src="img/card_back.png" />
+						<p>点击上传背面</p>
+						<input type="file" id="backImg" class="uploadimg" data-img=""/>
+					</div>
+				</div>
+			</div>
+			
+			<div class="part">
+				<p class="part_title">请拍摄并上传手持身份证合照<span>(经营者或法人)</span></p>
+				<div class="upload_one_img">
+					<img src="img/card_and_person.png" />
+					<p>点击上传手持身份证照片</p>
+					<input type="file" id="perCardImg" class="uploadimg" data-img=""/>
+				</div>
+			</div>
+			
+			<div class="part">
+				<p class="part_title">请拍摄并上传营业执照<span>(经营者或法人)</span></p>
+				<div class="upload_one_img">
+					<img src="img/license.png" />
+					<p>点击上传营业执照</p>
+					<input type="file" id="license" class="uploadimg" data-img=""/>
+				</div>
+			</div>
+			<p class="agree_tips">* 请您点击以下协议名称并认真阅读</p>
+			<div class="part apply_info_btn">
+				<label><input type="checkbox" id="checkbox" /><p>选择代表您已同意<span>《去哪美平台在线交易分期交易开通协议》</span></p></label>
+			</div>
+			
+			<div class="part stages_part">
+				<div class="stages_part_btn"><p>开通分期</p><input type="checkbox" class="checke"></div>
+				<div class="stages_part_search hide">
+					<p>分期商品</p>
+					<div><span>请选择分期商品</span><img src="img/ic_right.png" /></div>
+				</div>
+			</div>
+			
+			<div class="part">
+				<p class="part_title">我需要开通以下门店的分期功能</p>
+				<textarea placeholder="请输入门店编号，多个门店编号间请用逗号隔开"></textarea>
+			</div>
+			<p class="date">当前申请时间:<span></span></p>
+			<p class="tips">注意：一旦申请提交后如需要修改需要重新登录后提交申请</p>
+			<div class="subbtn">提交申请</div>
+		
+		</div>
+		
+		<div class="goods_list hide">
+			<div class="goods_list_info"></div>
+			
+			<div class="goods_btn">
+				<label><input type="checkbox" name="allgoods"/><p>全选</p></label>
+				<p class="goods_save">保存</p>
+			</div>
+		</div>
+		
+		
+		<div class="tishi hide"><span></span></div>
+		
+		
+		
+		<div class="apply_info hide">
+			<div class="apply_title noindent bold">“去哪美”在线交易分期支付协议</div>
+			<div class="apply_date noindent bold">（2020年01版）</div>
+			<div>在接受本协议之前，请您仔细阅读本协议的全部内容，并充分理解本协议中各条款，特别是免除或限制责任的条款。</div>
+			<div class="bold">您点击接受本协议并完成全部申请程序，即意味着您及您使用的“去哪美”用户名及/或账号所对应的法律实体同意受本协议约束。</div>
+			<div class="bold">如果您不同意本协议的任何内容，或者无法准确理解条款的含义或 “去哪美”对条款的解释，请不要进行任何操作。</div>
+			<p class="bold noindent">一、总则</p>
+			<p>如果您希望您的客户在“去哪美”平台以分期支付方式购买产品，“去哪美”将为您及指定商户提供相应分期付款支付选项，并签署本协议。</p>
+			<p>本协议作为已入驻“去哪美”平台的商户和<span class="underline">上海诚美化妆品有限公司</span>（以下简称“去哪美”）签署的《用户服务协议》及相关一系列协议（包括线上及线下协议）（具体协议名称以实际签署的为准，以下简称“主协议”）的补充，自您点击确认或进行操作后立即生效。</p>
+			<p>“去哪美”可根据业务情况对本协议内容进行调整，并通过“01版、02版……”进行标识，调整内容将在“去哪美”平台进行发布或通知，自通知之日起执行。</p>
+			<p class="bold noindent">二、定义</p>
+			<p><span class="underline">分期商户</span>：指开通了分期服务的商户，在本协议中指“您”及 “您”所代表的“去哪美”平台账户对应的法律实体及各分支、分部等关联方；</p>
+			<p><span class="underline">客户</span>：指使用分期方式付款的个人或组织；</p>
+			<p><span class="underline">分期付款合作伙伴</span>：指提供分期支付服务并建立合作关系的银行、支付机构或提供相应分期金融产品的合作方；</p>
+			<p><span class="underline">有效交易</span>：指客户使用分期付款服务产生的交易，该交易经确认是有效的，并排除立即退款等无效交易（该等交易由收费合作伙伴根据实际情况判断）；</p>
+			<p><span class="underline">分期手续费</span>：指客户使用分期支付方式由此产生的应支付分期付款合作伙伴的手续费（或其他收费），具体以分期付款合作伙伴实际收费金额为准。</p>
+			
+			<p class="bold noindent">三、分期付款合作伙伴及手续费费率（将根据业务情况调整和补充）</p>
+			<p>根据客户的支付习惯和选择，将从以下分期付款合作伙伴中挑选一家，选择适合的分期付款期限，并将产生对应的分期付款手续费：</p>
+			<img src="img/form.png" class="form_img"/>
+			<!--<p class="bold form_title">分期手续费率表</p>
+			<ul>
+				<li class="form_title"><p class="form_bank form_out"><em class="bank">合作伙伴</em><em class="num">期数</em></p><p>3期</p><p>6期</p><p>12期</p></li>
+				<li><p class="form_bank">中国银行</p><p>1.9%</p><p>2.4%</p><p>4.4%</p></li>
+				<li><p class="form_bank">农业银行</p><p>1.9%</p><p>3.4%</p><p>6.4%</p></li>
+				<li><p class="form_bank">招商银行</p><p>4.4%</p><p>5.4%</p><p>6.4%</p></li>
+				<li><p class="form_bank">工商银行</p><p>1.12%</p><p>1.96%</p><p>3.90%</p></li>
+			</ul>-->
+			<p class="bold noindent underline">特别注意：</p>
+			<p>（1）一般情况下，分期手续费=商品金额×手续费率，商品金额以客户实际支付金额为准；</p>
+			<p>（2）分期手续费实行“四舍五入”的原则进行计算，并一次性收取； </p>
+			<p>（3）如分期付款合作伙伴对以上费率进行调整的，将按照调整后的费率结算。</p>
+			<p class="bold noindent">四、分期付款手续费承担与结算</p>
+			<p class="bold underline">客户选择分期支付进行付款的，由此产生的手续费（或其他收费）将由分期商户全额承担。</p>
+			<p>您已明确了解并理解，对于任一笔有效交易，分期付款合作伙伴将按照第三条费率标准计算并直接先予一次性扣除分期手续费，余款作为实付货款金额由“去哪美”按照主协议及财务规则进行货款结算。因此，<span class="bold">任一笔有效交易中，如无其他扣款和收费，结算货款金额=客户实付商品金额-分期手续费。</span></p>
+			<p class="bold">无论任何情况下，“去哪美”均无需承担或支付任何分期手续费，或垫付该笔费用；如“去哪美”不得不垫付的，将有权在分期商户的任何一笔应付款项中予以扣除，或要求您立即补足。如因此造成“去哪美”损失的，您还将就此损失予以全额赔偿。</p>
+			<p class="bold noindent">五、管理措施</p>
+			<p>分期商户不得以“去哪美”的名义向客户收取分期手续费。如发现违规收费行为或其他影响“去哪美”声誉、名誉行为的，“去哪美”将直接取消分期付款服务，并可暂停该笔货款结算直至分期商户消除影响、恢复名誉、赔偿损失。</p>
+			<p class="bold noindent">六、其他</p>
+			<p>1、关于发票开具、结算周期等详见主协议。本协议未尽事宜，按照主协议执行。</p>
+			<p>2、您已确认并理解本协议全部内容并同意分期付款服务，按照本协议承担分期手续费，您确认并指定如下店号同时为分期商户（申请表单中指定位置填写），并承担本协议义务：</p>
+			<p>（1）_____________</p>
+			<p>（2）_____________</p>
+			<p>（3）_____________</p>
+			<p>（4）_____________</p>
+			<p>（5）_____________</p>
+			<p>3、如分期付款合作伙伴取消分期支付服务或“去哪美”根据实际业务情况取消平台分期支付功能的，则本协议自动终止；如您未按照“去哪美”要求通过面呈递交、快递、电子邮件、流程申请等方式至少提前<span class="bold">60天</span>书面通知取消分期支付功能并结清本协议所有未结款项的，则视为本协议持续有效。</p>
+			<p>4、<span class="bold">您应知悉支付方式及对应的支付服务由第三方合作伙伴提供，“去哪美”并不需要就支付服务产生的任何问题承担任何责任。</span>如您因本协议履行过程中产生的任何争议经调解无效的，同意将该争议提交上海市闵行区人民法院诉讼方式解决。</p>
+			<div class="return_btn noindent">我已阅读并理解该协议，返回</div>
+		</div>
+	</body>
+	<script>
+		var user_id = getQueryString('user_id'),goodslist=[];
+		
+		let now = new Date();
+		let show_date = now.getFullYear()+"-" + (now.getMonth()+1) + "-" + now.getDate()+ " " +now.getHours()+ ":" +now.getMinutes()+ ":" +now.getSeconds();
+		$('.date span').html(show_date);
+		
+		var nowdate = setInterval(function(){
+			let now = new Date();
+			let show_date = now.getFullYear()+"-" + (now.getMonth()+1) + "-" + now.getDate()+ " " +now.getHours()+ ":" +now.getMinutes()+ ":" +now.getSeconds();
+			$('.date span').html(show_date);
+		},1000)
+		
+//		获取商品列表
+		let get_good = ajaximg('pay_period/get_good','');
+		if(get_good.code == 1){
+			goodslist = get_good.data;
+			for(var i=0;i<goodslist.length;i++){
+				$('.goods_list_info').append('<label><input type="checkbox" name="goods" value="'+goodslist[i].goods_id+'"/><p>'+goodslist[i].goods_title+'</p></label>');
+			}
+		}
+
+		
+		
+		//是否分期
+		$('.checke').change(function(){
+			if($(this).get(0).checked){//选中
+				$('.stages_part_search').removeClass('hide');
+			}
+			else{
+				$('.stages_part_search').addClass('hide');
+			}
+		})
+		//选择产品
+		$('.stages_part_search div').click(function(){
+			$('.goods_list').removeClass('hide');
+		})
+		//保存产品
+		$('.goods_save').click(function(){
+			$('.goods_list').addClass('hide');
+		})
+		//全选
+		$('.goods_btn input').change(function(){
+			if($(this).get(0).checked){//选中
+				$("input[name='goods']").prop("checked",true);
+			}
+			else{
+				$("input[name='goods']").prop("checked",false);
+			}
+		})
+		
+		$('.uploadimg').change(function(e){
+			let reads = new FileReader();    
+	        let f = $(this).get(0).files[0];
+	        let rep = /jpeg|png|gif|bmp/ig;
+	        let gstyle = f.type.split("/")[1];
+	        if(rep.test(gstyle)){
+	            reads.readAsDataURL(f);
+	            let that = this;
+	            reads.onload = function(e) {
+	                $(that).parent().find("img").attr("src",this.result);
+	            };
+	            
+                let formData = new FormData();
+    			formData.append('image[]', f);
+    			let upload_img = ajaximg('pay_period/upload_img',formData);
+    			if(upload_img.code == 1){
+    				$(this).attr('data-img',upload_img.data[0]);
+    			}
+	        }
+	        else{
+	            tishi("图片格式不正确");
+	        }
+		})
+		$('.apply_info_btn span').click(function(){
+			$('.apply_info').removeClass('hide');
+		})
+		$('.return_btn').click(function(){
+			$('.apply_info').addClass('hide');
+		})
+		//提交申请
+		$('.subbtn').click(function(){
+			let checked = $("#checkbox").get(0).checked;
+			if (checked) {
+				let user_name = $('.name input').val();
+				let card_no = $('.identity_card input').val();
+				let card_img_z = $('#justImg').attr('data-img');
+				let card_img_f = $('#backImg').attr('data-img');
+				let card_img_h = $('#perCardImg').attr('data-img');
+				let cerl_img = $('#license').attr('data-img');
+				let signs = $('textarea').val();
+				let goods_id = '',flag = 0;
+				
+				if($('.checke').get(0).checked){
+					flag = 1;
+					$("input:checkbox[name='goods']:checked").each(function(){
+						if(goods_id == ''){goods_id = $(this).val();}
+						else{goods_id = goods_id+','+$(this).val();}
+					});
+				}
+					
+				let formData = new FormData();
+				formData.append('user_id', user_id);
+	    		formData.append('user_name', user_name);
+	    		formData.append('card_no', card_no);
+	    		formData.append('card_img_z', card_img_z);
+	    		formData.append('card_img_f', card_img_f);
+	    		formData.append('card_img_h', card_img_h);
+	    		formData.append('cerl_img', cerl_img);
+	    		formData.append('signs', signs);
+	    		formData.append('flag', flag);
+	    		formData.append('goods_id', goods_id);
+	    		
+	    		
+	    		
+				if(user_name && card_no !='' && card_img_z !='' && card_img_f !='' && card_img_h !='' && cerl_img !='' && signs !=''){
+					console.log(formData)
+					let add_apply = ajaximg('pay_period/add_apply',formData);
+					if(add_apply.code == 1){
+						setTimeout(function(){
+							history.go(-1);
+						},1000)
+					}
+					tishi(add_apply.msg);
+				}
+				else{
+					tishi('您还有未填写项');
+				}
+			}
+			else{
+				tishi('请勾选同意协议');
+			}
+		})
+	</script>
+</html>

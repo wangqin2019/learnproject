@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <META HTTP-EQUIV="expires" CONTENT="0">
+		<title></title>
+		<style type="text/css">
+			body{background: url(https://pin.qunarmei.com/static/xcx/liveBG.png) no-repeat;background-attachment:fixed;background-size:cover ;overflow-x: hidden;}
+			a{width: 100%;}
+			.title{width: 60%;margin: 0 20%;}
+			.body{width: 100%;}
+			button{border: 1px solid #E1D4B1;background: #F8EDCF;color: #483A17;width: 90%;height: 2em;line-height: 2em;margin: 0 5%;border-radius: 0.5em;font-size: 1em;margin-bottom: 1em;}
+		</style>
+	</head>
+	<body>
+		<img src="https://pin.qunarmei.com/static/xcx/118/jldlb.png" class="title"/>
+		<img src="https://pin.qunarmei.com/static/xcx/118/jldlbPackege.png" class="body"/>
+		<a href="http://test.chengmei.com/html/winner/part.html?type=jldlb"><button>稍后开始</button></a>
+		<img src="https://pin.qunarmei.com/static/xcx/118/scdj.png" class="title"/>
+		<img src="https://pin.qunarmei.com/static/xcx/118/scdjPackege.png" class="body"/>
+		<a href="http://test.chengmei.com/html/winner/part.html?type=scdj"><button>稍后开始</button></a>
+		<img src="https://pin.qunarmei.com/static/xcx/118/smjldj.png" class="title"/>
+		<img src="https://pin.qunarmei.com/static/xcx/118/smjldjPackege.png" class="body"/>
+		<a href="http://test.chengmei.com/html/winner/part.html?type=smjldj"><button>稍后开始</button></a>
+		<img src="https://pin.qunarmei.com/static/xcx/118/zxdj.png" class="title"/>
+		<img src="https://pin.qunarmei.com/static/xcx/118/zxdjPackege.png" class="body"/>
+		<a href="http://test.chengmei.com/html/winner/part.html?type=zxdj"><button>稍后开始</button></a>
+	</body>
+</html>

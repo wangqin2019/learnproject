@@ -1,0 +1,248 @@
+<?php
+
+namespace app\admin\controller;
+use think\Db;
+// use app\api\service\JobQueueSer;
+/**
+ * Class UserLog
+ * @package app\admin\controller
+ * 用户日志
+ */
+
+class UserLog extends Base
+{
+    // 操作行为
+    protected $saleUser = ['sale','sale0926'];
+    // 没有直播时,默认聊天室id
+    protected $chatId = '1571013678';
+    //*********************************************观看直播用户列表*********************************************//
+    /**
+     * [index 观看直播用户列表]
+     * @return [type] [description]
+     */
+    public function index(){
+        //取消内存限制
+        // ini_set ("memory_limit","-1");
+        //取消超时限制
+        set_time_limit(0);
+        $key = input('key');
+        // 查询最新一次的直播聊天室id
+        if (empty($key)) {
+            $reschat = Db::table('think_live')->order('id desc')->limit(1)->find();
+            if ($reschat) {
+                $key = $reschat['chat_id'];
+            }
+        }
+        $map = [];
+        if($key&&$key!=="")
+        {
+            $map['l.title|l.chat_id'] = ['like',"%" . $key . "%"];
+        }
+
+        // $map1['statu'] = 1;
+        // $res_live = Db::table('think_live')->field('id,chat_id')->where($map1)->order('id desc')->limit(1)->find();
+        // $chat_id = $this->chatId;
+        // if ($res_live) {
+        //     $map['l.chat_id'] = $res_live['chat_id'];
+        //     $chat_id = $res_live['chat_id'];
+        // }
+        // 取出redis队列用户进出直播间数据
+        // $key1 = 'seeLive_'.$chat_id;
+        // $jobSer = new JobQueueSer();
+        // $jobSer->outQueueTent($key1);
+        $csv_export = input('csv_export',0);
+        $export = input('export',0);
+        $page = input('page');
+        $Nowpage = $page?$page:1;
+        $limits = 10000;// 获取总条数
+        $count = Db::table('think_live_see_user_log log')
+            ->join(['think_live' => 'l'], 'l.chat_id=log.chat_id', 'left')
+            ->where($map)
+            ->count();
+        //计算总页面
+        $allpage = intval(ceil($count / $limits));
+        $page_limits = ($Nowpage-1)*$limits;
+        if($export){
+            $page_limits = 0;
+            $limits = 9999;
+        }
+        if($csv_export){
+            $page_limits = 0;
+            $limits = 99999;
+        }
+//        echo '<pre>';print_r($page_limits);print_r($limits);die;
+//        $map['log.live_time'] = ['>','1586673696'];
+        $lists = Db::table('think_live_see_user_log log')
+            ->join(['think_live' => 'l'], 'l.chat_id=log.chat_id', 'left')
+            ->field('log.*,l.title live_title,l.statu')
+            ->where($map)
+            ->limit($page_limits,$limits)
+            ->order('log.live_time desc')
+            ->select();
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数
+        $this->assign('val', $key);
+        $user_mobile = [];
+        if(!empty($lists)){
+            foreach ($lists as $k => $v) {
+                $lists[$k]['id'] = $v['id'];
+                $lists[$k]['bsc']=$v['bsc'];
+                $lists[$k]['sign']=$v['sign'];
+                $lists[$k]['title']=$v['title'];
+                $lists[$k]['user_name']= $v['user_name'];
+                $lists[$k]['mobile']= $v['mobile'];
+                $lists[$k]['type']=$v['type'];
+                $lists[$k]['see_type']=$v['see_type']==1?'app观看':'h5观看';
+                $lists[$k]['chat_id']= $v['chat_id'];
+                $lists[$k]['live_title']= $v['live_title'];
+                $lists[$k]['statu']= '';
+                $lists[$k]['role']= '';
+                if ($v['statu'] == 0) {
+                    $lists[$k]['statu'] = '直播未开始';
+                }elseif ($v['statu'] == 1) {
+                    $lists[$k]['statu'] = '直播中';
+                }elseif ($v['statu'] == 0) {
+                    $lists[$k]['statu'] = '直播已结束';
+                }
+                $lists[$k]['live_time']= date('Y-m-d H:i:s',$v['live_time']);
+                $user_mobile[] = $v['mobile'];
+            }
+        }
+        if($user_mobile){
+            $user_mobile = array_unique($user_mobile);
+            // 查询用户角色
+            $mapm['mobile'] = ['in',$user_mobile];
+            $res_role = Db::table('ims_bj_shopn_member')->where($mapm)->select();
+            if($res_role){
+                foreach ($res_role as $vr) {
+                    foreach ($lists as $k1=>$v1) {
+                        if($vr['mobile'] == $v1['mobile']){
+                            if($vr['isadmin'] == 1){
+                                $lists[$k1]['role']= '店老板';
+                            }elseif(strlen($vr['code']) > 1){
+                                $lists[$k1]['role']= '美容师';
+                            }else{
+                                $lists[$k1]['role']= '顾客';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //导出
+        if($export){
+            $data=array();
+            foreach ($lists as $k => $v) {
+                $data[$k]['bsc']=$v['bsc'];
+                $data[$k]['sign']=$v['sign'];
+                $data[$k]['title']=$v['title'];
+                $data[$k]['user_name']= $v['user_name'];
+                $data[$k]['mobile']= $v['mobile'];
+                $data[$k]['role'] = $v['role'];
+                $data[$k]['type']=$v['type'];
+                $data[$k]['see_type']=$v['see_type'];
+                $data[$k]['chat_id']= $v['chat_id'];
+                $data[$k]['live_time']=$v['live_time'];
+            }
+            $filename = "用户观看直播记录".date('YmdHis');
+            $header = array ('办事处','门店编号','门店名称','用户名称','用户号码','用户角色','进出类型','观看直播类型','聊天室id','进出直播间时间');
+            $widths=array('10','10','10','10','10','10','10','10','10','10');
+            if($data) {
+                excelExport($filename, $header, $data, $widths);//生成数据
+            }
+            die();
+        }
+        //csv导出
+        if($csv_export){
+            $data=array();
+            foreach ($lists as $k => $v) {
+                $data[$k]['bsc']=$v['bsc'];
+                $data[$k]['sign']=$v['sign'];
+                $data[$k]['title']=$v['title'];
+                $data[$k]['user_name']= $v['user_name'];
+                $data[$k]['mobile']= $v['mobile'];
+                $data[$k]['role'] = $v['role'];
+                $data[$k]['type']=$v['type'];
+                $data[$k]['see_type']=$v['see_type'];
+                $data[$k]['chat_id']= $v['chat_id'];
+                $data[$k]['live_time']=$v['live_time'];
+            }
+            $filename = "user_live".date('YmdHis');
+            $header = array ('办事处','门店编号','门店名称','用户名称','用户号码','用户角色','进出类型','观看直播类型','聊天室id','进出直播间时间');
+            $widths=array('10','10','10','10','10','10','10','10','10','10');
+            if($data) {
+                $rescsv = reportCsv($header, $data, $filename);//生成数据
+//                $url = 'http://live.qunarmei.com/csv/';
+                $url = 'http://test_live.qunarmei.com:9999/csv/';
+                $rescsv = $url.$rescsv;
+                return $rescsv;
+            }
+            die();
+        }
+        if($page)
+        {
+            return json($lists);
+        }
+        return $this->fetch();
+    }
+
+
+    /**
+     * [index 后台用户操作行为日志]
+     * @return [type] [description]
+     */
+    public function operationLog(){
+
+        $key = input('key');
+        $map = [];
+        if($key&&$key!=="")
+        {
+            $map['admin_name'] = ['like',"%" . $key . "%"];
+        }
+        $map['admin_name'] = ['in',$this->saleUser];
+        $export = input('export',0);
+        $page = input('page');
+        $Nowpage = $page?$page:1;
+        $limits = 20;// 获取总条数
+        $count = Db::table('think_log')->where($map)->count();
+        //计算总页面
+        $allpage = intval(ceil($count / $limits));
+        $page_limits = ($Nowpage-1)*$limits;
+//        echo '<pre>';print_r($page_limits);print_r($limits);die;
+        $lists = Db::table('think_log')
+            ->field('*')
+            ->where($map)
+            ->limit($page_limits,$limits)
+            ->order('log_id desc')
+            ->select();
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数
+        $this->assign('val', $key);
+        if(!empty($lists)){
+            foreach ($lists as $k => &$v) {
+                $v['add_time'] = date('Y-m-d H:i:s',$v['add_time']);
+            }
+        }
+        //导出
+        if($export){
+            $data=array();
+            foreach ($lists as $k => $v) {
+                $data[$k]['user_name']= $v['admin_name'];
+                $data[$k]['description']= $v['description'];
+                $data[$k]['add_time']=$v['add_time'];
+            }
+            $filename = "用户后台操作记录".date('YmdHis');
+            $header = array ('用户名称','操作行为','操作时间');
+            $widths=array('10','10','10');
+            if($data) {
+                excelExport($filename, $header, $data, $widths);//生成数据
+            }
+            die();
+        }
+        if($page)
+        {
+            return json($lists);
+        }
+        return $this->fetch();
+    }
+}

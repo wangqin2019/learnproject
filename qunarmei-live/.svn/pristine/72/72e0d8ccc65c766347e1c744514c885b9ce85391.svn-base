@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+
+		<!--<script type="text/javascript" src="jquery.min.js"></script>-->
+		<title>诚美学霸计划</title>
+	</head>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		img{width: 100%;margin-bottom: 1em;}
+		button{width: 90%;border: none;line-height: 3em;margin: 0.5em 5%;}
+	</style>
+
+	<body>
+		<img src="http://appc.qunarmei.com/banner_cp.png" class="logo"/>
+		<button onclick="callAndroid()">播放</button>
+		<!--<button onclick="callAndroid('0')">回放视频</button>
+		<button onclick="callAndroid('1')">直播视频</button>
+		<button onclick="callAndroid('2')">回放列表</button>-->
+	</body>
+	<script>
+		var live_id = getQueryString('live_id');
+		var type = getQueryString('type');
+		var is_list = getQueryString('is_list');
+		var send = {
+			live_id:live_id,
+			type:type,
+			is_list:is_list
+		};
+		//获取地址
+		function getQueryString(name) {
+		  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+		  var r = window.location.search.substr(1).match(reg);
+		  if (r != null) {
+		    return unescape(r[2]);
+		  }
+		  return null;
+		}
+		//Androidapp监听方法
+		function callAndroid() {
+			try {playVidio(send)}
+			catch (e) {alert('请在APP中打开')}
+		}
+
+
+
+	</script>
+</html>

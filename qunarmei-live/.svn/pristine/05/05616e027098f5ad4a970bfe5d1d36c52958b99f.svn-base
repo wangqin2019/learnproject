@@ -1,0 +1,267 @@
+{include file="public/header" /}
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/style.css">
+<style>
+.file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+.file-item .info{overflow: hidden;}
+.uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>编辑直播</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal" name="liveEdit" id="liveEdit" method="post" action="{:url('liveEdit')}">
+                        <input type="hidden" name="id" value="{$list[0]['id']}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播用户：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="user_name" type="text" class="form-control" name="user_name" value="{$list[0]['user_name']}">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播用户头像：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="hidden" id="data_photo" name="user_img" value="{$list[0]['user_img']}" />
+                                <div id="fileList" class="uploader-list" style="float:right"></div>
+                                <div id="imgPicker" style="float:left">选择头像</div>
+                                <img id="img_data" class="img-circle" height="80px" width="80px" style="float:left;margin-left: 50px;margin-top: -10px;" src="{$list[0]['user_img']}" onerror="this.src='/static/admin/images/head_default.gif'"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播分类：</label>
+                            <div class="input-group col-sm-4">
+                                <select name='category'>
+                                    <?php foreach ($category as $key => $catv) {?>
+                                    <option value="{$catv['cat_id']}" {if $list[0]['category_id']==$catv['cat_id']}selected{/if}>{$catv['cat_name']}</option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播标题：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" name="title" required="" aria-required="true" value="{$list[0]['title']}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播内容：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="content" type="text" class="form-control" name="content" required="" aria-required="true" value="{$list[0]['content']}">
+                            </div>
+                        </div>
+                        {if $isadmin}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播观看人数倍数显示：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="see_count_times" type="text" class="form-control" name="see_count_times" required="" aria-required="true" value="{$list[0]['see_count_times']}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播观看人数倍数开关：</label>
+                            <div class="input-group col-sm-4">
+                                <select name='see_times_flag' id="see_times_flag">
+                                    <option value="1" {if $list[0]['see_times_flag']==1}selected{/if}>开启</option>
+                                    <option value="0" {if $list[0]['see_times_flag']==0}selected{/if}>关闭</option>
+                                </select>
+                            </div>
+                        </div>
+                        {/if}
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播主题分类：</label>
+                            <div class="input-group col-sm-4">
+                                {foreach $zhibo_cats as $v1}
+
+                                <input type="checkbox" name="classify_id[]"  id="sh" value="{$v1['id']}"
+                                       {if $zhibo_cat}
+                                       {foreach $zhibo_cat as $v2}
+                                       {if $v1['id'] == $v2}
+                                         checked="checked"
+                                       {/if}
+                                       {/foreach}
+                                       {/if}
+                                >{$v1['name']} &nbsp;
+                                {/foreach}
+                            </div>
+                        </div>
+                        {if $isadmin}
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">视频类型：</label>
+                            <div class="input-group col-sm-4">
+                                <select name='db_statu' onchange="getUrl()" id="db_statu">
+                                    <option value="0" {if $list[0]['db_statu']==0}selected{/if}>直播</option>
+                                    <option value="1" {if $list[0]['db_statu']==1}selected{/if}>点播</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">视频时长：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="db_length" type="text" class="form-control" name="db_length" value="{$list[0]['db_length']}">
+                                <font color="red">(直播视频可不填;填写格式 如:16:35)</font>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group" id="db_url" style="display: none">
+                            <label class="col-sm-3 control-label">点播视频地址：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" class="form-control" name="db_url" value="{$list[0]['see_url']}">
+                                <font color="red">(直播视频可不填;填写格式 如:http://xxx)</font>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group" id="db_img" style="display: none">
+                            <label class="col-sm-3 control-label">点播视频封面：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" class="form-control" name="db_img" value="{$list[0]['live_img']}">
+                                <font color="red">(直播视频可不填;填写格式 如:http://xxx)</font>
+                            </div>
+                        </div>
+                        {/if}
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播调测：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" class="form-control" name="idstore" value="{$list[0]['idstore']}">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript" src="/static/admin/webupload/webuploader.min.js"></script>
+<script type="text/javascript">
+    var $list = $('#fileList');
+    //上传图片,初始化WebUploader
+    var uploader = WebUploader.create({
+
+        auto: true,// 选完文件后，是否自动上传。
+        swf: '/static/admin/webupload/Uploader.swf',// swf文件路径
+        server: "{:url('Upload/uploadface')}",// 文件接收服务端。
+        duplicate :true,// 重复上传图片，true为可重复false为不可重复
+        pick: '#imgPicker',// 选择文件的按钮。可选。
+
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/jpg,image/jpeg,image/png'
+        },
+
+        'onUploadSuccess': function(file, data, response) {
+            $("#data_photo").val(data._raw);
+            $("#img_data").attr('src', '/uploads/face/' + data._raw).show();
+        }
+    });
+
+    uploader.on( 'fileQueued', function( file ) {
+        $list.html( '<div id="' + file.id + '" class="item">' +
+            '<h4 class="info">' + file.name + '</h4>' +
+            '<p class="state">正在上传...</p>' +
+        '</div>' );
+    });
+
+    // 文件上传成功
+    uploader.on( 'uploadSuccess', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传成功！');
+    });
+
+    // 文件上传失败，显示上传出错。
+    uploader.on( 'uploadError', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传出错!');
+    });
+
+    //提交
+    $(function(){
+        $('#liveEdit').ajaxForm({
+            beforeSubmit: checkForm,
+            success: complete,
+            dataType: 'json'
+        });
+
+        function checkForm(){
+            if( '' == $.trim($('#title').val())){
+                layer.msg('直播标题',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+
+
+        }
+
+
+        function complete(data){
+            if(data.code==1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    window.location.href="{:url('liveTent/index')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1});
+                return false;
+            }
+        }
+
+    });
+
+    //视频类型=>点播视频 显示填写点播地址
+    function getUrl()
+    {
+        var res = $("#db_statu").val();
+        if(res == 1)
+        {
+            $("#db_url").css('display','block');
+            $("#db_img").css('display','block');
+        }else
+        {
+            $("#db_url").css('display','none');
+            $("#db_img").css('display','none');
+        }
+    }
+
+    //IOS开关样式配置
+   var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+</body>
+</html>

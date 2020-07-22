@@ -1,0 +1,27 @@
+.top_nav{
+    line-height: 60px;
+}
+.top_nav ul{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+.top_nav ul li{
+    float: left;
+    width: 120px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+}
+.top_nav ul li a{
+    color: #fff;
+    display: block;
+}
+.top_nav ul li a:hover{
+    background: #4688c3;
+}
+.nav_action{
+    background: #4688c3;
+}
+

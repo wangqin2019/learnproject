@@ -1,0 +1,68 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>商品详情</h5>
+        </div>
+        <div class="ibox-content">
+
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr class="long-tr">
+                            <th width="3%">商品ID</th>
+                            <th width="5%">商品名称</th>
+                            <th width="15%">商品封面图</th>
+                            <th width="15%">商品轮播图</th>
+                            <th width="5%">商品分类名称</th>
+                            <th width="4%">销售价</th>
+                            <th width="4%">体验价</th>
+                            <th width="4%">划线价</th>
+                            <th width="4%">体验价开关</th>
+                            <th width="4%">商品详情</th>
+                            <th width="15%">商品型号</th>
+                            <th width="4%">商品状态</th>
+                            <th width="10%">创建时间</th>
+                        </tr>
+                        </thead>
+                        <tr class="long-td">
+                            <td>{$id}</td>
+                            <td>{$list['title']}</td>
+                            <td><a href="{$list['thumbhome']}" target='_blank'><img src="{$list['thumbhome']}" alt="" width="20%" ></a></td>
+                            <td>
+                                {if $list['thumb_url']}
+                                    {foreach $list['thumb_url'] as $v}
+                                        <a href="{$v}" target='_blank'><img src="{$v}" alt="" width="20%"></a>
+                                    {/foreach}
+                                {/if}
+                            </td>
+                            <td>{$list['pcate']}</td>
+                            <td>{$list['marketprice']}</td>
+                            <td>{$list['experience_price']}</td>
+                            <td>{$list['productprice']}</td>
+                            <td>{$list['experience_price_flag']}</td>
+                            <td><textarea name="" id="" cols="20" rows="7">{$list['content']}</textarea></td>
+                            <td><textarea name="" id="" cols="20" rows="7">{$list['xh']}</textarea></td>
+                            <td>{$list['good_status']}</td>
+                            <td>{$list['createtime']}</td>
+                        </tr>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style="text-align:right;"></div>
+                    <div style="text-align: right;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{include file="public/footer" /}
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<script src="/static/admin/js/layui/layui/layui.js"></script>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>卡券列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->           
+            <div class="row">
+                <div class="col-sm-12">   
+                </div>                                            
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('index')}">
+                        <div  class="col-sm-2" style="width: 130px">
+                            <div class="input-group" >
+                                <a href="{:url('card_act')}"><button class="btn btn-outline btn-primary" type="button">520卡券激活</button></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="input-group" style="margin-top: -5px;width: 200px;">
+                                <select class="form-control m-b chosen-select" name="storeid" id="storeid" style="width: 200px;">
+                                    <option value="">请选择门店</option>
+                                    {if !empty($res_bwk)}
+                                    {foreach name="res_bwk" item="vo"}
+                                    <option value="{$vo.id}" {if condition="$storeid eq $vo['id']"}selected{/if}>{$vo.sign}{$vo.title}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;width: 150px;">
+                                <select class="form-control m-b chosen-select" name="scene_prefix" id="scene_prefix" style="width: 150px;">
+                                    <option value="">请选择抽奖类型</option>
+                                    {if !empty($res_draw)}
+                                    {foreach name="res_draw" item="vo"}
+                                    <option value="{$vo.scene_prefix}" {if condition="$scene_prefix eq $vo['scene_prefix']"}selected{/if}>{$vo.scene_name}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="input-group">
+                                <input type="text" id="begin_time" name="begin_time" value="{$begin_time}" placeholder="请输入开始时间" autocomplete="off" class="layui-input">
+                                <input type="text" id="end_time" name="end_time" value="{$end_time}" placeholder="请输入结束时间" autocomplete="off" class="layui-input">
+                            </div>
+                            <!--<a href="{:url('branchAdd')}"><button class="btn btn-outline btn-primary" type="button">批量开通门店和商品</button></a> -->
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的门店编号或用户号码" />
+                                <span class="input-group-btn"> 
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button> &nbsp;
+
+                                    <a href="{:url('index',['begin_time'=>$begin_time,'end_time'=>$end_time,'key'=>$val,'scene_prefix'=>$scene_prefix,'storeid'=>$storeid,'export'=>1])}" class="btn btn-primary" ><i class="fa fa-download"></i> 导出数据Excel</a>
+                                </span>
+                                <!--&nbsp;<a href="{:url('index',['export'=>1,'key'=>$val])}" class="btn btn-primary"><i class="fa fa-download"></i> 导出门店</a>-->
+                            </div>
+                        </div>
+                    </form>                         
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th width="3%">ID</th>
+                                <th width="5%">所属办事处</th>
+                                <th width="5%">门店名称</th>
+                                <th width="5%">门店编号</th>
+                                <th width="8%">用户名称</th>
+                                <th width="8%">用户号码</th>
+                                <th width="8%">卡券编号</th>
+                                <th width="8%">卡券名称</th>
+                                <th width="8%">卡券价值</th>
+                                <th width="8%">卡券状态</th>
+                                <th width="8%">卡券图片</th>
+                                <th width="5%">添加时间</th>
+                                <th width="5%">使用时间</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].id}}</td>
+                                    <td>{{d[i].depart}}</td>
+                                    <td>{{d[i].branch}}</td>
+                                    <td>{{d[i].sign}}</td>
+                                    <td>{{d[i].realname}}</td>
+                                    <td>{{d[i].mobile}}</td>
+                                    <td>{{d[i].ticket_code}}</td>
+                                    <td>{{d[i].type}}</td>
+                                    <td>{{d[i].par_value}}</td>
+                                    <td>{{d[i].status}}</td>
+                                    <td><a href="{{d[i].draw_pic}}" target="_blank"><img src="{{d[i].draw_pic}}" alt="" width="150px"></a> </td>
+                                    <td>{{d[i].insert_time}}</td>
+                                    <td>{{d[i].update_time}}</td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style="text-align:right;"></div>
+                    <div style="text-align: right;">
+                        共{$count}条数据，<span id="allpage"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+    /**
+     * [Ajaxpage laypage分页]
+     * @param {[type]} curr [当前页]
+     */
+    Ajaxpage();
+
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var scene_prefix = $('#scene_prefix').val();
+        var storeid = $('#storeid').val();
+        var begin_time = $('#begin_time').val();
+        var end_time = $('#end_time').val();
+        $.getJSON('{:url("index")}', {
+            page: curr || 1,key:key,scene_prefix:scene_prefix,storeid:storeid,begin_time:begin_time,end_time:end_time
+        }, function(data){      //data是后台返回过来的JSON数据
+			$(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+ 
+
+//编辑
+function edit_b(id){
+    location.href = './branchEdit?id='+id;
+}
+
+//删除
+function del_article(id){
+    lunhui.confirm(id,'{:url("branchDel")}');
+}
+function ad_state(val,kaiguan){
+    $.post('{:url("upd_anxinsong")}',
+    {id:val,kaiguan:kaiguan},
+    function(data){
+         
+        if(data.code==1){
+            var a;
+            if (kaiguan == 'open') {
+                a = '<span class="label label-info">开启</span>'
+            }else{
+                a = '<span class="label label-danger">禁用</span>'
+            }
+            $('#zt'+val).html(a);
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }else{
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }         
+        
+    });
+    return false;
+}
+// 315活动开关-控制
+function act_state(val,kaiguan){
+    $.post('{:url("upd_actflag315")}',
+    {id:val,kaiguan:kaiguan},
+    function(data){
+         
+        if(data.code==1){
+            var a;
+            if (kaiguan == 1) {
+                a = '<span class="label label-info">参与</span>'
+            }else{
+                a = '<span class="label label-danger">不参与</span>'
+            }
+            $('#zt1'+val).html(a);
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }else{
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }         
+        
+    });
+    return false;
+}
+
+    //导出csv数据
+    function reportCsv()
+    {
+        var key=$('#key').val();
+        $.get('{:url("index")}?export=1&key='+key,{},function(result){
+            console.log(result);
+            window.location.href = result;
+        });
+    }
+    //导出excel数据
+    function reportExcel()
+    {
+        var key=$('#key').val();
+        $.get('{:url("index")}?export=2&key='+key,{},function(result){
+            console.log(result);
+            window.location.href = result;
+        });
+    }
+
+    // 点击弹窗遮罩层选择活动列表
+    function act_list(id){
+        layer.open({
+            type: 2,
+            area: ['768px', '600px'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: '{:url("branch/act_list")}?storeid='+id
+        });
+    }
+
+    layui.use(['form','laydate','upload'], function(){
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var upload = layui.upload;
+
+        //执行一个laydate实例
+//        laydate.render({
+//            elem: '#begin_time' //指定元素
+//        });
+
+        //执行一个laydate实例
+//        laydate.render({
+//            elem: '#end_time' //指定元素
+//        });
+
+        var endDate= laydate.render({
+            elem: '#end_time',//选择器结束时间
+            type: 'date',
+            min:"1970-1-1",//设置min默认最小值
+            done: function(value,date){
+                startDate.config.max={
+                    year:date.year,
+                    month:date.month-1,//关键
+                    date: date.date,
+                    hours: 0,
+                    minutes: 0,
+                    seconds : 0
+                }
+            }
+        });
+        //日期范围
+        var startDate=laydate.render({
+            elem: '#begin_time',
+            type: 'date',
+            max:"2099-12-31",//设置一个默认最大值
+            done: function(value, date){
+                endDate.config.min ={
+                    year:date.year,
+                    month:date.month-1, //关键
+                    date: date.date,
+                    hours: 0,
+                    minutes: 0,
+                    seconds : 0
+                };
+            }
+        });
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem:'#cover'
+            ,url:"{:url('Upload/uploadFile')}"// 上传图片接口地址
+            ,accept:'file' // 允许上传的文件类型
+            ,auto:true // 自动上传
+            ,before:function (obj) {
+                console.log(obj);
+                // 预览
+                obj.preview(function(index,file,result) {
+                    // console.log(file.name); //图片名字
+                    // console.log(file.type); //图片格式
+                    // console.log(file.size); //图片大小
+                    // console.log(result); //图片地址
+                    $('#preview').attr('src',result); //图片链接 base64
+                });
+                // layer.load();
+            }
+            // 上传成功回调
+            ,done:function(res) {
+                // console.log(upload);
+                console.log(res);
+            }
+            // 上传失败回调
+            ,error:function(index,upload) {
+                // 上传失败
+                console.log(upload);
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

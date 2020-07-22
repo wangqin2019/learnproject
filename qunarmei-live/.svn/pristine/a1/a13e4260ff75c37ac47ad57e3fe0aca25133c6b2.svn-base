@@ -1,0 +1,529 @@
+<?php
+use think\Db;
+use Aliyun\Core\Config;
+use Aliyun\Core\Profile\DefaultProfile;
+use Aliyun\Core\DefaultAcsClient;
+use Aliyun\Api\Sms\Request\V20170525\SendSmsRequest;
+/**
+ * 导出数据到CSV文件
+ * @param array $data  数据
+ * @param array $title_arr 标题
+ * @param string $file_name CSV文件名
+ */
+function csv_export(&$data, $title_arr, $file_name = '') {
+    ini_set("max_execution_time", "3600");
+    ob_start(); //打开缓冲区
+    $csv_data = '';
+    /** 标题 */
+    $nums = count($title_arr);
+    for ($i = 0; $i < $nums - 1; ++$i) {
+        $csv_data .= '"' . $title_arr[$i] . '",';
+    }
+    if ($nums > 0) {
+        $csv_data .= '"' . $title_arr[$nums - 1] . "\"\r\n";;
+    }
+    foreach ($data as $k => $row) {
+        for ($i = 0; $i < $nums - 1; ++$i) {
+            $row[$i] = str_replace("\"", "\"\"", $row[$i]);
+            $csv_data .= '"' . $row[$i] . '",';
+        }
+        $csv_data .= '"' . $row[$nums - 1] . "\"\r\n";
+        unset($data[$k]);
+    }
+    $csv_data = mb_convert_encoding($csv_data, "cp936", "UTF-8");
+    $file_name = empty($file_name) ? date('Y-m-d-H-i-s', time()) : $file_name;
+    if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE")) { // 解决IE浏览器输出中文名乱码的bug
+        $file_name = urlencode($file_name);
+        $file_name = str_replace('+', '%20', $file_name);
+    }
+    $file_name = $file_name . '.csv';
+    header("Content-type:text/csv;");
+    header("Content-Disposition:attachment;filename=" . $file_name);
+    header('Cache-Control:must-revalidate,post-check=0,pre-check=0');
+    header('Expires:0');
+    header('Pragma:public');
+    echo $csv_data;
+}
+// csv头文件生成
+// $csv_header 头文件数组,$csv_name 文件名称,$csv_path文件路径
+function csv_header($csv_header,$csv_name,$csv_path='D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\public\csv\\')
+{
+    // 文件名称
+    $csv_name = $csv_name.date('YmdHis').'.csv';
+    $csv_name = iconv("UTF-8", "GB2312//IGNORE", @$csv_name);
+
+    // 文件路径及生成
+//    $csv_path = 'D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\public\csv\\';
+    $fp = fopen($csv_path.$csv_name,'a+');
+    // 处理头部标题转码
+    foreach ($csv_header as $kc => $vc) {
+        $csv_header[$kc] = iconv('utf-8','gb2312//IGNORE',$vc);
+    }
+    fputcsv($fp,$csv_header); //每次写入一组数据到csv文件中的一行
+
+    $arr['file_name'] = $csv_name;
+    $arr['fp'] = $fp;
+    return $arr;
+}
+// csv数据文件追加写入
+// $fp写入流,$data数据(按sql切割后的数据)
+function csv_body($fp,$data)
+{
+    foreach ($data as $k=>$v) {
+        foreach ($v as $k1 => $v1){
+            $v[$k1] = iconv('utf-8','gb2312//IGNORE',$v[$k1]);
+            $data[$k][$k1] = $v[$k1];
+        }
+        fputcsv($fp,$data[$k]);
+    }
+    unset($data);
+    ob_flush();
+    flush();
+}
+/**
+ * 快递鸟物流查询接口
+ * @param  string $ship_code [快递编码]
+ * @param  string $logtic [物流单号]
+ * @return 
+ */
+function kdn_express($ship_code,$logtic){
+    $app_id = config('kdn.eBusinessID');
+    $app_key = config('kdn.appKey');
+    $url = config('kdn.reqURL');
+    $data_type = 2;// json类型
+    $charset = 'UTF-8';//UTF-8编码
+    $json_str = '{"OrderCode":"","ShipperCode":"'.$ship_code.'","LogisticCode":"'.$logtic.'"}';
+    $datasign = urlencode(base64_encode(md5($json_str.$app_key)));
+    $post_str = "RequestType=1002&EBusinessID=".$app_id." &RequestData=".$json_str."&DataSign=".$datasign."&DataType=".$data_type;
+    $res = curl_post($url,$post_str);
+    $rest = [];
+    if ($res) {
+        $rest = json_decode($res,true);
+    }
+    return $rest;
+}
+/**
+ * 发送钉钉消息
+ * @param string $mobile 号码
+ * @param string $msg 消息
+ */
+function send_dingding($mobile,$msg){
+    $url = 'http://dingding.chengmei.com/dingding/message.shtml';
+    $data = [
+        'mobiles' => [$mobile],
+        'type' => 1,// 1:文本内容
+        'title' => '门店申请-注册',
+        'content' => $msg.'('.date('Y-m-d H:i:s').')',
+    ];
+    $data = json_encode($data,JSON_UNESCAPED_UNICODE);
+    $res = dingding_curl_post($url,$data);
+    return $res;
+}
+/**
+ * 发送短信
+ * @param string $mobile 号码
+ * @param int $id_template 模板id
+ * @param string $str 接送格式-模板中需替换的变量数据
+ */
+function send_sms($mobile,$id_template,$str=null){
+    $queryStr = 'mobile='.$mobile.'&name=qunarmeiApp&pwd=qunarmeiApp&template='.$id_template.'&type=1';
+    if($str){
+        $queryStr = 'code='.$str.'&'.$queryStr;
+    }
+    $key = md5($queryStr);
+    $queryStr = $queryStr.'&key='.$key;
+    $url = 'http://sms.qunarmei.com/sms.php?'.$queryStr;
+    $res = file_get_contents($url);
+    return $res;
+}
+/**
+ * 字符串截取，支持中文和其他编码
+ */
+function msubstr($str, $start = 0, $length, $charset = "utf-8", $suffix = true) {
+	if (function_exists("mb_substr"))
+		$slice = mb_substr($str, $start, $length, $charset);
+	elseif (function_exists('iconv_substr')) {
+		$slice = iconv_substr($str, $start, $length, $charset);
+		if (false === $slice) {
+			$slice = '';
+		}
+	} else {
+		$re['utf-8'] = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
+		$re['gb2312'] = "/[\x01-\x7f]|[\xb0-\xf7][\xa0-\xfe]/";
+		$re['gbk'] = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
+		$re['big5'] = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
+		preg_match_all($re[$charset], $str, $match);
+		$slice = join("", array_slice($match[0], $start, $length));
+	}
+	return $suffix ? $slice . '...' : $slice;
+}
+
+
+
+/**
+ * 读取配置
+ * @return array
+ */
+function load_config(){
+    $list = Db::name('config')->select();
+    $config = [];
+    foreach ($list as $k => $v) {
+        $config[trim($v['name'])]=$v['value'];
+    }
+
+    return $config;
+}
+
+
+/**
+* 验证手机号是否正确
+* @author honfei
+* @param number $mobile
+*/
+function isMobile($mobile) {
+    if (!is_numeric($mobile)) {
+        return false;
+    }
+    return preg_match('#^13[\d]{9}$|^14[5,7]{1}\d{8}$|^15[^4]{1}\d{8}$|^17[0,6,7,8]{1}\d{8}$|^18[\d]{9}$#', $mobile) ? true : false;
+}
+
+
+/**
+ * 阿里云云通信发送短息
+ * @param string $mobile    接收手机号
+ * @param string $tplCode   短信模板ID
+ * @param array  $tplParam  短信内容
+ * @return array
+ */
+function sendMsg($mobile,$tplCode,$tplParam){
+    if( empty($mobile) || empty($tplCode) ) return array('Message'=>'缺少参数','Code'=>'Error');
+    if(!isMobile($mobile)) return array('Message'=>'无效的手机号','Code'=>'Error');
+
+    require_once '../extend/aliyunsms/vendor/autoload.php';
+    Config::load();             //加载区域结点配置
+    $accessKeyId = config('alisms_appkey');
+    $accessKeySecret = config('alisms_appsecret');
+    if( empty($accessKeyId) || empty($accessKeySecret) ) return array('Message'=>'请先在后台配置appkey和appsecret','Code'=>'Error');
+    $templateParam = $tplParam; //模板变量替换
+    $signName = (empty(config('alisms_signname'))?'阿里大于测试专用':config('alisms_signname'));
+    //短信模板ID
+    $templateCode = $tplCode;
+    //短信API产品名（短信产品名固定，无需修改）
+    $product = "Dysmsapi";
+    //短信API产品域名（接口地址固定，无需修改）
+    $domain = "dysmsapi.aliyuncs.com";
+    //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改）
+    $region = "cn-hangzhou";
+    // 初始化用户Profile实例
+    $profile = DefaultProfile::getProfile($region, $accessKeyId, $accessKeySecret);
+    // 增加服务结点
+    DefaultProfile::addEndpoint("cn-hangzhou", "cn-hangzhou", $product, $domain);
+    // 初始化AcsClient用于发起请求
+    $acsClient= new DefaultAcsClient($profile);
+    // 初始化SendSmsRequest实例用于设置发送短信的参数
+    $request = new SendSmsRequest();
+    // 必填，设置雉短信接收号码
+    $request->setPhoneNumbers($mobile);
+    // 必填，设置签名名称
+    $request->setSignName($signName);
+    // 必填，设置模板CODE
+    $request->setTemplateCode($templateCode);
+    // 可选，设置模板参数
+    if($templateParam) {
+        $request->setTemplateParam(json_encode($templateParam));
+    }
+    //发起访问请求
+    $acsResponse = $acsClient->getAcsResponse($request);
+    //返回请求结果
+    $result = json_decode(json_encode($acsResponse),true);
+
+    return $result;
+}
+
+
+
+//生成网址的二维码 返回图片地址
+function Qrcode($token, $url, $size = 8){
+    $md5 = md5($token);
+    $dir = date('Ymd'). '/' . substr($md5, 0, 10) . '/';
+    $patch = 'qrcode/' . $dir;
+    if (!file_exists($patch)){
+        mkdir($patch, 0755, true);
+    }
+    $file = 'qrcode/' . $dir . $md5 . '.png';
+    $fileName =  $file;
+    if (!file_exists($fileName)) {
+
+        $level = 'L';
+        $data = $url;
+        QRcode::png($data, $fileName, $level, $size, 2, true);
+    }
+    return $file;
+}
+
+
+
+/**
+ * 循环删除目录和文件
+ * @param string $dir_name
+ * @return bool
+ */
+function delete_dir_file($dir_name) {
+    $result = false;
+    if(is_dir($dir_name)){
+        if ($handle = opendir($dir_name)) {
+            while (false !== ($item = readdir($handle))) {
+                if ($item != '.' && $item != '..') {
+                    if (is_dir($dir_name . DS . $item)) {
+                        delete_dir_file($dir_name . DS . $item);
+                    } else {
+                        unlink($dir_name . DS . $item);
+                    }
+                }
+            }
+            closedir($handle);
+            if (rmdir($dir_name)) {
+                $result = true;
+            }
+        }
+    }
+
+    return $result;
+}
+
+
+
+//时间格式化1
+function formatTime($time) {
+    $now_time = time();
+    $t = $now_time - $time;
+    $mon = (int) ($t / (86400 * 30));
+    if ($mon >= 1) {
+        return '一个月前';
+    }
+    $day = (int) ($t / 86400);
+    if ($day >= 1) {
+        return $day . '天前';
+    }
+    $h = (int) ($t / 3600);
+    if ($h >= 1) {
+        return $h . '小时前';
+    }
+    $min = (int) ($t / 60);
+    if ($min >= 1) {
+        return $min . '分钟前';
+    }
+    return '刚刚';
+}
+
+
+//时间格式化2
+function pincheTime($time) {
+     $today  =  strtotime(date('Y-m-d')); //今天零点
+      $here   =  (int)(($time - $today)/86400) ;
+      if($here==1){
+          return '明天';
+      }
+      if($here==2) {
+          return '后天';
+      }
+      if($here>=3 && $here<7){
+          return $here.'天后';
+      }
+      if($here>=7 && $here<30){
+          return '一周后';
+      }
+      if($here>=30 && $here<365){
+          return '一个月后';
+      }
+      if($here>=365){
+          $r = (int)($here/365).'年后';
+          return   $r;
+      }
+     return '今天';
+}
+
+
+function getRandomString($len, $chars=null){
+    if (is_null($chars)){
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    }
+    mt_srand(10000000*(double)microtime());
+    for ($i = 0, $str = '', $lc = strlen($chars)-1; $i < $len; $i++){
+        $str .= $chars[mt_rand(0, $lc)];
+    }
+    return $str;
+}
+
+
+function random_str($length){
+    //生成一个包含 大写英文字母, 小写英文字母, 数字 的数组
+    $arr = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));
+
+    $str = '';
+    $arr_len = count($arr);
+    for ($i = 0; $i < $length; $i++)
+    {
+        $rand = mt_rand(0, $arr_len-1);
+        $str.=$arr[$rand];
+    }
+
+    return $str;
+}
+
+//调用外部接口 curl get方法
+function curl_get($url='')
+{
+    $ch = curl_init();
+    // 伪造假的user_agent
+//    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64-admin-api) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36');
+    //设置选项，包括URL
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT,60);
+    //执行并获取HTML文档内容
+    $output = curl_exec($ch);
+    //释放curl句柄
+    curl_close($ch);
+    //打印获得的数据
+    return $output;
+}
+
+//调用外部接口 curl post方法
+function curl_post($url='',$data=array())
+{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    // 如果url包含https则忽略证书
+    if (strstr($url,'https')) {
+        // 忽略证书
+       curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+       curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    }
+    curl_setopt($ch, CURLOPT_URL, $url);
+    $output = curl_exec($ch);
+    $curlInfo = curl_getinfo($ch);
+    //释放curl句柄
+    curl_close($ch);
+    return $output;
+}
+
+//调用钉钉curl post方法
+function dingding_curl_post($url,$data){
+    $postUrl = $url;
+    $postData = $data;
+    //$postData = http_build_query($postData);
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $postUrl);
+    curl_setopt($curl, CURLOPT_USERAGENT,'Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12.388 Version/12.15');
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // stop verifying certificate
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_POST, true);
+    //curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($postData)
+    ));
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+    $r = curl_exec($curl);
+    curl_close($curl);
+    return $r;
+}
+//调用外部接口 curl post方法
+function curl_post_https($url='',$data=array())
+{
+    $ch = curl_init();
+//    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    //重要！
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); // https请求 不验证证书和hosts
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    $output = curl_exec($ch);
+    $curlInfo = curl_getinfo($ch);
+    //释放curl句柄
+    curl_close($ch);
+    return $output;
+}
+
+/**
+ * 获取access_token
+ * @return string
+ */
+function getAccessToken($platform_id)
+{
+    $platform=Db::name('wechat_platform')->where('id',$platform_id)->find();
+    //判断是否过了缓存期
+    $expire_time = $platform['token_expires'];
+    if($expire_time > time()){
+        return  $platform['access_token'];
+    }
+    $appid=$platform['app_id'];
+    $appsecret=$platform['app_secret'];
+    $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}";
+    $return = comm_http_get($url);
+    if ($return === false) {
+        return false;
+    }
+    $return=json_decode($return,true);
+    $web_expires = time() + 7000; // 提前200秒过期
+    Db::name('wechat_platform')->where('id',$platform_id)->update(['token_expires'=>$web_expires,'access_token'=>$return['access_token']]);
+    return $return['access_token'];
+}
+
+//get方式获取
+function comm_http_get($url) {
+    $curl =curl_init();
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    $res = curl_exec($curl);
+    curl_close($curl);
+    return $res;
+}
+/**
+ * POST 请求
+ * @param string $url
+ * @param array $param
+ * @param boolean $post_file 是否文件上传
+ * @return string content
+ */
+function comm_http_post($url,$param,$post_file=false){
+    $oCurl = curl_init();
+    if(stripos($url,"https://")!==FALSE){
+        curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($oCurl, CURLOPT_SSLVERSION, 1); //CURL_SSLVERSION_TLSv1
+    }
+    if (is_string($param) || $post_file) {
+        $strPOST = $param;
+    } else {
+        $aPOST = array();
+        foreach($param as $key=>$val){
+            $aPOST[] = $key."=".urlencode($val);
+        }
+        $strPOST =  join("&", $aPOST);
+    }
+    curl_setopt($oCurl, CURLOPT_URL, $url);
+    curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
+    curl_setopt($oCurl, CURLOPT_POST,true);
+    curl_setopt($oCurl, CURLOPT_POSTFIELDS,$strPOST);
+    $sContent = curl_exec($oCurl);
+    $aStatus = curl_getinfo($oCurl);
+    curl_close($oCurl);
+    if(intval($aStatus["http_code"])==200){
+        return $sContent;
+    }else{
+        return false;
+    }
+}

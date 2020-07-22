@@ -1,0 +1,282 @@
+<?php
+
+namespace app\admin\controller;
+use app\admin\service\BranchSer;
+use app\admin\service\GouldMap;
+use think\Db;
+
+set_time_limit(0);
+class Branch extends Base
+{
+    // 测试环境父商品id
+//    protected $pid = [11,12,13,14,15,5036,8663,17354,17446,17454,17690,17701,17702,17715,17716,17717,17742,17743,17744,17780,17781,17782,21865,21866,21867,21868,21869,21870,21871,21872,28397,1746720,1748543,1748544,1748545,1751096,1751097,1751098];//要插入的父商品id
+
+    // 拼购添加活动商品测试接口
+    protected $pt_gooods_url = 'http://192.168.3.88:3311/api/execute/pt_goods_up/store_id/';
+    // 生产环境父商品id,上新商品及时更新
+    protected $pid = [11,12,13,14,15,8663,17354,17446,17454,17690,17701,17702,17715,17716,17717,17742,17743,17744,17780,17781,17782,1746720,1746721,1746722,1746723,1746724,1747226,1747227,1747228,1748131,1748132,1748133,1748134,1748135,1748136,1748137,1748138,1777175,1777176,1777177,1777178,1777179,1777180,1786376,1786377,1786378,1786379,1786380,1786381,1799101,1805273,1807282,1807283,1807284,1807285,1807286,1807287,1807288,1807289,1807290,1807291,1807292,1807293,1807294,1807295,1807296,1807297,1807298,1807299,1807300,1807301,1807302,1807303,1807304,1807305,1807306,1807307,1822214,1822215,1822216,1822217,1822218,1822219,1822220,1822221,1822818,1822839,1837911,1837913,1837915,1837917,1843573];
+    /**
+     * 门店列表
+     */
+    public function index(){
+        $uid = $_SESSION['think']['uid'];
+
+        $key = input('key');
+        $map = [];
+        if($key&&$key!==""){
+            $map['sign'] = ['like','%'.$key.'%'];
+        }
+        $Nowpage = input('get.page') ? input('get.page'):1;
+        $limits = 30;// 获取总条数
+        $count = Db::table('ims_bwk_branch')->where($map)->count();//计算总页面
+        $allpage = intval(ceil($count / $limits));
+        $pre = ($Nowpage-1)*$limits;
+        $lists = Db::table('ims_bwk_branch b')
+            ->join(['sys_departbeauty_relation'=>'sdr'],['b.id=sdr.id_beauty'],'LEFT')
+            ->join(['sys_department'=>'sd'],['sdr.id_department=sd.id_department'],'LEFT')
+            ->field('b.*,sd.st_department bsc')
+            ->where($map)
+            ->order('b.id desc')
+            ->limit($pre,$limits)
+            ->select();
+        if($lists){
+            foreach ($lists as $k=>$v) {
+                $lists[$k]['bsc'] = $v['bsc']==null?'':$v['bsc'];
+            }
+        }
+        $this->assign('Nowpage', $Nowpage); //当前页
+        $this->assign('allpage', $allpage); //总页数
+        $this->assign('count', $count);
+        $this->assign('val', $key);
+        if(input('get.page')){
+            return json($lists);
+        }
+        return $this->fetch();
+    }
+
+    /**
+     * 查询最新添加的父商品
+     */
+    private function getGoodsPid()
+    {
+        $map['id'] = ['>',end($this->pid)];
+        $res = Db::table('ims_bj_shopn_goods')->where($map)->field('id')->order('id asc')->select();
+        if($res){
+            $pids = [];
+            foreach ($res as $v) {
+                $pids[] = $v['id'];
+            }
+            if($pids){
+                $this->pid = array_merge($this->pid,$pids);
+            }
+        }
+    }
+
+    /**
+     * 添加拼购活动商品
+     * @param $store_id
+     * @return mixed
+     */
+    private function addPgGoods($store_id)
+    {
+        $res = curl_get($this->pt_gooods_url.$store_id);
+        return $res;
+    }
+    /**
+     * 添加门店
+     */
+    public function branchAdd()
+    {
+        $submit = input('submit',0);
+        if($submit){
+            $param = input();
+
+            $data = [
+                'weid' => 1,
+                'title' => $param['title'],
+                'sign' => $param['sign'],
+                'address' => $param['address'],
+                'isshow' => 1,
+                'createtime' => time()
+            ];
+            $branchSer = new BranchSer();
+            $map['sign'] = $data['sign'];
+            $res = Db::table('ims_bwk_branch')->where($map)->count();
+            if($res > 0){
+                return json(array('code'=>0,'data' => '','msg' => '该门店编号已存在'));
+            }
+            $this->getGoodsPid();
+            $gouldSer = new GouldMap();
+            $res_addr = $gouldSer->addressTolng($param['address']);
+            if($res_addr){
+                $res_addr1 = $res_addr['geocodes'][0];
+                $data['location_p'] = $res_addr1['province'];
+                $data['location_c'] = $res_addr1['city'];
+                $data['location_a'] = $res_addr1['district'];
+                $lng = explode(',',$res_addr1['location']);
+                $data['lng'] = $lng[0];
+                $data['lat'] = $lng[1];
+
+                // 1.添加门店数据
+                // 启动事务
+                Db::startTrans();
+                try {
+                    $res = $branchSer->addBranch($data);
+                    if ($res) {
+                        // 2.添加门店对应办事处关系
+                        $data_sdr = [
+                            'id_department' => $param['bsc'],// 办事处
+                            'id_sign' => $data['sign'],// 门店编号
+                            'id_beauty' => $res,// 门店id
+                        ];
+                        Db::table('sys_departbeauty_relation')->insertGetId($data_sdr);
+
+                        // 3.添加门店对应的邀请码
+                        $branchSer->addInvitecode($res);
+
+                        // 3-1.添加门店店老板内衣货款配置
+                        $datap = [
+                            'sign' => $data['sign'],
+                            'underwear_payment' => 9999999,
+                            'create_time' => date('Y-m-d H:i:s')
+                        ];
+                        $res_hk = Db::table('ims_bj_shopn_store_payment')->insertGetId($datap);
+
+                        // 4.添加门店对应上线的默认产品
+                        $map_pid['id'] = ['in', $this->pid];
+                        $res_goods_p = Db::table('ims_bj_shopn_goods')->where($map_pid)->select();
+                        if ($res_goods_p) {
+                            $gds = [];
+                            foreach ($res_goods_p as $v) {
+                                $gd = $v;
+                                $gd['storeid'] = $res;
+                                $gd['pid'] = $v['id'];
+                                $gds[] = $gd;
+                            }
+                            if ($gds) {
+                                $data_branch_goods = [];
+                                foreach ($gds as $v) {
+                                    // 4.添加门店子商品
+                                    $pid = $v['id'];
+                                    unset($v['id']);
+                                    $gd_id = Db::table('ims_bj_shopn_goods')->insertGetId($v);
+                                    // 获取父商品分期
+                                    $map_pid_fenqi['id_goods'] = $v['pid'];
+                                    $res_pid_fenqi = Db::table('ims_bj_shopn_goods_interestrate')->where($map_pid_fenqi)->select();
+                                    if ($res_pid_fenqi) {
+                                        $data_inters = [];
+                                        foreach ($res_pid_fenqi as $v2) {
+                                            $data_inter = [
+                                                'id_store' => $res,
+                                                'id_goods' => $gd_id,
+                                                'id_interestrate' => $v2['id_interestrate'],
+                                                'dt_insert' => date('Y-m-d H:i:s')
+                                            ];
+                                            // 4-1.添加子商品支付方式
+                                            $res_gd_inter = Db::table('ims_bj_shopn_goods_interestrate')->insertGetId($data_inter);
+//                                            $data_inters[] = $data_inter;
+                                        }
+                                        // 4-1.添加子商品支付方式
+//                                        if ($data_inters) {
+//                                            $res_gd_inter = Db::table('ims_bj_shopn_goods_interestrate')->insertAll($data_inters);
+//                                        }
+
+                                    }
+                                    // 获取门店商品bwk_branch_goods
+                                    $data_branch_good = [
+                                        'title' => $v['title'],
+                                        'gid' => $pid,
+                                        'sid' => $res,
+                                        'weid' => 1
+                                    ];
+                                    // 5.添加门店父商品列表
+                                    $res_branch_goods = Db::table('ims_bwk_branch_goods')->insertGetId($data_branch_good);
+//                                    $data_branch_goods[] = $data_branch_good;
+                                }
+                                // 5.添加门店父商品列表
+//                                if ($data_branch_goods) {
+//                                    $res_branch_goods = Db::table('ims_bwk_branch_goods')->insertAll($data_branch_goods);
+//                                }
+
+                            }
+                        }
+
+                        // 添加门店对应的拼购活动商品
+//                        $this->addPgGoods($res);
+
+                        return json(array('code' => 1, 'data' => '', 'msg' => '添加成功'));
+                    }
+                    // 提交事务
+                    Db::commit();
+                } catch (\Exception $e) {
+                    // 回滚事务
+                    Db::rollback();
+                    return json(array('code'=>0,'data' => '','msg' => '添加失败-回滚事务-'.$e->getMessage()));
+                }
+
+            }else{
+                return json(array('code'=>0,'data' => '','msg' => '添加失败'));
+            }
+        }
+        $res_bsc = Db::table('sys_department')->field('id_department id,st_department name')->order('id desc')->select();
+
+        $this->assign('bscs',$res_bsc);
+        return $this->fetch();
+    }
+
+    /**
+     * 删除门店
+     */
+    public function branchDel()
+    {
+        $id = input('param.id');
+        if($id) {
+            $branchSer = new BranchSer();
+            $map['id'] = $id;
+            $branchSer->delBranch($map);
+        }
+        return json(['code' => 1, 'data' => '', 'msg' => '删除成功']);
+    }
+
+    /**
+     * 编辑门店
+     */
+    public function branchEdit()
+    {
+        $id = input('id',0);
+        $submit = input('submit');
+        $list = Db::table('ims_bwk_branch')->where('id',$id)->limit(1)->find();
+        if($submit){
+            $param = input();
+            $id = $param['id'];
+            $data = [
+                'title' => $param['title'],
+                'sign' => $param['sign'],
+                'address' => $param['address']
+            ];
+            $gouldSer = new GouldMap();
+            $res_addr = $gouldSer->addressTolng($param['address']);
+            if($res_addr) {
+                $res_addr1 = $res_addr['geocodes'][0];
+                $data['location_p'] = $res_addr1['province'];
+                $data['location_c'] = $res_addr1['city'];
+                $data['location_a'] = $res_addr1['district'];
+                $lng = explode(',', $res_addr1['location']);
+                $data['lng'] = $lng[0];
+                $data['lat'] = $lng[1];
+            }
+            $res = Db::table('ims_bwk_branch')->where('id',$id)->update($data);
+            
+            // 记录用户行为日志
+            $baseSer = new \app\admin\service\BaseSer();
+            $user_id = $_SESSION['think']['uid'];
+            $msg = '修改门店-'.$data['sign'].'-地址:'.$data['address'];
+            $baseSer->writeLog($user_id,$msg);
+
+            return json(array('code'=>1,'data' => '','msg' => '修改成功'));
+        }
+        $this->assign('id', $id);
+        $this->assign('list', $list);
+        return $this->fetch();
+    }
+}

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+		<!--<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.12&key=87479936d9ecb6fc4997e30cb3b14732&plugin=AMap.RangingTool,AMap.Scale,AMap.OverView,AMap.ToolBar"></script>-->
+		<link rel="stylesheet" href="css/date.css">
+		<title>用户画像</title>
+		<style>
+			*{box-sizing: border-box;margin: 0;padding: 0;list-style: none;border: none;}
+			body {font-size:16px; font-family: "微软雅黑";-webkit-tap-highlight-color:transparent;}
+			fieldset, img { border:0; }
+			ol, ul { list-style:none; }
+			html {
+				-ms-text-size-adjust: 100%;
+				-webkit-text-size-adjust: 100%;
+			}
+			.hide{display: none !important;}
+			.click_bg{background: #DEDEDE !important;}
+			.click_color{color: #000000 !important;}
+			.next_button{background: #000000;color: #FFFFFF;border-radius: 1.5em;height: 3em;line-height: 3em;width: 80%;margin: 1em 10%;}
+			.tishi {
+				position: fixed;
+				background: #000000;
+				opacity: 0.6;
+				color: #FFFFFF;
+				left: 20%;
+				width: 60%;
+				top: 50%;
+				line-height: 2em;
+				border-radius: 0.2em;
+				text-align: center;
+				font-size: 0.8em;
+			}
+			
+			.avatar{width: 100%;text-align: center;padding: 1em 0;}
+			.avatar p{color: #0C0C0C;font-size: 1.2em;font-weight: bold;}
+			.avatar img{width: 5em;height: 5em;margin: 0 auto;margin-top: 1em;}
+			.avatar div p,.birth label{color: #DEDEDE;font-size: 0.8em;font-weight: 100;}
+			#pageThree .avatar div p{margin-top: 0.5em;}
+			
+			.search_list{width: 90%;text-align: center;margin-top: 1em;margin-left: 5%;}
+			.search_title{margin-bottom: 1em;}
+			.search_title_help{font-size: 0.9em;}
+			.part{display: flex;}
+			.part div{width: 100%;text-align: center;}
+			.part .search_img{width: 4em;height: 4em;border-radius: 50%;border: 1px solid #0C0C0C;padding: 0.5em;margin-bottom: 0.5em;}
+			.part .search_img span{font-size: 1.2em;}
+			.age p{line-height: 3em;margin: 0 auto 0.5em auto;cursor: pointer;}
+			.birth div{text-align: left;width: 80%;margin: 0 10%;}
+			.birth input{width: 100%;height: 3em;line-height: 3em;display: block;padding: 0 0.5em;margin-top: 0.5em;background: #E5E5E5;border-radius: 0.1em;}
+			
+			.Interest{width: 90%;margin: 0 5%;text-align: justify;}
+			.Interest div{width: 25%;margin: 0.5em 2%;display: inline-block;font-size: 0.8em;text-align: center;}
+			.Interest div img{width: 100%;}
+			.Interest div p{margin-top: 0.5em;color: #DEDEDE;}
+			.unclick{background: #A8A8A8 !important;}
+		</style>
+	</head>
+	<body>
+		<div class="info_msg ">
+			<div class="avatar">
+				<p class="user_name"></p>
+				<div>
+					<img src="image/avatar.png"  class="user_avatar"/>
+					<p>完善您的信息，获取个性化服务</p>
+				</div>
+			</div>
+			
+			<div id="pageOne" class="">
+				<div class="search_list sex">
+					<p class="search_title">我的性别是</p>
+					<div class="part">
+						<div class="sex_search">
+							<img src="image/nan.png" class="search_img"/>
+							<div>
+								<input type="radio" name="sex" value="男性"/>
+								<label>男性</label>
+							</div>
+						</div>
+						<div class="sex_search">
+							<img src="image/nv.png"  class="search_img"/>
+							<div>
+								<input type="radio" name="sex" value="女性"/>
+								<label>女性</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="search_list age">
+					<p class="search_title">我的年龄范围是</p>
+					<div class="part">
+						<div>
+							<p class="search_img"><span>50</span>后</p>
+							<p class="search_img"><span>80</span>后</p>
+						</div>
+						<div>
+							<p class="search_img"><span>60</span>后</p>
+							<p class="search_img"><span>90</span>后</p>
+						</div>
+						<div>
+							<p class="search_img"><span>70</span>后</p>
+							<p class="search_img"><span>00</span>后</p>
+						</div>
+					</div>
+				</div>
+				<button class="next_button">下一步</button>
+			</div>
+			
+			
+			<div id="pageTwo" class="hide">
+				<div class="search_list birth">
+					<p class="search_title_help">我要获取生日惊喜(生日仅自己可见)</p>
+					<p class="search_title">我的生日是</p>
+					<div>
+						<label>选择您的生日</label>
+						<input type="text" id="date3" data-options="{'type':'YYYY-MM-DD','beginYear':1900,'endYear':2088}">
+					</div>
+				</div>
+				<button class="next_button">下一步</button>
+			</div>
+		</div>
+		
+		<div id="pageThree" class="hide">
+			<div class="avatar">
+				<p>选择感兴趣的内容</p>
+				<div><p>获得私人订制服务</p></div>
+			</div>
+			<div class="Interest">
+				<div><img src="image/search/1.png" /><p>头皮抗衰</p></div>
+				<div><img src="image/search/2.png" /><p>发际线后移</p></div>
+				<div><img src="image/search/3.png" /><p>白发转黑</p></div>
+				<div><img src="image/search/4.png" /><p>美白</p></div>
+				<div><img src="image/search/5.png" /><p>肌肤保湿</p></div>
+				<div><img src="image/search/6.png" /><p>面部抗初老</p></div>
+				<div><img src="image/search/7.png" /><p>提升紧致</p></div>
+				<div><img src="image/search/8.png" /><p>小颜V脸</p></div>
+				<div><img src="image/search/9.png" /><p>体龄管理</p></div>
+				<div><img src="image/search/10.png" /><p>家庭营养学</p></div>
+				
+				<div><img src="image/search/11.png" /><p>纤体塑形</p></div>
+				<div><img src="image/search/12.png" /><p>瘦腿</p></div>
+				<div><img src="image/search/13.png" /><p>收腹</p></div>
+				<div><img src="image/search/14.png" /><p>翘臀</p></div>
+				<div><img src="image/search/15.png" /><p>美背</p></div>
+				<div><img src="image/search/16.png" /><p>健美曲线</p></div>
+				<div><img src="image/search/17.png" /><p>痘痘肌护理</p></div>
+				<div><img src="image/search/18.png" /><p>敏感肌护理</p></div>
+				<div><img src="image/search/19.png" /><p>色斑肌肤护理</p></div>
+				<div><img src="image/search/20.png" /><p>汉方养生</p></div>
+			</div>
+			<button class="next_button unclick">至少关注3个领域/兴趣</button>
+		</div>
+		<div id="map"></div>
+		<div class="tishi hide"></div>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.date.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=eiu0ZbIfhCa83VWDHShol2AlvytTnFRw"></script>
+	<script>
+		var path ='http://live.qunarmei.com/api/v4/user_portrait/';
+		var interest_arr=[],userid='',mobile='',sex='',age_group='',birthday='',interest='',lng='',lat='';
+		userid = getQueryString('user_id');
+		//获取用户信息
+		$.ajax({
+			type: 'post',
+			url: path+'getUserPortrait',
+			dataType: 'json',
+			data: "user_id="+userid,
+			crossDomain: true,
+			async: false,
+			cache: false,
+			success: function(res) {
+				if(res.code == 1){
+					if(res.data.mobile == undefined){
+						tishi(res.msg,1000);
+					}
+					else{
+						$('.user_name').html('欢迎您，'+res.data.user_name);
+						$('.user_avatar').attr('src',res.data.head_img);
+						mobile = res.data.mobile;
+					}
+				}
+			},
+			error: function(res) {
+				console.log(res);
+			},
+		});
+		
+
+		//part1
+		$('.sex_search').click(function(){
+			var msg = $(this).children().children('label').html();
+			$("input[name='sex'][value='"+msg+"']").prop("checked",true);
+			sex = msg;
+		})
+		$('.age .part p').click(function(){
+			$('.age .part p').removeClass('click_bg');
+			$(this).addClass('click_bg');
+			age_group = $(this).children('span').html();
+		})
+		//part2
+//		$.date('#date3',2000,2010);
+		//part3
+		$('.Interest div').click(function(){
+			var childDom = $(this).children('p');
+			var msg = childDom.html();
+			if(interest_arr.indexOf(msg) == -1){
+				interest_arr.push(msg);
+				childDom.addClass('click_color');
+			}
+			else{
+				interest_arr.splice(interest_arr.indexOf(msg),1);
+				childDom.removeClass('click_color');
+			}
+			
+			if(2<interest_arr.length){$('#pageThree .next_button').removeClass('unclick');}
+			else{$('#pageThree .next_button').addClass('unclick');}
+		})
+		//提交
+		$('.next_button').click(function(){
+			var parentName = $(this).parent().attr('id');
+			if(parentName == 'pageOne'){
+				if(sex != '' && age_group !=''){
+					$('#pageOne').addClass('hide');
+					$('#pageTwo').removeClass('hide');
+					var startyear = parseInt(age_group);
+					if(age_group != 00){
+						console.log(1900+startyear)
+						$.date('#date3',(1900+startyear),(startyear+1910));
+					}
+					else{
+						$.date('#date3',(2000+startyear),(startyear+2010));
+					}
+				}
+				else{
+					tishi('您还有未填写项',1000);
+				}
+			}
+			else if(parentName == 'pageTwo'){
+				birthday = $('#date3').val();
+				if(birthday != ''){
+					$('.info_msg').addClass('hide');
+					$('#pageThree').removeClass('hide');					
+				}
+				else{
+					tishi('您还有未填写项',1000);
+				}
+			}
+			else{
+				if($(this).hasClass('unclick')){
+					tishi('请至少关注3个领域/兴趣',1000);
+				}
+				else{
+					for(var i=interest_arr.length - 1;0<=i;i--){interest = interest_arr[i]+ ','+interest;}
+					var data = "user_id="+userid+"&mobile="+mobile+"&sex="+sex+"&age_group="+age_group+"&birthday="+birthday+"&interest="+interest+"&lng="+lng+"&lat="+lat;
+//					console.log(data)
+//					alert(JSON.stringify(data))
+					//提交
+					$.ajax({
+						type: 'post',
+						url: path+'addUserPortrait',
+						dataType: 'json',
+						data: data,
+						crossDomain: true,
+						async: false,
+						cache: false,
+						success: function(res) {
+//							console.log(res)
+							tishi(res.msg,1000);
+							var goback = setTimeout(function() {
+								try{
+					                dismissView()
+					            }
+					            catch(e){}
+
+					            try{
+					                dismissView.dismissView()
+					            }
+					            catch(e){}
+							}, 1000)
+						},
+						error: function(res) {
+							console.log(res);
+						},
+					});
+				}
+			}
+		})
+		
+		//获取经纬度
+		navigator.geolocation.getCurrentPosition(function(pos){
+			var crd = pos.coords;
+				lng = crd.longitude;
+				lat = crd.latitude;
+		}, function(){
+			var geolocation = new BMap.Geolocation();
+			geolocation.enableSDKLocation();
+			geolocation.getCurrentPosition(function(r) {
+				if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+					lng = r.point.lat;
+					lat = r.point.lng;
+//					console.log(r.point);
+	//				alert(JSON.stringify(r.point))
+				}
+			}, {
+	            enableHighAccuracy: true
+	        })
+		}, {
+            enableHighAccuracy: true
+        })
+
+
+		//提示
+		function tishi(msg, time) {
+			$('.tishi').html(msg);
+			$('.tishi').removeClass('hide');
+			var t = setTimeout(function() {
+				$('.tishi').addClass('hide');
+			}, time)
+		}
+		//获取地址
+		function getQueryString(name) {
+			var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+			var r = window.location.search.substr(1).match(reg);
+			if(r != null) {
+				return unescape(r[2]);
+			}
+			return null;
+		}
+		//返回首页
+		// function dismissView(){
+		// 	try{
+  //               dismissView()
+  //           }
+  //           catch(e){}
+
+  //           try{
+  //               dismissView.dismissView()
+  //           }
+  //           catch(e){}
+		// }
+
+	</script> 
+</html>

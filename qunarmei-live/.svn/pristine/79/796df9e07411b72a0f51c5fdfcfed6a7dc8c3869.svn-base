@@ -1,0 +1,208 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<script type="text/javascript" src="/static/admin/js/plugins/layer/laydate/laydate.js"></script>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>安心送订单列表</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-sm-12">
+                <div  class="col-sm-2" style="width: 100px">
+                    <div class="input-group" >
+
+                    </div>
+                </div>
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('index')}">
+                        <div>
+                            <div>
+                                订单编号:<input type="text" id="ordersn"   name="ordersn" value="{$ordersn}" placeholder="" />
+                                &nbsp;
+                                支付时间:<input type="text" id="begin_time"   name="dt1" value="{$dt1}" placeholder="" />-<input type="text" id="end_time"   name="dt2" value="{$dt2}" placeholder="" />
+                                &nbsp; <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                &nbsp;
+                                <span ><a class="btn btn-primary"  href="{:url('index',['ordersn'=>$ordersn,'dt1'=>$dt1,'dt2'=>$dt2,'report'=>1])}"><i class="fa fa-download"></i> 导出</a>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example" >
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>办事处</th>
+                                <th>门店名称</th>
+                                <th>门店编码</th>
+                                <th>美容师名称</th>
+                                <th>美容师电话</th>
+                                <th>顾客姓名</th>
+                                <th>顾客电话</th>
+                                <th>顾客标识码</th>
+                                <th>活动订单号</th>
+                                <th>支付状态</th>
+                                <th>取货方式</th>
+                                <th>订单类型</th>
+                                <th>购买产品</th>
+                                <th>产品提供</th>
+                                <th>购买数量</th>
+                                <th>订单金额</th>
+                                <th>抵扣信息</th>
+                                <th>规格型号</th>
+                                <th>取货状态</th>
+                                <th>订单创建时间</th>
+                                <th>订单支付时间</th>
+                                <th>支付流水号</th>
+                                <th>品类</th>
+                                <th>收货人</th>
+                                <th>联系方式</th>
+                                <th>收货地址</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                            <tr class="long-td">
+                                <td>{{d[i].id}}</td>
+                                <td>{{d[i].bsc}}</td>
+                                <td>{{d[i].store_name}}</td>
+                                <td>{{d[i].sign}}</td>
+                                <td>{{d[i].pname}}</td>
+                                <td>{{d[i].pmobile}}</td>
+                                <td>{{d[i].realname}}</td>
+                                <td>{{d[i].mobile}}</td>
+                                <td>{{d[i].activity_flag}}</td>
+                                <td>{{d[i].ordersn}}</td>
+                                <td>{{d[i].status}}</td>
+                                <td>{{d[i].sh_type}}</td>
+                                <td>{{d[i].order_type}}</td>
+                                <td>{{d[i].goods}}</td>
+                                <td>{{d[i].goods_tg}}</td>
+                                <td>{{d[i].goods_num}}</td>
+                                <td>{{d[i].price}}</td>
+                                <td>{{d[i].discount}}</td>
+                                <td>{{d[i].goods_code}}</td>
+                                <td>{{d[i].qh_status}}</td>
+                                <td>{{d[i].createtime}}</td>
+                                <td>{{d[i].payTime}}</td>
+                                <td>{{d[i].transid}}</td>
+                                <td>{{d[i].pl}}</td>
+                                <td>{{d[i].sh_name}}</td>
+                                <td>{{d[i].sh_mobile}}</td>
+                                <td>{{d[i].sh_address}}</td>
+                            </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var dt1=$('#begin_time').val();
+        var dt2=$('#end_time').val();
+        var ordersn=$('#ordersn').val();
+        $.getJSON('{:url("Order/index")}', {page: curr || 1,key:key,dt1:dt1,dt2:dt2,ordersn:ordersn}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+    //layui 时间日期控件
+    var begin_time = {
+        elem: '#begin_time', //选择ID为START的input
+        format: 'YYYY-MM-DD', //自动生成的时间格式
+//         min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16', //最大日期
+        istime: true, //必须填入时间
+        istoday: false,  //是否是当天
+        start: laydate.now(0,"YYYY-MM-DD"),  //设置开始时间为当前时间
+        choose: function(datas){
+//            end.min = datas; //开始日选好后，重置结束日的最小日期
+//            end.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+    laydate(begin_time);
+    //layui 时间日期控件
+    var end_time = {
+        elem: '#end_time', //选择ID为START的input
+        format: 'YYYY-MM-DD', //自动生成的时间格式
+//         min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16', //最大日期
+        istime: true, //必须填入时间
+        istoday: false,  //是否是当天
+        start: laydate.now(0,"YYYY-MM-DD"),  //设置开始时间为当前时间
+        choose: function(datas){
+//            end.min = datas; //开始日选好后，重置结束日的最小日期
+//            end.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+    laydate(end_time);
+
+    //导出csv数据
+    function reportCsv()
+    {
+        var dt1=$('#begin_time').val();
+        var dt2=$('#end_time').val();
+        var ordersn=$('#ordersn').val();
+        $.post('{:url("Order/index")}',{report:1,dt1:dt1,dt2:dt2,ordersn:ordersn},function(result){
+             console.log(result);
+            // window.location.href = result;
+        });
+    }
+    // erp订单号回填
+    function huitian(){
+        //jquery获取复选框值
+        var chk_value ='';//
+        $('input[name="xz_id"]:checked').each(function(){
+            chk_value += $(this).val()+','
+        });
+        window.location.href = '{:url("Order/huitian")}?order_ids='+chk_value;
+    }
+
+</script>
+</body>
+</html>

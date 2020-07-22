@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+
+		<link rel="stylesheet" href="css/swiper-3.4.2.min.css">
+		<link rel="stylesheet" href="css/date.css">
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/weui-jq.css">
+		<link rel="stylesheet" href="css/list.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<script type="text/javascript" src="js/kinerDatePicker.js"></script>
+		<script type="text/javascript" src="js/weui.js"></script>
+		<script src="js/common.js"></script>
+		<script type="text/javascript" src="js/list.js"></script>
+		<title>诚美学霸计划</title>
+	</head>
+
+	<body onscroll="scrollTap()">
+        <div class="weui-navbar navtopbar">
+            <div class="weui-navbar__item tab-top" id="listShow"><p>战绩榜</p></div>
+            <div class="weui-navbar__item" id="silkBag"><p>锦 囊</p></div>
+            <div class="weui-navbar__item" id="interlocution"><p>Q&A</p></div>
+        </div>
+        
+        <div class="window">
+        	<div class="rank">
+        		<div class="weui-navbar rank-top">
+		            <div class="weui-navbar__item tab-top" id="allList"><p>总 榜</p></div>
+		            <div class="weui-navbar__item" id="sevenList"><p>周 榜（近7天）</p></div>
+		        </div>
+		        <div class="weui-navbar rank-listtop">
+		            <div class="weui-navbar__item tab-top" id="moneyTap"><p>总金币</p></div>
+		            <div class="weui-navbar__item" id="wordTap"><p>单词总数</p></div>
+		            <div class="weui-navbar__item" id="timeTap"><p>在线时长</p></div>
+		            <div class="weui-navbar__item" id="clearanceTap"><p>通关总数</p></div>
+		        </div>
+		        <div class="weui-navbar rank-listtitle">
+		        	<p class="rank_part">排名</p>
+		        	<p >姓名</p>
+		        	<p class="listnum_title">金币数</p>
+		        	<p class="rank-time">初次登录</p>
+		        	<p class="rank-time">最后登录</p>
+			    </div>
+			    <div class="rank-bottom">
+			    	<button class="coin_num">我家学霸金币数:<span></span></button>
+			    	<button class="ranking">我家学霸的排名:<span></span></button>
+			    </div>
+		        <div class="weui-slider">
+		          <div id="sliderInner" class="weui-slider__inner">
+		            <div id="sliderTrack" style="height: 0%;" class="weui-slider__track"></div>
+		            <div id="sliderHandler" style="top: 0%;" class="weui-slider__handler"></div>
+		          </div>
+		        </div>
+		        <!--test-->
+	        	<ul class="general_list"></ul>
+		        <!--testend-->
+		        <ul class="seven_list hide"></ul>
+        	</div>
+        	<div class="silk_bag hide">
+        		<div class="weui-cells weui-cells_form silk_select">
+					<div class="weui-cell">
+						<div class="weui-cell__hd"><label class="weui-label">分类</label></div>
+						<div class="weui-cell__bd">
+							<input class="weui-input" id="studyClassify" type="text" value="" readonly="" >
+						</div>
+					</div>
+					<div class="weui-cell">
+						<div class="weui-cell__hd"><label class="weui-label">学习类型</label></div>
+						<div class="weui-cell__bd">
+							<input class="weui-input" id="studyType" type="text" value="" readonly="" >
+						</div>
+					</div>
+					
+					<div class="weui-cell">
+						<div class="weui-cell__hd"><label for="time1" class="weui-label">学习开始时间</label></div>
+						<div class="weui-cell__bd">
+							<!--<input class="weui-input" id="time1" type="text" value="" min="">-->
+							<div class="kinerDatePickerInput" id="kinerDatePickerInput1" title="开始时间" startYear="2019" default-val="2019-1-1"></div>
+						</div>
+					</div>
+					<div class="weui-cell">
+						<div class="weui-cell__hd"><label for="time2" class="weui-label">学习截止时间</label></div>
+						<div class="weui-cell__bd">
+<!--							<input class="weui-input" id="time2" type="text" value="" min="">-->
+							<div class="kinerDatePickerInput" id="kinerDatePickerInput2" title="截止时间" startYear="2019" default-val="2019-1-1"></div>
+						</div>
+					</div>
+					<div class="weui-cell">
+						<button id="silkSelect">查 询</button>
+					</div>
+				</div>
+        		
+        		<div class="weui-slider">
+		          <div id="sliderInner2" class="weui-slider__inner">
+		            <div id="sliderTrack" style="height: 0%;" class="weui-slider__track"></div>
+		            <div id="sliderHandler" style="top: 0%;" class="weui-slider__handler"></div>
+		          </div>
+		        </div>
+		        
+        		<div class="silkbag_body weui-grids"></div>
+        	</div>
+        	<div class="interlocution hide">
+        		<div class="inter_top">
+	        		<div class="weui-search-bar" id="searchBar">
+				      <div class="weui-search-bar__form">
+				        <div class="weui-search-bar__box">
+				          <i class="weui-icon-search"></i>
+				          <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索">
+				          <p class="weui-icon-clear" id="searchClear"></p>
+				        </div>
+				        <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+				          <i class="weui-icon-search"></i>
+				          <span>搜索</span>
+				        </label>
+				      </div>
+				      <p class="weui-search-bar__cancel-btn" id="searchCancel">取消</p>
+				    </div>
+	        		
+	        		<div class="weui-slider">
+			          <div id="sliderInner3" class="weui-slider__inner">
+			            <div id="sliderTrack" style="height: 0%;" class="weui-slider__track"></div>
+			            <div id="sliderHandler" style="top: 0%;" class="weui-slider__handler"></div>
+			          </div>
+			        </div>
+					
+	        		<div class="inter_tips">
+	        			<p class="inter_title">+ 新手入门</p>
+	        			<span>PC端安装说明文档及注意事项（必读）</span>
+	        			<span>安装前必须注意事项（必读）</span>
+	        		</div>
+        		</div>
+        		<div class="inter_body">
+        			<p class="inter_title">+ 常见问题</p>
+        			<ul></ul>
+        		</div>
+        		
+        	</div>
+        </div>
+	</body>
+	<script type="text/javascript">
+		var clientHeight = 0;
+		if(document.body.clientHeight && document.documentElement.clientHeight) {
+			var clientHeight = (document.body.clientHeight < document.documentElement.clientHeight) ? document.body.clientHeight : document.documentElement.clientHeight;
+		} else {
+			var clientHeight = (document.body.clientHeight > document.documentElement.clientHeight) ? document.body.clientHeight : document.documentElement.clientHeight;
+		}
+		
+		function scrollTap(){
+			var toparea = $(document).scrollTop();
+			var scrollBottom=-$(window).height()+$(".window").offset().top+$(".window").height()-$(document).scrollTop();
+			
+			var percent = toparea/(toparea+scrollBottom)*100;
+			$('#sliderTrack').css('height',percent+'%');
+			$('#sliderHandler').css('top',percent+'%');
+		}
+		
+		
+	</script>
+</html>

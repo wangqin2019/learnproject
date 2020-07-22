@@ -1,0 +1,99 @@
+{include file="public/header" /}
+
+<style>
+.file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+.file-item .info{overflow: hidden;}
+.uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>申请门店-审核编辑</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="edit" id="edit" method="post" action="{:url('store_check_edit')}">
+                    <input type="hidden" name="id" value="{$list.id}">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">门店名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title1" type="text" class="form-control" name="title" value="{$list.title}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">门店编号：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="sign1" type="text" class="form-control" name="sign" value="{$list.sign}">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">审核状态：</label>
+                            <div class="col-sm-6">
+                                <div class="radio i-checks">
+                                    <input type="radio" name='status' value="2" {if $list.status eq 2}checked="checked"{else}{/if}/>审核不通过
+                                    <input type="radio" name='status' value="4" {if $list.status eq 4}checked="checked"{else}{/if}/>审核通过&nbsp;&nbsp;
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+  {include file="public/footer" /}
+
+<script type="text/javascript">
+
+    $(function(){
+        $('#edit').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+        function checkForm(){
+            return true;
+        }
+        function complete(data){
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    window.location.href="{:url('store_manage/store_check')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+    });
+</script>
+</body>
+</html>

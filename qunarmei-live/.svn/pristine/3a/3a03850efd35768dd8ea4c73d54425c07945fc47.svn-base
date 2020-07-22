@@ -1,0 +1,85 @@
+<?php
+
+require 'Rtmp.class.php';
+
+$type = $_REQUEST['type'];
+
+//返回数据
+$datav = array('code'=>1,'data'=>array(),'msg'=>'获取成功');
+//live_add 获取相关参数
+if($type == 'live_add')
+{
+  $stream_name = $_REQUEST['stream_name'];
+  if($stream_name)
+  {
+    $rtmp = new Rtmp($stream_name);
+    $push_url = $rtmp->getRtmpUrl();
+    $rtmp_url = $rtmp->getRtmpPlay();
+    $hls_url = $rtmp->getHlsPlay();
+    $screen_shot = $rtmp->getScreenShot();
+    $data = array('push_url'=>$push_url,'rtmp_url'=>$rtmp_url,'hls_url'=>$hls_url,'screen_shot'=>$screen_shot);
+    $datav['data'] = $data;
+  }
+  
+}elseif($type == 'close_stream')
+{
+  $stream_name = $_REQUEST['stream_name'];
+  //禁用流
+  if($stream_name)
+  {
+    $rtmp = new Rtmp($stream_name);
+    $resp = $rtmp->disableStream();
+    $datav['data'] = array('url'=>$resp);
+  }else
+  {
+    $datav['code'] = 0;
+    $datav['msg'] = '获取失败';
+  }
+  
+}
+elseif($type == 'enable_stream')
+{
+  $stream_name = $_REQUEST['stream_name'];
+  //启动流
+  if($stream_name)
+  {
+    $rtmp = new Rtmp($stream_name);
+    $resp = $rtmp->enableStream();
+    $datav['data'] = array('status'=>$resp);
+  }else
+  {
+    $datav['code'] = 0;
+    $datav['msg'] = '获取失败';
+  }
+  
+}elseif($type == 'save_as')
+{
+  $stream_name = $_REQUEST['stream_name'];
+  //保存直播视频
+  //启动流
+  if($stream_name)
+  {
+    $rtmp = new Rtmp($stream_name);
+    $resp = $rtmp->saveReplay();
+    $datav['data'] = array('url'=>$resp);
+  }else
+  {
+    $datav['code'] = 0;
+    $datav['msg'] = '获取失败';
+  }
+}elseif($type == 'cover')
+{
+  //获取直播封面
+  $stream_name = $_REQUEST['stream_name'];
+  if($stream_name)
+  {
+    $rtmp = new Rtmp($stream_name);
+    $resp = $rtmp->getScreenShot();
+    $datav['data'] = array('url'=>$resp);
+  }else
+  {
+    $datav['code'] = 0;
+    $datav['msg'] = '获取失败';
+  }
+}
+echo json_encode($datav);

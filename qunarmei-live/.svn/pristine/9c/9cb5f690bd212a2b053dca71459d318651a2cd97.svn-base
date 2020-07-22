@@ -1,0 +1,118 @@
+var init = {
+    data:'',
+    html:'',
+    isTrue:'',
+    winner:[],
+    randomNum(min,max){ //tool
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    },
+    randomNumArray(count,maxNum){
+        var arr = [];
+          for(var coIndex=0;coIndex < count; coIndex++){
+                var getNum = this.randomNum(0,maxNum - 1);
+              if(arr.length == 0){
+                  arr.push(getNum)
+              }else{
+                  if(arr.indexOf(getNum) == -1){
+                      arr.push(getNum);
+                  }else{
+                    coIndex--
+                  }
+              }
+          }
+          return arr
+    },
+    sliceArray(array, size) { //tool
+        var result = [];
+        for (var sAindex = 0; sAindex < Math.ceil(array.length / size); sAindex++) {
+            var start = sAindex * size;
+            var end = start + size;
+            result.push(array.slice(start, end));
+        }
+        return result;
+    },
+    get_user(){
+        $('#num').attr('class','num_div').html('');
+        var _this = this,allList = '',dataNum = this.data.num;
+        // if(this.isTrue){
+        //     allList = this.data.mobileList;
+        // }else {
+        //     allList = this.data.counterfeitList;
+        // }
+        allList = this.data.counterfeitList;
+        if(typeof(dataNum) == 'string'){
+            dataNum = parseInt(dataNum,10);
+        }
+
+        if(dataNum == 1){
+            $('#num').addClass('font_larges');
+        }else if(dataNum >= 10 && dataNum <= 25){
+            $('#num').addClass('font_middle');
+        }
+        var sliceArray = this.sliceArray(allList,dataNum);
+        console.log(sliceArray);
+        window.newTimer = window.setInterval(function(){
+            var getRandom = _this.randomNum(0,sliceArray.length - 1);
+            _this.html = '';
+            for(var s=0;s < sliceArray[getRandom].length;s++){
+                _this.html += '<span>' + _this.mobile_change(sliceArray[getRandom][s]) + '</span>';
+            }
+            $('#num').html(_this.html);
+        },100);
+    },
+    start(data){
+        console.log(data);
+        this.data = data;
+        this.winner = '';
+        var mobileList = data.mobileList; //真实数据
+        var counterfeitList = data.counterfeitList; //测试数据
+        var startNum = data.num; //抽奖人数
+        var array = [],randomNum = '';
+        if(typeof(startNum) == 'string'){
+            startNum = parseInt(startNum,10);
+        }
+
+        if(startNum > mobileList.length){
+            console.log("中奖用户大于当前直播间人数");
+            this.isTrue = 0;
+            randomNum = this.randomNumArray(startNum,counterfeitList.length);
+            for(var stIndex=0;stIndex < randomNum.length;stIndex++){
+                array.push(counterfeitList[randomNum[stIndex]]);
+            }
+        }else{
+            console.log("中奖用户小于当前直播间人数");
+            this.isTrue = 1;
+            randomNum = this.randomNumArray(startNum,mobileList.length);
+            for(var stIndex=0;stIndex < randomNum.length;stIndex++){
+                array.push(mobileList[randomNum[stIndex]]);
+            }
+        }
+        console.log("winner:")
+        console.log(array);
+        this.winner = array;
+        this.get_user();
+    },
+    end(){
+        clearInterval(window.newTimer);
+        var _this = this;
+        this.html = '';
+        var winner = this.winner;
+        var str = winner.join(',');
+        var isTrue = this.isTrue;
+        for(var endIndex=0;endIndex < winner.length;endIndex++){
+            _this.html += '<span>' + _this.mobile_change(winner[endIndex]) + '</span>';
+        }
+        $('#num').html(_this.html);
+        $.post("lucky_draw/upDrawList", {
+            luckMobile: str,
+            isTrue:isTrue,
+            draw_type:_this.data.draw_type
+        }, function (result) {
+            console.log(result);
+        });
+    },
+    mobile_change(str){
+        var mixin = str.substr(0, 3) + "****" + str.substr(7);
+        return mixin;
+    }
+}

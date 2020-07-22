@@ -1,0 +1,32 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2019/10/14
+ * Time: 15:36
+ */
+
+namespace app\api\service;
+use think\Db;
+
+class LiveService extends BaseSer
+{
+    /**
+     * 是否开启315直播
+     * @return
+     */
+    public function isLive()
+    {
+        $map['statu'] = 1;
+        $map['user_id'] = 1;
+        $res = Db::table('think_live')->where($map)->order('id desc')->limit(1)->find();
+        if ($res) {
+            $this->code = 1;
+            $this->msg = '直播已开启';
+        }else{
+            $this->code = 0;
+            $this->msg = '直播未开启';
+        }
+        return $this->returnArr();
+    }
+}

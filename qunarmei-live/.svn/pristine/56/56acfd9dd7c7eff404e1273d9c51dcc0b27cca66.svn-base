@@ -1,0 +1,281 @@
+{include file="public/header" /}
+<link href="/static/admin/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>配置直播间</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">直播间信息</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover">
+                                <tr>
+                                    <td>直播间名称：{$info.name}</td><td>开始时间：{$info.start_time}</td><td>结束时间：{$info.end_time}</td>
+                                </tr>
+                                <tr>
+                                    <td>直播间播主：{$info.anchor_name}</td><td>房间ID：{$info.roomid}</td><td>获取时间：{$info.create_time}</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <form class="form-horizontal" name="configure" id="configure" method="post" action="{:url('configure')}">
+                        <input type="hidden" value="{$info.id}" name="id"/>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">前台显示：</label>
+                            <div class="col-sm-6">
+                                <div class="radio i-checks">
+                                    <input type="radio" name='live_show' value="1" {if condition="$info['live_show'] eq 1 "}checked{/if}/>开启&nbsp;&nbsp;
+                                    <input type="radio" name='live_show' value="0" {if condition="$info['live_show'] eq 0 "}checked{/if}/>隐藏
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播状态：</label>
+                            <div class="col-sm-6">
+                                <div class="radio i-checks">
+                                    {if !empty($liveStatus)}
+                                    {foreach name="liveStatus" item="vo"}
+                                        <input type="radio" name='live_status' value="{$key}" {if condition="$info['live_status'] eq $key "}checked{/if}/>{$vo}&nbsp;&nbsp;
+                                    {/foreach}
+                                    {/if}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播平台：</label>
+                            <div class="col-sm-9">
+                                <div style="display: inline-block;float: left">
+                                    <div class="radio i-checks">
+                                        <input type="radio" name='live_place' value="0" {if condition="$info['live_place'] eq 0 "}checked{/if}/>单平台&nbsp;&nbsp;
+                                        <input type="radio" name='live_place' value="1" {if condition="$info['live_place'] eq 1 "}checked{/if}/>多平台
+                                    </div>
+                                </div>
+                                <div style="display: none;float: left;" id="show_place">
+                                    <div class="col-sm-4 form-inline">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" style="width: 150px;" id="live_mobile" class="form-control" name="live_mobile" value="{$info['live_mobile']}" placeholder="输入需查询的用户名" />
+                                            <span class="input-group-btn">
+                                                <button type="button" id="getBranch" class="btn btn-primary"><i class="fa fa-search"></i> 获取</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播对象：</label>
+                            <div class="col-sm-9">
+                                <div style="display: inline-block;float: left">
+                                    <div class="radio i-checks">
+                                        <input type="radio" name='live_object' value="0" {if condition="$info['live_object'] eq 0 "}checked{/if}/>全部&nbsp;&nbsp;
+                                        <input type="radio" name='live_object' value="1" {if condition="$info['live_object'] eq 1 "}checked{/if}/>选择门店
+                                    </div>
+                                </div>
+                                <div style="display: none;float: left;padding-top: 2px;" id="show_tree">
+                                        <div class="input-group col-sm-4">
+                                            <ul id="ztree" class="ztree"></ul>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播角色：</label>
+                            <div class="col-sm-6">
+                                <div class="checkbox i-checks">
+                                    <input type="checkbox" name='live_role[]' value="1" {in name="1" value="$info['live_role']"}checked{/in}/>店老板&nbsp;&nbsp;
+                                    <input type="checkbox" name='live_role[]' value="2" {in name="2" value="$info['live_role']"}checked{/in}/>美容师&nbsp;&nbsp;
+                                    <input type="checkbox" name='live_role[]' value="3" {in name="3" value="$info['live_role']"}checked{/in}/>顾客&nbsp;&nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">赠送优惠券：</label>
+                            <div class="col-sm-6">
+                                <div class="radio i-checks">
+                                    <input type="radio" name='is_give_coupon' value="1" {if condition="$info['is_give_coupon'] eq 1 "}checked{/if}/>赠送&nbsp;&nbsp;
+                                    <input type="radio" name='is_give_coupon' value="0" {if condition="$info['is_give_coupon'] eq 0 "}checked{/if}/>不送
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">允许购买区间：</label>
+                            <div class="col-sm-6 form-inline">
+                                <input type="text" name="buy_begin" id="buy_begin"  autocomplete="off" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$info['buy_begin']}"  class="form-control" placeholder="购买开始时间"/> --
+                                <input type="text" name="buy_end" id="buy_end"  autocomplete="off" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$info['buy_end']}"  class="form-control" placeholder="购买结束时间"/>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播隐藏时间：</label>
+                            <div class="col-sm-6 form-inline">
+                                <input type="text" name="hide_time" id="hide_time"  autocomplete="off" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$info['hide_time']}"  class="form-control" placeholder="超过该时间自动隐藏"/>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <input type="hidden" name="live_object_sign" id="live_object_sign" value="{$info.live_object_sign}">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script src="__JS__/jquery.ztree.core.min.js"></script>
+<script src="__JS__/jquery.ztree.excheck.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#configure').ajaxForm({
+            beforeSubmit: checkForm, 
+            success: complete, 
+            dataType: 'json'
+        });
+        function checkForm(){
+        }
+        function complete(data){
+            if(data.code==1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    window.location.href="{:url('WechatLive/lists')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1});
+                return false;   
+            }
+        }
+    });
+    //IOS开关样式配置
+   var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+    var config = {
+        '.chosen-select': {},                    
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+    $(document).ready(function(){
+        var live_obj ={$info.live_object};
+        if(live_obj){
+            $('#show_tree').show();
+        }
+        var live_place ={$info.live_place};
+        if(live_place){
+            $('#show_place').show();
+        }
+    });
+
+    $("input:radio[name='live_object']").on('ifChecked', function(event){
+        if($(this).val()==1){
+            $('#show_tree').show();
+        }else{
+            $('#live_object_sign').val('');
+            $('#show_tree').hide();
+        }
+    });
+
+
+    $("input:radio[name='live_place']").on('ifChecked', function(event){
+        if($(this).val()==1){
+            $('#show_place').show();
+        }else{
+            $('#live_mobile').val('');
+            $('#show_place').hide();
+            $('#show_tree').hide();
+            $("input:radio[name='live_object']").eq(0).iCheck('check');
+        }
+    });
+
+    $('#getBranch').click(function () {
+        var mobile=$('#live_mobile').val();
+        if(mobile){
+            $.getJSON('/admin/wechat_live/getBranch', {'mobile' : mobile}, function(res){
+                if(res.code == 1){
+                   console.log(res);
+                    $('#show_tree').show();
+                    $("input:radio[name='live_object']").eq(1).iCheck('check');
+                    selectTree(res.data.branchList);
+                    onCheck();
+                }else{
+                    layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+                }
+            });
+        }
+    })
+
+
+</script>
+<SCRIPT type="text/javascript">
+    <!--
+    var setting = {
+        check: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            onCheck:onCheck
+        }
+    };
+
+    var zNodes ={$branchList};
+    $(document).ready(function(){
+       selectTree(zNodes);
+    });
+
+
+    function selectTree(zNodes) {
+        $.fn.zTree.init($("#ztree"), setting, zNodes);
+        setting.check.chkboxType = { "Y" : "ps", "N" : "ps" };
+    }
+
+    function onCheck(e,treeId,treeNode){
+        var treeObj=$.fn.zTree.getZTreeObj("ztree"),nodes=treeObj.getCheckedNodes(true),data="";
+        for(var i=0;i<nodes.length;i++){
+            data+=nodes[i].id + ",";
+            // alert(nodes[i].id); //获取选中节点的值
+        }
+        data=(data.substring(data.length-1)==',')?data.substring(0,data.length-1):data;
+        $('#live_object_sign').val(data);
+    }
+    //-->
+</SCRIPT>
+</body>
+</html>

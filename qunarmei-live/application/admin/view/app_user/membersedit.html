@@ -1,0 +1,171 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>编辑用户</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="edit" id="edit" method="post" action="membersEdit">
+                        <input id="id" type="hidden" name="id" value="{$id}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="realname" type="text" class="form-control" name="realname" placeholder="" value="{$list['realname']}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户号码：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="mobile" type="text" class="form-control" name="mobile" placeholder="" value="{$list['mobile']}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">门店编号：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="sign" type="text" class="form-control" name="sign" placeholder="" value="{$list['sign']}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户角色：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control m-b chosen-select" name="role_id" id="role_id">
+                                    <option value="1" {if $list['role_id'] eq 1}selected{/if}>店老板</option>
+                                    <option value="2" {if $list['role_id'] eq 2}selected{/if}>美容师</option>
+                                    <option value="3" {if $list['role_id'] eq 3}selected{/if}>顾客</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit" name="submit" value="1"><i class="fa fa-save"></i> 保存信息</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript" src="/static/admin/webupload/webuploader.min.js"></script>
+
+<script type="text/javascript">
+    var $list = $('#fileList');
+    //上传图片,初始化WebUploader
+    var uploader = WebUploader.create({
+
+        auto: true,// 选完文件后，是否自动上传。
+        swf: '/static/admin/webupload/Uploader.swf',// swf文件路径
+        server: "{:url('Upload/upload')}",// 文件接收服务端。
+        duplicate :true,// 重复上传图片，true为可重复false为不可重复
+        pick: '#imgPicker',// 选择文件的按钮。可选。
+
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/jpg,image/jpeg,image/png'
+        },
+
+        'onUploadSuccess': function(file, data, response) {
+            $("#img").val(data._raw);
+            $("#img_data").attr('src', '/uploads/images/' + data._raw).show();
+        }
+    });
+
+    uploader.on( 'fileQueued', function( file ) {
+        $list.html( '<div id="' + file.id + '" class="item">' +
+                '<h4 class="info">' + file.name + '</h4>' +
+                '<p class="state">正在上传...</p>' +
+                '</div>' );
+    });
+
+    // 文件上传成功
+    uploader.on( 'uploadSuccess', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传成功！');
+    });
+
+    // 文件上传失败，显示上传出错。
+    uploader.on( 'uploadError', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传出错!');
+    });
+
+    var $list1 = $('#fileList1');
+    //上传图片,初始化WebUploader
+    var uploader1 = WebUploader.create({
+
+        auto: true,// 选完文件后，是否自动上传。
+        swf: '/static/admin/webupload/Uploader.swf',// swf文件路径
+        server: "{:url('Upload/upload')}",// 文件接收服务端。
+        duplicate :true,// 重复上传图片，true为可重复false为不可重复
+        pick: '#imgPicker1',// 选择文件的按钮。可选。
+
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/jpg,image/jpeg,image/png'
+        },
+
+        'onUploadSuccess': function(file, data, response) {
+            $("#img1").val(data._raw);
+            $("#img_data1").attr('src', '/uploads/images/' + data._raw).show();
+        }
+    });
+
+    uploader1.on( 'fileQueued', function( file ) {
+        $list.html( '<div id="' + file.id + '" class="item">' +
+                '<h4 class="info">' + file.name + '</h4>' +
+                '<p class="state">正在上传...</p>' +
+                '</div>' );
+    });
+
+    // 文件上传成功
+    uploader1.on( 'uploadSuccess', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传成功！');
+    });
+
+    // 文件上传失败，显示上传出错。
+    uploader1.on( 'uploadError', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传出错!');
+    });
+
+</script>
+<script type="text/javascript">
+
+    $(function(){
+        $('#edit').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        function checkForm(){
+
+        }
+
+        function complete(data){
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    window.location.href="{:url('store_user_info')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+
+    });
+
+
+</script>
+</body>
+</html>

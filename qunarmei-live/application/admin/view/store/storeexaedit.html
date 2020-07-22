@@ -1,0 +1,98 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>门店申请注册编辑</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="edit" id="edit" method="post" action="storeExaEdit" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="{$list.id}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">门店名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" value="{$list.title}" name="title">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">门店编号：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="title" type="text" class="form-control" value="{$list.sign}" name="sign" placeholder="请输入门店编号">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">审核状态：</label>
+                            <!--<div class="input-group col-sm-4">-->
+                                <!--<input type="radio" value="审核通过" name="status" {if $list.status eq 4}checked{/if}>-->
+                                <!--<input type="radio" value="审核不通过" name="status" {if $list.status eq 2}checked{/if}>-->
+                            <!--</div>-->
+                            <div>
+                                <label class="checkbox-inline">
+                                    <input type="radio" name="status" id="optionsRadios3"
+                                           value="2" {if $list.status eq 2}checked{/if}> 审核不通过
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="radio" name="status" id="optionsRadios4"
+                                           value="4" {if $list.status eq 2}checked{/if}> 审核通过
+                                </label>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存信息</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  {include file="public/footer" /}
+</script>
+<script type="text/javascript">
+
+    $(function(){
+        $('#edit').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        function checkForm(){
+        }
+
+        function complete(data){
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    window.location.href="{:url('storeExa')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

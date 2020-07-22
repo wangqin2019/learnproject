@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <META HTTP-EQUIV="expires" CONTENT="0">
+
+		<link rel="stylesheet" href="css/common.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<title>注册</title>
+		<style>
+			.title{margin: 3em 15%;width: 70%;}
+			input{
+				width: calc(80% - 42px);height: 2.5em;margin: 2em 10% 0 10%;
+				background: none;line-height: 2.5em;border-radius: 1.5em;border:1px solid #CCCECF;
+				padding: 0.25em 20px;
+			}
+			.submit{width: 100%;text-align: center;margin-top: 1em;}
+            .submit button{
+            	width: 80%;height: 2.5em;line-height: 2.5em;border-radius: 1.125em;
+            	color: #FFFFFF;border: 1px;font-size: 1em;border-color: none;
+            }
+			.gift{width: 90%;margin: 1em 5% 0 5%;}
+			.gift img{width: 100%;}
+			.download img{position: fixed;right: 5%;top: 2em;width: 80%;z-index: 999;}
+			@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2){
+				/*iphone5*/
+				input{margin: 1em 10% 0 10%;}
+			}
+            @media only screen and (device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) {
+				/*iphonex*/
+				.title{margin: 5em 15%;}
+				input{margin: 3em 10% 0 10%;}
+				.gift{margin: 5em 5% 0 5%;}
+			}
+		</style>
+	</head>
+	<body>
+		<img src="image/bg.jpg" class="bg_img"/>
+		<img src="image/login_title.png" class="title"/>
+		<input value="" placeholder="请输入您的手机号"/>
+		<div class="submit"><button class="button_bg">提交</button></div>
+		<div class="gift"><img src="image/gift_list.png"/></div>
+		
+		<div class="download hide">
+			<div class="mask"></div>
+			<img src="image/wx.png"/>
+		</div>
+		
+		<div class="tishi hide"></div>
+	</body>
+	<script>
+		var ua = window.navigator.userAgent.toLowerCase();
+		if (ua.indexOf('micromessenger') == -1) {//不在微信或者小程序中
+			window.location.href = 'http://live.qunarmei.com/index/index/zhibo_down.html';
+		}
+		
+		var share_mobile = getQueryString('share_mobile');
+		$('button').click(function(){
+			var mobile = $('input').val();
+			var userRegister = ajaxQunarPost('userRegister','share_mobile='+share_mobile+'&mobile='+mobile);
+			if(userRegister.code == 1){
+	    		tishi(userRegister.msg, 1000);
+	    		$('.download').removeClass('hide');
+	    	}
+	    	else{
+	    		tishi(userRegister.msg, 1000);
+	    	}
+		})
+		
+		
+	</script>
+</html>

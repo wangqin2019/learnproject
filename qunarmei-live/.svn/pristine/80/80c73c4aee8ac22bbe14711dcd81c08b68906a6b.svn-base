@@ -1,0 +1,267 @@
+body{
+	background: #f2f2f2;
+	padding-bottom: 150px;
+}
+
+.section{
+	width: 1200px;
+	display: block;
+	margin: 30px auto 0;
+	background: #fff;
+	position: relative;
+	padding-bottom: 50px;
+}
+
+.storeapple{
+	width: 100%;
+	padding: 20px 20px 60px 20px;
+}
+
+.storeapple .span1{
+	color: #2e2524;
+	font-weight: bold;
+	padding-top: 1px;
+}
+
+.storeaudi{
+	width: 100%;
+	overflow: hidden;
+	padding: 0 20px;
+	margin-bottom: 20px;
+}
+
+.storeaudi .storeaudi_li{
+	float: left;
+}
+
+.storeaudi_li input{
+	width: 420px;
+	height: 40px;
+	background: #fff;
+	border: 1px solid #cdcdcd;
+	padding-left: 10px;
+	line-height: 40px;
+	float: left;
+	margin-right: 20px;
+}
+
+.storeaudi_li button{
+	float: left;
+	width: 58px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	border: none;
+	border-radius: 0.5em;
+	background: #2e2524;
+	color: #fff;
+}
+
+.storeaudi_li1{
+	float: right;
+}
+
+.storeaudi_li1 button{
+	width: 82px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	border: none;
+	border-radius: 0.5em;
+	color: #fff;
+	float: left;
+}
+
+.storeaudi_li1 button:nth-child(1){
+	background: #eb064d;
+	margin-right: 20px;
+}
+
+.storeaudi_li1 button:nth-child(2){
+	background: #06ebc5;
+}
+
+.storelist_bg{
+	background: #f9f4f5;
+}
+
+.storelist{
+	width: 100%;
+	clear: both;
+}
+
+.storelist_top{
+	width: 100%;
+	clear: both;
+	height: 40px;
+}
+
+.storelist_center{
+	width: 100%;
+	clear: both;
+	margin-bottom: 80px;
+}
+
+.storelist_top ul,.storelist_center ul{
+	width: 100%;
+	height: 40px;
+	display: block;
+}
+
+.storelist_top li{
+	float: left;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+	text-align: center;
+	color: #352c2b;
+}
+
+.storelist_center li{
+	float: left;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #4d4645;
+	font-size: 14px;
+}
+
+.storelist_top li:nth-child(1),.storelist_center ul li:nth-child(1){
+	width: 10%;
+	padding-left: 25px;
+}
+.storelist_top li:nth-child(2),.storelist_center ul li:nth-child(2){
+	width: 25%;
+}
+.storelist_top li:nth-child(3),.storelist_center ul li:nth-child(3){
+	width: 15%;
+}
+.storelist_top li:nth-child(4),.storelist_center ul li:nth-child(4){
+	width: 15%;
+}
+.storelist_top li:nth-child(5),.storelist_center ul li:nth-child(5){
+	width: 15%;
+}
+.storelist_top li:nth-child(6),.storelist_center ul li:nth-child(6){
+	width: 20%;
+	position: relative;
+}
+
+.storelist_top li:nth-child(1) span{
+	font-weight: 400;
+	float: left;
+}
+
+.storelist_top li:nth-child(1) img,.storelist_center ul li:nth-child(1) img{
+	width: 16px;
+	height: 16px;
+	float: left;
+	margin-top: 12px;
+	margin-right: 5px;
+}
+
+.storelist_center ul li:nth-child(6) input{
+	width: 160px;
+	height: 30px;
+	border: 1px solid #cdcdcd;
+	line-height: 30px;
+	text-align: center;
+}
+
+.storelist_center ul li:nth-child(6) img{
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	margin-top: -7.5px;
+}
+
+.storelist_center ul li:nth-child(6) span{
+	width: 130px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	position: absolute;
+	right: -116px;
+	top: 50%;
+	margin-top: -15px;
+	background: #fef2f6;
+	color: #d37a95;
+	font-size: 14px;
+}
+
+.storelist_center .daishenhe{
+	color: #f5ad36;
+}
+
+.storelist_center .shenhechengg{
+	color: #06ebc5;
+}
+
+.storelist_center .chushenzhong{
+	color: #36a1f5;
+}
+
+.storelist_center .shenheshibai{
+	color: #eb064d;
+}
+
+
+.page_div {
+	font-size: 15px;
+	font-family: "microsoft yahei";
+	color: #666666;
+	display: block;
+	margin: 0 auto;
+	box-sizing: border-box;
+	width: 44%;
+}
+/*
+ * 页数按钮样式
+ */
+
+.page_div a {
+	min-width: 30px;
+	height: 28px;
+	text-align: center;
+	margin: 0 4px;
+	cursor: pointer;
+	line-height: 28px;
+	color: #bbb9b8;
+	font-size: 13px;
+	display: inline-block;
+}
+
+#firstPage,
+#lastPage {
+	width: 50px;
+	color: #bbb9b8;
+}
+
+#prePage,
+#nextPage {
+	width: 70px;
+	color: #bbb9b8;
+}
+
+.page_div .current {
+	background-color: #fef3f6;
+	border:1px solid #382f2e;
+	color: #615858;
+}
+
+.totalPages {
+	margin: 0 10px;
+	display: none;
+}
+
+.totalSize{
+	display: none;
+}
+
+.totalPages span,
+.totalSize span {
+	color: #0073A9;
+	margin: 0 5px;
+}

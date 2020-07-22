@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页广告图</title>
+	<style>
+		#img1{
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<img src="http://appc.qunarmei.com/yg_tc0911.jpg" alt="" id="img1">
+</body>
+</html>

@@ -1,0 +1,1042 @@
+---------------------------------------------------------------
+[ 2017-09-26T10:37:41+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T10:37:41+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T13:51:09+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T13:51:10+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T13:51:11+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:17:51+08:00 ] 192.168.3.56 192.168.3.56 GET /api/live/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:18:11+08:00 ] 192.168.3.56 192.168.3.56 GET /api/live/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:21:03+08:00 ] 192.168.3.56 192.168.3.56 GET /home
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_article_cate` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `id`,`name`,`status` FROM `think_article_cate` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_article` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_article` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `think_article`.*,`name` FROM `think_article` INNER JOIN `think_article_cate` `think_article_cate` ON `think_article`.`cate_id`=`think_article_cate`.`id` ORDER BY id desc LIMIT 0,5 [ RunTime:0.016001s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:23:57+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:24:34+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:25:13+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:28:09+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:31:10+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:32:35+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:33:08+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:33:12+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:33:34+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:33:47+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:34:16+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:34:32+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:36:31+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:40:38+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'ios' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:40:58+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'ios' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:41:41+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:41:54+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:41:57+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.009001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'ios' [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:42:07+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:42:14+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'ios' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:42:19+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'ios' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:43:43+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_down` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `url` FROM `think_down` WHERE  `type` = 'andriod' [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:54:36+08:00 ] ::1 ::1 GET /admin/live/liveadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:54:39+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T14:54:39+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:34:18+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:34:19+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:34:19+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:34:19+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:34:33+08:00 ] ::1 ::1 GET /admin/log/operate_log.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_admin` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `id`,`username` FROM `think_admin` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_log` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_log` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_log` ORDER BY add_time desc LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:34:33+08:00 ] ::1 ::1 GET /admin/log/operate_log.html?page=1&key=0
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_admin` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT `id`,`username` FROM `think_admin` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_log` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_log` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_log` ORDER BY add_time desc LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:34:40+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.004001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:34:40+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:57:00+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:57:00+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:57:46+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:57:46+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:57:59+08:00 ] ::1 ::1 GET /admin/live/liveEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live` WHERE  `id` = 1 [ RunTime:0.004001s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:58:06+08:00 ] ::1 ::1 POST /admin/live/liveedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] UPDATE `think_live`  SET `title`='美妆达人分享会',`push_url`='rtmp://pili-publish.sch.zhaojianfeng.cn/pineapple-live-1/test?e=1505990384&token=NOlP8sfPdesObgrnudk91m5vWfOPHyTdqJTIZPkK:FjdRC-MecWj3U7kc7iMM0yVYxBQ= ',`see_url`='rtmp://pili-live-rtmp.sch.zhaojianfeng.cn/pineapple-live-1/test'  WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:58:08+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:58:08+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:58:39+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:58:39+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T15:58:43+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:00:13+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:00:13+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:00:20+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:00:20+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:20:23+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:20:24+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:21:04+08:00 ] ::1 ::1 GET /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` IS NULL [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:23:50+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:23:53+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:23:53+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:23:54+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:23:56+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:24:03+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:25:36+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:25:36+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:25:37+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:25:40+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] UPDATE `think_message`  SET `message_type`=1,`message_ren`='13566666',`message_msg`='<p><img src=\"/ueditor/php/upload/image/20170923/1506131622316369.jpg\" alt=\"1506131622316369.jpg\"/></p>',`message_url`='www.baidu.com'  WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:25:45+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] UPDATE `think_message`  SET `message_type`=1,`message_ren`='13566666',`message_msg`='<p><img src=\"/ueditor/php/upload/image/20170923/1506131622316369.jpg\" alt=\"1506131622316369.jpg\"/></p>',`message_url`='www.baidu.com'  WHERE  `id` = 3 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:38:11+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.004001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:38:11+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:38:13+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:38:21+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:38:29+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:39:14+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:39:14+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:39:19+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:39:39+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] UPDATE `think_message`  SET `message_type`=1,`message_ren`='13566666',`message_msg`='<p><img src=\"/ueditor/php/upload/image/20170923/1506131622316369.jpg\" alt=\"1506131622316369.jpg\"/></p><p>测试</p>',`message_url`='www.baidu.com'  WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:39:41+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.002001s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:39:41+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:41:41+08:00 ] ::1 ::1 GET /admin/index/clear.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:41:44+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:41:44+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:41:50+08:00 ] ::1 ::1 GET /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` IS NULL [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:42:55+08:00 ] ::1 ::1 GET /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` IS NULL [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:42:59+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:42:59+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:43:02+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:43:29+08:00 ] ::1 ::1 GET /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` IS NULL [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:44:54+08:00 ] ::1 ::1 GET /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` IS NULL [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:45:43+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:45:43+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:45:49+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:46:00+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] UPDATE `think_message`  SET `message_type`=1,`message_ren`='13566666',`message_msg`='<p><img src=\"/ueditor/php/upload/image/20170923/1506131622316369.jpg\" alt=\"1506131622316369.jpg\"/></p><p>测试11</p>',`message_url`='localhost:8888./static/admin/html/1506415560.html'  WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:46:02+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:46:02+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:46:25+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:46:32+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:46:35+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:46:40+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:46:45+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:47:47+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:47:47+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:47:48+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:47:56+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] UPDATE `think_message`  SET `message_type`=1,`message_ren`='13566666',`message_msg`='<p><img src=\"/ueditor/php/upload/image/20170923/1506131622316369.jpg\" alt=\"1506131622316369.jpg\"/></p><p>测试1122</p>',`message_url`='localhost:8888/static/admin/html/1506415676.html'  WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:47:58+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.004001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:47:58+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:48:29+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:48:32+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:48:32+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:49:33+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:49:49+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:49:50+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:50:15+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:50:15+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:50:16+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:50:26+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:50:26+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:50:27+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:50:33+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:50:34+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:54:35+08:00 ] ::1 ::1 GET /admin/messages/messagesEdit/id/3.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` WHERE  `id` = 3 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:54:38+08:00 ] ::1 ::1 GET /admin/messages/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T16:54:38+08:00 ] ::1 ::1 GET /admin/messages/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_message` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_message` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_message` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T17:03:22+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-26T17:03:22+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T17:39:40+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-09-26T17:39:40+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=1 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=5 and point_flag=1 ) [ RunTime:0.000000s ]

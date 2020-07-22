@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://video.aco.aotu.io/ -->
+<html lang="zh-CN">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
+		<meta name="format-detection" content="telephone=no">
+		<script type="text/javascript" src="/static/index/js/jquery.js"></script>
+		<title>去哪美</title>
+
+		<link rel="stylesheet" href="/static/index/css/swiper.min.css">
+		<script type="text/javascript" src="/static/index/js/swiper.min.js"></script>
+
+		<!-- begin REM Zoom 计算 -->
+		<style>
+			*{padding: 0;margin: 0;list-style: none;text-decoration: none;}
+			.titleImg{width: 100%;height: 15rem;}
+			.title{width: 90%;height: auto;padding: 1rem 5%;}
+			.title img{width: 3rem;height: 3rem;border-radius: 1.5rem; display: inline-block;vertical-align: middle;}
+			.title p{font-size: 1rem;font-weight: 900;line-height: 3rem; display: inline-block;}
+			.title button{float: right;font-size: 0.8rem;line-height: 1rem;background: none;padding: 0.2rem 1rem;margin: 0.8rem 0;
+				border:1px solid #eee;border-radius: 0.1rem; }
+			.msg{width: 90%;height: auto;padding: 1rem 5%;font-size: 0.8rem;line-height: 1.5rem; word-break:break-all;color: #727272;}
+			.msg p{margin-bottom: 0.5rem}
+		</style>
+	</head>
+	<body>
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			{foreach $article_img as $v}
+			<div class="swiper-slide"><img src="{$v}" class="titleImg"></div>
+			{/foreach}
+		</div>
+	</div>
+	<!-- {if $article_img}
+		<img src="{$article_img[0]}" class="titleImg">
+	{/if} -->
+	 <div class="title">
+		 <img src="{$list['user_img']}">
+		 <p>{$list['user_name']}</p>
+		 <button>收藏</button>
+	 </div>
+	 <div class="msg">
+		 <p>{$list['article_title']}</p>
+		 <p>{$list['article_content']}</p>
+
+	 </div>
+	 <script>
+		var swiper = new Swiper('.swiper-container');
+	</script>
+	</body>
+
+</html>

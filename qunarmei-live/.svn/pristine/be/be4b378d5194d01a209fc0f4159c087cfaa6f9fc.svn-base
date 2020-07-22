@@ -1,0 +1,120 @@
+<?php
+//增加命名空间
+namespace qiniu_transcoding;
+require_once __DIR__ . '/autoload.php';
+date_default_timezone_set('Asia/Shanghai');
+// 引入鉴权类
+// 引入鉴权类
+use qiniu_transcoding\src\Qiniu\Auth;
+// 引入上传类
+use qiniu_transcoding\src\Qiniu\Storage\UploadManager;
+
+/**
+*
+*/
+class Token
+{
+  protected $accessKey = 'kw7pkYECHtgXDQBgZzwhu9ijMVYkYdl6iamkylMO';
+  protected $secretKey = 'Hu2DVofTTCHzge1zJTyBmPVyBG0QqV0_wTPbwdkj';
+  protected $bucket = 'qunarmeilive';
+
+  //获取token
+  public function getplaycount()
+  {
+    $HubName = $this->bucket;//hub名字
+    $url = $this->getUrl($HubName);//获取请求的url
+    $contentType ='application/json';
+    $method =array("POST","GET");//设置请求的格式是post 还是get
+
+    $da = $this->MACToken($this->accessKey,$this->secretKey,$method[1],$url,$contentType);//获取Authorization的内容
+    $va = "Authorization: ".$da;
+    $res = $this->FunctionName($va,$url);//网络请求的打出
+    return $res;
+  }
+
+  public function getUrl($HubName){
+    $baseURL = sprintf("%s//%s/%s/hubs/%s/stat/play", "http:", "pili.qiniuapi.com", "v2",$HubName);
+    return $baseURL;
+  }
+
+  public function FunctionName($va,$url,$xml_data =NULL)
+  {
+    $header = "Content-Type: application/json";//定义content-type为xml
+    $headerArr =array( "Content-Type: application/json","User-Agent: pili-sdk-php/1.5.4 curl/7.45.0 PHP/7.0.2",$va);
+    $ch = curl_init(); //初始化curl
+
+    curl_setopt($ch, CURLOPT_URL, $url);//设置链接
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//设置是否返回信息
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headerArr);//设置HTTP头
+
+    if($xml_data){
+      curl_setopt($ch, CURLOPT_POST, 1);//设置为POST方式
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_data);//POST数据
+    }
+    $response = curl_exec($ch);//接收返回信息
+    if(curl_errno($ch)){//出错则显示错误信息
+      print curl_error($ch);
+
+    }
+    curl_close($ch); //关闭curl链接
+    return $response;//显示返回信息
+  }
+
+  public function base64UrlEncode($str)
+  {
+    $find = array('+', '/');
+    $replace = array('-', '_');
+    return str_replace($find, $replace, base64_encode($str));
+  }
+
+  public  function base64UrlDecode($str)
+  {
+    $find = array('-', '_');
+    $replace = array('+', '/');
+    return base64_decode(str_replace($find, $replace, $str));
+  }
+
+  public function digest($secret, $data)
+  {
+    return hash_hmac('sha1', $data, $secret, true);
+  }
+
+  public function sign($secret, $data)
+  {
+    return $this->base64UrlEncode($this->digest($secret, $data));
+  }
+
+  public function MACToken($ak,$sk,$method, $url, $contentType, $body='')
+  {
+    $url = parse_url($url);
+    $data = '';
+    if (!empty($url['path'])) {
+      $data = $method . ' ' . $url['path'];
+    }
+    if (!empty($url['query'])) {
+      $data .= '?' . $url['query'];
+    }
+    if (!empty($url['host'])) {
+      $data .= "\nHost: " . $url['host'];
+      if (isset($url['port'])) {
+        $data .= ':' . $url['port'];
+      }
+    }
+    if (!empty($contentType)) {
+      $data .= "\nContent-Type: " . $contentType;
+    }
+    $data .= "\n\n";
+    if (!empty($body)) {
+      $data .= $body;
+    }
+
+//    var_dump($data);
+    return 'Qiniu ' . $ak . ':' . $this->sign($sk, $data);
+  }
+
+}
+
+
+
+
+

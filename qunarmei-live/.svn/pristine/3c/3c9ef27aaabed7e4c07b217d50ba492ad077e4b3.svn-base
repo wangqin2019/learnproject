@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://video.aco.aotu.io/ -->
+<html lang="zh-CN" style="font-size: 192px;">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		
+		<title>去哪美直播</title>
+		<!-- begin REM Zoom 计算 -->
+		<script type="text/javascript">
+			(function(win) {
+				var remCalc = {};
+				var docEl = win.document.documentElement,
+					tid,
+					hasRem = true,
+					hasZoom = true,
+					designWidth = 750;
+
+				function refresh() {
+					var width = docEl.getBoundingClientRect().width;
+					// if (width > 640) { width = 640 }
+					if(hasRem) {
+						var rem = width / 10;
+						docEl.style.fontSize = rem + "px";
+						remCalc.rem = rem;
+						var actualSize = parseFloat(window.getComputedStyle(document.documentElement)["font-size"]);
+						if(actualSize !== rem && actualSize > 0 && Math.abs(actualSize - rem) > 1) {
+							var remScaled = rem * rem / actualSize;
+							docEl.style.fontSize = remScaled + "px"
+						}
+					}
+					if(hasZoom) {
+						var style = document.getElementById('J__style')
+						if(!style) {
+							style = document.createElement('style')
+							style.id = 'J__style'
+						}
+						style.innerHTML = '.__z{zoom:' + width / designWidth + '}'
+						document.getElementsByTagName('head')[0].appendChild(style)
+					}
+				}
+
+				function dbcRefresh() {
+					clearTimeout(tid);
+					tid = setTimeout(refresh, 100)
+				}
+				win.addEventListener("resize", function() {
+					dbcRefresh()
+				}, false);
+
+				win.addEventListener("pageshow", function(e) {
+					if(e.persisted) {
+						dbcRefresh()
+					}
+				}, false);
+				refresh();
+				if(hasRem) {
+					remCalc.refresh = refresh;
+					remCalc.rem2px = function(d) {
+						var val = parseFloat(d) * this.rem;
+						if(typeof d === "string" && d.match(/rem$/)) {
+							val += "px"
+						}
+						return val
+					};
+					remCalc.px2rem = function(d) {
+						var val = parseFloat(d) / this.rem;
+						if(typeof d === "string" && d.match(/px$/)) {
+							val += "rem"
+						}
+						return val
+					};
+					win.remCalc = remCalc
+				}
+			})(window);
+		</script>
+		<!-- end REM Zoom 计算 -->
+		<link href="/static/index/css/app.css" rel="stylesheet">
+		<script type="text/javascript" src="/static/index/js/jquery.js"></script>
+        <link rel="stylesheet" href="/static/index/css/zhibo.css?1">
+		<style type="text/css">
+			*{margin: 0;padding: 0;list-style: none;outline: none;text-decoration: none;}
+			body{width: 100%;height: 100%;overflow: hidden;touch-action: none;}
+			.video-js{position: fixed;left: 0;top: 0;z-index: 10;height: 100%;width: 100%;}
+			.video_span{transition:left 1s;-webkit-transition:left 1s;padding: 0.8em 0;width:60%;border-radius: 2em;color: #FFFFFF;position: fixed;left: 20%;bottom: 2em;text-align:center;font-size: 14px;z-index: 100000;background:#C5AD66;}
+			
+			.tipright{}
+			.tipleft{transition:opacity 1s;-webkit-transition:opacity 1s;position: fixed;top: 50%;left: calc(100% - 30px);height: 20px;margin-top: -10px;z-index: 999;
+				animation:tipanime 1s linear 1s infinite alternate;-moz-animation:tipanime 1s linear 1s infinite alternate;-webkit-animation:tipanime 1s linear 1s infinite alternate;-o-animation:tipanime 1s linear 1s infinite alternate;
+			}
+			.tip_hide{opacity: 0 !important;}
+			@keyframes tipanime{from {transform:scale(1);}to {transform:scale(1.2);}}
+			@-webkit-keyframes tipanime /* Safari and Chrome */{from {transform:scale(1);}to {transform:scale(1.2);}}
+			.hide_tip_none{position: fixed;top: 50%;right: 10px;height: 20px;margin-top: -10px;z-index: 999;transition:opacity 1s;-webkit-transition:opacity 1s;opacity: 1;z-index: 999;opacity: 0;
+				animation:tipanime 1s linear 1s infinite alternate;-moz-animation:tipanime 1s linear 1s infinite alternate;-webkit-animation:tipanime 1s linear 1s infinite alternate;-o-animation:tipanime 1s linear 1s infinite alternate;
+			}
+			.hideani{left: -100% !important;}
+			.touxiang{width: calc(100% - 2em);position: fixed;left: 1em;top: 1.5em;z-index: 100;display: flex;transition:left 1s;-webkit-transition:left 1s;}
+			.touxiang_img{width: 50px;height: 50px;float: left;border-radius: 50%;margin-right: 20px;}
+			
+			
+			.loction{float: left;overflow: hidden;}
+			.loction li{color: #FFFFFF;width: 100%;}
+			.loction li div{opacity: 0.6;width: auto;margin-bottom: 5px;border-radius: 10px;}
+			.loction li div span{font-size: 14px;white-space: nowrap;max-width: calc(100% - 10px);text-overflow: ellipsis;overflow: hidden;background: #000;border-radius: 10px;padding: 0 5px;}
+			.loction li div img{width: 0.8em;float: left;margin-top: 2px;}
+			.people{transition:left 1s;-webkit-transition:left 1s;padding: 0.2em 2em;position: fixed;left: 0;top: 6em;border-radius: 0 2em 2em 0;background: #C5AD66;color: #fff;z-index: 10;}
+			.zhibo_img{width: 40%;position: fixed;right: 30%;bottom: 7em;overflow: hidden;z-index: 10;}
+			.live_like_white{width: 30%;float: left;margin-left: 0;}
+			.live_message_white{width: 30%;float: right;}
+			.pc,.phone{display: none;}
+			.bg {width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: -1;}
+			.pc_logo{width: 16%;position: absolute;left: 10%;top: 15%;}
+			.pc p{width: auto;position: absolute;left: 10%;top: 35%;color: #fff;font-size: 24px;}
+			.erweima{width: 15%;position: absolute;left: 10%;top: 55%;}
+			.download{width: 20%;position: absolute;left: 30%;top: 65%;}
+			.home{width: 20%;position: absolute;right: 10%;top: 15%;}
+			#o2_main{z-index: 1;width: 100%;}
+			.vjs-control-bar{display: none !important;}
+			
+			
+			.video-js .vjs-tech{width: 100%;}
+		</style>
+		<style id="J__style">
+			.__z {
+				zoom: 2.56
+			}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+				    $(".pc").css("display","none")
+				    $(".phone").css("display","block")
+				    // start Modify by wangqin 2017-12-28
+					close_ye();
+					// end Modify by wangqin 2017-12-28
+				} else {
+				    $(".pc").css("display","block")
+				    $(".phone").css("display","none")
+				}
+			})
+
+		</script>
+		<script type="text/javascript">
+	    $(document).ready(function(){
+	      var $div = $("#computerMove");
+	      /* 绑定鼠标左键按住事件 */
+	      $div.bind("mousedown",function(event){
+	        /* 获取需要拖动节点的坐标 */
+	        var offset_x = $(this)[0].offsetLeft;//x坐标
+	        var offset_y = $(this)[0].offsetTop;//y坐标
+	        /* 获取当前鼠标的坐标 */
+	        var mouse_x = event.pageX;
+	        var mouse_y = event.pageY;
+	        /* 绑定拖动事件 */
+	        /* 由于拖动时，可能鼠标会移出元素，所以应该使用全局（document）元素 */
+	        $(document).bind("mousemove",function(ev){
+	          /* 计算鼠标移动了的位置 */
+	          var _x = ev.pageX - mouse_x;
+	          var _y = ev.pageY - mouse_y;
+	          /* 设置移动后的元素坐标 */
+	          var now_x = (offset_x + _x ) + "px";
+	          var now_y = (offset_y + _y ) + "px";
+
+	          //console.log(mouse_x)
+	          	if ((screen.width < 1360)) {
+
+	                if(_x>750){
+			          	window.location.href="zblogin.html"
+			          }
+	            } else {
+	                if(_x>1100){
+			          	window.location.href="zblogin.html"
+			          }
+	            }
+
+	          /* 改变目标元素的位置 */
+	          $div.css({"left":now_x,"top":now_y})
+
+	          // if(_x>1130){
+	          // 	window.location.href="zblogin.html"
+	          // }
+	        });
+	      });
+	      /* 当鼠标左键松开，接触事件绑定 */
+	      $(document).bind("mouseup",function(){
+	        $(this).unbind("mousemove");
+
+	      });
+	    })
+	  </script>
+
+	</head>
+
+	<body>
+		<div class="pc">
+
+				<img src="/static/index/images/bg.jpg" class="bg">
+				<img src="/static/index/images/logo.png" class="pc_logo" id="computerMove"/>
+				<p>为东方女性量身定制的寻美随身利器：在这里，你可以<br/>搜索到美容、美体、美学领域的最新讯息和全新体验，<br/>选购安全有效无添加的专业美容产品和服务，更能收获<br/>由内而外惊艳绽放的至美肌肤和形体改善。</p>
+				<img src="/static/index/images/QRcode.png" class="erweima"/>
+				<img src="/static/index/images/download.png" class="download"/>
+				<img src="/static/index/images/home.png" class="home"/>
+
+		</div>
+		<div class="phone">
+		<div id="o2_main" class="main" style=" opacity: 1;display: block; ">
+			<div class="wrapper" style="margin-top: -1381px;">
+				<video id="video" class="video show video-js vjs-big-play-centered" controls="controls" preload="auto" playsinline="" style="opacity: 1;"></video>
+			</div>
+		</div>
+
+		
+		<img src="/static/index/images/jiantou_you.png" class="tipright hide_tip_none"/>
+		<img src="/static/index/images/jiantou_zuo.png" class="tipleft" />
+		<div id="msghide">
+			<div class="touxiang">
+				<img src="{$rest['user_img']}" class="touxiang_img"/>
+				<div class="loction">
+					<ul>
+						<li><div><span style="font-size: 18px;">{$rest['user_name']}</span></div></li>
+						<li>
+							<div style="background: #000;padding-left: 5px;">
+								<img src="/static/index/images/live_location.png"/>
+								<span>{$rest['address']}</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<p class="people"><span id='gk_cnt'>{$rest['gk_cnt']}</span>人正在观看</p>
+			<a href="http://live.qunarmei.com/index/index/zhibo_down.html" class="video_span">打开去哪美APP看直播</a>
+		</div>
+
+		<!--<div class="zhibo_img">
+			<img src="live_like_white.png" class="live_like_white"/>
+			<img src="live_message_white.png" class="live_message_white"/>
+		</div>-->
+		</div>
+
+		<script src="http://player.qiniucc.com/sdk/latest/qiniuplayer.min.js?v=0.3.3"></script>
+        <script>
+        	var waittime = 0;
+        	clearInterval(waitstart);
+        	var waitstart;
+        	function waitminute(){
+        		clearInterval(waitstart);
+				waittime = 0;
+				$('.tipleft').removeClass('tip_hide');
+				$('.hide_tip_none').removeClass('tip_hide');
+				waitstart = setInterval(function(){
+	        		if(waittime<9){
+	        			waittime++;
+	        		}
+	        		else{
+	        			if($('.hide_tip_none').css('opacity') == 1){
+	        				$('.hide_tip_none').addClass('tip_hide');
+	        			}
+	        			else{$('.tipleft').addClass('tip_hide');}
+	        			clearInterval(waitstart);
+	        		}
+	        		console.log(waittime);
+	        	},1000)
+        	}
+        	waitminute();
+        	//滑动隐藏信息
+        	var startX, moveEndX, X;
+			$("body").on("touchstart", function(e) {
+				waitminute();
+			    e.preventDefault();
+			    startX = e.originalEvent.changedTouches[0].pageX;
+			});
+			$("body").on("touchmove", function(e) {
+			    e.preventDefault();
+			    moveEndX = e.originalEvent.changedTouches[0].pageX;
+			    X = moveEndX - startX;
+			    if (X > 100 ) {
+//			        $('#msghide').removeClass('hideani');
+			        $('.video_span').removeClass('hideani');
+			        $('.people').removeClass('hideani');
+			        $('.touxiang').removeClass('hideani');
+			        $('.tipleft').css('opacity','1');
+			        $('.hide_tip_none').css('opacity','0');
+			    }
+			    else if ( X < -100 ) {
+//			        $('#msghide').addClass('hideani');
+			        $('.video_span').addClass('hideani');
+			        $('.people').addClass('hideani');
+			        $('.touxiang').addClass('hideani');
+			        $('.tipleft').css('opacity','0');
+			       $('.hide_tip_none').css('opacity','1');
+			    }
+			});
+			
+        	//页面监听横竖屏
+			window.addEventListener('orientationchange', function(event){
+			    if ( window.orientation == 180 || window.orientation==0 ) {
+			        $(".video-js .vjs-tech").css("top","0em")
+//			        $(".touxiang_img").css("width","12%")
+			        $(".video_span").css({"left":"20%","width":"60%"})
+//			        $(".live_like_white").attr("src","/static/index/images/live_like_white.png")
+//			        $(".live_message_white").attr("src","/static/index/images/live_message_white.png")
+//			        $(".zhibo_img").css({"right": "30%","width":"40%","bottom":"7em"})
+//			        $(".live_like_white").css("margin-left","0")
+			    }
+			    if( window.orientation == 90 || window.orientation == -90 ) {
+			        $(".video-js .vjs-tech").css("top","0")
+//			        $(".touxiang_img").css("width","7%")
+			        $(".video_span").css({"left":"62%","width":"35%"})
+//			        $(".live_like_white").attr("src","/static/index/images/live_like.png")
+//			        $(".live_message_white").attr("src","/static/index/images/live_message.png")
+//			        $(".zhibo_img").css({"right": "42%","width":"20%","bottom":"2em"})
+//			        $(".live_like_white").css("margin-left","1em")
+			    }
+			});
+
+			var options = {
+			    controls: true,
+			    url: "{$rest['hls_url']}",
+			    type: 'hls',
+			    preload: true,
+			    autoplay: false, // 如为 true，则视频将会自动播放
+			    poster: 'http://appc.qunarmei.com/gmxwc.jpg',
+			};
+			var player = new QiniuPlayer('video', options);
+			//请求接口记录数据
+			$.ajaxSetup({
+				async : false
+			});
+			var flag = '';
+			function getHlsCnt()
+			{
+				var mydate = new Date();
+				var mytime = (Date.parse( new Date()))/ 1000; //获取当前时间 年-月-日 时:分:秒
+				console.log('mytime:'+mytime);
+				//标志位
+				if(!flag)
+				{
+					$.post("getHlsCnt.html",{time:mytime},function(result){
+						flag = result;
+						console.log('flag:'+flag);
+					});
+				}else
+				{
+					$.post("getHlsCnt.html",{time:mytime,flag:flag},function(result){
+						flag = result;
+						console.log('flag:'+flag);
+					});
+				}
+
+			}
+			setInterval('getHlsCnt()',10000);
+        </script>
+		<script type="text/javascript" src="/static/index/js/bundle.js"></script>
+		<script type='text/javascript' src='/static/index/js/webim.config.js'></script>
+		<script type='text/javascript' src='/static/index/js/strophe-1.2.8.min.js'></script>
+		<script type='text/javascript' src='/static/index/js/websdk-1.4.13.js'></script>
+
+		<script type="text/javascript">
+			//ajax请求方法
+			function getAjax(url,id) {
+				var rest
+				$.ajax({
+					type:"POST",
+					async:false,
+					//提交的网址
+					url:url,
+					//提交的数据
+					data:{"id":id},
+					//成功返回之后调用的函数
+					success:function(data,statu){
+						rest = data;
+					},
+				});
+				return rest;
+			}
+
+			// 获取观看人数
+			var getGk1 = setInterval(function(){ getGk() }, 5000);
+			function getGk()
+			{
+				var url = "getCnt.html";
+				var id = "{$rest['chat_id']}";
+				var gk_cnt = getAjax(url,id);
+				$("#gk_cnt").html(gk_cnt);
+			}
+
+			// start Modify by wangqin 2017-12-28
+			//查询是否关闭直播
+			function close_ye()
+			{
+				var url = "{$rest['hls_url']}";
+				if(!url)
+				{
+					alert('您观看的直播已关闭,谢谢收看');
+					window.opener = null;
+					window.open('', '_self');
+					window.close();
+				}
+			}
+			// end Modify by wangqin 2017-12-28
+		</script>
+	</body>
+
+</html>

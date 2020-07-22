@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- 2017-11-18 页面缓存 -->
+	<meta http-equiv="Cache-Control" content="max-age=7200" />
+	<!-- 2017-11-18 -->
+	<meta charset="utf-8">
+	<title>直播预告</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<!-- Link Swiper's CSS -->
+	<link rel="stylesheet" href="/static/admin/css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/admin/css/index.css" />
+	<link rel="stylesheet" href="/static/admin/css/style.css">
+	<!-- Demo styles -->
+</head>
+
+<body style="overflow: hidden;">
+	<img src="{$img}" style="width:100%">
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+---------------------------------------------------------------
+[ 2020-01-09T15:12:20+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/save_user_notice?user_id=16829&ver=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.071509s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_user_log` [ RunTime:0.015002s ]
+[ sql ] [ SQL ] INSERT INTO `ims_bj_shopn_user_log` (`type` , `ver` , `user_id` , `val` , `msg` , `create_time`) VALUES (1 , 1 , 16829 , '1' , '用户16829同意了去哪美app隐私协议' , 1578553940) [ RunTime:0.062508s ]
+---------------------------------------------------------------
+[ 2020-01-09T15:14:05+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?user_id=16829&type=1&ver=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.031504s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_user_log` [ RunTime:0.017002s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_user_log` WHERE  `user_id` = 16829  AND `type` = 1  AND `val` = '1' LIMIT 1 [ RunTime:0.016503s ]
+---------------------------------------------------------------
+[ 2020-01-09T15:14:17+08:00 ] 127.0.0.1 127.0.0.1 GET /api/v4/notice/get_notice?user_id=16829&type=1&ver=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.026003s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_user_log` [ RunTime:0.016503s ]
+[ sql ] [ SQL ] SELECT * FROM `ims_bj_shopn_user_log` WHERE  `user_id` = 16829  AND `type` = 1  AND `val` = '1' LIMIT 1 [ RunTime:0.017002s ]

@@ -1,0 +1,57 @@
+---------------------------------------------------------------
+[ 2017-09-26T14:17:51+08:00 ] 192.168.3.56 192.168.3.56 GET /api/live/downshare?user_name=test&mobile=12345678912&type=andriod
+[ error ] [0]模板文件不存在:F:\software\phpstudy\WWW\lunhui_tp5\public/../application/api\view\live\downshare.html[F:\software\phpstudy\WWW\lunhui_tp5\thinkphp\library\think\view\driver\Think.php:80]
+---------------------------------------------------------------
+[ 2017-09-26T14:23:57+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ error ] [1]Cannot access parent:: when current class scope has no parent[F:\software\phpstudy\WWW\lunhui_tp5\application\index\controller\Index.php:35]
+---------------------------------------------------------------
+[ 2017-09-26T14:24:34+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare?user_name=test&mobile=12345678912&type=andriod
+[ error ] [1]Call to undefined method app\index\controller\Index::assign()[F:\software\phpstudy\WWW\lunhui_tp5\application\index\controller\Index.php:34]
+---------------------------------------------------------------
+[ 2017-09-26T14:45:21+08:00 ] 192.168.3.56 192.168.3.56 GET /index/index/downshare
+[ error ] [8]未定义变量: list[F:\software\phpstudy\WWW\lunhui_tp5\runtime\temp\a67f5c5af8bc579ad9336e00b8e01c23.php:9]
+---------------------------------------------------------------
+[ 2017-09-26T16:20:24+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ error ] [8]未定义数组索引: content[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php:82]
+---------------------------------------------------------------
+[ 2017-09-26T16:21:04+08:00 ] ::1 ::1 GET /admin/messages/messagesedit.html
+[ error ] [8]未定义数组下标: 0[F:\software\phpstudy\WWW\lunhui_tp5\runtime\temp\ea7067bb0c30b4f468eaa5b872a27966.php:53]
+---------------------------------------------------------------
+[ 2017-09-26T16:23:50+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ error ] [8]未定义数组索引: content[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php:82]
+---------------------------------------------------------------
+[ 2017-09-26T16:23:56+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ error ] [8]未定义数组索引: content[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php:82]
+---------------------------------------------------------------
+[ 2017-09-26T16:24:03+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ error ] [8]未定义数组索引: content[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php:82]
+---------------------------------------------------------------
+[ 2017-09-26T16:38:21+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ error ] [2]file_put_contents(/static/admin/html/1506415101.html): failed to open stream: No such file or directory[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php:86]
+---------------------------------------------------------------
+[ 2017-09-26T16:38:29+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ error ] [2]file_put_contents(/static/admin/html/1506415109.html): failed to open stream: No such file or directory[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php:86]
+---------------------------------------------------------------
+[ 2017-09-26T16:41:50+08:00 ] ::1 ::1 GET /admin/messages/messagesedit.html
+[ error ] [8]未定义数组下标: 0[F:\software\phpstudy\WWW\lunhui_tp5\runtime\temp\ea7067bb0c30b4f468eaa5b872a27966.php:53]
+---------------------------------------------------------------
+[ 2017-09-26T16:42:55+08:00 ] ::1 ::1 GET /admin/messages/messagesedit.html
+[ error ] [8]未定义数组下标: 0[F:\software\phpstudy\WWW\lunhui_tp5\runtime\temp\ea7067bb0c30b4f468eaa5b872a27966.php:53]
+---------------------------------------------------------------
+[ 2017-09-26T16:43:29+08:00 ] ::1 ::1 GET /admin/messages/messagesedit.html
+[ error ] [8]未定义数组下标: 0[F:\software\phpstudy\WWW\lunhui_tp5\runtime\temp\ea7067bb0c30b4f468eaa5b872a27966.php:53]
+---------------------------------------------------------------
+[ 2017-09-26T16:44:54+08:00 ] ::1 ::1 GET /admin/messages/messagesedit.html
+[ error ] [8]未定义数组下标: 0[F:\software\phpstudy\WWW\lunhui_tp5\runtime\temp\ea7067bb0c30b4f468eaa5b872a27966.php:53]
+---------------------------------------------------------------
+[ 2017-09-26T16:46:32+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ error ] [2]file_put_contents(/static/admin/html/1506415592.html): failed to open stream: No such file or directory[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php:86]
+---------------------------------------------------------------
+[ 2017-09-26T16:46:35+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ error ] [2]file_put_contents(/static/admin/html/1506415595.html): failed to open stream: No such file or directory[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php:86]
+---------------------------------------------------------------
+[ 2017-09-26T16:46:40+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ error ] [2]file_put_contents(/static/admin/html/1506415600.html): failed to open stream: No such file or directory[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php:86]
+---------------------------------------------------------------
+[ 2017-09-26T16:46:45+08:00 ] ::1 ::1 POST /admin/messages/messagesedit.html
+[ error ] [2]file_put_contents(/static/admin/html/1506415605.html): failed to open stream: No such file or directory[F:\software\phpstudy\WWW\lunhui_tp5\application\admin\controller\Messages.php:86]

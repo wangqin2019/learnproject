@@ -1,0 +1,42 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2020/4/24
+ * Time: 15:35
+ */
+
+namespace app\admin\controller;
+
+/**
+ * 电话号码权限控制,中间4位显示为*
+ */
+class MobileRule
+{
+    // 没有完整号码权限的用户
+    public $no_mobile_uid = [52,20];
+
+    /**
+     * 是否显示完整号码权限
+     * @param $uid
+     * @return int
+     */
+    public function checkRule($uid)
+    {
+        $flag = 0;
+        if(in_array($uid,$this->no_mobile_uid)){
+            $flag = 1;
+        }
+        return $flag;
+    }
+    /**
+     * 电话号码中间4位替换为*
+     * @param $uid
+     * @return int
+     */
+    public function replaceMobile($mobile)
+    {
+        $mobile = substr_replace($mobile, '****', 3, 4);;
+        return $mobile;
+    }
+}

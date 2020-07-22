@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <META HTTP-EQUIV="expires" CONTENT="0">
+
+		<link rel="stylesheet" href="css/common.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<title>活动说明页</title>
+		<style type="text/css">
+			.title{margin: 2em 15% 1em 15%;width: 70%;}
+			.list{width:85%;margin: 0 7.5% 2em 7.5%;}
+			
+            .list img{width: 100%;}
+            .list_title{margin-top: 1em;margin-bottom: 0.5em;}
+            .explain{width: 100%;text-align: center;}
+            
+            .explain p{color: #5F5F5F;font-size: 0.8em;margin: 0;}
+            .login{width: 100%;text-align: center;margin-top: 1em;}
+            .login button{
+            	width: 8em;height: 2em;line-height: 2em;border-radius: 1em;
+            	color: #FFFFFF;border: none;font-size: 1em;
+            }
+            .detail{width:85%;margin: 2em 7.5% 2em 7.5%;}
+            .detail p{text-align:justify;color: #5F5F5F;margin-top: 0;min-width: 1em;}
+            .detail .detail_title{font-size: 0.8em;}
+            .detail div{width: 100%;display: flex;font-size: 0.7em;}
+            @media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2){
+				/*iphone5*/
+			}
+            @media only screen and (device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) {
+				/*iphonex*/
+				.title{margin: 4em 15%;}
+				.list img{margin-bottom: 1em;}
+				.login{margin-top: 2em;}
+			}
+		</style>
+	</head>
+
+	<body>
+		<img src="image/bg.jpg" class="bg_img"/>
+		<img src="image/explain_title.png" class="title"/>
+		
+		<div class="list">
+			<img src="image/explain_title1.png" class="list_title"/>
+			<img src="image/explain_1.png" />
+			<img src="image/explain_title2.png" class="list_title"/>
+			<img src="image/explain_2.png" />
+			<img src="image/explain_title3.png" class="list_title"/>
+			<img src="image/explain_3.png" />
+		</div>
+		<div class="explain">
+			<p>支付翻翻乐、分享积印花</p>
+			<p>「星语心愿 定制独一无二的美 」</p>
+		</div>
+		<div class="login"><button class="button_bg">点击进入</button></div>
+		<div class="tishi hide"></div>
+		<div class="detail">
+			<p class="detail_title">活/动/细/则</p>
+			<div><p>1.</p><p>点击礼包即可获得以上三重惊喜礼券，请到我的卡券查看明细，所有礼券须到所属门店激活方可生效使用。</p></div>
+			<div><p>2.</p><p>支付翻翻乐：购买系列定制活动套餐即可获得一次支付翻翻乐随机抽奖，100%中奖，凭提货二维码前往指定门店核销并领取。</p></div>
+			<div><p>3.</p><p>到店礼券：到店激活现金抵用券，可购买线上商品满100元抵用10元，满200元抵用20元，满300元抵用50元，每笔订单限用一张。（拼团及特殊商品不可使用）</p></div>
+			<div><p>4.</p><p>分享有礼：活动期间，将海报保存并分享好友，通过您分享注册的新用户也可获得礼包一份，同时购买任意一款商品支付成功后，您将获得一枚印花，集满3枚印花即可成功兑换一张深层清洁护理券（到店激活使用），印花清0后可重新开始集印花攒护理券。</p></div>
+			<div><p>5.</p><p>诚美有权对本活动做出解释。</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var mobile = getQueryString('mobile');
+		var type = getQueryString('type');
+		
+		var ua = window.navigator.userAgent.toLowerCase();
+		if (ua.indexOf('micromessenger') == -1) {
+			var sendCard = ajaxQunarPost('sendCard','mobile='+mobile+'&type='+type);
+//			tishi(sendCard.msg, 1000);
+		}else{}
+		
+		
+		$('.login button').click(function(){
+			if (ua.indexOf('micromessenger') == -1) {//不在微信或者小程序中
+				callTogoods('21');
+			}
+			else{
+				wx.miniProgram.getEnv(function(res){
+					if (res.miniprogram) {//在小程序中
+						wx.miniProgram.navigateTo({url: '../missshopProlist/missshopProlist'});
+			        }
+			        else {//在微信中
+			        	alert('请在小程序中打开页面');
+			        }
+				})
+			}
+		})
+		
+		function callTogoods(e){
+			try{
+				togoodscatelog.togoodscatelog(e);
+			}
+			catch(e){}
+		}
+	</script>
+
+</html>

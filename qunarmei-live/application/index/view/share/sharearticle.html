@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://video.aco.aotu.io/ -->
+<html lang="zh-CN" style="">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>去哪美</title>
+
+	<!-- end REM Zoom 计算 -->
+	<!-- <link href="/static/index/css/app.css" rel="stylesheet"> -->
+	<!-- <script type="text/javascript" src="/static/index/js/jquery.js"></script> -->
+	<!-- <link rel="stylesheet" href="/static/index/css/zhibo.css"> -->
+	<style type="text/css">
+		/*body{min-width: 1400px;}*/
+		*{margin: 0;padding: 0;list-style: none;outline: none;text-decoration: none;}
+	</style>
+	<style id="J__style">
+		body{
+			font-size: 0px;
+		}
+		.content{
+			text-align:center
+		}
+		.erweima{
+			width: 15%;
+			position: absolute;
+			left: 10%;
+			top: 55%;
+		}
+		.img_list{
+			width: 100%;
+		}
+		.font_class{
+			font-size: 15px;
+
+		}
+		.aa{
+			height: 40px;
+		}
+	</style>
+</head>
+
+<body>
+<div class="content">
+	<div>
+		<h3 class="font_class">{$rest['article_title']}</h3>
+		<div class="aa">
+			<span class="font_class">作者:</span><span style="color: red" class="font_class">{$rest['realname']}</span>&nbsp;&nbsp;
+			<span class="font_class">发布时间:</span><span style="color: red" class="font_class">{$rest['comment_time']}</span>
+		</div>
+	</div>
+	<div>
+		<div class="font_class aa">{$rest['summary']}</div>
+		<div class="aa"></div>
+		<div>
+			{if $rest_img}
+
+				{foreach $rest_img as $v}
+					<img src="{$v['img_url']}" alt="" class="img_list">
+				{/foreach}
+
+			{else}
+				<div>{$rest['article_content']}</div>
+			{/if}
+			<br/>
+			<p style="font-size: 15px;color: red">想要获取更多资讯,请扫码下载</p>
+			<p><img src="/static/index/images/QRcode.png" ></p>
+		</div>
+	</div>
+
+</div>
+
+
+</body>
+
+</html>

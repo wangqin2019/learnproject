@@ -1,0 +1,80 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2020/1/9
+ * Time: 11:46
+ */
+
+namespace app\api\service;
+use think\Db;
+/**
+ * 手机端直播服务类
+ */
+class LiveMobileService extends BaseSer
+{
+    /**
+     * 是否有可续接的流直播
+     * @param string $mobile 主播号码
+     */
+    public function whetherContinue($mobile)
+    {
+        // 获取主播当天最后1次直播流
+        $map['user_id'] = $mobile;
+        $map['insert_time'] = ['>=',strtotime(date("Y-m-d"),time())];
+        $res = Db::table('think_live')->where($map)->order('id desc')->limit(1)->find();
+        $this->code = 1;
+        $this->msg = '暂无数据';
+        $arr['flag'] = 0;
+        $arr['msg'] = '您当前没有可以续接的直播';
+        if ($res) {
+            $this->code = 1;
+            $this->msg = '获取成功';
+            $arr['flag'] = 1;
+            $arr['msg'] = '有可以续接的直播';
+        }
+        $this->data = $arr;
+        return $this->returnArr();
+    }
+    /**
+     * 断流续播
+     * @param int $mobile 用户号码
+     * @return
+     */
+    public function continueLive($mobile)
+    {
+        // 获取主播当天最后1次直播流
+        $map['user_id'] = $mobile;
+        $map['insert_time'] = ['>=',strtotime(date("Y-m-d"),time())];
+        $res = Db::table('think_live')->where($map)->order('id desc')->limit(1)->find();
+        $this->code = 1;
+        $this->msg = '您当前没有可以续接的直播';
+        if ($res) {
+            $arr['chat_id'] = $res['chat_id'];
+            $arr['room_id'] = 0;
+            $arr['live_id'] = $res['id'];
+            $arr['classify_id'] = $res['classify_id'];
+            $arr['push_url'] = $res['push_url'];
+            $arr['see_url'] = $res['see_url'];
+            $arr['title'] = $res['title'];
+            $arr['content'] = $res['content'];
+            $arr['address'] = $res['address'];
+            $arr['head_title'] = $res['address'];
+            $arr['room_name'] = '';
+            $arr['room_token'] = '';
+            // 查询对应的连麦房间信息
+            $mapr['live_name'] = $res['live_stream_name'];
+            $resroom = Db::table('think_room')->where($mapr)->limit(1)->find();
+            if ($resroom) {
+                $arr['room_id'] = $resroom['id'];
+                $arr['room_name'] = $resroom['room_name'];
+                $arr['room_token'] = $resroom['room_token'];
+            }
+            $this->data = $arr;
+            $this->msg = '有可以续接的直播';
+        }else{
+            $this->data = (object)[];
+        }
+        return $this->returnArr();
+    }
+}

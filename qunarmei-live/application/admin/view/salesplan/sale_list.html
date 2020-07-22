@@ -1,0 +1,110 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>商品销售方案配置</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                </div>
+                <form name="admin_list_sea" class="form-search" method="post" action="{:url('sale_list')}">
+                    <div class="col-sm-5">
+                        <!-- {if $bsc}
+                        <a href="{:url('add_sale')}?sign={$sign}"><button class="btn btn-outline btn-primary" type="button">添加配置</button></a>
+                        {/if} -->
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--搜索框结束-->
+        <div class="hr-line-dashed"></div>
+        <div class="example-wrap">
+            <div class="example">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr class="long-tr">
+                        <th width="3%">ID</th>
+                        <th width="5%">商品名称</th>
+                        <th width="5%">达到优惠需要个数</th>
+                        <th width="5%">优惠减免个数</th>
+                        <th width="8%">赠送优惠券</th>
+                        <th width="8%">买赠或满减</th>
+                        <th width="8%">备注说明</th>
+                        <th width="8%">创建时间</th>
+                        <th width="10%">操作</th>
+                    </tr>
+                    </thead>
+                    {if $lists}
+                    {foreach $lists as $v}
+                        <tr class="long-td">
+                            <td>{$v.id}</td>
+                            <td><textarea cols="13" rows="5">{$v.title}</textarea></td>
+                            <td>{$v.goods_num}</td>
+                            <td>{$v.reduction_num}</td>
+                            <td>{$v.card_type}</td>
+                            <td>{$v.activity_type}</td>
+                            <td>{$v.remark}</td>
+                            <td>{$v.create_time}</td>
+                            <td>
+                                <a href="javascript:;" onclick="edit_b({$v.id})" class="btn btn-primary btn-xs btn-outline">
+                                    <i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+                                <a href="javascript:;" onclick="del_b({$v.id})" class="btn btn-danger btn-xs btn-outline">
+                                    <i class="fa fa-trash-o"></i> 删除</a>
+                            </td>
+                        </tr>
+                    {/foreach}
+                    {else}
+                    <tr class="long-td">暂无数据</td>
+                    {/if}
+                    <tbody id="list-content"></tbody>
+                </table>
+                <div id="AjaxPage" style="text-align:right;"></div>
+                <div style="text-align: right;">
+                    共{$count}条数据，<span id="allpage"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+  <!--       <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div> -->
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //编辑
+    function edit_b(id){
+        location.href = './edit_sale?id='+id;
+    }
+
+    //删除
+    function del_b(id){
+        layer.confirm('确认删除?', {icon: 3, title:'提示'}, function(index){
+            $.getJSON('{:url("del_sale")}', {'id' : id}, function(res){
+                location.reload();
+                if(res.code == 1){
+                    layer.msg(res.msg,{icon:1,time:1500,shade: 0.1});
+                }else{
+                    layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+                }
+            });
+
+            layer.close(index);
+        })
+    }
+</script>
+</body>
+</html>

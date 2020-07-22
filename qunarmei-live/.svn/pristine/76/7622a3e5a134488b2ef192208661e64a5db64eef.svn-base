@@ -1,0 +1,98 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: wq
+ * Date: 2018/12/6
+ * Time: 11:26
+ */
+
+namespace app\api\controller\v3;
+use app\api\validate\Common as CommonValidate;
+use think\Controller;
+use think\Request;
+use think\Log;
+class Common extends Controller
+{
+    // 统一参数
+    protected $rest = [
+        'code' => 1,
+        'data' => [],
+        'msg' => '获取成功'
+    ];
+    // 时间戳
+    protected $dt;
+    /*
+     * 功能: 返回正常数据
+     * 请求: 统一下发数据
+     * */
+    public  function returnMsgNoTrans($code=0,$data=[],$msg='暂无数据')
+    {
+        $res = ['code'=>$code,'data'=>$data,'msg'=>$msg];
+        $rest = json_encode($res,320);
+        $rest = str_replace("\\\\", "\\",$rest);
+        $msg_resp = '下发数据:'.$rest;
+        $this->writeLog($msg_resp);
+        echo $rest;die;
+    }
+    /*
+     * 功能: 初始化方法
+     * 请求:
+     * */
+    public  function _initialize()
+    {
+        $this->dt = time();
+        // 统一处理数据验证
+        $request = Request::instance();
+        $arr = $request->param();
+        $action = $request->action();
+         // 记录请求日志
+        $data_req = $_REQUEST;
+        // 将请求数组拼接成url地址参数
+        $msg_req = '请求数据:'.http_build_query($data_req , '' , '&');
+        $this->writeLog($msg_req);
+        $result = $this->validate($arr,CommonValidate::$func[$action]);
+        if(true !== $result){
+            // $this->rest['msg'] = '请求参数错误:'.$result;
+            $this->rest['msg'] = $result;
+            $this->returnMsgError($this->rest['msg']);
+        }
+    }
+    /*
+     * 功能: 错误失败,返回函数
+     * 请求: 'msg'=>'错误信息'
+     * */
+    protected  function returnMsgError($msg)
+    {
+        $data = [
+            'code' => 0,// 错误码0
+            'msg' => $msg// 错误信息
+        ];
+        header('Content-Type:application/json');
+        $data_resp = json_encode($data,JSON_UNESCAPED_UNICODE);
+        echo $data_resp;
+        $msg_resp = '下发数据:'.$data_resp;
+        $this->writeLog($msg_resp);
+        die;
+    }
+
+    /*
+     * 功能: 返回正常数据
+     * 请求:
+     * */
+    protected  function returnMsg($code=0,$data=[],$msg='暂无数据')
+    {
+        $res = ['code'=>$code,'data'=>$data,'msg'=>$msg];
+        $rest = json($res);
+        $msg_resp = '下发数据:'.json_encode($res,JSON_UNESCAPED_UNICODE);;
+        $this->writeLog($msg_resp);
+        return $rest;
+    }
+    /*
+     * 功能: 记录日志
+     * 请求: $msg => 记录日志
+     * */
+    protected  function writeLog($msg='')
+    {
+        $res = Log::record($this->dt.'-'.$msg);
+    }
+}

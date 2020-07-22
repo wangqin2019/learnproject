@@ -1,0 +1,6 @@
+---------------------------------------------------------------
+[ 2017-10-18T16:07:39+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ error ] [1]Call to undefined function app\api\controller\curlPost()[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\api\controller\RingLetter.php:39]
+---------------------------------------------------------------
+[ 2017-10-18T16:08:26+08:00 ] ::1 ::1 GET /api/live/getChatsCount
+[ error ] [2]Missing argument 3 for curlPost(), called in D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\api\controller\RingLetter.php on line 39 and defined[D:\software\phpstudy\PHPTutorial\WWW\lunhui_tp5\application\api\common.php:3]

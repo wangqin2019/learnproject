@@ -1,0 +1,37 @@
+---------------------------------------------------------------
+[ 2020-01-13T10:21:16+08:00 ] 127.0.0.1 127.0.0.1 GET /api/find_content/get_comment?article_id=61&page=1&user_id=20379
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065508s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_sum_article` [ RunTime:0.020503s ]
+[ sql ] [ SQL ] SELECT `see_num`,`comment_num`,`collect_num` FROM `think_sum_article` WHERE  `article_id` = 61 LIMIT 1 [ RunTime:0.026003s ]
+[ sql ] [ SQL ] UPDATE `think_sum_article`  SET `see_num`=45,`comment_num`=3,`collect_num`=0,`upd_time`='2020-01-13 10:21:16'  WHERE  `article_id` = 61 [ RunTime:0.024503s ]
+[ sql ] [ SQL ] SELECT `cnt`.`article_label`,cnt.id article_id,`cnt`.`user_id`,`cnt`.`article_img`,`cnt`.`article_title`,`cnt`.`article_content`,`cnt`.`comment_time`,mem.realname user_name,fans.avatar user_img,`cnt`.`article_video`,`cnt`.`type`,`cnt`.`article_jump_url`,`cnt`.`flag_img`,`mem`.`storeid` FROM think_find_content cnt,ims_bj_shopn_member mem,ims_fans fans WHERE  (  mem.id=fans.id_member and mem.id=cnt.user_id  and cnt.id=61 ) LIMIT 1 [ RunTime:0.021003s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_find_content_img` [ RunTime:0.032504s ]
+[ sql ] [ SQL ] SELECT `img_url`,`goods_id` FROM `think_find_content_img` WHERE  `isshow` = 1  AND `article_id` = 61 ORDER BY display_order desc [ RunTime:0.037005s ]
+[ sql ] [ SQL ] SELECT `fcc`.*,mem.realname user_name,`f`.`avatar` FROM think_find_content_comment fcc,ims_bj_shopn_member mem,ims_fans f WHERE  (   mem.id=fcc.user_id and mem.id=f.id_member and article_id=61 ) GROUP BY `fcc`.`id` ORDER BY comment_time desc LIMIT 0,30 [ RunTime:0.028504s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_find_content_collect` [ RunTime:0.032504s ]
+[ sql ] [ SQL ] SELECT `id` FROM `think_find_content_collect` WHERE  (  type=1 and user_id=20379 and actrile_id=61 ) LIMIT 1 [ RunTime:0.027004s ]
+---------------------------------------------------------------
+[ 2020-01-13T10:27:32+08:00 ] 127.0.0.1 127.0.0.1 GET /api/find_content/get_comment?article_id=61&page=1&user_id=20379
+[ sql ] [ DB ] CONNECT:[ UseTime:0.400551s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_sum_article` [ RunTime:0.205526s ]
+[ sql ] [ SQL ] SELECT `see_num`,`comment_num`,`collect_num` FROM `think_sum_article` WHERE  `article_id` = 61 LIMIT 1 [ RunTime:0.174522s ]
+[ sql ] [ SQL ] UPDATE `think_sum_article`  SET `see_num`=46,`comment_num`=3,`collect_num`=0,`upd_time`='2020-01-13 10:27:31'  WHERE  `article_id` = 61 [ RunTime:0.168522s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_find_content` [ RunTime:0.189524s ]
+---------------------------------------------------------------
+[ 2020-01-13T10:28:18+08:00 ] 127.0.0.1 127.0.0.1 GET /api/find_content/get_comment?article_id=61&page=1&user_id=20379
+[ sql ] [ DB ] CONNECT:[ UseTime:0.105514s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_sum_article` [ RunTime:0.016002s ]
+[ sql ] [ SQL ] SELECT `see_num`,`comment_num`,`collect_num` FROM `think_sum_article` WHERE  `article_id` = 61 LIMIT 1 [ RunTime:0.018002s ]
+[ sql ] [ SQL ] UPDATE `think_sum_article`  SET `see_num`=47,`comment_num`=3,`collect_num`=0,`upd_time`='2020-01-13 10:28:18'  WHERE  `article_id` = 61 [ RunTime:0.025003s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_find_content` [ RunTime:0.017002s ]
+[ sql ] [ SQL ] SELECT `cnt`.`article_label`,cnt.id article_id,`cnt`.`user_id`,`cnt`.`article_img`,`cnt`.`article_title`,`cnt`.`article_content`,`cnt`.`comment_time`,mem.realname user_name,fans.avatar user_img,`cnt`.`article_video`,`cnt`.`type`,`cnt`.`article_jump_url`,`cnt`.`flag_img`,`mem`.`storeid` FROM think_find_content cnt LEFT JOIN `ims_bj_shopn_member` `mem` ON `mem`.`id`=`cnt`.`user_id` LEFT JOIN `ims_fans` `fans` ON `mem`.`id`=`fans`.`id_member` WHERE  (  cnt.id=61 ) LIMIT 1 [ RunTime:0.017502s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_find_content_img` [ RunTime:0.016002s ]
+[ sql ] [ SQL ] SELECT `img_url`,`goods_id` FROM `think_find_content_img` WHERE  `isshow` = 1  AND `article_id` = 61 ORDER BY display_order desc [ RunTime:0.018502s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_find_content_comment` [ RunTime:0.013502s ]
+[ sql ] [ SQL ] SELECT `fcc`.*,mem.realname user_name,`f`.`avatar` FROM think_find_content_comment fcc LEFT JOIN `ims_bj_shopn_member` `mem` ON `mem`.`id`=`fcc`.`user_id` LEFT JOIN `ims_fans` `f` ON `mem`.`id`=`f`.`id_member` WHERE  (  article_id=61 ) GROUP BY `fcc`.`id` ORDER BY comment_time desc LIMIT 0,30 [ RunTime:0.017503s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_fans` [ RunTime:0.017502s ]
+[ sql ] [ SQL ] SELECT `avatar` FROM `ims_fans` WHERE  `id_member` = 27 LIMIT 1 [ RunTime:0.016502s ]
+[ sql ] [ SQL ] SELECT `avatar` FROM `ims_fans` WHERE  `id_member` = 27 LIMIT 1 [ RunTime:0.015002s ]
+[ sql ] [ SQL ] SELECT `avatar` FROM `ims_fans` WHERE  `id_member` = 27 LIMIT 1 [ RunTime:0.014502s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_find_content_collect` [ RunTime:0.016503s ]
+[ sql ] [ SQL ] SELECT `id` FROM `think_find_content_collect` WHERE  (  type=1 and user_id=20379 and actrile_id=61 ) LIMIT 1 [ RunTime:0.015502s ]

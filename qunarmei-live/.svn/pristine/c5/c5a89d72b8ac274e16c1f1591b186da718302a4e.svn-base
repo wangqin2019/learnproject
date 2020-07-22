@@ -1,0 +1,39 @@
+---------------------------------------------------------------
+[ 2020-02-09T11:38:42+08:00 ] 127.0.0.1 127.0.0.1 GET /api/Job_queue/delLiveSeeConf
+[ sql ] [ DB ] CONNECT:[ UseTime:0.054007s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_see_conf` [ RunTime:0.013502s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_see_conf` `c` WHERE  `end_time` < 1581219522 ORDER BY id asc [ RunTime:0.016002s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.016002s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live` WHERE  `user_id` = '15921324164' ORDER BY id desc LIMIT 1 [ RunTime:0.017002s ]
+[ sql ] [ SQL ] UPDATE `think_live_see_conf`  SET `live_id`=415  WHERE  `id` = 1 [ RunTime:0.012502s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_see_conf` `c` WHERE  `end_time` < 1581219522 ORDER BY id asc [ RunTime:0.015502s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_see_conf_log` [ RunTime:0.016002s ]
+[ sql ] [ SQL ] INSERT INTO `think_live_see_conf_log` (`live_id` , `mobile` , `store_signs` , `see_mobiles` , `create_time`) SELECT 415,'15921324164','666-666,000-000,888-888','13800009991',1581219522 [ RunTime:0.012502s ]
+---------------------------------------------------------------
+[ 2020-02-09T12:12:01+08:00 ] 127.0.0.1 127.0.0.1 GET /api/Job_queue/delLiveSeeConf
+[ sql ] [ DB ] CONNECT:[ UseTime:0.037005s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_see_conf` [ RunTime:0.018503s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_see_conf` `c` WHERE  `end_time` < 1581221520 ORDER BY id asc [ RunTime:0.016002s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.015002s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live` WHERE  `user_id` = '15921324164' ORDER BY id desc LIMIT 1 [ RunTime:0.053007s ]
+[ sql ] [ SQL ] UPDATE `think_live_see_conf`  SET `live_id`=415  WHERE  `id` = 1 [ RunTime:0.015502s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_see_conf` `c` WHERE  `id` IN (1) ORDER BY id asc [ RunTime:0.017503s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_see_conf_log` [ RunTime:0.015502s ]
+[ sql ] [ SQL ] INSERT INTO `think_live_see_conf_log` (`live_id` , `mobile` , `store_signs` , `see_mobiles` , `create_time`) SELECT 415,'15921324164','666-666,000-000,888-888','13800009991',1581221521 [ RunTime:0.019002s ]
+---------------------------------------------------------------
+[ 2020-02-09T12:13:35+08:00 ] 127.0.0.1 127.0.0.1 GET /api/Job_queue/delLiveSeeConf
+[ sql ] [ DB ] CONNECT:[ UseTime:0.026003s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_see_conf` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_see_conf` `c` WHERE  `end_time` < 1581221615 ORDER BY id asc [ RunTime:0.015002s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live` WHERE  `user_id` = '15921324164' ORDER BY id desc LIMIT 1 [ RunTime:0.015502s ]
+[ sql ] [ SQL ] UPDATE `think_live_see_conf`  SET `live_id`=415  WHERE  `id` = 1 [ RunTime:0.014002s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_see_conf` `c` WHERE  `id` IN (1) ORDER BY id asc [ RunTime:0.013502s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_see_conf_log` [ RunTime:0.013002s ]
+[ sql ] [ SQL ] INSERT INTO `think_live_see_conf_log` (`live_id` , `mobile` , `store_signs` , `see_mobiles` , `create_time`) SELECT 415,'15921324164','666-666,000-000,888-888','13800009991',1581221615 [ RunTime:0.010501s ]
+[ sql ] [ SQL ] DELETE FROM `think_live_see_conf`    WHERE  `id` IN (1) [ RunTime:0.012502s ]
+---------------------------------------------------------------
+[ 2020-02-09T12:13:47+08:00 ] 127.0.0.1 127.0.0.1 GET /api/Job_queue/delLiveSeeConf
+[ sql ] [ DB ] CONNECT:[ UseTime:0.031004s ] mysql:host=rm-uf648903gcdsq7fopo.mysql.rds.aliyuncs.com;port=3306;dbname=test_chengmei_com;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_see_conf` [ RunTime:0.018503s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_see_conf` `c` WHERE  `end_time` < 1581221627 ORDER BY id asc [ RunTime:0.019503s ]

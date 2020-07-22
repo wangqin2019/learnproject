@@ -1,0 +1,2121 @@
+---------------------------------------------------------------
+[ 2017-10-17T13:17:37+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:17:51+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:20:00+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:20:00+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:40:54+08:00 ] ::1 ::1 GET /admin/menu/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` ORDER BY id asc [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:43:41+08:00 ] ::1 ::1 POST /admin/menu/add_rule.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] INSERT INTO `think_auth_rule` (`pid` , `title` , `name` , `css` , `sort` , `status` , `create_time` , `update_time`) VALUES (85 , '直播预告' , 'admin/livetrailer/index' , 'fa fa-user' , 50 , 1 , 1508219021 , 1508219021) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_log` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] INSERT INTO `think_log` (`admin_id` , `admin_name` , `description` , `status` , `ip` , `add_time`) VALUES (1 , 'admin' , '用户【admin】添加菜单成功' , 1 , '0.0.0.0' , 1508219021) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:43:42+08:00 ] ::1 ::1 GET /admin/menu/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` ORDER BY id asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:43:44+08:00 ] ::1 ::1 GET /admin/index/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:43:44+08:00 ] ::1 ::1 GET /admin/index/indexpage.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_member` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_member` WHERE  `create_time` >= 1508169600 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:43:50+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:43:51+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:43:52+08:00 ] ::1 ::1 GET /admin/livecate/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_category` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `cat`.* FROM `think_live_category` `cat` WHERE  `flag` < 1 LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:43:52+08:00 ] ::1 ::1 GET /admin/livecate/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_category` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `cat`.* FROM `think_live_category` `cat` WHERE  `flag` < 1 LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:43:57+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:43:57+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:43:59+08:00 ] ::1 ::1 GET /admin/livecate/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_category` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `cat`.* FROM `think_live_category` `cat` WHERE  `flag` < 1 LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T13:43:59+08:00 ] ::1 ::1 GET /admin/livecate/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_category` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `cat`.* FROM `think_live_category` `cat` WHERE  `flag` < 1 LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T14:43:32+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T14:48:03+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T14:48:31+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T14:51:13+08:00 ] ::1 ::1 GET /api/live/livelist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT live.id live_id,live.user_name name,live.user_img img,`live`.`title`,`live`.`content`,`live`.`address`,live.insert_time live_time,`live`.`statu`,`live`.`live_img`,live.see_url play_url,`chat_id`,`live`.`category_id`,`cat`.`category_name`,`video_type`,`live`.`classify_id` FROM `think_live` `live`,`think_live_category` `cat` WHERE  (  live.category_id=cat.category_id and cat.flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T14:56:39+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:26:06+08:00 ] ::1 ::1 GET /admin/index/clear.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:26:08+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:26:08+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:26:10+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:26:10+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:26:11+08:00 ] ::1 ::1 GET /admin/livecate/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_category` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `cat`.* FROM `think_live_category` `cat` WHERE  `flag` < 1 LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:26:11+08:00 ] ::1 ::1 GET /admin/livecate/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_category` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `cat`.* FROM `think_live_category` `cat` WHERE  `flag` < 1 LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:26:12+08:00 ] ::1 ::1 GET /admin/livecate/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_category` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `cat`.* FROM `think_live_category` `cat` WHERE  `flag` < 1 LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:26:12+08:00 ] ::1 ::1 GET /admin/livecate/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_category` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `cat`.* FROM `think_live_category` `cat` WHERE  `flag` < 1 LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:26:13+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:26:14+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:30:25+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:30:56+08:00 ] ::1 ::1 GET /admin/index/clear.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:31:00+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:31:00+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:31:02+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:32:14+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:32:14+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:32:15+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:35:54+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:35:54+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:35:55+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:36:49+08:00 ] ::1 ::1 GET /admin/index/clear.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:36:52+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:36:52+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:36:53+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:39:04+08:00 ] ::1 ::1 GET /admin/index/clear.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:39:06+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:39:06+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:39:08+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:39:24+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:39:24+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:39:25+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.003000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:40:28+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:40:28+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:40:29+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:48:43+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:48:43+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T15:48:44+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:27:01+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:27:01+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:27:02+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:27:08+08:00 ] ::1 ::1 GET /admin/index/clear.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:27:11+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:27:11+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:30:39+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:30:39+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:30:41+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:33:29+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:33:29+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:33:30+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:35:01+08:00 ] ::1 ::1 GET /admin/index/clear.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:35:04+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:35:04+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:35:05+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:37:15+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:37:15+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:37:16+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:37:37+08:00 ] ::1 ::1 GET /admin/index/clear.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:37:41+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:37:42+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:37:42+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:38:04+08:00 ] ::1 ::1 POST /admin/login/dologin.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_admin` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_group` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_group` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT `name` FROM `think_auth_rule` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] UPDATE `think_admin`  SET `loginnum`=333,`last_login_ip`='0.0.0.0',`last_login_time`=1508229484,`token`='1ac2fc424c64cdf80db98a246f439287'  WHERE  `id` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_log` [ RunTime:0.028002s ]
+[ sql ] [ SQL ] INSERT INTO `think_log` (`admin_id` , `admin_name` , `description` , `status` , `ip` , `add_time`) VALUES (1 , 'admin' , '用户【admin】登录成功' , 1 , '0.0.0.0' , 1508229484) [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:38:06+08:00 ] ::1 ::1 GET /admin/index/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:38:07+08:00 ] ::1 ::1 GET /admin/index/indexpage.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_member` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_member` WHERE  `create_time` >= 1508169600 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:38:13+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:38:13+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:38:14+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:40:18+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:40:18+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.013000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:40:20+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:40:33+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:40:33+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:40:34+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:41:57+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:41:57+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:41:58+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:42:13+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:42:13+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T16:42:14+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:34:35+08:00 ] ::1 ::1 GET /admin/ad/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ad` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_ad` WHERE  `closed` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `think_ad`.*,`name` FROM `think_ad` INNER JOIN `think_ad_position` `think_ad_position` ON `think_ad`.`ad_position_id`=`think_ad_position`.`id` WHERE  `closed` = 0 ORDER BY orderby desc LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:34:35+08:00 ] ::1 ::1 GET /admin/ad/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ad` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_ad` WHERE  `closed` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `think_ad`.*,`name` FROM `think_ad` INNER JOIN `think_ad_position` `think_ad_position` ON `think_ad`.`ad_position_id`=`think_ad_position`.`id` WHERE  `closed` = 0 ORDER BY orderby desc LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:34:37+08:00 ] ::1 ::1 GET /admin/ad/add_ad.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ad_position` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_ad_position` ORDER BY id asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:37:34+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:37:34+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:37:35+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:37:53+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:37:53+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:37:54+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:42:33+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:42:33+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:42:35+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:43:30+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:43:30+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:43:31+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:45:50+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:45:50+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:45:51+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:46:23+08:00 ] ::1 ::1 GET /admin/ad/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ad` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_ad` WHERE  `closed` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `think_ad`.*,`name` FROM `think_ad` INNER JOIN `think_ad_position` `think_ad_position` ON `think_ad`.`ad_position_id`=`think_ad_position`.`id` WHERE  `closed` = 0 ORDER BY orderby desc LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:46:23+08:00 ] ::1 ::1 GET /admin/ad/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ad` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_ad` WHERE  `closed` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `think_ad`.*,`name` FROM `think_ad` INNER JOIN `think_ad_position` `think_ad_position` ON `think_ad`.`ad_position_id`=`think_ad_position`.`id` WHERE  `closed` = 0 ORDER BY orderby desc LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:46:24+08:00 ] ::1 ::1 GET /admin/ad/add_ad.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_ad_position` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_ad_position` ORDER BY id asc [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:46:33+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:46:34+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:48:37+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:48:37+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:48:38+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:50:15+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:50:16+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:50:16+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:50:34+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:50:34+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:50:35+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:52:25+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:52:26+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:52:27+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:53:25+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:53:25+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:53:26+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:53:49+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:53:49+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:53:50+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:09+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:09+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:10+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:15+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:15+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:19+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:19+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:20+08:00 ] ::1 ::1 GET /admin/live/livelist.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.005001s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:20+08:00 ] ::1 ::1 GET /admin/live/livelist.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.*,`ad`.`username` FROM `think_live` `l` INNER JOIN `think_admin` `ad` ON `ad`.`id`=`l`.`user_id` LIMIT 0,10 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_user` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=8 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ims_bj_shopn_category` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=2 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=2 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and audience_flag=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=2 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT category_id cat_id,category_name cat_name FROM `think_live_category` WHERE  (  category_id=1 and flag=0  ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and audience_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT count(id) cnt FROM `think_live_user` WHERE  (  live_id=10 and point_flag=1 ) [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=1 ) LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `name`,`id` FROM `ims_bj_shopn_category` WHERE  (  id=5 ) LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:20+08:00 ] ::1 ::1 GET /admin/livecate/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_category` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `cat`.* FROM `think_live_category` `cat` WHERE  `flag` < 1 LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:21+08:00 ] ::1 ::1 GET /admin/livecate/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_category` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_category` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `cat`.* FROM `think_live_category` `cat` WHERE  `flag` < 1 LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:21+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:22+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:54:24+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:56:34+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:56:34+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:56:35+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:56:44+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:56:44+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:56:45+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:56:53+08:00 ] ::1 ::1 POST /admin/upload/uploadface.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:57:04+08:00 ] ::1 ::1 POST /admin/upload/uploadface.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:57:24+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] INSERT INTO `think_live_trailer` (`user` , `user_img` , `address` , `cover_img` , `title` , `begin_time` , `log_time`) VALUES ('test' , '20171017\\7749804885cfb9726749887cc6b94ac6.jpg' , 'Shanghai' , '20171017\\6d7a67d3e0a1c69642767bd2458e3ac5.jpg' , '添加直播字幕' , '2017-10-17 17:56:45' , '2017-10-17 17:57:24') [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:57:26+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T17:57:27+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:01:41+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:01:43+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:01:43+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:01:56+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:05:54+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:05:54+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:05:55+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:06:30+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:06:30+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:06:31+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:07:19+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:07:19+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:07:20+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T18:07:21+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/20171017/7749804885cfb9726749887cc6b94ac6.jpg
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 20171017 [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:05:14+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.017001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:05:14+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:05:16+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:05:28+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:05:28+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:05:29+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:07:07+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:07:08+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:07:09+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:07:16+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileredit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:07:18+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:07:19+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:07:21+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:07:28+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileredit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:08:02+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileredit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:08:06+08:00 ] ::1 ::1 GET /admin/index/clear.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:08:08+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.023001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:08:08+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:08:10+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:08:13+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileredit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] UPDATE `think_live_trailer`  SET `user`='test',`user_img`='',`address`='Shanghai',`cover_img`='',`title`='Shanghai',`begin_time`='2017-10-19 17:56:45'  WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:08:15+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:08:15+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:08:57+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:09:50+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:09:50+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:09:52+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:09:56+08:00 ] ::1 ::1 GET /admin/index/clear.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:09:58+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:09:58+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:09:59+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:13:32+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:13:32+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:13:33+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:14:27+08:00 ] ::1 ::1 POST /admin/upload/uploadface.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:14:32+08:00 ] ::1 ::1 POST /admin/upload/uploadface.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:14:37+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileredit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] UPDATE `think_live_trailer`  SET `user`='test',`user_img`='20171017\\b692ae5dac796e0cf792de3e71212373.jpg',`address`='Shanghai',`cover_img`='20171017\\ea5d8af84f57f2b5634fda1294d2fbfb.jpg',`title`='Shanghai',`begin_time`='2017-10-19 17:56:45'  WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:14:39+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:14:39+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:15:25+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:17:55+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileredit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] UPDATE `think_live_trailer`  SET `user`='test',`user_img`='',`address`='Shanghai',`cover_img`='',`title`='Shanghai',`begin_time`='2017-10-20 17:56:45'  WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:17:57+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:17:57+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:17:58+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:01+08:00 ] ::1 ::1 GET /admin/index/clear.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:04+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:04+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:05+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:09+08:00 ] ::1 ::1 POST /admin/upload/uploadface.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:14+08:00 ] ::1 ::1 POST /admin/upload/uploadface.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:24+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileredit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] UPDATE `think_live_trailer`  SET `user`='test',`user_img`='20171017\\8b6d25ab5baafe339a5848192dca7687.jpg',`address`='Shanghai',`cover_img`='20171017\\88ae49eb2d7781ae5eedc4ee30d4ba57.jpg',`title`='Shanghai',`begin_time`='2017-10-20 17:56:45'  WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:25+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:25+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:27+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:31+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileredit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] UPDATE `think_live_trailer`  SET `user`='test',`user_img`='20171017\\8b6d25ab5baafe339a5848192dca7687.jpg',`address`='Shanghai',`cover_img`='20171017\\88ae49eb2d7781ae5eedc4ee30d4ba57.jpg',`title`='Shanghai1',`begin_time`='2017-10-20 17:56:45'  WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:33+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:33+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:37+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:43+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileredit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] UPDATE `think_live_trailer`  SET `user`='test',`user_img`='20171017\\8b6d25ab5baafe339a5848192dca7687.jpg',`address`='Shanghai',`cover_img`='20171017\\88ae49eb2d7781ae5eedc4ee30d4ba57.jpg',`title`='直播预告标题',`begin_time`='2017-10-20 17:56:45'  WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:45+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:45+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:18:56+08:00 ] ::1 ::1 GET /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:19:03+08:00 ] ::1 ::1 POST /admin/upload/uploadface.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:19:13+08:00 ] ::1 ::1 POST /admin/upload/uploadface.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:19:44+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileradd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] INSERT INTO `think_live_trailer` (`user` , `user_img` , `address` , `cover_img` , `title` , `begin_time` , `log_time`) VALUES ('live' , '20171017\\e2d23986aedda1f5d3685c3dcd88e621.jpg' , 'Shanghai' , '20171017\\df92514fc1592082ad2857a840071806.jpg' , '美妆护颜' , '2017-10-21 19:18:57' , '2017-10-17 19:19:44') [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:19:45+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:19:45+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:19:50+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:19:58+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileredit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] UPDATE `think_live_trailer`  SET `user`='test',`user_img`='20171017\\8b6d25ab5baafe339a5848192dca7687.jpg',`address`='Shanghai1',`cover_img`='20171017\\88ae49eb2d7781ae5eedc4ee30d4ba57.jpg',`title`='直播预告标题12',`begin_time`='2017-10-20 17:56:45'  WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:19:59+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:20:00+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:20:03+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:20:16+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:20:16+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:20:17+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerEdit/id/1.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` WHERE  `id` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:20:21+08:00 ] ::1 ::1 POST /admin/livetrailer/livetraileredit.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] UPDATE `think_live_trailer`  SET `user`='test',`user_img`='20171017\\8b6d25ab5baafe339a5848192dca7687.jpg',`address`='Shanghai1',`cover_img`='20171017\\88ae49eb2d7781ae5eedc4ee30d4ba57.jpg',`title`='直播预告标题12',`begin_time`='2017-10-20 17:56:45'  WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:20:23+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:20:23+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:20:25+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerdel.html?id=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:21:07+08:00 ] ::1 ::1 GET /admin/index/clear.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:21:09+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_config` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:21:10+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:21:11+08:00 ] ::1 ::1 GET /admin/livetrailer/livetrailerdel.html?id=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] DELETE FROM `think_live_trailer`    WHERE  `id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:21:12+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:29:52+08:00 ] ::1 ::1 GET /api/live/livetrailer
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.010001s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:30:23+08:00 ] ::1 ::1 GET /api/live/livetrailer
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_live_trailer` ORDER BY begin_time asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:34:59+08:00 ] ::1 ::1 GET /api/live/livetrailer
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.006001s ]
+[ sql ] [ SQL ] SELECT `tra`.`id`,`tra`.`user`,`tra`.`user_img`,`tra`.`address`,`tra`.`cover_img`,`tra`.`title`,`tra`.`begin_time` FROM think_live_trailer tra ORDER BY begin_time asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:36:22+08:00 ] ::1 ::1 GET /api/live/livetrailer
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT `tra`.`id`,`tra`.`user`,`tra`.`user_img`,`tra`.`address`,`tra`.`cover_img`,`tra`.`title`,`tra`.`begin_time` FROM think_live_trailer tra ORDER BY begin_time asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:38:47+08:00 ] ::1 ::1 GET /admin/vod/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002001s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:38:47+08:00 ] ::1 ::1 GET /admin/vod/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_vod` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_vod` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_vod` LIMIT 0,10 [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:38:48+08:00 ] ::1 ::1 GET /admin/vod/vodadd.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:38:56+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2017-10-17T19:38:56+08:00 ] ::1 ::1 GET /admin/livetrailer/index.html?page=1&key=
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=lunhui;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_rule` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT * FROM `think_auth_rule` WHERE  (  status = 1 ) ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_live_trailer` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_live_trailer` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `l`.* FROM `think_live_trailer` `l` LIMIT 0,10 [ RunTime:0.001000s ]
