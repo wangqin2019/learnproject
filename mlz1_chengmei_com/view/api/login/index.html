@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn" onclick="f1()">点击</button>
+<script>
+    var t = "{$token}";
+    function f1() {
+        //1.创建ajax引擎对象----所有操作都是由ajax引擎完成
+        var xmlHttp = new XMLHttpRequest();
+        console.log(xmlHttp)
+        console.log(t)
+        var token = xmlHttp.getResponseHeader('Authorization');
+        var list = xmlHttp.getAllResponseHeaders();
+        console.log(token)
+        console.log(list)
+        xmlHttp.open("GET", "http://192.168.3.66:8080/api/index/auth", true);
+        xmlHttp.setRequestHeader('Authorization',t);
+        console.log(xmlHttp)
+        //4.发送请求
+        xmlHttp.send();
+        xmlHttp.onreadystatechange = function(){
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                //5.接收响应信息
+                var data = xmlHttp.responseText;
+                console.log(data);
+            }
+        }
+    }
+</script>
+</body>
+</html>

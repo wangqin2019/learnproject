@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+
+
+    <script src="https://www.layuicdn.com/layui/layui.js"></script>
+</head>
+<body>
+<button id="btn" onclick="f1()">点击</button>
+
+<form action="/api/upload/upload?field=image&filedir=aaa&type=1"
+      enctype="multipart/form-data" method="post">
+    <input type="file" name="image" /> <br>
+    <input type="submit" value="上传" />
+</form>
+
+<form action="/api/upload/upload?field=image&filedir=aaa&type=0" enctype="multipart/form-data" method="post">
+    <input type="file" name="image[]" /> <br>
+    <input type="file" name="image[]" /> <br>
+    <input type="file" name="image[]" /> <br>
+    <input type="submit" value="上传" />
+</form>
+
+<p>点击</p>
+<script>
+    var t = "{$token}";
+    function f1() {
+        //1.创建ajax引擎对象----所有操作都是由ajax引擎完成
+        var xmlHttp = new XMLHttpRequest();
+        console.log(xmlHttp)
+        console.log(t)
+        var token = xmlHttp.getResponseHeader('Authorization');
+        var list = xmlHttp.getAllResponseHeaders();
+        console.log(token)
+        console.log(list)
+        xmlHttp.open("GET", "http://192.168.3.66:8080/auth", true);
+        xmlHttp.setRequestHeader('Authorization',t);
+        console.log(xmlHttp)
+        //4.发送请求
+        xmlHttp.send();
+        xmlHttp.onreadystatechange = function(){
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                //5.接收响应信息
+                var data = xmlHttp.responseText;
+                console.log(data);
+            }
+        }
+    }
+    $(document).on('click','p',function () {
+        $.ajax({
+            type:'post',
+            url:'http://192.168.3.66:8080/api/index/sendSms',
+            dataType:'json',
+            data:{mobile:'17621931721'},
+            success:function (e) {
+                console.log(e)
+            }
+        })
+    })
+</script>
+
+<button type="button" class="layui-btn" id="test1">
+    <i class="layui-icon">&#xe67c;</i>上传图片
+</button>
+<script type="text/javascript">
+    layui.use([ 'layer', 'upload', 'element'], function() {
+        var layer = layui.layer //弹层
+            ,upload = layui.upload //上传
+            ,element = layui.element; //元素操作 等等...
+
+        /*layer弹出一个示例*/
+        layer.msg('Hello World');
+        upload.render({ //上传图片
+            elem: '#test1',
+            url: 'http://192.168.3.66:8080/api/upload?type=0',
+            multiple: true, //是否允许多文件上传。设置 true即可开启。不支持ie8/9
+            auto:true,//自动上传
+            before: function(obj) {
+                layer.msg('图片上传中...', {
+                    icon: 16,
+                    shade: 0.01,
+                    time: 0
+                })
+            },
+            done: function(res) {
+                layer.close(layer.msg('上传成功！'));//下面是把上传以后的图片显示出来
+                var html='<div class="img"  style="float: left">'+
+                    '<i class="layui-icon del_img" style="position: relative;right: -1.5rem;top: -0.45rem;">&#x1006;</i>'+
+                    '<img class="wz_img" src="'+res.data+'" alt="" style="width: 1.5rem;height:1.5rem;margin:0.26rem 0 0.26rem 0rem;">'+
+                    '</div>';
+                $('.need-img').append(html);
+            }
+            ,error: function(){
+                layer.msg('上传错误！');
+            }
+        })
+    });
+</script>
+<div id="editor">
+    <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+</div>
+<script src="http://tp6.com/static/plug/wangEditor-3.1.1/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create()
+</script>
+</body>
+</html>
