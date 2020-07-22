@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="referrer" content="no-referrer">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/pagination.css"/>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+	    <script type="text/javascript" src="js/pagination.js"></script>
+	    <script type="text/javascript" src="city.js"></script>
+	    <style type="text/css">
+	    	.shopnlist,.title{width: 90%;margin: 20px 5%;}
+	    	#add{float: right;margin-left: 10px;color: #fff;background:#23c6c8}
+	    	.shopnlist img{width: 38px;height: 43px;}
+	    	.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th{vertical-align: middle;}
+	    	.conf_window{width: 400px;background: #fff;border-radius: 5px;margin-left: -150px;margin-top: -180px;}
+	    	.conf_content div{margin-top: 20px;font-size: 16px;width: 100%;}
+	    	.conf_content p{width: 80px;text-align: right;float: left;margin-right: 20px;}
+	    	.conf_content select,.conf_content input{width: 260px;padding-left: 10px;}
+	    	.conf_content img{width: 76px;height: 86px;}
+	    	.conf_content button{margin: 0 40px 20px 0;width: 80px;float: right;background: #007AFF;color: #fff;}
+	    </style>
+	</head>
+	<body>
+		<div class="title">
+			<input placeholder="请输入样式名称" id="sch_name"/>
+			<select id="sch_shape" value="all">
+				<option value="all">全部</option>
+				<option value="chain">形状1</option>
+				<option value="club">形状2</option>
+				<option value="intention">形状3</option>
+				<option value="nochain">形状4</option>
+				<option value="noclub">形状5</option>
+				<option value="nonormal">形状6</option>
+				<option value="normal">形状7</option>
+				<option value="out">形状8</option>
+			</select>
+			<select id="sch_color" value="all">
+				<option value="all">全部</option>
+				<option value="azure">蔚蓝</option>
+				<option value="blue">蓝色</option>
+				<option value="gray">灰色</option>
+				<option value="green">绿色</option>
+				<option value="orange">橘色</option>
+				<option value="purple">紫色</option>
+				<option value="red">红色</option>
+				<option value="yellow">黄色</option>
+			</select>
+			<button id="search">查询</button>
+			
+			<button id="add">新增</button>
+		</div>
+		<table class="shopnlist table table-bordered table-hover">
+			<colgroup>
+				<col width="80px" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>名称</th>
+					<th>样式</th>
+					<th>颜色</th>
+					<th>图标</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="list"></tbody>
+		</table>
+		<div id="paging" class="quotes"></div>
+		
+		
+		<!--添加/编辑-->
+		<div class="confirm hide">
+			<div class="mask"></div>
+			<div class="conf_window">
+				<div class="conf_toolbar"><span class="iconfont">&#xe61f;</span></div>
+				<div class="conf_content">
+					<div>
+						<p>名称</p>
+						<input value="请输入类型名" class="formname"/>
+					</div>
+					<div>
+						<p>样式</p>
+						<select class="formshape" value="normal">
+							<option value="chain">形状1</option>
+							<option value="club">形状2</option>
+							<option value="intention">形状3</option>
+							<option value="nochain">形状4</option>
+							<option value="noclub">形状5</option>
+							<option value="nonormal">形状6</option>
+							<option value="normal">形状7</option>
+							<option value="out">形状8</option>
+						</select>
+					</div>
+					<div>
+						<p>颜色</p>
+						<select class="formcolor" value="azure">
+							<option value="azure">蔚蓝</option>
+							<option value="blue">蓝色</option>
+							<option value="gray">灰色</option>
+							<option value="green">绿色</option>
+							<option value="orange">橘色</option>
+							<option value="purple">紫色</option>
+							<option value="red">红色</option>
+							<option value="yellow">黄色</option>
+						</select>
+					</div>
+					<div>
+						<p>图标</p>
+						<img src="img/icon/normal_azure.png" class="formimg"/>
+					</div>
+					<div>
+						<button id="save">保存</button>
+					</div>
+				</div>
+			</div>			
+		</div>
+		<div class="tishi hide"></div>
+	</body>
+	<script type="text/javascript">
+		var listid='',stylelistall = stylelist;
+		if(stylelist.length<5){listShow(0,stylelist.length);}
+		else{listShow(0,5);}
+		pagingShow();
+//---------------------------------------------------------------------------------表格操作----------------------------------------------------------------
+		//删除
+		$('#list').on('click','.delect',function(){
+			var id = $(this).parent().parent().attr('data-id');
+			for(var i=0;i<stylelist.length;i++){
+				if(stylelist[i].id == id){
+					stylelist.splice(i,1);
+				}
+			}
+			if(stylelist.length<5){listShow(0,stylelist.length);}
+			else{listShow(0,5);}
+			pagingShow();
+			$(this).parent().parent().remove();
+		})
+		//取消
+		$('.conf_toolbar span').click(function(){
+			$('.confirm').addClass('hide');
+			listid='';
+		})
+		//新增
+		$('#add').click(function(){
+			$('.confirm').removeClass('hide');
+			$('.formname').val('');
+			$('.formshape').val('normal');
+			$('.formcolor').val('azure');
+			$('.formimg').attr('src','img/icon/normal_azure.png');
+		})
+		//编辑
+		$('#list').on('click','.change',function(){
+			$('.confirm').removeClass('hide');
+			listid = $(this).parent().parent().attr('data-id');
+			for(var i=0;i<stylelistall.length;i++){
+				if(stylelistall[i].id == listid){
+					$('.formname').val(stylelistall[i].name);
+					$('.formimg').attr('src',stylelistall[i].url);
+					$('.formcolor').val(stylelistall[i].color);
+					$('.formshape').val(stylelistall[i].shape);
+				}
+			}
+		})
+		//形状更改
+		$('.formshape').click(function(){
+			var shape = $('.formshape').val();
+			var color = $('.formcolor').val();
+			var imgurl = imgShow(shape,color);
+			$('.formimg').attr('src',imgurl);
+		})
+		//颜色更改
+		$('.formcolor').click(function(){
+			var shape = $('.formshape').val();
+			var color = $('.formcolor').val();
+			var imgurl = imgShow(shape,color);
+			$('.formimg').attr('src',imgurl);
+		})
+		//保存
+		$('#save').click(function(){
+			var name = $('.formname').val();
+			var shape = $('.formshape').val();
+			var color = $('.formcolor').val();
+			var url = imgShow(shape,color);
+			if(name != '' && shape != '' && color != '' && url != ''){
+				if(listid == ''){
+					stylelistall.push({"id":stylelistall.length,"name":name,"url":url,"color":color,"shape":shape});
+				}
+				else{
+					for(var i=0;i<stylelistall.length;i++){
+						if(stylelistall[i].id == listid){
+							stylelistall[i].name = name;
+							stylelistall[i].url = url;
+							stylelistall[i].color = color;
+							stylelistall[i].shape = shape;
+						}
+					}
+				}
+				stylelist = stylelistall;
+				if(stylelist.length<5){listShow(0,stylelist.length);}
+				else{listShow(0,5);}
+				pagingShow();
+				
+				$('.confirm').addClass('hide');
+				listid='';
+			}
+			else{
+				$('.tishi').html('您还有未输入项');
+	    		$('.tishi').removeClass('hide');
+	    		var t = setTimeout(function(){
+	    			$('.tishi').addClass('hide');
+	    			$('.map').addClass('hide');
+	    		},1500);
+			}
+		})
+		//筛选
+		$('#search').click(function(){
+			var name = $('#sch_name').val();
+			var shape = $('#sch_shape').val();
+			var color = $('#sch_color').val();
+			stylelist = [];
+			for(var i=0;i<stylelistall.length;i++){
+				if(name =='' && shape == 'all' && color == 'all'){stylelist = stylelistall;}
+				else if(name == '' && shape == 'all'){if(stylelistall[i].color == color){stylelist.push(stylelistall[i]);}}
+				else if(name == '' && color == 'all'){if(stylelistall[i].shape == shape){stylelist.push(stylelistall[i]);}}
+				else if(shape == '' && color == 'all'){if(stylelistall[i].name == name){stylelist.push(stylelistall[i]);}}
+				else if(name == ''){if(stylelistall[i].shape == shape && stylelistall[i].color == color){stylelist.push(stylelistall[i]);}}
+				else if(shape == ''){if(stylelistall[i].name == name && stylelistall[i].color == color){stylelist.push(stylelistall[i]);}}
+				else if(color == ''){if(stylelistall[i].shape == shape && stylelistall[i].name == name){stylelist.push(stylelistall[i]);}}
+				else{if(stylelistall[i].shape == shape && stylelistall[i].name == name && stylelistall[i].color == color){stylelist.push(stylelistall[i]);}}
+			}
+			if(stylelist.length<5){listShow(0,stylelist.length);}
+			else{listShow(0,5);}
+			pagingShow();
+		})
+//---------------------------------------------------------------------------------筛选end----------------------------------------------------------------
+	    //表格显示
+        function listShow(startnum,endnum){
+        	$('#list').html('');
+        	for(var i=startnum;i<endnum;i++){
+        		$('#list').append('<tr data-id="'+stylelist[i].id+'">'+
+        				'<th>'+stylelist[i].id+'</th>'+
+        				'<th>'+stylelist[i].name+'</th>'+
+        				'<th>'+shapeShow(stylelist[i].shape)+'</th>'+
+        				'<th>'+colorShow(stylelist[i].color)+'</th>'+
+        				'<th><img src="'+stylelist[i].url+'" /></th>'+
+        				'<th><button class="change">编辑</button><button class="delect">删除</button></th></tr>')
+        	}
+        }
+        
+        //形状
+        function shapeShow(num){
+        	var shape='';
+        	if(num == 'chain'){shape = '形状1';}
+        	else if(num == 'club'){shape = '形状2';}
+        	else if(num == 'intention'){shape = '形状3';}
+        	else if(num == 'nochain'){shape = '形状4';}
+        	else if(num == 'noclub'){shape = '形状5';}
+        	else if(num == 'nonormal'){shape = '形状6';}
+        	else if(num == 'normal'){shape = '形状7';}
+        	else if(num == 'out'){shape = '形状8';}
+        	return shape;
+        }
+        
+        //颜色
+        function colorShow(num){
+        	var shape='';
+        	if(num == 'azure'){shape = '蔚蓝';}
+        	else if(num == 'blue'){shape = '蓝色';}
+        	else if(num == 'gray'){shape = '灰色';}
+        	else if(num == 'green'){shape = '绿色';}
+        	else if(num == 'orange'){shape = '橘色';}
+        	else if(num == 'purple'){shape = '紫色';}
+        	else if(num == 'red'){shape = '红色';}
+        	else if(num == 'yellow'){shape = '黄色';}
+        	return shape;
+        }
+        
+        function imgShow(shape,color){
+        	var imgurl = 'img/icon/';
+        	imgurl = imgurl+shape+'_'+color+'.png';
+        	return imgurl;
+        }
+        
+		//分页
+		function pagingShow(){
+			$('#paging').css('display','block');
+			$('#paging').pagination({
+	            totalData:stylelist.length,
+	            pageCount:stylelist.length,
+	            showData:5,
+	            current: 1,
+	            jump: true,
+	            coping: true,
+	            count: 2,
+	            homePage: '首页',
+	            endPage: '末页',
+	            prevContent: '上页',
+	            nextContent: '下页',
+	            callback: function (api) {
+			        if(stylelist.length<api.getCurrent()*5){listShow((api.getCurrent()-1)*5,stylelist.length);}
+					else{listShow((api.getCurrent()-1)*5,api.getCurrent()*5);}
+//			        listShow((api.getCurrent()-1)*5,api.getCurrent()*5)
+			    }
+	       });
+		}
+	</script>
+</html>

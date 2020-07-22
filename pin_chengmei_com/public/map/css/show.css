@@ -1,0 +1,79 @@
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	outline-style: none;
+	list-style: none;
+}
+#container {
+	width:100%;
+	/*height: 100%;*/
+}
+#distance{
+	position: fixed;
+	top: 0;
+	right: 0;
+	background: #0062CC;
+	color: #fff;
+	height: 40px;
+	width: 200px;
+}
+#move{
+	position: fixed;
+	top: 40px;
+	right: 0;
+	background: #0062CC;
+	color: #fff;
+	height: 40px;
+	width: 200px;
+}
+
+.search{
+	position: fixed;
+	top: 50px;
+	left: 80px;
+	background: #fff;
+	height: 40px;
+	width: 350px;
+	text-align: center;
+}
+.search_title{
+	width: 100%;
+	height: 40px;
+	font-size: 14px;
+}
+.search_title span{
+	width: 50px;
+	height: 100%;
+}
+.search_title input{
+	width: 150px;
+	height: 100%;;
+	border: none;
+}
+.search_title button{
+	width: 50px;
+}
+.search p{
+	/*background: #fff;*/
+	text-align: left;
+	padding: 0 20px;
+}
+
+#arealist{
+	width: 100%;
+	background: #fff;
+}
+#arealist li{
+	width: 90%;
+	padding: 0.5em 5%;
+	border-top: 1px solid #ccc;
+	font-size: 1em;
+	line-height: 1.5em;
+	cursor: pointer;
+}
+
+.listclick{
+	background: #007AFF;
+	color: #fff;
+}

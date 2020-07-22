@@ -1,0 +1,135 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>看美魔女直播，抽万元大奖</title>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" type="text/css" href="/static/index/css/reset_ld.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/index/css/index_ld.css"/>
+	<script type="text/javascript" src="/static/index/js/jquery.js"></script>
+	<script type="text/javascript" src="/static/index/js/index_ld.js"></script>
+	<script type="text/javascript" src="/static/index/js/music.js"></script>
+</head>
+<body>
+    <div class="all">
+        <div class="all_pic">
+            <input type="text" name="" class="jiang2" id="jiang2" placeholder="请输入人数" style="display: none" />
+            <input type="text" name="draw_type" class="draw_type" id="draw_type" style="display: none" />
+            <div class="num">
+                <p class="num_p"></p>
+                <div class="num_div" id="num"></div>
+                <p id="currentPrize_spe_name">功能型调整内衣明星套组</p>
+            </div>
+            <div class="down" style="display:none">下载中奖名单</div>
+            <div class="begin">
+                <button class="button1" id="sign" style="display: none"></button>
+                <input type="hidden" id="Interval">
+            </div>
+        </div>
+        <img id="currentPrize" src="/static/index/images/area.png" />
+        <img id="currentPrize_font" src="/static/index/images/area.png" />
+        <img id="currentPrize_spe" src="/static/index/images/area.png" />
+        <div id="wsState"></div>
+    </div>
+	<script>
+        var sockInit = {
+            // wsServer:'wss://pin.qunarmei.com/wss',
+            //wsServer:'ws://192.168.3.88:2348',
+            wsServer:'ws://192.168.7.68:2348',
+            pingpongBeat:40000,
+            heartBeat:1000,
+            sock:null,
+            isOpen:false,
+            init(){
+                clearTimeout(window.sockTimerHeartBeat);
+                var _this = this;
+                this.sock = new WebSocket(_this.wsServer);
+                this.sock.onopen = function(evt) {
+                    console.log('init连接');
+                    console.log(evt);
+                    _this.isOpen = true;
+                    var data={"scene": "draw","uid": 'uid1'};
+                    _this.sock.send(JSON.stringify(data));
+                    $('#wsState').html('<div class="rgbLight green"></div>')
+                    _this.pingpong(_this.pingpongBeat);
+                };
+                this.sock.onclose = function(evt) {
+                    $('#wsState').html('<div class="rgbLight red"></div>')
+                    console.log('init关闭');
+                    console.log(evt);
+                    _this.isOpen = false;
+                    clearTimeout(window.sockTimerHeartBeat);
+                    _this.reConnect(_this.heartBeat);
+                }
+                this.sock.onmessage = function(evt) {
+                    console.log('init接收到信息');
+                    console.log(evt);
+                    var dataObj = eval("(" + evt.data + ")");
+                    if(dataObj.scene == 'pone'){
+                        clearInterval(window.pingpong)
+                        _this.pingpong(_this.pingpongBeat);
+                    }
+                    console.log(dataObj);
+                    if(dataObj.scene == 'init'){
+                        console.log(dataObj.client_id)
+                        $.post("/api/live/bind",{client_id:dataObj.client_id,mobile:18888888888},function(result){
+                            console.log(result)
+                        });
+                    }
+                    if(dataObj.flag == 0){
+                        $("#num").html('');
+                        $("#currentPrizes").attr("src","");
+                        $("#currentPrize_spe_name").hide();
+                        var jiangpin = dataObj.rank.draw_flag;
+                        if(jiangpin == 'gnxny'){
+                            $("#currentPrize_spe_name").show();
+                        }
+                        $("#currentPrize").attr('src','../../static/index/images/'+jiangpin+'.png')
+
+                    }else if(dataObj.flag == 1){
+                        $("#currentPrizes").removeClass('classs')
+                        if (dataObj.status == 1) {
+                            console.log('starst');
+                            $('#jiang2').val(dataObj.num);
+                            $('#draw_type').val(dataObj.draw_rank);
+                            init.html = '';
+                            init.start(dataObj);
+                        } else if(dataObj.status == 0){
+                            console.log('end');
+                            $('#jiang2').val('');
+                            init.end();
+                        }
+                    }
+                };
+                this.sock.onerror = function(evt) {
+                    $('#wsState').html('<div class="rgbLight red"></div>')
+                    console.log('init错误');
+                    console.log(evt);
+                    _this.isOpen = false;
+                    clearTimeout(window.sockTimerHeartBeat);
+                    _this.reConnect(_this.heartBeat);
+                }
+            },
+            pingpong(ppBeat){
+                console.log("心跳");
+                var _this = this;
+                window.pingpong = setInterval(function(){
+                    var pingpongdata = {
+                        scene:'ping',
+                        uid:'uid1'
+                    }
+                    _this.sock.send(JSON.stringify(pingpongdata));
+                },ppBeat)
+            },
+            reConnect(heartBeat){
+                $('#wsState').html('<div class="rgbLight yellow"></div>')
+                var _this = this;
+                window.sockTimerHeartBeat = setTimeout(function(){
+                    _this.init();
+                },heartBeat)
+            }
+        }
+        sockInit.init();
+	</script>
+</body>
+</html>

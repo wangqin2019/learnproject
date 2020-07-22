@@ -1,0 +1,256 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>奖券管理列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('ticket_index')}">
+                        <div class="col-sm-12">
+                            <div class="input-group" style="margin-top: -5px;width: 150px">
+                                <select class="form-control m-b chosen-select" name="depart" id="depart">
+                                    <option value="">请选择办事处</option>
+                                    {if !empty($bsc)}
+                                    {foreach name="bsc" item="vo"}
+                                    <option value="{$vo.st_department}" {if condition="$depart eq $vo['st_department']"}selected{/if}>{$vo.st_department}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;width: 200px;">
+                                <select class="form-control m-b chosen-select" name="storeid" id="storeid" style="width: 200px;">
+                                    <option value="">请选择门店</option>
+                                    {if !empty($branch)}
+                                    {foreach name="branch" item="vo"}
+                                    <option value="{$vo.id}" {if condition="$storeid eq $vo['id']"}selected{/if}>{$vo.sign}{$vo.title}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;width: 150px;">
+                                <select class="form-control m-b chosen-select" name="scene_prefix" id="scene_prefix" style="width: 150px;">
+                                    <option value="">请选择抽奖类型</option>
+                                    {if !empty($sceneList)}
+                                    {foreach name="sceneList" item="vo"}
+                                    <option value="{$vo.scene_prefix}" {if condition="$scene_prefix eq $vo['scene_prefix']"}selected{/if}>{$vo.scene_name}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;width: 150px;">
+                                <select class="form-control m-b chosen-select" name="status" id="status" style="width: 150px;">
+                                    <option value="100" {if condition="$status eq 100"}selected{/if}>请选择券状态</option>
+                                    <option value="0" {if condition="$status eq 0"}selected{/if}>未使用</option>
+                                    <option value="1" {if condition="$status eq 1"}selected{/if}>已使用</option>
+                                    <option value="2" {if condition="$status eq 2"}selected{/if}>已失效</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;width: 150px;">
+                                <select class="form-control m-b chosen-select" name="flag" id="flag" style="width: 150px;">
+                                    <option value="200" {if condition="$flag eq 200"}selected{/if}>请选中奖状态</option>
+                                    <option value="0" {if condition="$flag eq 0"}selected{/if}>未中奖</option>
+                                    <option value="1" {if condition="$flag eq 1"}selected{/if}>已中奖</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="奖券号/手机号" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <a href="{:url('ticket_index',['key'=>$val,'depart'=>$depart,'storeid'=>$storeid,'scene_prefix'=>$scene_prefix,'status'=>$status,'flag'=>$flag,'export'=>1])}" class="btn btn-primary"><i class="fa fa-download"></i> 导出</a>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>办事处</th>
+                                <th>门店名称</th>
+                                <th>门店编码</th>
+                                <th>奖券类型</th>
+                                <th>归属人姓名</th>
+                                <th>归属人电话</th>
+                                <th>奖券号码</th>
+                                <th>奖券面值</th>
+                                <th>奖券状态</th>
+                                <th>中奖奖项</th>
+                                <th>插入时间</th>
+                                <th>更新时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].depart}}</td>
+                                    <td>{{d[i].branch}}</td>
+                                    <td>{{d[i].sign}}</td>
+                                    <td>{{d[i].scene_name}}</td>
+                                    <td>{{d[i].realname}}</td>
+                                    <td>{{d[i].mobile}}</td>
+                                    <td>{{d[i].ticket_code}}</td>
+                                    <td>{{d[i].par_value}}</td>
+                                    <td>
+                                        {{# if(d[i].flag==0){ }}
+                                            {{# if(d[i].status==-1){ }}
+                                            <a class="red" href="javascript:;" onclick="state('{{d[i].ticket_code}}');">
+                                                <div id="zt{{d[i].ticket_code}}"><span class="label label-danger">未激活</span></div>
+                                            </a>
+                                            {{# }else if(d[i].status==1){ }}
+                                            <a class="red" href="javascript:;" onclick="state('{{d[i].ticket_code}}');">
+                                                <div id="zt{{d[i].ticket_code}}"><span class="label label-danger">已使用</span></div>
+                                            </a>
+                                            {{# }else if(d[i].status==2){ }}
+                                            <a class="red" href="javascript:;" onclick="state('{{d[i].ticket_code}}');">
+                                                <div id="zt{{d[i].ticket_code}}"><span class="label label-danger">已使用</span></div>
+                                            </a>
+                                            {{# }else if(d[i].status==0){ }}
+                                                <a class="red" href="javascript:;" onclick="state('{{d[i].ticket_code}}');">
+                                                    <div id="zt{{d[i].ticket_code}}"><span class="label label-info">未使用</span></div>
+                                                </a>
+                                            {{# }else{ }}
+                                            <a class="red" href="javascript:;">
+                                                <div><span class="label label-default">已失效</span></div>
+                                            </a>
+                                            {{# } }}
+                                        {{# }else{ }}
+                                            <a class="red" href="javascript:;">
+                                                <div><span class="label label-warning">已中奖</span></div>
+                                            </a>
+                                        {{# } }}
+                                    </td>
+                                    <td>{{d[i].draw_rank}}{{d[i].draw_name}}</td>
+                                    <td>{{d[i].insert_time}}</td>
+                                    <td>{{d[i].update_time}}</td>
+                                    <td>
+                                            <a href="javascript:;" onclick="ticket_info('{{d[i].ticket_code}}')" class="btn btn-primary btn-outline btn-xs">
+                                                <i class="fa fa-paste"></i> 日志</a>&nbsp;&nbsp;
+                                            <a href="javascript:;" onclick="del('{{d[i].ticket_code}}')" class="btn btn-danger btn-outline btn-xs">
+                                                <i class="fa fa-trash-o"></i> 删除</a>
+                                    </td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var count='{$count}';
+        var key=$('#key').val();
+        var depart=$('#depart').val();
+        var storeid=$('#storeid').val();
+        var status=$('#status').val();
+        var flag=$('#flag').val();
+        var scene_prefix=$('#scene_prefix').val();
+        $.getJSON('{:url("Marketing/ticket_index")}', {page: curr || 1,key:key,depart:depart,storeid:storeid,status:status,flag:flag,scene_prefix:scene_prefix}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页 共'+ obj.pages +'页 共'+ count +'条');
+                    }
+                });
+            }
+        });
+    }
+
+
+    //日志
+    function ticket_info(code){
+        location.href = './ticket_info/code/'+code+'.html';
+    }
+
+    //删除抽奖券
+    function del(code){
+        lunhui.confirm(code,"{:url('ticket_del')}");
+    }
+
+    function state(code) {
+        var url='{:url("ticket_state")}';
+        $.post(url,{code:code},function(data){
+            if(data.code==1){
+                var a='<span class="label label-danger">已使用</span>';
+                $('#zt'+code).html(a);
+                layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                return false;
+            }else{
+                var b='<span class="label label-info">未使用</span>';
+                $('#zt'+code).html(b);
+                layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                return false;
+            }
+        });
+        return false;
+    }
+
+
+
+
+    //IOS开关样式配置
+    var elem = document.querySelector('.js-switch');
+    var switchery = new Switchery(elem, {
+        color: '#1AB394'
+    });
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+</body>
+</html>

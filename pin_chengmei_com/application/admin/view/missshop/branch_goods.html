@@ -1,0 +1,220 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>{$title}门店抽奖产品选择列表</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('branch_goods')}">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <a href="{:url('goods/add',['storeid'=>$storeid,'cate_id'=>6,'source'=>'cj'])}"><button class="btn btn-outline btn-primary" type="button">添加产品</button></a>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询产品标题" />
+                                <span class="input-group-btn">
+                                    <input type="hidden" id="storeid" name="storeid" value="{$storeid}">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover" id="article_list">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>产品名称</th>
+                                <th width="15%">所属分类</th>
+                                <th>产品图</th>
+                                <th>归属</th>
+                                <th>状态</th>
+                                <th width="15%">操作</th>
+                            </tr>
+                        </thead>
+                        {foreach $lists as $vo}
+                            <tr class="long-td">
+                                <td><input type="checkbox" value="{$vo.id}" {in name="$vo.id" value="$branch_draw"}checked{/in} ></td>
+                                <td>{$vo.name}</td>
+                                <td>{$vo.cate_name}</td>
+                                <td>
+                                    <img src="{$vo.image}" style="height: 30px" onerror="this.src='/static/admin/images/no_img.jpg'"/>
+                                </td>
+                                <td>
+                                    {if($vo.storeid==0)}
+                                        <span class="label label-default">系统</span>
+                                    {else/}
+                                        <span class="label label-warning">门店</span>
+                                    {/if}
+
+                                </td>
+                                <td>
+                                    {if($vo.storeid==0)}
+                                        <span class="label label-info">开启</span>
+                                    {else/}
+                                        {if($vo.status==1)}
+                                            <a href="javascript:;" onclick="state('{$vo.id}');">
+                                                <div id="zt{$vo.id}"><span class="label label-info">开启</span></div>
+                                            </a>
+                                        {else/}
+                                            <a href="javascript:;" onclick="state('{$vo.id}');">
+                                                <div id="zt{$vo.id}"><span class="label label-danger">禁用</span></div>
+                                            </a>
+                                        {/if}
+                                    {/if}
+                                </td>
+                                <td>
+                                    {if($vo.storeid!=0)}
+                                    <a href="javascript:;" onclick="edit('{$vo.id}')" class="btn btn-primary btn-xs btn-outline">
+                                        <i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+                                    <a href="javascript:;" onclick="del('{$vo.id}')" class="btn btn-danger btn-xs btn-outline">
+                                        <i class="fa fa-trash-o"></i> 删除</a>
+                                    {/if}
+                                </td>
+                            </tr>
+                            {/foreach}
+                            <tr class="long-tr" style="background-color: #F5F5F6;">
+                                <td colspan="7">
+                                    <input type="button"  value="全选" class="btn btn-primary  btn-xs" style="margin-bottom: 3px" id="selectAll">
+                                    <input type="button" value="全不选" class="btn btn-primary btn-xs" style="margin-bottom: 3px" id="unSelect">
+                                    <input type="button" value="反选" class="btn btn-primary  btn-xs" style="margin-bottom: 3px" id="reverse">
+                                    <input type="button" value="确认抽奖产品" class="btn btn-danger  btn-xs" style="margin-bottom: 3px" id="confirm">
+                                </td>
+                            </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+
+/**
+ * [edit_ad 编辑产品]
+ * @Author[田建龙 864491238@qq.com]
+ */
+function edit(id){
+
+    location.href = '/admin/goods/edit/source/cj/id/'+id+'.html';
+}
+
+
+/**
+ * [del_ad 删除产品]
+ * @Author[田建龙 864491238@qq.com]
+ */
+function del(id){
+    layer.confirm('确认删除此产品?', {icon: 3, title:'提示'}, function(index){
+        $.getJSON('/admin/goods/del', {'id' : id}, function(res){
+            if(res.code == 1){
+                layer.msg(res.msg, {icon: 1, time: 1500, shade: 0.1}, function (index) {
+                    window.location.reload();
+                });
+            }else{
+                layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+            }
+        });
+
+        layer.close(index);
+    })
+
+}
+
+
+/**
+ * [ad_state 产品状态]
+ * @Author[田建龙 864491238@qq.com]
+ */
+function state(val){
+    $.post('{:url("/admin/goods/state")}',
+    {id:val},
+    function(data){
+        if(data.code==1){
+            var a='<span class="label label-danger">禁用</span>'
+            $('#zt'+val).html(a);
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            return false;
+        }else{
+            var b='<span class="label label-info">开启</span>'
+            $('#zt'+val).html(b);
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }
+
+    });
+    return false;
+}
+
+    $(function () {
+        $("#selectAll").click(function () {
+            $("#article_list :checkbox").prop("checked", true);
+        });
+        $("#unSelect").click(function () {
+            $("#article_list :checkbox").prop("checked", false);
+        });
+        $("#reverse").click(function () {
+            $("#article_list :checkbox").each(function () {
+                $(this).prop("checked", !$(this).prop("checked"));
+            });
+        });
+
+        $('#confirm').click(function () {
+            lucky_goods();
+        })
+
+
+    });
+
+
+    function lucky_goods(){
+        var storeid=$('#storeid').val();
+        var valArr = new Array();
+        $("#article_list :checkbox:checked").each(function(i){
+            valArr[i] = $(this).val();
+        });
+        var vals = valArr.join(',');//转换为逗号隔开的字符串
+            if (vals.length == 0) {
+                layer.msg('请先勾选确认抽奖的产品',{icon:2,time:1500,shade: 0.1,});
+            } else {
+                layer.confirm('您确认将这些产品作为抽奖产品吗？', {
+                    btn: ['确认', '取消'] //按钮
+                }, function () {
+                    $.post('{:url("/admin/missshop/is_lucky_goods")}',
+                        {storeid:storeid,ids:vals},
+                        function(data){
+                            if(data.code==1){
+                                layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                                return false;
+                            }else{
+                                layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                                return false;
+                            }
+                        });
+                });
+            }
+    }
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

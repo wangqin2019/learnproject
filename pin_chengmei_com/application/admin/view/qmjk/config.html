@@ -1,0 +1,112 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>全民集客配置</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="add" id="add" method="post" action="config">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">集客开关：</label>
+                            <div class="input-group col-sm-4">
+                                <div class="radio i-checks">
+                                    <input type="radio" name='flag' value="0" {if condition="$config['flag'] eq 0 "}checked{/if}/>关闭&nbsp;&nbsp;
+                                    <input type="radio" name='flag' value="1" {if condition="$config['flag'] eq 1 "}checked{/if}/>开启
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">AppId：</label>
+                            <div class="col-sm-6" style="padding-left: 0px;">
+                                <input type="text" name="appId" id="appId" value="{$config['appId']}"  class="form-control" placeholder="选择修改日期"/>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">AppSecret：</label>
+                            <div class="col-sm-6" style="padding-left: 0px;">
+                                <input type="text" name="appSecret" id="appSecret"  value="{$config['appSecret']}"  class="form-control" placeholder="选择修改日期"/>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">超级管理员：</label>
+                            <div class="col-sm-6" style="padding-left: 0px;">
+                                <textarea name="superAdmin" id="superAdmin"  class="form-control" >{$config['superAdmin']}</textarea>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 确定</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+
+    $(function(){
+        $('#add').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        function checkForm(){
+            if( '' == $.trim($('#appId').val())){
+                layer.msg('appId不能为空', {icon: 5}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+            if( '' == $.trim($('#appSecret').val())){
+                layer.msg('appSecret不能为空', {icon: 5}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+     }
+
+        function complete(data){
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    window.location.href="{:url('config')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+
+    });
+
+
+    //IOS开关样式配置
+   var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+
+</script>
+</body>
+</html>

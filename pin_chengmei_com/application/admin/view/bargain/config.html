@@ -1,0 +1,168 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>拼人品管理</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="add" id="add" method="post" action="config">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动开关：</label>
+                            <div class="input-group col-sm-4">
+                                <div class="radio i-checks">
+                                    <input type="radio" name='activity_status' value="0" {if condition="$a_config['activity_status'] eq 0 "}checked{/if}/>关闭&nbsp;&nbsp;
+                                    <input type="radio" name='activity_status' value="1" {if condition="$a_config['activity_status'] eq 1 "}checked{/if}/>开启
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">参与人数：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="number" name='number' value="{$a_config['number']|default=0}"
+                                       class="form-control"/>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">有效时长：</label>
+                            <div class="input-group col-sm-8">
+                                <div class="col-sm-6">
+                                    <input type="number" name='duration' value="{$a_config['duration']|default=24}"
+                                           class="form-control"/>
+                                </div>
+                                <div class="col-sm-6" style="padding-top: 10px;color:red;padding: 6px 12px;">
+                                   * 有效时长指下单之后订单有效期，单位：h.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">首次砍价比例：</label>
+                            <div class="input-group col-sm-8">
+                                <div class="col-sm-6">
+                                    <input type="number" name='first_reba'
+                                           value="{$a_config['first_reba']|default=0.01}"
+                                           step="0.01"
+                                           max="1"
+                                           min="0.01"
+                                           class="form-control"/>&nbsp;&nbsp;
+                                </div>
+                                <div class="col-sm-6" style="padding-top: 10px;color:red;padding: 6px 12px;">
+                                    * 0.01~1
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">其他砍价最小比例：</label>
+                            <div class="input-group col-sm-8">
+                                <div class="col-sm-6">
+                                    <input type="number" name='next_reba'
+                                           value="{$a_config['next_reba']|default=0.01}"
+                                           step="0.01"
+                                           max="1"
+                                           min="0.01"
+                                           class="form-control"/>&nbsp;&nbsp;
+                                </div>
+                                <div class="col-sm-6" style="padding-top: 10px;color:red;padding: 6px 12px;">
+                                    * 0.01~1
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动开始时间：</label>
+                            <div class="col-sm-6" style="padding-left: 0px;">
+                                <input type="text" name="begin_time" id="begin_time"  autocomplete="off" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$a_config['begin_time']}"  class="form-control" placeholder="选择修改日期"/>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动结束时间：</label>
+                            <div class="col-sm-6" style="padding-left: 0px;">
+                                <input type="text" name="end_time" id="end_time"  autocomplete="off" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$a_config['end_time']}"  class="form-control" placeholder="选择修改日期"/>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">排行榜结束时间：</label>
+                            <div class="col-sm-6" style="padding-left: 0px;">
+                                <input type="text" name="show_time" id="show_time"  autocomplete="off" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$a_config['show_time']}"  class="form-control" placeholder="选择修改日期"/>
+                                <small>当前时间大于该时间后 活动排行榜数据静止</small>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 确定</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+
+    $(function(){
+        $('#add').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        function checkForm(){
+            if( '' == $.trim($('#begin_time').val())){
+                layer.msg('开始时间不能为空', {icon: 5}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+            if( '' == $.trim($('#end_time').val())){
+                layer.msg('结束时间不能为空', {icon: 5}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+
+        }
+
+        function complete(data){
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    window.location.href="{:url('config')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+    });
+
+
+    //IOS开关样式配置
+    var elem = document.querySelector('.js-switch');
+    var switchery = new Switchery(elem, {
+        color: '#1AB394'
+    });
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+
+</script>
+</body>
+</html>

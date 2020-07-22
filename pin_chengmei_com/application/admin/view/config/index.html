@@ -1,0 +1,363 @@
+{include file="public/header" /}
+<link rel="stylesheet" href="/static/admin/css/bootstrap-select.min.css">
+<style type="text/css">
+/* TAB */
+.nav-tabs.nav>li>a {
+    padding: 10px 25px;
+    margin-right: 0;
+}
+.nav-tabs.nav>li>a:hover,
+.nav-tabs.nav>li.active>a {
+    border-top: 3px solid #1ab394;
+    padding-top: 8px;
+    border-bottom: 1px solid #FFFFFF;
+}
+.nav-tabs>li>a {
+    color: #A7B1C2;
+    font-weight: 500;  
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 0;
+}
+</style>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>网站配置</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">       
+                    <div class="panel blank-panel">
+                        <div class="panel-heading">                     
+                            <div class="panel-options">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">基本配置</a></li>
+                                    <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">内容配置</a></li>
+                                    <li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false">系统配置</a></li>
+                                    <li class=""><a data-toggle="tab" href="#tab-4" aria-expanded="false">短信配置</a></li>
+                                    <li class=""><a data-toggle="tab" href="#tab-5" aria-expanded="false">抽奖配置</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane active">
+                                    <form action="{:url('save')}" method="post" class="form-horizontal">  
+                                        <div class="hr-line-dashed"></div>                                
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">网站标题：</label>
+                                            <div class="input-group col-sm-4">                                              
+                                                <input type="text" class="form-control" name="config[web_site_title]" value="{$config.web_site_title}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 网站标题</span>                                           
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">网站域名：</label>
+                                            <div class="input-group col-sm-4">
+                                                <input type="text" class="form-control" name="config[web_site_url]" value="{$config.web_site_url}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 网站域名</span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">网站描述：</label>
+                                            <div class="input-group col-sm-4">
+                                                <textarea class="form-control" type="text" rows="3" name="config[web_site_description]">{$config.web_site_description}</textarea>
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 网站搜索引擎描述</span>                                           
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">网站关键字：</label>
+                                            <div class="input-group col-sm-4">
+                                                <textarea class="form-control" type="text" rows="3" name="config[web_site_keyword]">{$config.web_site_keyword}</textarea>
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 网站搜索引擎关键字</span>                                           
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">网站备案号：</label>
+                                            <div class="input-group col-sm-4">                                              
+                                                <input type="text" class="form-control" name="config[web_site_icp]" value="{$config.web_site_icp}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 设置在网站底部显示的备案号，如“ 陇ICP备15002349号-1</span>                                           
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">统计代码：</label>
+                                            <div class="input-group col-sm-4">                                              
+                                                <textarea class="form-control" type="text" rows="3" name="config[web_site_cnzz]">{$config.web_site_cnzz}</textarea>
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 设置在网站底部显示的站长统计信息</span>                                           
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">版权信息：</label>
+                                            <div class="input-group col-sm-4">                                              
+                                                <input type="text" class="form-control" name="config[web_site_copy]" value="{$config.web_site_copy}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 设置在网站底部显示的版权信息</span>                                           
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">站点状态：</label>
+                                            <div class="input-group col-sm-4">
+                                                <div class="radio i-checks">
+                                                    <input type="radio" name='config[web_site_close]' value="1" {if condition="$config['web_site_close'] eq 1 "}checked{/if}/>开启&nbsp;&nbsp;
+                                                    <input type="radio" name='config[web_site_close]' value="0" {if condition="$config['web_site_close'] eq 0 "}checked{/if}/>关闭
+                                                </div>
+                                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 站点关闭后除管理员外所有人访问不了后台</span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-4 col-sm-offset-3">
+                                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存信息</button>&nbsp;&nbsp;&nbsp;
+                                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                                            </div>
+                                        </div>                               
+                                    </form>
+                                </div>
+                                <div id="tab-2" class="tab-pane">
+                                    <form action="{:url('save')}" method="post" class="form-horizontal">  
+                                        <div class="hr-line-dashed"></div>                                
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">后台每页记录数：</label>
+                                            <div class="input-group col-sm-4">                                              
+                                                <input type="text" class="form-control" name="config[list_rows]" value="{$config.list_rows}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 后台数据每页显示记录数</span>                                           
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">拼团失效提示时间：</label>
+                                            <div class="input-group col-sm-4">
+                                                <input type="text" class="form-control" name="config[order_notice]" value="{$config.order_notice}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 填写小时数 英文逗号分隔 填写1,2 则说明在拼购还剩1小时2小时时候提示</span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-4 col-sm-offset-3">
+                                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存信息</button>&nbsp;&nbsp;&nbsp;
+                                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                                            </div>
+                                        </div>                               
+                                    </form>
+                                </div>
+                                <div id="tab-3" class="tab-pane">
+                                    <form action="{:url('save')}" method="post" class="form-horizontal">
+                                        <div class="hr-line-dashed"></div>
+                                        <label class="col-sm-2 control-label">版本审核开关：</label>
+                                        <div class="input-group col-sm-4">
+                                            <div class="radio i-checks">
+                                                <input type="radio" name='config[check_flag]' value="1" {if condition="$config['check_flag'] eq 1 "}checked{/if}/>开&nbsp;&nbsp;
+                                                <input type="radio" name='config[check_flag]' value="0" {if condition="$config['check_flag'] eq 0 "}checked{/if}/>关
+                                            </div>
+                                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 审核是请打开 审核成功后关闭</span>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">版本审核对接字：</label>
+                                            <div class="input-group col-sm-4">
+                                                <input type="text" class="form-control" name="config[check_text]" value="{$config.check_text}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 审核对接字 <a href="javascript:void(0);onClick=yanshi();">审核账号延时</a></span>
+                                            </div>
+                                        </div>
+                                        <label class="col-sm-2 control-label">去哪美啊版本审核开关：</label>
+                                        <div class="input-group col-sm-4">
+                                            <div class="radio i-checks">
+                                                <input type="radio" name='config[check_flag1]' value="1" {if condition="$config['check_flag1'] eq 1 "}checked{/if}/>开&nbsp;&nbsp;
+                                                <input type="radio" name='config[check_flag1]' value="0" {if condition="$config['check_flag1'] eq 0 "}checked{/if}/>关
+                                            </div>
+                                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 审核是请打开 审核成功后关闭</span>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">去哪美啊版本审核对接字：</label>
+                                            <div class="input-group col-sm-4">
+                                                <input type="text" class="form-control" name="config[check_text1]" value="{$config.check_text1}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 审核对接字 <a href="javascript:void(0);onClick=yanshi1();">审核账号延时</a></span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">分享购总部管理人员：</label>
+                                            <div class="input-group col-sm-4">
+                                                <select id="selectManager"  class="selectpicker show-tick form-control" data-style="btn-info" data-width="900px"   multiple data-live-search="true">
+                                                    {if !empty($zbMember)}
+                                                    {foreach name="zbMember" item="vo"}
+                                                    <option value="{$vo.id}" {in name="$vo['id']" value="$config['selectManager']"}selected{/in}>{$vo.mobile}{$vo.realname}</option>
+                                                    {/foreach}
+                                                    {/if}
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="config[selectManager]" id="memberids" value="">
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">禁止后台访问IP：</label>
+                                            <div class="input-group col-sm-4">
+                                                <textarea class="form-control" type="text" rows="3" name="config[admin_allow_ip]">{$config.admin_allow_ip}</textarea>
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 多个用#号分隔，如果不配置表示不限制IP访问</span>                                           
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <label class="col-sm-2 control-label">订单失效自动退款：</label>
+                                        <div class="input-group col-sm-4">
+                                            <div class="radio i-checks">
+                                                <input type="radio" name='config[auto_refund]' value="1" {if condition="$config['auto_refund'] eq 1 "}checked{/if}/>自动&nbsp;&nbsp;
+                                                <input type="radio" name='config[auto_refund]' value="0" {if condition="$config['auto_refund'] eq 0 "}checked{/if}/>手动
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-4 col-sm-offset-3">
+                                                <button class="btn btn-primary" type="button" id="mybtn"><i class="fa fa-save"></i> 保存信息</button>&nbsp;&nbsp;&nbsp;
+                                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                                            </div>
+                                        </div>                               
+                                    </form>
+                                </div>
+                                <div id="tab-4" class="tab-pane">
+                                    <form action="{:url('save')}" method="post" class="form-horizontal">  
+                                        <div class="hr-line-dashed"></div>                                
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">短信appkey：</label>
+                                            <div class="input-group col-sm-4">                                              
+                                                <input type="text" class="form-control" name="config[sms_user]" value="{$config.sms_user}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请填写短信平台appkey</span>
+                                            </div>
+                                        </div>                                 
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">短信appsecret：</label>
+                                            <div class="input-group col-sm-4">                                              
+                                                <input type="text" class="form-control" name="config[sms_pwd]" value="{$config.sms_pwd}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请填写短信平台appsecret</span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">短信签名：</label>
+                                            <div class="input-group col-sm-4">                                              
+                                                <input type="text" class="form-control" name="config[sms_sign]" value="{$config.sms_sign}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请填写短信签名</span>
+                                            </div>
+                                        </div>
+										<div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">抽奖短信：</label>
+                                            <div class="input-group col-sm-4">
+                                                <div class="radio i-checks">
+                                                    <input type="radio" name='config[draw_sms]' value="1" {if condition="$config['draw_sms'] eq 1 "}checked{/if}/>抽完即发&nbsp;&nbsp;
+                                                    <input type="radio" name='config[draw_sms]' value="0" {if condition="$config['draw_sms'] eq 0 "}checked{/if}/>手动发送
+                                                </div>
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 抽完即发:中奖结果产生 系统自动发送中奖短信给用户；手动发送即不自动发送，手动筛选后再发送</span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-4 col-sm-offset-3">
+                                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存信息</button>&nbsp;&nbsp;&nbsp;
+                                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                                            </div>
+                                        </div>                               
+                                    </form>
+                                </div>
+                                <div id="tab-5" class="tab-pane">
+                                    <form action="{:url('save')}" method="post" class="form-horizontal">
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">中奖黑名单：</label>
+                                            <div class="input-group col-sm-4">
+                                                <textarea class="form-control" type="text" rows="3" name="config[draw_not_allow]">{$config.draw_not_allow}</textarea>
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 多个手机号码用#号分隔，如果不配置表示都有机会中奖</span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-4 col-sm-offset-3">
+                                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存信息</button>&nbsp;&nbsp;&nbsp;
+                                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>         
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script src="/static/admin/js/bootstrap-select.min.js"></script>
+
+<script type="text/javascript">
+
+    //IOS开关样式配置
+    var elem = document.querySelector('.js-switch');
+    var switchery = new Switchery(elem, {
+        color: '#1AB394'
+    });
+    var config = {
+        '.chosen-select': {},
+    };
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+    $(window).on('load', function () {
+        $('#selectBranch').selectpicker({
+        });
+    });
+    function getval(){
+        var str = $("#selectManager").selectpicker('val');
+        $('#memberids').val(str);
+    }
+    $("#mybtn").click(function () {
+        getval();
+        $('#tab-3 form').submit();
+    })
+
+    //审核账号延时
+    function yanshi() {
+        $.getJSON('./change_check_time', {}, function(res){
+            if(res.code == 1){
+                layer.msg(res.msg,{icon:1,time:2500,shade: 0.1});
+            }else{
+                layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+            }
+        });
+    }
+    function yanshi1() {
+        $.getJSON('./change_check_time1', {}, function(res){
+            if(res.code == 1){
+                layer.msg(res.msg,{icon:1,time:2500,shade: 0.1});
+            }else{
+                layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

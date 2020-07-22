@@ -1,0 +1,133 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>办事处门店列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                <div  class="col-sm-2" style="width: 120px">
+                    <div class="input-group" >
+                        <a href="{:url('bsc_branch_add',['id_department'=>$id_department])}"><button class="btn btn-outline btn-primary" type="button">添加门店</button></a>
+                    </div>
+                </div>
+                    <form name="admin_list_sea" class="form-search" method="post" action="{:url('bsc_branch')}">
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的门店编码" />
+                                <span class="input-group-btn">
+                                    <input type="hidden" id="id_department" name="id_department" value="{$id_department}">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>所属办事处</th>
+                                <th>办事处编号</th>
+                                <th>门店编码</th>
+                                <th>门店id</th>
+                                <th width="25%">操作</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].st_department}}</td>
+                                    <td>{{d[i].id_department}}</td>
+                                    <td>{{d[i].id_sign}}</td>
+                                    <td>{{d[i].id_beauty}}</td>
+                                    <td>
+                                            <!--<a href="javascript:;" onclick="edit('{{d[i].id_beauty}}')" class="btn btn-primary btn-outline btn-xs">-->
+                                                <!--<i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;-->
+                                            <a href="javascript:;" onclick="del('{{d[i].id_beauty}}')" class="btn btn-warning btn-outline btn-xs">
+                                                <i class="fa fa-sitemap"></i> 删除</a>
+                                    </td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var id_department=$('#id_department').val();
+        $.getJSON('{:url("Tools/bsc_branch")}', {page: curr || 1,key:key,id_department:id_department}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+
+    //编辑办事处门店号
+    function edit(id){
+        location.href = '/Admin/Tools/bsc_branch_edit/id_department/'+id+'.html';
+    }
+
+    //删除办事处门店号
+    function del(id){
+        lunhui.confirm(id,"{:url('bsc_branch_del')}");
+    }
+
+
+</script>
+</body>
+</html>

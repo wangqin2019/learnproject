@@ -1,0 +1,167 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>88福袋推广</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('luckybag')}">
+                        <div class="col-sm-12">
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" name="start" id="start" onclick="laydate()" value="{$start}" autocomplete="off"  class="form-control layer-date" placeholder="订单开始日期"/>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" name="end" id="end" onclick="laydate()" value="{$end}" autocomplete="off" class="form-control layer-date" placeholder="订单结束日期"/>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="门店名称/编码/用户手机号" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <a href="{:url('luckybag',['key'=>$val,'start'=>$start,'end'=>$end,'export'=>1])}" class="btn btn-primary"><i class="fa fa-download"></i> 导出</a>
+                                </span>&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <a href="{:url('luckybag_exchage',['key'=>$val,'start'=>$start,'end'=>$end])}" class="btn btn-success"><i class="fa fa-balance-scale"></i> 切换到兑换列表</a>
+                                </span>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>所属市场</th>
+                                <th>所属美容院</th>
+                                <th>推广人姓名</th>
+                                <th>推广人电话</th>
+                                <th>推广积分</th>
+                                <th>购买人姓名</th>
+                                <th>购买人电话</th>
+                                <th>订单编号</th>
+                                <th>订单数量</th>
+                                <th>订单金额</th>
+                                <th>推广日期</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].bsc_name}}</td>
+                                    <td>{{d[i].cus_title}}{{d[i].cus_sign}}</td>
+                                    <td>{{d[i].seller_name}}</td>
+                                    <td>{{d[i].seller_tel}}</td>
+                                    <td>{{d[i].money}}</td>
+                                    <td>{{d[i].realname}}</td>
+                                    <td>{{d[i].mobile}}</td>
+                                    <td>{{d[i].order_sn}}</td>
+                                    <td>{{d[i].num}}</td>
+                                    <td>{{d[i].pay_price}}</td>
+                                    <td>{{d[i].pay_time}}</td>
+                                    <td>
+                                        <a href="javascript:;" onclick="show({{d[i].user_id}})" class="btn btn-primary btn-outline btn-xs">
+                                            <i class="fa fa-info"></i> 详细</a>&nbsp;&nbsp;
+                                    </td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var start=$('#start').val();
+        var end=$('#end').val();
+        $.getJSON('{:url("missshop/luckybag")}', {page: curr || 1,key:key,start:start,end:end}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+
+    //下单详细
+    function show(id){
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "{:url('missshop/luckybag_info')}",
+            data: {uid: id},
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                if (result.code == 1) {
+                    var con='<table class="table table-bordered"><tr class="active text-center"><td><strong>总积分</strong></td><td><strong>已使用</strong></td><td><strong>未使用</strong></td></tr><tr class="long-td"><td>'+result.data.all+'</td><td>'+result.data.used+'</td><td>'+result.data.have+'</td></tr></table>';
+                    layer.open({
+                        type: 1,
+                        title: '用户积分详情',
+                        skin: 'layui-layer-rim', //加上边框
+                        area: ['420px', '240px'], //宽高
+                        content: con
+                    });
+                } else {
+                    layer.msg(res.msg, {icon: 0, time: 1500, shade: 0.1});
+                }
+            }
+        });
+
+    }
+
+</script>
+</body>
+</html>

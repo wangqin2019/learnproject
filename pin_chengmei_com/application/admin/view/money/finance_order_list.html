@@ -1,0 +1,252 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>待财务确认返款订单列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('finance_order_list')}">
+                        <div class="input-group" style="margin-top: -5px;">
+                            <select class="form-control m-b chosen-select" name="pid" id="pid" style="width: 180px">
+                                <option value="">筛选活动商品</option>
+                                {if !empty($goodsList)}
+                                {foreach name="goodsList" item="vo"}
+                                <option value="{$vo.id}" {if condition="$pid eq $vo['id']"}selected{/if}>{$vo.name}</option>
+                                {/foreach}
+                                {/if}
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的产品名称" />
+                            <input type="hidden" id="storeid" name="storeid" value="{$storeid}"/>
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>订单发起人</th>
+                                <th>所属门店</th>
+                                <th>订单单号</th>
+                                <th>订单产品</th>
+                                <th>待返金额（{$money_total}元）</th>
+                                <th>完成时间</th>
+                                <th>总耗时</th>
+                                <th>订单状态</th>
+                                <th>订单类型</th>
+                                <th>是否对账</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                            <tr class="long-td">
+                                <td><input type="checkbox" value="{{d[i].id}}"></td>
+                                <td>{{d[i].realname}}</td>
+                                <td>{{d[i].title}} {{d[i].sign}}</td>
+                                <td>{{d[i].order_sn}}</td>
+                                <td>{{d[i].tuan_name}}</td>
+                                <td>{{d[i].money_total}}</td>
+                                <td style="font-weight: bold">{{d[i].success_time}}</td>
+                                <td>{{d[i].process_time}}</td>
+                                <td>已完成</td>
+                                <td>{{d[i].order_type}}</td>
+                                <td>
+                                    {{# if(d[i].check==1){ }}
+                                    <div ><span class="label label-primary">已核对</span></div>
+                                    {{# }else{ }}
+                                    <div><span class="label label-default">未核对</span></div>
+                                    {{# } }}
+                                </td>
+                                <td>
+                                    <a href="javascript:;" onclick="showDate(this)" class="btn btn-primary btn-outline btn-xs"><i class="fa fa-leaf"></i> 订单详细</a>
+                                </td>
+                            </tr>
+                            <tr style="display: none;">
+                                <td colspan="12">
+                                <table class="table table-bordered">
+                                    <tr class="active long-td">
+                                        <td>订单号</td>
+                                        <td>购买人</td>
+                                        <td>购买人电话</td>
+                                        <td>支付金额</td>
+                                        <td>是否完成对账</td>
+                                        <td>支付时间</td>
+                                        <td>备注</td>
+                                    </tr>
+                                    {{d[i].son_list}}
+                                    <tr><td colspan="7" style="color: #ff0000;font-weight: bold">打款信息：{{d[i].bankInfo}}</td></tr>
+                                </table>
+                                </td>
+                            </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                        <tr class="long-tr" style="background-color: #F5F5F6;">
+                            <td colspan="12">
+                                <input type="button"  value="全选" class="btn btn-primary  btn-xs" style="margin-bottom: 3px" id="selectAll">
+                                <input type="button" value="全不选" class="btn btn-primary btn-xs" style="margin-bottom: 3px" id="unSelect">
+                                <input type="button" value="反选" class="btn btn-primary  btn-xs" style="margin-bottom: 3px" id="reverse">
+                                <select  name="caozuo" id="caozuo">
+                                    <option value="">操作</option>
+                                    <option value="refund">返款完成</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var pid=$('#pid').val();
+        var storeid=$('#storeid').val();
+        var count="{$count}";
+        $.getJSON('{:url("Money/finance_order_list")}', {page: curr || 1,key:key,pid:pid,storeid:storeid}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页/共'+ obj.pages +'页，总计'+count+'条记录');
+                    }
+                });
+            }
+        });
+    }
+
+//编辑拼团
+function finance_download(ids){
+    var storeid="{$storeid}";
+    location.href = '/admin/Money/finance_download/ids/'+ids+'/storeid/'+storeid+'.html';
+}
+
+//删除拼团
+function del(id){
+    lunhui.confirm(id,'{:url("del")}');
+}
+
+//拼团状态
+function state(id){
+    lunhui.status(id,'{:url("state")}');
+}
+
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+function showDate(obj) {
+     var thisObj=$(obj);//js对象转jquery对象
+     thisObj.parent().parent().next().toggle();
+}
+    $(function () {
+        $("#selectAll").click(function () {
+            $("#list-content :checkbox").prop("checked", true);
+        });
+        $("#unSelect").click(function () {
+            $("#list-content :checkbox").prop("checked", false);
+        });
+        $("#reverse").click(function () {
+            $("#list-content :checkbox").each(function () {
+                $(this).prop("checked", !$(this).prop("checked"));
+            });
+        });
+    });
+    $('#caozuo').change(function () {
+        var change=$(this).val();
+        var valArr = new Array();
+        $("#list-content :checkbox:checked").each(function(i){
+            valArr[i] = $(this).val();
+        });
+        var vals = valArr.join(',');//转换为逗号隔开的字符串
+        if(change=="refund") {
+            if (vals.length == 0) {
+                alert('请先勾选确认返款的订单');
+            } else {
+                layer.confirm('您确认将对勾选的订单进行线下返款操作吗？', {
+                    btn: ['确认', '取消'] //按钮
+                }, function () {
+                    $.ajax({
+                        url: '{:url("finance_confrim")}',
+                        dataType: 'json',
+                        data: {refund: vals},
+                        method: 'GET',
+                        success: function (data) {
+                            console.log(data);
+                            if (data.code == 0) {
+                                layer.msg(data.msg, {icon: 2, time: 1500, shade: 0.1,});
+                            } else {
+                                finance_download(vals);
+                                layer.msg(data.msg, {icon: 1, time: 1500, shade: 0.1}, function (index) {
+                                    window.location.reload();
+                                });
+                            }
+                        },
+                        error: function (xhr) {
+                            // 导致出错的原因较多，以后再研究
+                            alert('error:' + JSON.stringify(xhr));
+                        }
+                    })
+                });
+            }
+        }else{
+            return false;
+        }
+    })
+</script>
+
+</body>
+</html>

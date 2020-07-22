@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		body{background: url(img/login.jpg) no-repeat;background-size: 100% cover;}
+		.login,.loginbg{position: fixed;top: 50%;left: 50%;width: 300px;height: 250px;border-radius: 10px;margin-top: -125px;margin-left: -150px;}
+		.loginbg{background: #fff;opacity: 0.5;}
+		.login{text-align: center;padding: 40px 0;}
+		.login input{height: 25px;line-height: 25px;width: 70%;display: inline-table;margin-left: 25px;padding-right: 25px;margin-bottom: 25px;}
+		.login img{width: 25px;height: 25px;position: relative;right: 35px;top: 8px;}
+		.login button{background: #18a689;color: #fff;width: 80%;height: 40px;line-height: 40px;border: none;}
+		.tishi{position: fixed;top: 10%;left: 50%;width:200px;margin-left:-100px;background: #fff;text-align: center;padding: 10px 0;border-radius: 2px;}
+		.hide{display: none;}
+	</style>
+	<body>
+		<div class="loginbg"></div>
+		<div class="login">
+			<div>
+				<input type="text" id="logname"/>
+				<img src="img/name.png"/>
+			</div>
+			<div>
+				<input type="password" id="logpwd"/>
+				<img src="img/pwd.png" />
+			</div>
+			<button>登陆</button>
+		</div>
+		<div class="tishi hide">用户名或密码错误</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="application/x-javascript">
+		$('button').click(function(){
+			var name = $('#logname').val();
+			var pwd = $('#logpwd').val();
+			console.log(name+'-'+pwd)
+			if(name == 'admin' && pwd == '123456'){
+				window.location.href = 'index.html';
+			}
+			else{
+				$('.tishi').removeClass('hide');
+				var t=setTimeout(function(){$('.tishi').addClass('hide');},1000)
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,157 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>直播管理</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" name="add" id="add" method="post" action="live">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">预热视频：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="preheat_url" type="text" class="form-control" name="preheat_url" value="{$live.preheat_url}" placeholder="请输入直播地址">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">直播地址：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="live_url" type="text" class="form-control" name="live_url" value="{$live.live_url}" placeholder="请输入直播地址">
+                                <div style="color: #ccc">
+                                    测试地址临时存储：<input  type="text" class="form-control temp_live_url"name=" temp_live_url1" value="{$live.temp_live_url1}"><br/>
+                                    生产地址临时存储：<input  type="text" class="form-control temp_live_url" name="temp_live_url2" value="{$live.temp_live_url2}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">状&nbsp;态：</label>
+                            <div class="col-sm-6">
+                                <div class="radio i-checks">
+                                    <input type="radio" name='flag' value="0" {if condition="$live['flag'] eq 0 "}checked{/if}/>预热&nbsp;&nbsp;
+                                    <input type="radio" name='flag' value="1" {if condition="$live['flag'] eq 1 "}checked{/if}/>直播
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">观看对象：</label>
+                            <div class="col-sm-6">
+                                <div class="radio i-checks">
+                                    <input type="radio" name='audience' value="2" {if condition="$live['audience'] eq 2 "}checked{/if}/>未开始&nbsp;&nbsp;
+                                    <input type="radio" name='audience' value="0" {if condition="$live['audience'] eq 0 "}checked{/if}/>全部&nbsp;&nbsp;
+                                    <input type="radio" name='audience' value="1" {if condition="$live['audience'] eq 1 "}checked{/if}/>美容师
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">显示商品：</label>
+                            <div class="col-sm-9">
+                                <div style="display: inline-block;float: left">
+                                    <div class="radio i-checks">
+                                        <input type="radio" name='goods_show' value="0" {if condition="$live['goods_show'] eq 0 "}checked{/if}/>不显示&nbsp;&nbsp;
+                                        <input type="radio" name='goods_show' value="1" {if condition="$live['goods_show'] eq 1 "}checked{/if}/>显示
+                                    </div>
+                                </div>
+                                <div style="display: none;float: left;padding-top: 0px;text-indent: 15px;" id="goods_box">
+                                    <input type="text" name="show_end" id="show_end"  autocomplete="off" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$live['show_end']}"  class="form-control" placeholder="截至显示日期"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">播主手机号：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="live_mobile" type="text" class="form-control" name="live_mobile" value="{$live.live_mobile}" placeholder="请输入直播主电话号码">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 确定</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="input-group">
+                    <a href="{:url('live_log',['flag'=>1])}"><button class="btn  btn-success" type="button"><i class="fa fa-download"></i> 当前在线用户</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{:url('live_log',['flag'=>2])}" class="btn  btn-warning"><i class="fa fa-download"></i> 用户停留记录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{:url('live_log',['flag'=>3])}" class="btn  btn-info"><i class="fa fa-download"></i> 用户停留汇总</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+
+    $(function(){
+        $('#add').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        function checkForm(){
+            if( '' == $.trim($('#live_url').val())){
+                layer.msg('直播地址不能为空', {icon: 5}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+
+        }
+
+        function complete(data){
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    window.location.href="{:url('live')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+
+    });
+
+
+    var show={$live['goods_show']};
+    if(show){
+        $('#goods_box').show();
+    }
+
+    $("input:radio[name='goods_show']").on('ifChecked', function(event){
+        if($(this).val()==1){
+            $('#goods_box').show();
+        }else{
+            $('#goods_box').hide();
+        }
+    });
+
+    //IOS开关样式配置
+    var elem = document.querySelector('.js-switch');
+    var switchery = new Switchery(elem, {
+        color: '#1AB394'
+    });
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+
+</script>
+</body>
+</html>

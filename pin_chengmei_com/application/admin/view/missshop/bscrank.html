@@ -1,0 +1,159 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>密丝小铺面膜办事处排行</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('bscrank')}">
+                        <div class="col-sm-12">
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" name="id_department" id="id_department" style="width: 150px;">
+                                    <option value="">选择办事处</option>
+                                    {if !empty($depart)}
+                                    {foreach name="depart" item="vo"}
+                                    <option value="{$vo.id_department}" {if condition="$id_department eq $vo['id_department']"}selected{/if}>{$vo.st_department}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" name="scene" id="scene" style="width: 150px;">
+                                    <option value="88" {if condition="$scene eq 88"}selected{/if}>请选择集客场景</option>
+                                    <option value="1" {if condition="$scene eq 1"}selected{/if}>转客转客</option>
+                                    <option value="0" {if condition="$scene eq 0"}selected{/if}>集客产品</option>
+                                    <option value="100" {if condition="$scene eq 100"}selected{/if}>碳酸面膜</option>
+                                    <option value="200" {if condition="$scene eq 200"}selected{/if}>卸妆水</option>
+                                    <option value="2" {if condition="$scene eq 2"}selected{/if}>双十一活动</option>
+                                    <option value="3" {if condition="$scene eq 3"}selected{/if}> 八大裂变订单</option>
+                                    <option value="4" {if condition="$scene eq 4"}selected{/if}> 宏伟活动订单</option>
+                                    <option value="5" {if condition="$scene eq 5"}selected{/if}> 春节88福袋</option>
+                                    <option value="6" {if condition="$scene eq 6"}selected{/if}> 疫情关怀订单</option>
+                                    <option value="7" {if condition="$scene eq 7"}selected{/if}> 约惠春天订单</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" name="start" id="start" onclick="laydate()" value="{$start}" autocomplete="off"  class="form-control layer-date" placeholder="订单开始日期"/>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" name="end" id="end" onclick="laydate()" value="{$end}" autocomplete="off" class="form-control layer-date" placeholder="订单结束日期"/>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的门店信息" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <a href="{:url('bscrank',['key'=>$val,'id_department'=>$id_department,'start'=>$start,'end'=>$end,'export'=>1])}" class="btn btn-primary"><i class="fa fa-download"></i> 导出</a>
+                                </span>&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <a href="{:url('national_rank')}" class="btn btn-primary"><i class="fa fa-download"></i> 全国门店榜单</a>
+                                </span>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>市场</th>
+                                <th>美容院名称</th>
+                                <th>美容院编码</th>
+                                <th>推广订单数</th>
+                                <th>拓客人数</th>
+                                <th>销售盒数</th>
+                                <th>支付总金额</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].bsc_name}}</td>
+                                    <td>{{d[i].cus_title}}</td>
+                                    <td>{{d[i].cus_sign}}</td>
+                                    <td>{{d[i].count}}</td>
+                                    <td>{{d[i].cus_total}}</td>
+                                    <td>{{d[i].num}}</td>
+                                    <td>{{d[i].price}}</td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var id_department=$('#id_department').val();
+        var scene=$('#scene').val();
+        var start=$('#start').val();
+        var end=$('#end').val();
+        $.getJSON('{:url("missshop/bscrank")}', {page: curr || 1,key:key,id_department:id_department,start:start,end:end,scene:scene}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+
+    //下单详细
+    function show(id){
+        location.href = './orders/pay_status/1/sale_uid/'+id+'.html';
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>门店联盟商结算日志</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>结算月份</th>
+                                <th>结算门店</th>
+                                <th>结算单号</th>
+                                <th>结算金额</th>
+                                <th>状态</th>
+                                <th>操作日期</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].pay_month}}月</td>
+                                    <td>{{d[i].title}}</td>
+                                    <td>{{d[i].pay_number}}</td>
+                                    <td>{{d[i].money}}元</td>
+                                    <td>
+                                        {{# if(d[i].status==0){ }}
+                                        待打款
+                                        {{# }else if(d[i].status==1){ }}
+                                        已打款
+                                        {{# }else if(d[i].status==2){ }}
+                                        已收款
+                                        {{# } }}
+                                    </td>
+                                    <td>{{d[i].insert_time}}</td>
+                                    <td>
+                                        <a href="javascript:;" onclick="info('{{d[i].pay_number}}')" class="btn btn-info btn-outline btn-xs">
+                                            <i class="fa fa-edit"></i> 详细</a>&nbsp;&nbsp;
+                                        {{# if(d[i].status!=0){ }}
+                                        <a href="javascript:;" onclick="pingzheng('{{d[i].pay_evidence}}')" class="btn btn-info btn-outline btn-xs">
+                                            <i class="fa fa-user"></i> 凭证</a>
+                                        {{# } }}
+                                    </td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var branch_id='{$branch_id}';
+        var union_id='{$union_id}';
+        $.getJSON('{:url("qmjk/branch_pay_log")}', {page: curr || 1,branch_id:branch_id,union_id:union_id}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+    //编辑门店
+    function info(number){
+        location.href = '/admin/qmjk/branch_pay_log_list/number/'+number+'.html';
+    }
+
+    //编辑门店
+    function pingzheng(pay_evidence){
+        layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            area: '516px',
+            skin: 'layui-layer-nobg', //没有背景色
+            shadeClose: true,
+            content: "<img src='"+pay_evidence+"'/>"
+        });
+    }
+</script>
+</body>
+</html>

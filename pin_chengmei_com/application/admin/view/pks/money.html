@@ -1,0 +1,126 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t form-inline" name="addRoom" id="addRoom" method="post" action="money">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">入住姓名：</span>
+                            <input type="text" class="form-control"  value="{$uinfo.seller_name}" disabled aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon2">联系电话：</span>
+                            <input type="text" class="form-control"  value="{$uinfo.seller_tel}" disabled aria-describedby="basic-addon2">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon3">所属门店：</span>
+                            <input type="text" class="form-control"  value="{$uinfo.cus_title} {$uinfo.cus_sign}" disabled aria-describedby="basic-addon3">
+                        </div>
+                        <div class="input-group" style="height: 36px;border-bottom: 1px solid #E5E6E7;border-right: 1px solid #E5E6E7">
+                            <span class="input-group-addon" id="basic-addon4" style="border-right: 1px solid #E5E6E7">住宿费用：</span>
+                            <div class="radio i-checks" style="padding-left: 10px;padding-top: 10px;z-index: 1">
+                                {if condition="$uinfo.money eq 1880"}
+                                    <input type="radio" name='money' class="money" value="980"/>980元&nbsp;&nbsp;
+                                {else/}
+                                    <input type="radio" name='money' class="money" value="980" checked/>980元&nbsp;&nbsp;
+                                {/if}
+                                <input type="radio" name='money' class="money"  value="1880" {if condition="$uinfo.money eq 1880"}checked{/if}/>1880元&nbsp;&nbsp;
+                                <input type="radio" name='money' class="money"  value="-1" {if condition="$uinfo.money eq -1"}checked{/if}/>其他
+                                <input type="number" name="other_money" id="other_money" placeholder="输入金额" value="{$uinfo.other_money}" style="display:none;text-indent:2px;width: 80px;font-size:10px;height:22px;margin-top: -3px;line-height: 22px;border: 1px solid #E5E6E7"/>
+                            </div>
+
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-12 text-center">
+                                <input type="hidden" name="id" id="roomid" value="{$uinfo.id}">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 确定</button>&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-danger" type="button" onclick="close1()"><i class="fa fa-close"></i> 关闭</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+    var cur_money='{$uinfo.money}';
+    if(cur_money==-1){
+        $('#other_money').show();
+    }
+    var index1 = parent.layer.getFrameIndex(window.name); //获取窗口索引
+    var roomid=$('#roomid').val();
+    $(function(){
+        $('#addRoom').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        function checkForm(){
+        }
+
+        function complete(data){
+            var show_money=0;
+            var money=$('input[name="money"]:checked').val();
+            var other_money=$('#other_money').val();
+            if(money==-1){
+                show_money=other_money;
+            }else{
+                show_money=money;
+            }
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(){
+                    parent.$('#money'+roomid).html(show_money);
+                    parent.layer.close(index1);
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+    });
+
+    $("input:radio[name='money']").on('ifChecked', function(event){
+        var v=$(this).val();
+        if(v==-1){
+            $('#other_money').show();
+        }else{
+            $('#other_money').val('');
+            $('#other_money').hide();
+        }
+    });
+
+
+
+    function close1() {
+      //  var index1 = parent.layer.getFrameIndex(window.name); //获取窗口索引
+        parent.layer.close(index1);
+        return false;
+    }
+
+    //IOS开关样式配置
+   var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

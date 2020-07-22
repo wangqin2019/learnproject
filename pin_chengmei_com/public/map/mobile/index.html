@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <META HTTP-EQUIV="expires" CONTENT="0">
+		<title>地图选择</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+	    <script type="text/javascript" src="js/jquery.min.js"></script>
+	    <script type="text/javascript" src="city.js"></script>
+	    <style type="text/css">
+	    	body{width: 100%;padding: 0 5%;line-height: 3em;}
+	    	li{border-top: 1px solid #ddd;cursor: pointer;}
+	    </style>
+	</head>
+	<body>
+		<p class="title">地图列表</p>
+		<ul></ul>
+	</body>
+	<script type="application/x-javascript">
+		for(var i=0;i<province.length;i++){
+			$('ul').append('<li id="'+province[i].id+'">'+province[i].area+'<span class="floatr iconfont">&#xe602;</span></li>');
+		}
+		
+		$('ul').on('click','li',function(){
+			var provid = $(this).attr('id');
+			window.location.href = 'map.html?provid='+provid;
+		})
+	</script>
+</html>

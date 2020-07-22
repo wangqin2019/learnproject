@@ -1,0 +1,298 @@
+* {
+	list-style: none;
+	text-decoration: none;
+	outline-style: none;
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+@font-face {
+	font-family: 'iconfont';
+	src: url('./font/iconfont.eot');
+	src: url('./font/iconfont.eot?#iefix') format('embedded-opentype'), url('./font/iconfont.woff2') format('woff2'), url('./font/iconfont.woff') format('woff'), url('./font/iconfont.ttf') format('truetype'), url('./font/iconfont.svg#iconfont') format('svg');
+}
+
+.iconfont {
+	font-family: "iconfont" !important;
+	/*font-size: 16px;*/
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+}
+body{
+	list-style: none;
+	text-decoration: none;
+	outline-style: none;
+	margin: 0 !important;
+	padding: 0;
+	box-sizing: border-box;
+	width: 100%;
+	overflow-x: hidden;
+}
+
+input,select,option{
+	height: 30px;
+	line-height: 30px;
+	line-height: 20px;
+	padding: 0 5px;
+	border: 1px solid #e5e6e7;
+	box-shadow: none;
+	display: inline-block;
+	-moz-box-sizing: border-box;
+}
+button{
+	height: 2em;
+	line-height: 2em;
+	padding: 0 1em;
+	border: none;
+	box-shadow: none;
+	cursor: pointer;
+}
+.hide{display: none;}
+.floatl{float: left;}
+.floatr{float: right;}
+.tishi{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 140px;
+	height: 30px;
+	margin-left: -70px;
+	margin-top: -15px;
+	background: #000;
+	opacity: 0.6;
+	font-size:16px;
+	line-height: 30px;
+	color: #fff;
+	text-align: center;
+	border-radius: 5px;
+}
+.detail{text-align: right;}
+.detail button{
+	background: #007AFF;
+	color: #fff;
+	height: 2em;
+	line-height: 2em;
+	font-size: 1em;
+	margin-top: 10px;
+}
+#toolbarLeft{
+	position: fixed;
+	left: 1em;
+	bottom: 1em;
+}
+#toolbarRight{
+	position: fixed;
+	right: 1em;
+	top: 1em;
+}
+#toolbarLeft div,#toolbarRight div{
+	background: #000;
+	opacity: 0.6;
+	color: #fff;
+	width: 2.5em;
+	height: 2.5em;
+	line-height: 2.5em;
+	text-align: center;
+	margin-bottom: 1em;
+}
+#toolbarLeft .iconfont,#toolbarRight .iconfont{
+	font-size: 1.5em;
+}
+.setshopn img{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 3em;
+	height: 3em;
+	margin-left: -1.5em;
+	margin-top: -1.5em;
+}
+/*信息*/
+.showpart{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: #fff;
+	z-index: 999;
+	overflow-y: scroll;
+}
+.return{
+	width: 100%;
+	padding: 0 1em;
+	text-align: center;
+	height: 3em;
+	line-height: 3em;
+	background: #FBA200;
+	color: #fff;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+.return .floatl{
+	padding-right: 1em;
+}
+.return .floatr{
+	padding-left: 1em;
+}
+.body{margin-top: 3.5em;}
+.provshow label,.provchange label{
+	width: 90%;
+	margin: 0 5%;
+	padding: 0.5em 0;
+	display: block;
+	height: auto;
+	line-height: 2em;
+}
+.provshow label p,.provchange label p{
+	width: 25%;
+	height: 100%;
+	text-align: right;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.provshow label div,.provchange label div{
+	width: 72%;
+	display: inline-block;
+}
+.provshow input,.provchange input{
+	width: 100%;	
+	padding: 0.5em;
+	height: 2em;
+}
+.provshow textarea,.provchange textarea{
+	width: 100%;
+	height: 6em;
+	padding: 0.5em;
+}
+.prov_center{width: 100% !important;}
+.prov_center input{
+	width: 75% !important;
+}
+.prov_center button{
+	background: #29CCB6;
+	color: #fff;
+}
+#tradingList div{
+	width: 100%;
+	margin-bottom: 1em;
+}
+.tradDelect{
+	width: 100%;
+	background: #F48786;
+	color: #fff;
+}
+#tradingAdd{
+	width: 100%;
+	margin: 1em 0;
+	background: #007AFF;
+	color: #fff;
+}
+/*门店*/
+.shopnlist li{
+	line-height: 3em;
+	border-bottom: 1px solid #ddd;
+	width: 90%;
+	margin: 0 5%;
+}
+.shopn_del_icon{color: #FBA200;}
+
+.shopndetail label,.shopnchange label{
+	width: 90%;
+	margin: 0 5%;
+	padding: 0.5em 0;
+	display: block;
+	height: auto;
+	line-height: 2em;
+	/*border-bottom: 1px solid #ddd;*/
+	line-height: 2em;
+}
+.shopndetail label p,.shopnchange label p{
+	width: 25%;
+	height: 100%;
+	text-align: right;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.shopndetail label div,.shopnchange label div{
+	width: 72%;
+	display: inline-block;
+}
+.shopnchange input,.shopnchange select{width: 100%;}
+#shopn_label{text-align: justify;}
+#shopn_label div{
+	height: 2em;
+	line-height: 2em;
+	border-radius: 1em;
+	padding: 0 5%;
+	background: #AAAADD;
+	color: #fff;
+	margin-bottom: 1em;
+	width: 8em !important;
+	text-align: left !important;
+}
+#shopn_label p{
+	width: 80% !important;
+	overflow: hidden;
+	display: inline-block;
+	text-align: left !important;
+}
+#shopn_label .iconfont{
+	width: 20%;
+	text-align: right;
+	font-size: 0.8em;
+}
+#shopn_label_button{
+	width: 72%;
+	background: #007AFF;
+	color: #fff;
+	margin-left: 26%;
+}
+.shopnchange img,.shopndetail img{
+	width: 5em;
+	height: 5em;
+}
+.addshopnbutton{text-align: center;margin: 1em 0 0.5em 0.5em;}
+.cancleShopn{color: #fff;}
+.addShopn{background: #007AFF;color: #fff;margin-left: 0.5em;}
+.shopndetail .delect{width: 100%;background: #EC5565;color: #fff;}
+.shopn_img_button{width: 72%;background: #007AFF;color: #fff;margin-left: 26%;}
+#shopnImgBut{
+	position: relative;
+    top: -2em;
+    width: 72% !important;
+    margin-left: 26%;
+    opacity: 0;
+}
+#shopn_img div{width: auto !important;}
+#shopn_img p{
+	width: 1.5em !important;
+    height: 1.5em;
+    line-height: 1.5em;
+    margin-left: -1em;
+    margin-top: -0.4em;
+    color: #fff;
+    background: #000;
+    text-align: center;
+    border-radius: 50%;
+    
+}
+#shopn_img p span{font-size: 0.5em !important;}
+#labelSearch{
+	position: relative;
+    top: -2em;
+    width: 72% !important;
+    margin-left: 26%;
+    opacity: 0;
+}

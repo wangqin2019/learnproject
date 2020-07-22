@@ -1,0 +1,27 @@
+{include file="public/header" /}
+<body >
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+               <table class="table table-bordered table-hover">
+                <tr>
+                    <th>鼠卡编号</th>
+                    <th>鼠卡名称</th>
+                    <th>鼠卡图片</th>
+                    <th>获取时间</th>
+                </tr>
+                   {volist name="list" id="v"}
+                   <tr>
+                       <td>{$v.cardno}</td>
+                       <td>{$v.name}</td>
+                       <td><img src="{$v.thumb}" alt="" width="50"></td>
+                       <td>{$v.create_time|date='Y-m-d H:i:s',###}</td>
+                   </tr>
+                   {/volist}
+               </table>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+</body>
+</html>

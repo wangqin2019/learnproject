@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/pagination.css"/>
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.12&key=87479936d9ecb6fc4997e30cb3b14732&plugin=AMap.RangingTool"></script>
+	    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+	    <script type="text/javascript" src="js/pagination.js"></script>
+	    <script type="text/javascript" src="city.js"></script>
+	    <style type="text/css">
+	    	.title{width: 90%;margin: 20px 5% 10px 5%;}
+	    	.shopnlist,.styleSearch{width: 90%;margin: 10px 5%;}
+	    	.styleclick{color: #f10215;border: 1px solid #f10215;border-radius: 15px;line-height: 16px;font-size: 16px;}
+	    	#add,#batch,#manual{float: right;margin-left: 10px;color: #fff;}
+	    	#add{background:#23c6c8}
+	    	#batch{background:#18a689}
+	    	#manual{background:#4397e6}
+	    	.styleSearch{text-align: justify;}
+	    	.styleSearch button{margin-right: 10px;background: #fff;}
+	    	.styleSearch button:hover{color: #f10215;}
+	    	.imageShow{position: fixed;bottom: 0;right: 0;width: 85%;background: #eee;opacity:0.8;height: 100px;padding: 10px 20px;}
+	    	.imageShow div{display: inline-block;}
+	    	.imgpart p{position: relative;left: -12px;top: -8px;display: inline-block;width: 20px;height: 20px;border-radius: 50%;background: #000;color: #fff;text-align: center;line-height: 20px;cursor: pointer;}
+	    	.imgpart .iconfont{font-size: 12px;}
+	    	.imageShow img{width: 80px;height: 80px;display: inline-block;vertical-align: top;}
+	    	.imageShow input{width: 80px;height: 80px;margin-left: -95px;display: inline-block;vertical-align: top;background: #000;opacity: 0;cursor: pointer;}
+	    	#container{width: 85%;height: 100%;float: right;}
+	    	.mapsearch{left: auto;right: 20px;border-radius: 5px;box-shadow: 2px 2px 5px #888888;}
+	    	#manualbutton{position: fixed;top: 20px;right: 380px;background: #0062CC;color: #fff;height: 40px;width: 100px;border-radius: 5px;box-shadow: 2px 2px 5px #888888;}
+	    	.conf_window{width: 300px;height: 100px;background: #fff;border-radius: 5px;margin-left: -150px;margin-top: -50px;}
+	    	.conf_content{text-align: center;width: 100%;padding: 20px 0;}
+	    	.conf_content button,.conf_content input{width: 100px; color: #fff;height: 30px;line-height: 30px;}
+	    	#template{margin-right: 20px;background: #18A689;}
+	    	.conf_content input{width: 100px;height: 30px;position: absolute;right: 30px;bottom: 20px;opacity: 0;cursor: pointer;}
+	    	#uploadfile{margin-left: 20px;background: #007AFF;}
+	    	#formlabel input{padding: 0;}
+	    </style>
+	</head>
+	<body>
+		<div class="title">
+			<input placeholder="请输入门店名称" id="sch_name"/>
+			<input placeholder="请输入门店电话" id="sch_tel"/>
+			<input placeholder="请输入店老板" id="sch_boss"/>
+			<select id="labelSearch"><option>全部</option></select>
+			<select id="typeSearch"><option>全部</option></select>
+			<button id="search">查询</button>
+			
+			<button id="batch">批量导入</button>
+			<button id="add">新增</button>
+		</div>
+		
+		<div class="styleSearch"><button data-id="" class="styleclick">全部</button></div>
+		
+		<table class="shopnlist table table-bordered table-hover">
+			<colgroup><col width="60px"/><col /><col width="60px"/><col /><col /><col width="100px"/><col /><col /><col /><col width="150px"/><col /><col width="200px"/></colgroup>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>办事处</th>
+					<th>地区</th>
+					<th>门店名称</th>
+					<th>门店描述</th>
+					<th>店老板姓名</th>
+					<th>联系方式</th>
+					<th>门店详细地址</th>
+					<th>门店状态</th>
+					<th>门店类型</th>
+					<th>门店标签</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="list"></tbody>
+		</table>
+		<div id="paging" class="quotes"></div>
+		<!--批量上传-->
+		<div class="confirm hide">
+			<div class="mask"></div>
+			<div class="conf_window">
+				<div class="conf_toolbar"><span class="iconfont">&#xe61f;</span></div>
+				<div class="conf_content">
+					<a href="excel.xlsx" download="模板"><button id="template">模板下载</button></a>
+					<button id="uploadfile">文件上传</button>
+					<input type="file"/>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="map hide">
+			<div class="form">
+				<div><p>办事处</p><select id="formagency" value=""><option>上海办事处</option><option>广州办事处</option></select></div>
+				<div><p>地区</p><select id="formarea" value=""><option>上海</option><option>广州</option></select></div>
+				<div><p>门店名称</p><input placeholder="门店名称" id="formname"/></div>
+				<div><p>门店描述</p><input placeholder="门店描述" id="formcontent"/></div>
+				<div><p>店老板姓名</p><input placeholder="店老板姓名" id="formboss"/></div>
+				<div><p>联系方式</p><input placeholder="联系方式" id="formtel"/></div>
+				<div><p>门店详细地址</p><input placeholder="门店详细地址" id="formaddress"/></div>
+				<div><p>门店状态</p><select id="formtype" value=""><option value="0">处理中</option><option value="1">已合作</option><option value="2">未合作</option></select></div>
+				<div><p>门店类型</p><select class="stylelist" id="formstyle" value=""></select></div>
+				<div><p>经度</p><input placeholder="经度" id="formlng"/></div>
+				<div><p>纬度</p><input placeholder="纬度" id="formlat"/></div>
+				<div><p>门店标签</p><ul class="labellist" id="formlabel"></ul></div>
+				<button id="formSubmit">保存</button>
+				<button class="formCancel">取消</button>
+			</div>
+			<div id="container"></div>
+			<div class="imageShow">
+				<label>门店图片</label>
+				<div class="imgpart">
+					<!--<div><img src="img/add.png"/><p class="iconfont">&#xe61f;</p></div>-->
+				</div>
+				<img src="img/add.png"/>
+				<input type="file" id="formImage" accept="image/png, image/jpeg, image/gif, image/jpg"/>
+			</div>
+			
+			
+			
+			<div class="mapsearch">
+				<button id="manualbutton"><span class="iconfont">&#xe639;</span> 手动标记</button>
+			    <div class="mapsearch_title">
+			    	<span>请输入关键字:</span>
+			    	<input id='areaInput' type="text" value='上海' >
+			    	<button id="areaSearch">查询</button>
+			    	<span class="iconfont">&#xe602;</span>
+			    </div>
+			    <ul id="arealist" class="hide"></ul>
+			</div>
+			
+			<!--图片展示-->
+			<ul id="arealist"></ul>
+			<div class="confirm_img hide">
+				<div class="mask"></div>
+				<div class="conf_window conf_img_window">
+					<div class="conf_toolbar"><span class="iconfont">&#xe61f;</span></div>
+					<div class="conf_content conf_img_content">
+						<div class="propimg"><p><span class="iconfont">&#xe667;</span></p></div>
+						<div class="imgcenter"><img src="" /></div>
+						<div class="nextimg"><p><span class="iconfont">&#xe602;</span></p></div>
+					</div>
+				</div>			
+			</div>
+			
+		</div>
+		
+		<div class="tishi hide"></div>
+	</body>
+	<script type="text/javascript">
+		var citysall = citys,typecitys=citys,cityid='',labelarea=[],imgarray=[],imgshownum=0;
+		
+		if(citys.length<5){listShow(0,citys.length);}
+		else{listShow(0,5);}
+		pagingShow();//分页
+		//标签导入
+		for(var i=0;i<labellist.length;i++){
+			$('#labelSearch').append('<option data-name="'+labellist[i].name+'">'+labellist[i].name+'</option>');
+			$('#labelSearch').css('display','inline-block');
+		}
+		//类型导入
+		for(var i=0;i<stylelist.length;i++){
+			$('.styleSearch').append('<button data-id="'+stylelist[i].id+'">'+stylelist[i].name+'</button>');
+			$('.styleSearch').css('display','inline-block');
+		}
+		//状态导入
+		for(var i=0;i<typelist.length;i++){
+			$('#typeSearch').append('<option value="'+typelist[i].id+'">'+typelist[i].name+'</option>');
+			$('#typeSearch').css('display','inline-block');
+		}
+		maplab();//添加类型与标签选择框
+		
+//---------------------------------------------------------------------------------单个门店添加----------------------------------------------------------------
+        $('#add').click(function(){
+        	$('.map').removeClass('hide');
+        	cityid='';
+        	labelarea=[];
+        	$('#formagency').val('上海办事处');
+	    	$('#formarea').val('上海');
+	    	$('#formname').val('');
+	    	$('#formcontent').val('');
+	    	$('#formboss').val('');
+	    	$('#formtel').val('');
+	    	$('#formaddress').val('');
+	    	$('#formtype').val('0');
+	    	$('#formstyle').val('0');
+	    	$('#formlng').val('');
+	    	$('#formlat').val('');
+        })
+        
+        var map = new AMap.Map('container', {
+	        zoom:15,//级别
+	        center: [121.473658, 31.230378],//中心点坐标
+	        viewMode:'3D'//使用3D视图
+	    });
+	    var marker1 = new AMap.Marker({
+	        position: map.getCenter(),
+	    }),marker2='';
+	    marker1.setMap(map);
+	    
+	    
+	    //门店显示/隐藏
+	    $('.mapsearch_title .iconfont').click(function(){
+	    	if($('#arealist').hasClass('hide')){
+	    		$('#arealist').removeClass('hide');
+	    		$('.mapsearch_title .iconfont').html('&#xe695;');
+	    	}
+	    	else{
+	    		$('.mapsearch_title .iconfont').html('&#xe602;');
+	    		$('#arealist').addClass('hide');
+	    	}
+	    })
+	    
+	    //门店查询列表areaList
+	    var areaList=[],mapclick=false;
+	    //查询门店
+	    $("#areaSearch").click(function(){
+	    	var keywords = $("#areaInput").val(),showmsg ='';
+	    	$('.mapsearch_title .iconfont').html('&#xe695;');
+	    	$('#arealist').removeClass('hide');
+	    	AMap.plugin('AMap.PlaceSearch', function(){
+		        var autoOptions = {
+		          city: '全国'
+		        }
+		        var placeSearch = new AMap.PlaceSearch(autoOptions);
+		        placeSearch.search(keywords, function(status, result) {
+//		        	console.log(JSON.stringify(result.poiList.pois))
+		        	areaList = result.poiList.pois;
+		        	for(var i=0;i<result.poiList.pois.length;i++){
+		        		citys.push({"lnglat":result.poiList.pois[i].location,"name":result.poiList.pois[i].name,"style":3});
+		        		showmsg = showmsg+ '<li data-num="'+i+'" ><p>门店名称：'+result.poiList.pois[i].name+'</p><p>门店地址：'+result.poiList.pois[i].address+'</p></li>'
+		        	}
+		        	$('#arealist').html(showmsg);
+		        })
+	    	})
+	    })
+        //查询门店-门店选择
+	    $('#arealist').on('click','li',function(e){
+	    	var num = $(this).attr('data-num');
+//	    	var num = e.currentTarget.dataset.num;
+//	    	console.log(areaList[num])
+	    	var lng = areaList[num].location.lng;
+	    	var lat = areaList[num].location.lat;
+	    	$('#arealist li').removeClass('listclick');
+	    	$(this).addClass('listclick');
+
+			map.setCenter([lng,lat]);
+	    	marker2 = new AMap.Marker({
+		        position: [lng,lat],
+		    })
+	    	marker1.setMap(null);
+	    	map.add(marker2);
+	    	marker1 = marker2;
+	    	$('#formaddress').val(areaList[num].address);
+	    	$('#formlng').val(areaList[num].location.lng);
+	    	$('#formlat').val(areaList[num].location.lat);
+	    })
+        
+        //手动标记
+        $('#manualbutton').click(function() {
+        	map.setDefaultCursor("crosshair");
+        	mapclick=true;
+        })
+        //手动标记-取消
+        map.on('click', function(e) {
+        	if(mapclick == true){
+        		map.setDefaultCursor("");
+        		var lng = e.lnglat.getLng();
+        		var lat = e.lnglat.getLat();
+        		map.setCenter([lng,lat]);
+		    	marker2 = new AMap.Marker({
+			        position: [lng,lat],
+			    })
+		    	marker1.setMap(null);
+		    	map.add(marker2);
+		    	marker1 = marker2;
+		    	
+		        $('#formlng').val(lng);
+		    	$('#formlat').val(lat);
+		    	mapclick = false;
+        	}
+	    });
+        
+	    //上传图片
+	    $('#formImage').change(function(){
+	    	var reads= new FileReader();
+	    	f=document.getElementById('formImage').files[0];
+	    	reads.readAsDataURL(f); 
+	    	reads.onload=function (e) {
+	    		$('.imgpart').append('<div><img src="'+this.result+'"/><p class="iconfont">&#xe61f;</p></div>');
+	    		imgarray.push(this.result);
+	    	};
+	    })
+	    //删除图片
+	    $('.imgpart').on('click','.iconfont',function(e){
+	    	var imgpath = $(this).siblings('img').attr('src');
+	    	$(this).parent('div').remove();
+	    	imgarray.splice(imgarray.indexOf(imgpath),1);
+	    })
+	    //显示图片
+	    $('.imgpart').on('click','img',function(e){
+	    	var imgpath = $(this).attr('src');
+	    	imgshownum = imgarray.indexOf(imgpath);
+	    	$('.imgcenter img').attr('src',imgpath);
+	    	$('.confirm_img').removeClass('hide');
+	    })
+	    //下张
+	    $('.nextimg').click(function(){
+	    	if(imgshownum == imgarray.length-1){
+	    		imgshownum = 0;
+	    	}
+	    	else{
+	    		imgshownum = imgshownum +1;
+	    	}
+	    	$('.imgcenter img').attr('src',imgarray[imgshownum]);
+	    })
+	    //上张
+	    $('.propimg').click(function(){
+	    	if(imgshownum == 0){
+	    		imgshownum = imgarray.length-1;
+	    	}
+	    	else{
+	    		imgshownum = imgshownum -1;
+	    	}
+	    	$('.imgcenter img').attr('src',imgarray[imgshownum]);
+	    })
+	    
+	    
+	    
+	    
+	    //标签多选
+	    $('#formlabel').on('click','span',function(){
+	    	if($(this).siblings('input').is(":checked")){
+	    		$(this).siblings('input').prop("checked",false);
+	    		labelarea.splice(labelarea.indexOf($(this).siblings('input').val()),1)
+	    	}
+	    	else{
+	    		$(this).siblings('input').prop("checked",true);
+	    		labelarea.push($(this).siblings('input').val());
+	    	}
+	    })
+	    //标签多选-2
+	    $('#formlabel').on('click','input',function(e){
+	    	if($(this).is(":checked") == true){
+	    		labelarea.push($(this).val());
+	    	}
+	    	else{
+	    		labelarea.splice(labelarea.indexOf($(this).val()),1)
+	    	}
+	    })
+	    
+	    
+	    //保存
+	    $('#formSubmit').click(function(){
+	    	maplab();
+	    	var agency = $('#formagency').val();
+	    	var area = $('#formarea').val();
+	    	var name = $('#formname').val();
+	    	var content = $('#formcontent').val();
+	    	var boss = $('#formboss').val();
+	    	var tel = $('#formtel').val();
+	    	var address = $('#formaddress').val();
+	    	var type = $('#formtype').val();
+	    	var style = $('#formstyle').val();
+	    	var lng = $('#formlng').val();
+	    	var lat = $('#formlat').val();
+	    	if(agency != '' && area != '' && name != '' && content != '' && boss != '' && tel != '' && address != '' && type != '' && style != '' && lng != '' && lat !=''){
+		    	if(cityid == ''){
+		    		citysall.push({
+						"id": citysall.length+1,
+						"agency":agency,
+						"area":area,
+						"boss":boss,
+						"name": name,
+						"content": content,
+						"lnglat": {
+							"Q": lat,
+							"R": lng,
+							"lng": lng,
+							"lat": lat
+						},
+						"address": address,
+						"tel": tel,
+						"type": type,
+						"label": labelarea,
+						"style": style
+					})
+		    	}
+		    	else{
+		    		for(var i=0;i<citysall.length;i++){
+						if(citysall[i].id == cityid){
+							citysall[i].agency = agency
+							citysall[i].boss = boss;
+							citysall[i].area = area;
+							citysall[i].name = name;
+							citysall[i].content = content;
+							citysall[i].tel = tel;
+							citysall[i].type = type;
+							citysall[i].label = labelarea;
+							citysall[i].style = style;
+							citysall[i].address = address;
+							citysall[i].lnglat.lng = lng;
+							citysall[i].lnglat.lat = lat;
+						}
+					}
+		    	}
+		    	citys = citysall;
+		    	if(citys.length<5){listShow(0,citys.length);}
+				else{listShow(0,5);}
+				pagingShow();//分页
+		    	cityid = '';
+		    	
+		    	$('.tishi').html('保存成功');
+	    		$('.tishi').removeClass('hide');
+	    		var t = setTimeout(function(){
+	    			$('.tishi').addClass('hide');
+	    			$('.map').addClass('hide');
+	    		},1500);
+	    	}
+	    	else{
+	    		$('.tishi').html('您还有未输入项');
+	    		$('.tishi').removeClass('hide');
+	    		var t = setTimeout(function(){
+	    			$('.tishi').addClass('hide');
+	    		},1500);
+	    	}
+	    })
+	    //取消
+	    $('.formCancel').click(function(){
+	    	maplab();
+	    	$('#formagency').val('');
+	    	$('#formarea').val('');
+	    	$('#formname').val('');
+	    	$('#formcontent').val('');
+	    	$('#formboss').val('');
+	    	$('#formtel').val('');
+	    	$('#formaddress').val('');
+	    	$('#formtype').val('');
+	    	$('#formstyle').val('');
+	    	$('#formlng').val('');
+	    	$('#formlat').val('');
+	    	
+	    	$('.map').addClass('hide');
+	    	labelarea=[];
+	    })
+	    
+//---------------------------------------------------------------------------------单个门店添加end----------------------------------------------------------------
+//---------------------------------------------------------------------------------批量添加----------------------------------------------------------------
+		$('#batch').click(function(){
+			$('.confirm').removeClass('hide');
+		})
+		//模板下载
+		$('#template').click(function(){
+			$('.confirm').addClass('hide');
+		})
+		//上传
+		$('#uploadfile').click(function(){
+			$('.confirm').addClass('hide');
+		})
+		$('.conf_toolbar span').click(function(){
+			$('.confirm').addClass('hide');
+			$('.confirm_img').addClass('hide');
+		})
+//---------------------------------------------------------------------------------批量添加----------------------------------------------------------------
+//---------------------------------------------------------------------------------表格操作----------------------------------------------------------------
+		//删除
+		$('#list').on('click','.delect',function(){
+			var id = $(this).parent().parent().attr('data-id');
+			for(var i=0;i<citys.length;i++){
+				if(citys[i].id == id){
+					citys.splice(i,1);
+				}
+			}
+			if(citys.length<5){listShow(0,citys.length);}
+			else{listShow(0,5);}
+			pagingShow();
+			$(this).parent().parent().remove();
+		})
+		//编辑
+		$('#list').on('click','.change',function(){
+			labelarea=[];
+			var id = $(this).parent().parent().attr('data-id'),msg;
+			for(var i=0;i<citys.length;i++){
+				if(citys[i].id == id){
+					msg =citys[i]; 
+					cityid = citys[i].id;
+				}
+			}
+			for(var i=0;i<msg.label.length;i++){
+				$('#formlabel span').each(function(){
+					if($(this).text() == msg.label[i]){
+						labelarea.push(msg.label[i]);
+						$(this).siblings('input').prop("checked",true);
+					}
+				})
+			}
+			var lng = msg.lnglat.lng;
+			var lat = msg.lnglat.lat;
+//			mapCenter(lng,lat);
+			$('#formagency').val(msg.agency);
+	    	$('#formarea').val(msg.area);
+	    	$('#formname').val(msg.name);
+	    	$('#formcontent').val(msg.content);
+	    	$('#formboss').val(msg.boss);
+	    	$('#formtel').val(msg.tel);
+	    	$('#formaddress').val(msg.address);
+	    	$('#formtype').val(msg.type);
+	    	$('#formstyle').val(msg.style);
+	    	$('#formlng').val(lng);
+	    	$('#formlat').val(lat);
+	    	
+	    	$('.map').removeClass('hide');
+	    	var t = setTimeout(function(){
+	    		mapCenter(lng,lat);
+			    marker2 = new AMap.Marker({
+			        position: [lng,lat],
+			    })
+		    	marker1.setMap(null);
+		    	map.add(marker2);
+		    	marker1 = marker2;
+			},100)
+		})
+		
+//---------------------------------------------------------------------------------表格操作end----------------------------------------------------------------
+//---------------------------------------------------------------------------------筛选----------------------------------------------------------------
+		//门店类型-筛选
+		$('.styleSearch').on('click','button',function(){
+			$('.styleSearch button').removeClass('styleclick');
+			$(this).addClass('styleclick');
+			var id = $(this).attr('data-id');
+			citys=[];
+			if(id == ''){citys = typecitys;}
+			else{
+				for(var i=0;i<typecitys.length;i++){
+					if(typecitys[i].style == id){
+						citys.push(typecitys[i]);
+					}
+				}
+			}
+			if(citys.length<5){listShow(0,citys.length);}
+			else{listShow(0,5);}
+			pagingShow();
+		})
+		//其他-筛选
+		$('#search').click(function(){
+			var sch_name = $('#sch_name').val();
+			var sch_tel = $('#sch_tel').val();
+			var sch_boss = $('#sch_boss').val();
+			var label = $('#labelSearch').val();
+			var sch_type = $('#typeSearch').val();
+			var sch_label = '';
+			
+			citys=[];
+			for(var i=0;i<citysall.length;i++){
+				if(label == '全部'){sch_label = '全部';}
+				else{sch_label = citysall[i].label.indexOf(label);}
+				
+				if(citysall[i].name == sch_name && citysall[i].tel == sch_tel && citysall[i].boss == sch_boss && sch_label != -1 && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(sch_name == '' && citysall[i].tel == sch_tel && citysall[i].boss == sch_boss && sch_label != -1 && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && sch_tel == '' && citysall[i].boss == sch_boss && sch_label != -1 && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && citysall[i].tel == sch_tel && sch_boss == '' && sch_label != -1 && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && citysall[i].tel == sch_tel && citysall[i].boss == sch_boss && sch_label == '全部' && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && citysall[i].tel == sch_tel && citysall[i].boss == sch_boss && sch_label != -1 && citysall[i].type == '全部'){citys.push(citysall[i]);}
+				
+				else if(sch_name == '' && sch_tel == '' && citysall[i].boss == sch_boss && sch_label != -1 && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(sch_name == '' && citysall[i].tel == sch_tel && sch_boss =='' && sch_label != -1 && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(sch_name == '' && citysall[i].tel == sch_tel && citysall[i].boss == sch_boss && sch_label == '全部' && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(sch_name == '' && citysall[i].tel == sch_tel && citysall[i].boss == sch_boss && sch_label != -1 && sch_type =='全部'){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && sch_tel == '' && sch_boss =='' && sch_label != -1 && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && sch_tel == '' && citysall[i].boss == sch_boss && sch_label == '全部' && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && sch_tel == '' && citysall[i].boss == sch_boss && sch_label != -1 && sch_type =='全部'){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && citysall[i].tel == sch_tel && sch_boss =='' && sch_label == '全部' && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && citysall[i].tel == sch_tel && sch_boss =='' && sch_label != -1 && sch_type =='全部'){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && citysall[i].tel == sch_tel && citysall[i].boss == sch_boss && sch_label == '全部' && sch_type =='全部'){citys.push(citysall[i]);}
+				
+				else if(sch_name == '' && sch_tel == '' && sch_boss == '' && sch_label != -1 && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(sch_name == '' && sch_tel == '' && citysall[i].boss == sch_boss && sch_label == '全部' && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(sch_name == '' && sch_tel == '' && citysall[i].boss == sch_boss && sch_label != -1 && sch_type =='全部'){citys.push(citysall[i]);}
+				else if(sch_name == '' && citysall[i].tel == sch_tel && sch_boss =='' && sch_label == '全部' && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(sch_name == '' && citysall[i].tel == sch_tel && sch_boss =='' && sch_label != -1 && sch_type =='全部'){citys.push(citysall[i]);}
+				else if(sch_name == '' && citysall[i].tel == sch_tel && citysall[i].boss == sch_boss && sch_label == '全部' && sch_type =='全部'){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && sch_tel == '' && sch_boss =='' && sch_label == '全部' && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && sch_tel == '' && sch_boss =='' && sch_label != -1 && sch_type =='全部'){citys.push(citysall[i]);}
+				else if(citysall[i].name == sch_name && citysall[i].tel == sch_tel && sch_boss =='' && sch_label == '全部' && sch_type =='全部'){citys.push(citysall[i]);}
+				
+				
+				
+				else if(citysall[i].name == sch_name && sch_tel == '' && sch_boss == '' && sch_label == '全部' && sch_type =='全部'){citys.push(citysall[i]);}
+				else if(sch_name == '' && citysall[i].tel == sch_tel && sch_boss == '' && sch_label == '全部' && sch_type =='全部'){citys.push(citysall[i]);}
+				else if(sch_name == '' && sch_tel == '' && citysall[i].boss == sch_boss && sch_label == '全部' && sch_type =='全部'){citys.push(citysall[i]);}
+				else if(sch_name == '' && sch_tel == '' && sch_boss == '' && sch_label != -1 && sch_type =='全部'){citys.push(citysall[i]);}
+				else if(sch_name == '' && sch_tel == '' && sch_boss == '' && sch_label == '全部' && citysall[i].type == sch_type){citys.push(citysall[i]);}
+				
+				else if(sch_name == '' && sch_tel == '' && sch_boss == '' && sch_label == '全部' && sch_type =='全部'){citys.push(citysall[i]);}
+				
+//				else if(citysall[i].name == sch_name && citysall[i].tel == sch_tel && citysall[i].boss == sch_boss && sch_label != -1 && citysall[i].type == sch_type){citys.push(citysall[i]);}
+			}
+			typecitys = citys;
+			if(citys.length<5){listShow(0,citys.length);}
+			else{listShow(0,5);}
+			pagingShow();
+			
+		})
+//---------------------------------------------------------------------------------筛选end----------------------------------------------------------------
+		function mapCenter(lng,lat){
+			map.setCenter([lng,lat]);
+	    	marker2 = new AMap.Marker({
+		        position: [lng,lat],
+		    })
+	    	marker1.setMap(null);
+	    	map.add(marker2);
+	    	marker1 = marker2;
+		}
+
+	    //表格显示
+        function listShow(startnum,endnum){
+        	$('#list').html('');
+        	for(var i=startnum;i<endnum;i++){
+        		var label = '';
+        		if(citys[i].label != ''){
+        			for(var j=0;j<citys[i].label.length;j++){
+        				if(label == ''){label = citys[i].label[j];}
+        				else{label = label + ',' + citys[i].label[j];}
+        			}        			
+        		}
+        		$('#list').append('<tr data-id="'+citys[i].id+'">'+
+        				'<th>'+citys[i].id+'</th>'+
+        				'<th>'+citys[i].agency+'</th>'+
+        				'<th>'+citys[i].area+'</th>'+
+        				'<th>'+citys[i].name+'</th>'+
+        				'<th>'+citys[i].content+'</th>'+
+        				'<th>'+citys[i].boss+'</th>'+
+        				'<th>'+citys[i].tel+'</th>'+
+        				'<th>'+citys[i].address+'</th>'+
+        				'<th>'+stateShow(citys[i].type)+'</th>'+
+        				'<th>'+styleShow(citys[i].style)+'</th>'+
+        				'<th>'+label+'</th>'+
+        				'<th><button class="change">编辑</button><button class="delect">删除</button></th></tr>')
+        	}
+        }
+	    function stateShow(msg){
+			var show='';
+			if(msg==0){show = '处理中'}
+			else if(msg==1){show = '已合作'}
+			else if(msg==2){show = '未合作'}
+			return show;
+		}
+		function styleShow(msg){
+			var show='';
+			if(msg==0){show = '已合作会所型客户'}
+			else if(msg==1){show = '已合作连锁型客户'}
+			else if(msg==2){show = '已合作普通客户'}
+			else if(msg==3){show = '意向客户'}
+			else if(msg==4){show = '即将淘汰客户'}
+			else if(msg==5){show = '未合作会所型客户'}
+			else if(msg==6){show = '未合作连锁型客户'}
+			else if(msg==7){show = '未合作普通客户'}
+			return show;
+		}
+		//分页
+		function pagingShow(){
+			$('#paging').css('display','block');
+			$('#paging').pagination({
+	            totalData:citys.length,
+	            pageCount:citys.length,
+	            showData:5,
+	            current: 1,
+	            jump: true,
+	            coping: true,
+	            count: 2,
+	            homePage: '首页',
+	            endPage: '末页',
+	            prevContent: '上页',
+	            nextContent: '下页',
+	            callback: function (api) {
+//			        listShow((api.getCurrent()-1)*5,api.getCurrent()*5)
+			        if(citys.length<api.getCurrent()*5){listShow((api.getCurrent()-1)*5,citys.length);}
+					else{listShow((api.getCurrent()-1)*5,api.getCurrent()*5);}
+			    }
+	       });
+		}
+		//门店添加
+	    function maplab(){
+	    	$('.labellist').html('');
+	    	$('.stylelist').html('');
+	    	$('.formtype').html('');
+			//标签导入
+			for(var i=0;i<labellist.length;i++){
+				$('.labellist').append('<li><input type="checkbox" value="'+labellist[i].name+'"/><span>'+labellist[i].name+'</span></li>');
+			}
+			//类型导入
+			for(var i=0;i<stylelist.length;i++){
+				$('.stylelist').append('<option value="'+stylelist[i].id+'">'+stylelist[i].name+'</option>');
+				$('.stylelist').css('display','inline-block');
+			}
+			//状态导入
+			for(var i=0;i<typelist.length;i++){
+				$('#formtype').append('<option data-id="'+typelist[i].id+'">'+typelist[i].name+'</option>');
+				$('#formtype').css('display','inline-block');
+			}
+		}
+	</script>
+</html>

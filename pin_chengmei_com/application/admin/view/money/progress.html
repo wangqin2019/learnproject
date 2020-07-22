@@ -1,0 +1,209 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>订单进度</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('progress')}">
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" name="store_id" id="store_id" style="width: 180px">
+                                    <option value="">筛选活动门店</option>
+                                    {if !empty($branchList)}
+                                    {foreach name="branchList" item="vo"}
+                                    <option value="{$vo.id}" {if condition="$store_id eq $vo['id']"}selected{/if}>{$vo.sign}{$vo.title}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                        <div class="input-group" style="margin-top: -5px;">
+                            <select class="form-control m-b chosen-select" name="pid" id="pid" style="width: 180px">
+                                <option value="">筛选活动商品</option>
+                                {if !empty($goodsList)}
+                                {foreach name="goodsList" item="vo"}
+                                <option value="{$vo.id}" {if condition="$pid eq $vo['id']"}selected{/if}>{$vo.name}</option>
+                                {/foreach}
+                                {/if}
+                            </select>
+                        </div>
+                        <div class="input-group"  style="margin-bottom: 5px;">
+                            <select class="form-control m-b" name="back_money" id="back_money" style="width: auto">
+                                <option value="888" {if condition="$back_money eq 888"}selected{/if}>返款进度</option>
+                                <option value="0"  {if condition="$back_money eq 0"}selected{/if}>待申请反馈</option>
+                                <option value="1"  {if condition="$back_money eq 1"}selected{/if}>已申请返款</option>
+                                <option value="2"  {if condition="$back_money eq 2"}selected{/if}>返款已处理</option>
+                            </select>
+                        </div>
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" name="start" id="start" onclick="laydate()" value="{$start}" autocomplete="off"  class="form-control layer-date" placeholder="拼购成团开始"/>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" name="end" id="end" onclick="laydate()" value="{$end}" autocomplete="off" class="form-control layer-date" placeholder="拼购成团结束"/>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的拼团产品名" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>
+                                &nbsp;&nbsp;<span class="input-group-btn">
+                                    <a href="{:url('progress',['key'=>$val,'store_id'=>$store_id,'pid'=>$pid,'back_money'=>$back_money,'start'=>$start,'end'=>$end,'export'=>1])}" class="btn btn-primary"><i class="fa fa-download"></i> 导出</a>
+                                </span>
+                            </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>订单发起人</th>
+                                <th>所属门店</th>
+                                <th>订单单号</th>
+                                <th>订单产品</th>
+                                <th>产品价格</th>
+                                <th>完成时间</th>
+                                <th>返款进度</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+
+                            <tr class="long-td">
+                                <td>{{d[i].id}}</td>
+                                <td>{{d[i].realname}}</td>
+                                <td>{{d[i].title}} {{d[i].sign}}</td>
+                                <td>{{d[i].order_sn}}</td>
+                                <td>{{d[i].tuan_name}}</td>
+                                <td>{{d[i].tuan_price}}</td>
+                                <td>{{d[i].success_time}}</td>
+                                <td>
+                                    {{# if(d[i].back_money==1){ }}
+                                        <div ><span class="label label-info">销售已申请</span></div>
+                                    {{# }else if(d[i].back_money==2){ }}
+                                        <div><span class="label label-success">财务已处理</span></div>
+                                    {{# }else{ }}
+                                        <div><span class="label label-default">等待销售审核</span></div>
+                                    {{# } }}
+                                </td>
+                            </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+<script type="text/javascript">
+
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var store_id=$('#store_id').val();
+        var start=$('#start').val();
+        var end=$('#end').val();
+        var pid=$('#pid').val();
+        var back_money=$('#back_money').val();
+        var count="{$count}";
+        $.getJSON('{:url("Money/progress")}', {page: curr || 1,key:key,store_id:store_id,start:start,end:end,pid:pid,back_money:back_money}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页/共'+ obj.pages +'页，总计'+count+'条记录');
+                    }
+                });
+            }
+        });
+    }
+
+//编辑拼团
+function progress(id){
+    location.href = './progress/id/'+id+'.html';
+}
+
+//删除拼团
+function del(id){
+    lunhui.confirm(id,'{:url("del")}');
+}
+
+//拼团状态
+function state(id){
+    lunhui.status(id,'{:url("state")}');
+}
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+<!--<script src="__JS__/leftTime.min.js"></script>-->
+<!--<script type="text/javascript">-->
+    <!--$(function() {-->
+        <!--//日期倒计时,现在距离下面的日期-->
+        <!--var data_show = $('.data-box');-->
+        <!--console.log(data_show.html());-->
+        <!--for (var i = 1; i <= data_show.length; i++) {-->
+            <!--function_name($("#dateshow" + i).data("date"), "#dateshow" + i);-->
+        <!--}-->
+
+        <!--function function_name(time, obj) {-->
+            <!--$.lefttime(time, function(d) {-->
+                <!--if (d.status) {-->
+                    <!--var $dateshow1 = $(obj);-->
+                    <!--$dateshow1.find(".dddd").html(d.d);-->
+                    <!--$dateshow1.find(".hhhh").html(d.h);-->
+                    <!--$dateshow1.find(".mmmm").html(d.m);-->
+                    <!--$dateshow1.find(".ssss").html(d.s);-->
+                <!--}-->
+            <!--});-->
+        <!--}-->
+    <!--});-->
+<!--</script>-->
+</body>
+</html>

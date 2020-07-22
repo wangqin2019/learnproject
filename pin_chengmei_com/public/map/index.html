@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+		<title>门店地图</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<style type="text/css">
+			body{overflow: hidden;}
+			.sider{width: 180px;height: 100%;background: #fff;position: fixed;left: 0;top: 0;background: #2f4050;;padding-right: 20px;}
+			.sider p{width: 100%;height: 40px;line-height: 40px;color: #a7b1c2;font-size: 14px;cursor: pointer;}
+			.sider p:hover{color: #fff;}
+			.sider span{float: right;font-size: 12px;}
+			.sider div{padding-left: 20px;}
+			.sidersearch{color: #fff !important;}
+			#iframe{margin: 0 0 0 180px;border: none;list-style: none;text-decoration: none;outline-style: none;}
+		</style>
+	</head>
+	<body>
+		<div class="sider">
+			<div>
+				<p data-url="show.html">门店展示</p>
+			</div>
+			<div>
+				<p data-url="">维护<span class="iconfont">&#xe602;</span></p>
+				<div class="hide">
+					<p data-url="shopn.html">门店信息</p>
+					<p data-url="styleform.html">门店类型</p>
+					<p data-url="labelform.html">门店标签</p>
+					<p data-url="areaform.html">地图信息</p>
+					<p data-url="areapower.html">地图权限</p>
+				</div>
+			</div>
+			<div>
+				<p data-url="staffpower.html">权限设置</p>
+			</div>
+		</div>
+		<iframe src="" id="iframe" frameborder="0" scrolling="no" border="0" ></iframe>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/ecmascript">
+		$('#iframe').css({'height':document.documentElement.clientHeight+'px','width':(document.body.clientWidth  -180)+'px'});
+		$('.sider p').click(function(e){
+//			alert($(this).attr('data-url'))
+			var urlpath = $(this).attr('data-url');
+			if(urlpath != ''){
+				$('#iframe').attr('src',urlpath)
+				$('.sider p').removeClass('sidersearch');
+				$(this).addClass('sidersearch');
+			}
+			else{
+				if($(this).siblings('div').hasClass('hide')){
+					$(this).siblings('div').removeClass('hide');
+					$(this).children('span').html('&#xe695;');
+				}
+				else{
+					$(this).siblings('div').addClass('hide');
+					$(this).children('span').html('&#xe602;');
+				}				
+			}
+		})
+	</script>
+</html>

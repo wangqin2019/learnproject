@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0'/>
+	<meta content='yes' name='apple-mobile-web-app-capable'/>
+	<meta content='black' name='apple-mobile-web-app-status-bar-style'/>
+	<meta content='telephone=no' name='format-detection'/>
+	<title>支付跳转中......</title>
+</head>
+<body>
+<div style='width: 20%;margin: 40% auto;'>
+	<img style='width:100%;  display: block' src='https://pay.qunarmei.com/static/img/home/load.gif'>
+	<form style='display:none;' id='form1' name='form1' method='post' action='https://pay.qunarmei.com/pay.htm'>{$post_html}</form>
+</div>
+</body>
+</html>
+
+<script type='text/javascript'>
+    function load_submit(){
+        document.form1.submit()
+    }
+    load_submit();
+</script>

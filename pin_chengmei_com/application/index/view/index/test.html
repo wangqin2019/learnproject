@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<!--<script>
+        window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzAxNDYwMDk4NA==#wechat_redirect';
+    </script>-->
+	<script src="/static/admin/js/jquery.min.js?v=2.1.4"></script>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+
+    $.ajax({
+        url: 'https://pin.qunarmei.com/api/h5/lucky_goods',
+        dataType: 'json',
+        data: {},
+        method: 'GET',
+        success: function (data) {
+            console.log(data);
+
+        },
+        error: function (xhr) {
+            // 导致出错的原因较多，以后再研究
+            alert('error:' + JSON.stringify(xhr));
+        }
+    });
+
+    // $.ajax({
+    //     type: 'post',
+    //     url: 'http://teststore.qunarmei.com/api/backstage/manage/apply',
+    //     dataType: 'json',
+    //     data: "{company_title:'去哪美',legal_person:'郭鑫',id_card:'123456789654123012',mobile:'18818219125',bus_licence:'http://e.hiphotos.baidu.com/image/pic/item/f9198618367adab4bee9208d87d4b31c8601e4c7.jpg',gd_category:'彩妆',brand_auth:'http://e.hiphotos.baidu.com/image/pic/item/f9198618367adab4bee9208d87d4b31c8601e4c7.jpg',location_c:'上海',location_b:'上海',location_a:'上海',address:'上海上海上海',lat:'0',lng:'0'}",
+    //     success: function (res) {
+    //         console.log(res)
+    //     },
+    //     complete:function (res) {
+    //         console.log(res)
+    //     },
+    // });
+
+
+</script>
+</html>

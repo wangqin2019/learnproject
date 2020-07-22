@@ -1,0 +1,223 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>卡券列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('coupons')}">
+                        <div class="col-sm-12">
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" data-placeholder="请选择核销状态" name="status" id="status" style="width: 150px;">
+                                    <option value="88" {if condition="$status eq 88"}selected{/if}>请选择核销状态</option>
+                                    <option value="1" {if condition="$status eq 1"}selected{/if}>已核销</option>
+                                    <option value="0" {if condition="$status eq 0"}selected{/if}>未核销</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" data-placeholder="请选择分享状态" name="share_status" id="share_status" style="width: 150px;">
+                                    <option value="88" {if condition="$share_status eq 88"}selected{/if}>请选择分享状态</option>
+                                    <option value="0" {if condition="$share_status eq 0"}selected{/if}>未分享</option>
+                                    <option value="1" {if condition="$share_status eq 1"}selected{/if}>已分享</option>
+                                    <option value="2" {if condition="$share_status eq 2"}selected{/if}>分享中</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" data-placeholder="请选择发货状态" name="is_deliver" id="is_deliver" style="width: 150px;">
+                                    <option value="88" {if condition="$is_deliver eq 88"}selected{/if}>请选择发货状态</option>
+                                    <option value="0" {if condition="$is_deliver eq 0"}selected{/if}>未发货</option>
+                                    <option value="1" {if condition="$is_deliver eq 1"}selected{/if}>已发货</option>
+                                    <option value="2" {if condition="$is_deliver eq 2"}selected{/if}>发货中</option>
+                                    <option value="11" {if condition="$is_deliver eq 11"}selected{/if}>已申请</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" data-placeholder="请选择商品类型" name="type" id="type" style="width: 150px;">
+                                    <option value="88" {if condition="$type eq 88"}selected{/if}>请选择商品类型</option>
+                                    <option value="0" {if condition="$type eq 0"}selected{/if}>九大商品</option>
+                                    <option value="1" {if condition="$type eq 1"}selected{/if}>清洁卡</option>
+                                    <option value="2" {if condition="$type eq 2"}selected{/if}>2020大礼包</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" name="start" id="start" onclick="laydate()" value="{$start}" autocomplete="off"  class="form-control layer-date" placeholder="开始日期"/>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" name="end" id="end" onclick="laydate()" value="{$end}" autocomplete="off" class="form-control layer-date" placeholder="结束日期"/>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的用户名" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <div class="btn-group">
+                                       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-download"></i> 导出 <span class="caret"></span>
+                                      </button>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="{:url('export1',['key'=>$val,'status'=>$status,'share_status'=>$share_status,'is_deliver'=>$is_deliver,'start'=>$start,'end'=>$end,'type'=>$type,'export'=>1])}">导出Excel文件</a></li>
+                                        <li><a href="{:url('export1',['key'=>$val,'status'=>$status,'share_status'=>$share_status,'is_deliver'=>$is_deliver,'start'=>$start,'end'=>$end,'type'=>$type,'export'=>2])}">导出Csv文件</a></li>
+                                      </ul>
+                                    </div>
+                                </span>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr class="long-tr">
+                            <th>ID</th>
+                            <th>所属市场</th>
+                            <th>所属美容院</th>
+                            <th>推广美容师</th>
+                            <th>用户姓名/电话</th>
+                            <th>卡券编号</th>
+                            <th>商品</th>
+                            <th>添加时间</th>
+                            <th>核销时间</th>
+                            <th>核销状态</th>
+                            <th>分享状态</th>
+                            <th>发货状态</th>
+                            <th>来源</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                            <tr class="long-td">
+                                <td>{{d[i].id}}</td>
+                                <td>
+                                    {{d[i].pertain_department_name}}
+                                    {{# if(d[i].origin_department){ }}
+                                    <br/>
+                                    {{d[i].origin_department}}
+                                    {{# } }}
+                                </td>
+                                <td>
+                                    {{d[i].title}}
+                                    {{# if(d[i].origin_title){ }}
+                                    <br/>
+                                    {{d[i].origin_title}}
+                                    {{# } }}
+                                </td>
+                                <td>
+                                    {{d[i].sellername}}{{d[i].sellermobile}}
+                                    {{# if(d[i].origin_name){ }}
+                                    <br/>
+                                    {{d[i].origin_name}}{{d[i].origin_mobile}}
+                                    {{# } }}
+                                </td>
+                                <td>{{d[i].realname}}<br/>{{d[i].mobile}}</td>
+                                <td>{{d[i].ticket_code}}</td>
+                                <td>{{d[i].name}}（￥{{d[i].activity_price}}）</td>
+                                <td>{{d[i].insert_time}}</td>
+                                <td>
+                                    {{# if(d[i].status1 == 1){ }}
+                                    {{d[i].update_time}}
+                                    {{# } }}
+                                </td>
+                                <td>{{d[i].status}}</td>
+                                <td>{{d[i].share_status}}</td>
+                                <td>{{d[i].deliver}}</td>
+                                <td>{{d[i].source}}</td>
+                                <td>
+                                    <button class="btn btn-xs btn-info logs" data-uid="{{d[i].uid}}" data-code="{{d[i].ticket_code}}">日志</button>
+                                </td>
+                            </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var status=$('#status').val();
+        var share_status=$('#share_status').val();
+        var start=$('#start').val();
+        var end=$('#end').val();
+        var type=$('#type').val();
+        var is_deliver=$('#is_deliver').val();
+        var scene=$('#scene').val();
+        $.getJSON('{:url("coupons")}', {page: curr || 1,key:key,status:status,share_status:share_status,start:start,end:end,scene:scene,type:type,is_deliver:is_deliver}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+    //分享日志
+    $(document).on('click','.logs',function () {
+        code = $(this).data('code');
+        uid = $(this).data('uid');
+        console.log(code)
+        layer.open({
+            type: 2,
+            area: ['768px', '600px'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: '{:url("blinkbox/share")}?uid='+uid+'&code='+code+'&flag=1'
+        });
+    });
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+</script>
+</body>
+</html>

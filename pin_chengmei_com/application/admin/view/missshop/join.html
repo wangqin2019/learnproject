@@ -1,0 +1,250 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>门店开关</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('join')}">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的用户名" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <a href="{:url('join',['key'=>$val,'export'=>1])}" class="btn btn-primary"><i class="fa fa-download"></i> 导出</a>
+                                </span>&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <a href="{:url('join',['key'=>$val,'export'=>1])}" class="btn btn-primary"><i class="fa fa-download"></i> 导出</a>
+                                </span>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>美容院信息</th>
+                                <th>店老板信息</th>
+                                <th>活动开关状态</th>
+                                <th>选择参与活动</th>
+                                <th>是否开启拼购</th>
+                                <th>活动产品操作</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].id}}</td>
+                                    <td>{{d[i].title}}<br/>{{d[i].sign}}</td>
+                                    <td>{{d[i].realname}}<br/>{{d[i].mobile}}</td>
+                                    <td>
+                                        {{# if(d[i].activity_key==1){ }}
+                                        <a href="javascript:;" onclick="state({{d[i].id}});">
+                                            <div id="zt{{d[i].id}}"><span class="label label-info">已参与</span></div>
+                                        </a>
+                                        {{# }else{ }}
+                                        <a href="javascript:;" onclick="state({{d[i].id}});">
+                                            <div id="zt{{d[i].id}}"><span class="label label-default">未参与</span></div>
+                                        </a>
+                                        {{# } }}
+                                    </td>
+                                    <td class="text-left" onclick="activity_goods({{d[i].id}})" style="cursor: pointer">
+                                        {{d[i].activitys}}
+                                    </td>
+                                    <td>
+                                        {{# if(d[i].join_pg==1){ }}
+                                        <a href="javascript:;" onclick="join({{d[i].id}});">
+                                            <div id="pg{{d[i].id}}"><span class="label label-info">已开启</span></div>
+                                        </a>
+                                        {{# }else{ }}
+                                        <a href="javascript:;" onclick="join({{d[i].id}});">
+                                            <div id="pg{{d[i].id}}"><span class="label label-default">未开启</span></div>
+                                        </a>
+                                        {{# } }}
+                                    </td>
+                                    <td>
+                                        {{# if(d[i].goods){ }}
+                                        <a href="javascript:;" onclick="up_down({{d[i].id}});">
+                                            <div id="up{{d[i].id}}"><span class="label label-info">已上架</span></div>
+                                        </a>
+                                        {{# }else{ }}
+                                        <a href="javascript:;" onclick="up_down({{d[i].id}});">
+                                            <div id="up{{d[i].id}}"><span class="label label-default">未上架</span></div>
+                                        </a>
+                                        {{# } }}
+                                    </td>
+                                    <td>
+                                        <a href="{:url('branch_goods')}?storeid={{d[i].id}}&title={{d[i].title}}" class="btn btn-info btn-xs btn-outline"><i class="fa fa-gift"></i> 抽奖配置</a><br/>
+                                        <a href="{:url('branch_give')}?storeid={{d[i].id}}&cate_id=4&title={{d[i].title}}" class="btn btn-info btn-xs btn-outline"><i class="fa fa-paw"></i> 买赠推荐</a><br/>
+                                        <a href="{:url('activity_axs')}?storeid={{d[i].id}}&title={{d[i].title}}" class="btn btn-info btn-xs btn-outline"><i class="fa fa-truck"></i> 安心直送</a>
+                                    </td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        $.getJSON('{:url("missshop/join")}', {page: curr || 1,key:key}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第<span id="pp">'+ obj.curr +'</span>页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+
+    /**
+     * [ad_state 广告状态]
+     * @Author[田建龙 864491238@qq.com]
+     */
+    function state(val){
+        $.post('{:url("state")}',
+            {id:val},
+            function(data){
+                if(data.code==1){
+                    var a='<span class="label label-info">已参与</span>'
+                    $('#zt'+val).html(a);
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    return false;
+                }else{
+                    var b='<span class="label label-default">未参与</span>'
+                    $('#zt'+val).html(b);
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    return false;
+                }
+            });
+        return false;
+    }
+    function join(val){
+        $.post('{:url("join_pg")}',
+            {id:val},
+            function(data){
+                if(data.code==1){
+                    var a='<span class="label label-info">已开启</span>'
+                    $('#pg'+val).html(a);
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    return false;
+                }else{
+                    var b='<span class="label label-default">未开启</span>'
+                    $('#pg'+val).html(b);
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    return false;
+                }
+            });
+        return false;
+    }
+    function join_tk(val){
+        $.post('{:url("join_tk")}',
+            {id:val},
+            function(data){
+                if(data.code==1){
+                    var a='<span class="label label-info">已开启</span>'
+                    $('#tk'+val).html(a);
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    return false;
+                }else{
+                    var b='<span class="label label-default">未开启</span>'
+                    $('#tk'+val).html(b);
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    return false;
+                }
+            });
+        return false;
+    }
+
+    function up_down(val){
+        $.post('{:url("up_down")}',
+            {id:val},
+            function(data){
+                if(data.code==1){
+                    var a='<span class="label label-info">已上架</span>'
+                    $('#up'+val).html(a);
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    return false;
+                }else if(data.code==3){
+                    var a='<span class="label label-default">未上架</span>'
+                    $('#up'+val).html(a);
+                    layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                    return false;
+                }else{
+                    var b='<span class="label label-default">未上架</span>'
+                    $('#up'+val).html(b);
+                    layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                    return false;
+                }
+            });
+        return false;
+    }
+
+    function activity_goods(id){
+            layer.open({
+                type: 2,
+                area: ['768px', '600px'],
+                fixed: false, //不固定
+                maxmin: true,
+                content: '{:url("missshop/activity_goods")}?storeid='+id
+            });
+    }
+
+
+</script>
+</body>
+</html>

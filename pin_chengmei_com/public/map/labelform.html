@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="referrer" content="no-referrer">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/pagination.css"/>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+	    <script type="text/javascript" src="js/pagination.js"></script>
+	    <script type="text/javascript" src="city.js"></script>
+	    <style type="text/css">
+	    	.shopnlist,.title{width: 90%;margin: 20px 5%;}
+	    	#add{float: right;margin-left: 10px;color: #fff;background:#23c6c8}
+	    	.shopnlist img{width: 38px;height: 43px;}
+	    	.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th{vertical-align: middle;}
+	    	.conf_window{width: 400px;background: #fff;border-radius: 5px;margin-left: -150px;margin-top: -137px;}
+	    	.conf_content div{margin-top: 20px;font-size: 16px;width: 100%;}
+	    	.conf_content p{width: 80px;text-align: right;float: left;margin-right: 20px;}
+	    	.conf_content textarea,.conf_content input{width: 260px;padding-left: 10px;}
+	    	.conf_content textarea{height: 100px;padding: 10px;}
+	    	.conf_content button{margin: 0 40px 20px 0;width: 80px;float: right;background: #007AFF;color: #fff;}
+	    </style>
+	</head>
+	<body>
+		<div class="title">
+			<input placeholder="请输入标签名称" id="sch_name"/>
+			
+			<button id="search">查询</button>
+			
+			<button id="add">新增</button>
+		</div>
+		<table class="shopnlist table table-bordered table-hover">
+			<colgroup>
+				<col width="80px" /><col width="250px"/><col /><col width="200px"/>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>名称</th>
+					<th>介绍</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="list"></tbody>
+		</table>
+		<div id="paging" class="quotes"></div>
+		<!--添加/编辑-->
+		<div class="confirm hide">
+			<div class="mask"></div>
+			<div class="conf_window">
+				<div class="conf_toolbar"><span class="iconfont">&#xe61f;</span></div>
+				<div class="conf_content">
+					<div>
+						<p>名称</p>
+						<input value="请输入标签名" class="formname"/>
+					</div>
+					<div>
+						<p>说明</p>
+						<textarea placeholder="请输入标签说明" class="formcontent"></textarea>
+					</div>
+					<div>
+						<button id="save">保存</button>
+					</div>
+				</div>
+			</div>			
+		</div>
+		<div class="tishi hide"></div>
+	</body>
+	<script type="text/javascript">
+		var listid='',labellistall = labellist;
+		if(labellist.length<5){listShow(0,labellist.length);}
+		else{listShow(0,5);}
+		pagingShow();
+//---------------------------------------------------------------------------------表格操作----------------------------------------------------------------
+		//删除
+		$('#list').on('click','.delect',function(){
+			var id = $(this).parent().parent().attr('data-id');
+			for(var i=0;i<labellist.length;i++){
+				if(labellist[i].id == id){
+					labellist.splice(i,1);
+				}
+			}
+			if(labellist.length<5){listShow(0,labellist.length);}
+			else{listShow(0,5);}
+			pagingShow();
+			$(this).parent().parent().remove();
+		})
+		//取消
+		$('.conf_toolbar span').click(function(){
+			$('.confirm').addClass('hide');
+			listid='';
+		})
+		//新增
+		$('#add').click(function(){
+			$('.confirm').removeClass('hide');
+			$('.formname').val('');
+			$('.formcontent').val('');
+		})
+		//编辑
+		$('#list').on('click','.change',function(){
+			$('.confirm').removeClass('hide');
+			listid = $(this).parent().parent().attr('data-id');
+			for(var i=0;i<labellistall.length;i++){
+				if(labellistall[i].id == listid){
+					$('.formname').val(labellistall[i].name);
+					$('.formcontent').val(labellistall[i].content);
+				}
+			}
+		})
+		//保存
+		$('#save').click(function(){
+			var name = $('.formname').val();
+			var content = $('.formcontent').val();
+			if(name != '' && content != ''){
+				if(listid == ''){
+					labellistall.push({"id":labellistall.length,"name":name,"content":content});
+				}
+				else{
+					for(var i=0;i<labellistall.length;i++){
+						if(labellistall[i].id == listid){
+							labellistall[i].name = name;
+							labellistall[i].content = content;
+						}
+					}
+				}
+				labellist = labellistall;
+				if(labellist.length<5){listShow(0,labellist.length);}
+				else{listShow(0,5);}
+				pagingShow();
+				
+				$('.confirm').addClass('hide');
+				listid='';
+			}
+			else{
+				$('.tishi').html('您还有未输入项');
+	    		$('.tishi').removeClass('hide');
+	    		var t = setTimeout(function(){
+	    			$('.tishi').addClass('hide');
+	    			$('.map').addClass('hide');
+	    		},1500);
+			}
+		})
+		//筛选
+		$('#search').click(function(){
+			var name = $('#sch_name').val();
+			labellist = [];
+			for(var i=0;i<labellistall.length;i++){
+				if(name ==''){labellist = labellistall;}
+				else{if(labellistall[i].name == name){labellist.push(labellistall[i]);}}
+			}
+			if(labellist.length<5){listShow(0,labellist.length);}
+			else{listShow(0,5);}
+			pagingShow();
+		})
+//---------------------------------------------------------------------------------筛选end----------------------------------------------------------------
+	    //表格显示
+        function listShow(startnum,endnum){
+        	$('#list').html('');
+        	for(var i=startnum;i<endnum;i++){
+        		$('#list').append('<tr data-id="'+labellist[i].id+'">'+
+        				'<th>'+labellist[i].id+'</th>'+
+        				'<th>'+labellist[i].name+'</th>'+
+        				'<th>'+labellist[i].content+'</th>'+
+        				'<th><button class="change">编辑</button><button class="delect">删除</button></th></tr>')
+        	}
+        }
+		//分页
+		function pagingShow(){
+			$('#paging').css('display','block');
+			$('#paging').pagination({
+	            totalData:labellist.length,
+	            pageCount:labellist.length,
+	            showData:5,
+	            current: 1,
+	            jump: true,
+	            coping: true,
+	            count: 2,
+	            homePage: '首页',
+	            endPage: '末页',
+	            prevContent: '上页',
+	            nextContent: '下页',
+	            callback: function (api) {
+			        console.log(api.getCurrent());
+			        if(labellist.length<api.getCurrent()*5){listShow((api.getCurrent()-1)*5,labellist.length);}
+					else{listShow((api.getCurrent()-1)*5,api.getCurrent()*5);}
+//			        listShow((api.getCurrent()-1)*5,api.getCurrent()*5)
+			    }
+	       });
+		}
+	</script>
+</html>

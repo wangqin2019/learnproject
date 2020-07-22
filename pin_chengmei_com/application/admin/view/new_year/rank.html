@@ -1,0 +1,63 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>美容师推广列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="input-group-btn">
+                        <a href="{:url('rank',['export'=>1])}" class="btn btn-primary"><i class="fa fa-download"></i> 导出</a>
+                    </span>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>排名</th>
+                                <th>所属市场</th>
+                                <th>门店名称</th>
+                                <th>门店编码</th>
+                                <th>美容师姓名</th>
+                                <th>美容师电话</th>
+                                <th>推广新客人数</th>
+                            </tr>
+                        </thead>
+                            {volist name='customerList' id='vo'}
+                                <tr class="long-td">
+                                    <td>{$vo.rank}</td>
+                                    <td>{$vo.st_department}</td>
+                                    <td>{$vo.title}</td>
+                                    <td>{$vo.sign}</td>
+                                    <td>{$vo.seller_name}</td>
+                                    <td>{$vo.mobile}</td>
+                                    <td>{$vo.count}</td>
+                                </tr>
+                            {/volist}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>单独购买订单详情</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">订单号：{$info['order_sn']} &nbsp;&nbsp;总金额：{$info['total']} &nbsp;&nbsp;购买人：{$info['realname']} &nbsp;&nbsp;状态：
+                            {switch name="info.status"}
+                            {case value="1"}未付款{/case}
+                            {case value="2"}已付款{/case}
+                            {default /}已失效
+                            {/switch}
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <tr class="active text-center">
+                                    <td>订单号</td>
+                                    <td>购买人</td>
+                                    <td>支付金额</td>
+                                    <td>是否支付</td>
+                                    <td>支付时间</td>
+                                    <td>备注</td>
+                                </tr>
+                                {foreach $info['list'] as $vo}
+                                <tr class="text-center">
+                                    <td>
+                                       {$vo['order_sn']}
+                                    </td>
+                                    <td>{$vo['realname']}</td>
+                                    <td>{$vo['pay_price']}</td>
+                                    <td>
+                                        {if condition="$vo['pay_status'] eq 0"}
+                                        未支付
+                                        {elseif condition="$vo['pay_status'] eq 1 "/}
+                                        已支付
+                                        {else/}
+                                        已退款
+                                        {/if}
+                                    </td>
+                                    <td>{$vo['pay_time'] |date='Y-m-d H:i:s',###}</td>
+                                    <td>
+                                        {eq name="$vo['pay_by_self']" value="1"}凑单{else}{/eq}
+                                        {if condition="$vo['refund_err'] neq ''"}
+                                            退款失败原因：{$vo['refund_err']}
+                                        {/if}
+                                    </td>
+                                </tr>
+                                {/foreach}
+                                <tr class="text-right">
+                                    <td colspan="7">
+                                        <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+<script type="text/javascript" src="/static/admin/webupload/webuploader.min.js"></script>
+
+<script type="text/javascript">
+        // $(function () {
+        //     $('#refund').click(function () {
+        //         layer.confirm('您确定要整单退款吗？', {
+        //             btn: ['确定', '取消'] //按钮
+        //         }, function () {
+        //             var ordersn = "{$info['order_sn']}";
+        //             var url = '{:url("Pintuan/refund")}';
+        //             $.post(url, {ordersn: ordersn}, function (data) {
+        //                 if (data.code == 1) {
+        //                     layer.msg(data.msg, {icon: 1, time: 1500, shade: 0.1}, function (index) {
+        //                         window.location.reload();
+        //                     });
+        //                 } else {
+        //                     layer.msg(data.msg, {icon: 2, time: 1500, shade: 0.1}, function (index) {
+        //                         window.location.reload();
+        //                     });
+        //                 }
+        //             });
+        //         });
+        //     });
+        // });
+
+</script>
+</body>
+</html>

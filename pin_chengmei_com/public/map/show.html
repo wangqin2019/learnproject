@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+		
+		<title>test</title>
+		<!--<link rel="stylesheet" type="text/css" href="css/show.css"/>-->
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.12&key=87479936d9ecb6fc4997e30cb3b14732&plugin=AMap.RangingTool,AMap.Scale,AMap.OverView,AMap.ToolBar"></script>
+	    	
+	    <script type="text/javascript" src="js/jquery.min.js"></script>
+	    <script type="text/javascript" src="js/common.js"></script>
+	    <script type="text/javascript" src="city.js"></script>
+	    <style type="text/css">
+	    	.shopnbar{position: fixed;top: 0px;left: 0px;background: #fff;height: 40px;width: 300px;text-align: center;font-size: 14px;line-height: 40px;transition:left 1s;-webkit-transition:left 1s;}
+	    	.shopnbarhide{left: -280px;}
+	    	.shopnshow{float: left;width: 280px;}
+	    	.shopnbar .iconfont{float: right;width: 20px;text-align: center;cursor: pointer;vertical-align: top;}
+	    	.prov_title,.style_title,.search{border-right: 1px solid #ddd;}
+	    	.prov_title,.style_title{background: #fff;height: 40px;width: 280px;text-align: center;font-size: 14px;border-bottom: 1px solid #DDD;line-height: 40px;}
+	    	.prov_title select,.style_title select{width: 190px;display: inline-table;margin-right: 10px;float: right;margin-top: 5px;}
+	    	.search{background: #fff;height: 40px;width: 280px;text-align: center;}
+			.search_title{width: 100%;height: 40px;font-size: 14px;}
+			.search_title span{width: 50px;height: 100%;}
+			.search_title input{width: 130px;height: 100%;border: none;}
+			.search_title button{width: 50px;}
+			.search p{text-align: left;padding: 0 20px;}
+			#areaSearch{background: #007AFF;color: #fff;height: 30px;line-height: 30px;}
+			#container{left: 300px;transition:left 1s, width 1s;-webkit-transition:left 1s, width 1s;}
+			
+			.testswitch{margin: 10px 0 10px 0;}
+			.imageShow{position: fixed;bottom: 0;right: 0;width: 85%;background: #eee;opacity:0.8;height: 100px;padding: 10px 20px;transition:left 1s, width 1s;-webkit-transition:left 1s, width 1s;}
+	    	.imageShow div{display: inline-block;}
+	    	.imgpart .iconfont{font-size: 12px;}
+	    	.imageShow img{width: 80px;height: 80px;display: inline-block;vertical-align: top;}
+	    	.imageShow input{width: 80px;height: 80px;margin-left: -95px;display: inline-block;vertical-align: top;background: #000;opacity: 0;cursor: pointer;}
+	    	#arealist div{display: inline-block;vertical-align: middle;}
+	    	.listnum{width: 30px;}
+	    	.listmsg{width: 205px;}
+	    </style>
+	</head>
+	<body>
+		<div id="container"></div>
+		
+		<div class="toolpart">
+			<div>
+				<button id='distance'><span class="iconfont">&#xe768;</span>测距工具</button>
+				<button id='move'><span class="iconfont">&#xe64a;</span>停止测距</button>
+			</div>
+			<div id="trading">
+				<div class="testswitch">
+					<input class="testswitch-checkbox" id="tradingswitch" type="checkbox" value="ON">
+					<label class="testswitch-label" for="tradingswitch">
+						<span class="testswitch-inner" data-on="ON" data-off="OFF"></span>
+						<span class="testswitch-switch"></span>
+					</label>
+				</div>
+				<span>显示商圈</span>
+			</div>
+			<div id="tagging">
+				<div class="testswitch">
+					<input class="testswitch-checkbox" id="taggingswitch" type="checkbox">
+					<label class="testswitch-label" for="taggingswitch">
+						<span class="testswitch-inner" data-on="ON" data-off="OFF"></span>
+						<span class="testswitch-switch"></span>
+					</label>
+				</div>
+				<span>显示标注</span>
+			</div>
+			<div>
+				<button id='removeCenter'><span class="iconfont">&#xe684;</span>中心点</button>
+			</div>
+		</div>
+		
+		<!--<button id='distance'>测距工具</button>
+		<button id='move'>平移</button>
+		<button id='tradingshow'>显示商圈</button>
+		<button id='tradinghide'>不显示商圈</button>-->
+		<div class="shopnbar">
+			<span class="iconfont">&#xe667;</span>
+			<div class="shopnshow">
+				<div class="prov_title">
+			    	<span>请选择地图:</span>
+			    	<select id="provSelect" value="1"></select>
+			    </div>
+			    <div class="style_title">
+			    	<span>请选择类型:</span>
+			    	<select id="styleSelect" value="-1">
+			    		<option value="-1">全部</option>
+			    	</select>
+			    </div>
+				<div class="search">
+				    <div class="search_title">
+				    	<span>请输入关键字:</span>
+				    	<input id='areaInput' type="text" value='' placeholder="请输入关键字">
+				    	<button id="areaSearch">查询</button>
+				    </div>
+				    <ul id="arealist"></ul>
+				</div>
+			</div>
+		</div>
+		
+		<!--图片展示-->
+		<div class="imageShow hide">
+			<label>门店图片</label>
+			<div class="imgpart"></div>
+		</div>
+		<div class="confirm_img hide">
+			<div class="mask"></div>
+			<div class="conf_window conf_img_window">
+				<div class="conf_toolbar"><span class="iconfont">&#xe61f;</span></div>
+				<div class="conf_content conf_img_content">
+					<div class="propimg"><p><span class="iconfont">&#xe667;</span></p></div>
+					<div class="imgcenter"><img src="" /></div>
+					<div class="nextimg"><p><span class="iconfont">&#xe602;</span></p></div>
+				</div>
+			</div>			
+		</div>
+	</body>
+	<script type="application/x-javascript">
+		var imgarray = ['img/pwd.png','img/add.png'];
+		var winhei = document.documentElement.clientHeight,winwid = document.documentElement.clientWidth;
+		$('#container').css({'width':(winwid-300)+'px','height':(winhei-0)+'px'});
+		$('#arealist').css('height',(winhei-120)+'px');
+		$('.imageShow').css('width',(winwid-300)+'px');
+//		document.getElementById('container').style.height = (document.documentElement.clientHeight-100)+'px';
+//		document.getElementById('container').style.width = (document.documentElement.clientWidth-300)+'px';
+//		document.getElementById('arealist').style.height = (document.documentElement.clientHeight-120)+'px';
+//		$('.imageShow').css('width',(document.documentElement.clientWidth-300)+'px');
+		var citysshow = citys,tradingarea=[],infoWindow;
+		var map = new AMap.Map('container', {
+	        zoom:15,//级别
+	        center: [121.473658, 31.230378],//中心点坐标
+	        viewMode:'3D',//使用3D视图
+	        features: ['bg', 'road', 'building'],
+	        resizeEnable: true
+	    });
+	    
+	    var toolBar = new AMap.ToolBar({
+	        visible: false
+	    });
+	    map.addControl(toolBar);
+	    toolBar.show();
+	    
+	    map.setFeatures(['bg', 'road', 'building']);
+	    var style =[];
+	    for(var i=0;i<stylelist.length;i++){
+	    	style.push({
+		        url: stylelist[i].url,
+		        anchor: new AMap.Pixel(3, 3),
+		        size: new AMap.Size(26, 29.5)
+		    })
+	    }
+	    provSearch();
+	    provShow(1);
+	    styleShow();
+	    
+	    var mass = new AMap.MassMarks(citysshow, {
+	        opacity: 1,
+	        zIndex: 11,
+	        cursor: 'pointer',
+	        style: style
+	    });
+		console.log(style);
+		console.log(citysshow);
+	    mass.on('click', function (e) {
+	        map.setCenter([e.data.lnglat.lng, e.data.lnglat.lat]);
+			infoWindow = new AMap.InfoWindow({ //创建信息窗体
+		        isCustom: false,  //使用自定义窗体
+		        content:'<div>门店</div><div>名称：'+e.data.name+'</div><div>电话：'+e.data.tel+'</div><div>地址：'+e.data.address+'</div>', //信息窗体的内容可以是任意html片段
+		        offset: new AMap.Pixel(10, -10)
+		    });
+	        infoWindow.open(map, e.data.lnglat);
+	    });
+	
+	    mass.setMap(map);
+	    
+	    //门店列表隐藏/显示
+	    $('.shopnbar .iconfont').click(function(){
+	    	if($('.shopnbar').hasClass('shopnbarhide')){
+	    		$(this).html('&#xe667;');
+	    		$('.shopnbar').removeClass('shopnbarhide');
+	    		$('#container').css({'width':(winwid-300)+'px','left':'300px'});
+	    		$('.imageShow').css({'width':(winwid-300)+'px','left':'300px'});
+	    	}
+	    	else{
+	    		$(this).html('&#xe602;');
+	    		$('.shopnbar').addClass('shopnbarhide');
+	    		$('#container').css({'width':(winwid-20)+'px','left':'20px'});
+	    		$('.imageShow').css({'width':(winwid-20)+'px','left':'20px'});
+	    	}
+	    })
+	    
+	    //商圈开关-默认打开
+	    $('#tradingswitch').siblings('').children('.testswitch-inner').click();
+	    $('#tradingswitch').change(function(e){
+	    	var msg = e.target.value;
+	    	if(msg =='ON'){
+	    		$(this).val('OFF');
+        		map.clearMap();
+	    	}
+	    	else{
+	    		$(this).val('ON');
+	    		map.clearMap();
+        		circleShow();
+	    	}
+	    })
+	    //商圈标注-默认关闭
+	    $('#taggingswitch').change(function(e){
+	    	var msg = e.target.value;
+	    	if(msg =='ON'){
+	    		$(this).val('OFF');
+        		map.setFeatures(['bg', 'road', 'building']);
+	    	}
+	    	else{
+	    		$(this).val('ON');
+	    		map.setFeatures(['bg', 'road', 'building', 'point']);
+	    	}
+	    })
+	    
+		$("#provSelect").change(function(e){
+			var provid = e.target.value;
+			if(provid == 1){
+				citysshow = citys;
+				map = new AMap.Map('container', {
+			        zoom:15,//级别
+			        center: [121.473658, 31.230378],//中心点坐标
+			        viewMode:'3D',//使用3D视图
+	        		features: ['bg', 'road', 'building', 'point'],
+	        		resizeEnable: true
+			   });
+			}
+			else if(provid == 2){
+				citysshow = citys2;
+				map = new AMap.Map('container', {
+			        zoom:15,//级别
+			        center: [113.264385 , 23.129112],//中心点坐标
+			        viewMode:'3D',//使用3D视图
+	        		features: ['bg', 'road', 'building', 'point'],
+	        		resizeEnable: true
+				});
+			}
+			else if(provid == 3){
+				citysshow=[];
+				map = new AMap.Map('container', {
+			        zoom:15,//级别
+			        center: [114.085947 , 22.547],//中心点坐标
+			        viewMode:'3D',//使用3D视图
+	        		features: ['bg', 'road', 'building', 'point'],
+	        		resizeEnable: true
+				});
+			}
+			else if(provid == 4){
+				citysshow=[];
+				map = new AMap.Map('container', {
+			        zoom:15,//级别
+			        center: [120.209947 , 30.245853],//中心点坐标
+			        viewMode:'3D',//使用3D视图
+	        		features: ['bg', 'road', 'building', 'point'],
+	        		resizeEnable: true
+				});
+			}
+		   
+			mass = new AMap.MassMarks(citysshow, {
+		        opacity: 1,
+		        zIndex: 11,
+		        cursor: 'pointer',
+		        style: style
+		    });
+		    mass.on('click', function (e) {
+		        map.setCenter([e.data.lnglat.lng, e.data.lnglat.lat]);
+				infoWindow = new AMap.InfoWindow({ //创建信息窗体
+			        isCustom: false,  //使用自定义窗体
+			        content:'<div>门店</div><div>名称：'+e.data.name+'</div><div>电话：'+e.data.tel+'</div><div>地址：'+e.data.address+'</div>', //信息窗体的内容可以是任意html片段
+			        offset: new AMap.Pixel(10, -10)
+			    });
+		        infoWindow.open(map, e.data.lnglat);
+		    });
+		    provShow(provid);
+		    provSearch();
+	    	mass.setMap(map);
+		  
+		})
+
+	    
+	    $("#styleSelect").change(function(e){
+	    	var selectid = e.target.value,showmsg ='',num=1;
+	    	console.log(selectid)
+	    	$('#arealist').html('');
+	    	for(var i=0;i<citysshow.length;i++){
+	    		if(citysshow[i].style == selectid || selectid == -1){
+	    			showmsg = showmsg + '<li data-shopnid="'+citysshow[i].id+'" data-lng="'+citysshow[i].lnglat.lng+'" data-lat="'+citysshow[i].lnglat.lat+'">'+
+	    			'<div class="listnum">'+num+'</div><div class="listmsg">'+
+	    			'<p>门店名称：'+citysshow[i].name+'</p>'+
+	    			'<p>门店电话：'+citysshow[i].tel+'</p>'+
+	    			'<p>门店地址：'+citysshow[i].address+'</p></div></li>';
+	    			num  = num+1;
+	    		}
+	    	}
+	    	$('#arealist').html(showmsg);
+	    	
+	    })
+	    //查询门店
+	    $("#areaSearch").click(function(){
+	    	var keywords = $("#areaInput").val(),showmsg ='';
+	    	$('#arealist').html('');
+	    	
+	    	for(var i=0;i<citysshow.length;i++){
+	    		if(citysshow[i].name.indexOf(keywords) != -1){
+	    			showmsg = showmsg + '<li data-shopnid="'+citysshow[i].id+'" data-lng="'+citysshow[i].lnglat.lng+'" data-lat="'+citysshow[i].lnglat.lat+'">'+
+	    			'<div class="listnum">'+(i+1)+'</div><div class="listmsg">'+
+	    			'<p>门店名称：'+citysshow[i].name+'</p>'+
+	    			'<p>门店电话：'+citysshow[i].tel+'</p>'+
+	    			'<p>门店地址：'+citysshow[i].address+'</p></div></li>';
+	    		}
+	    	}
+	    	$('#arealist').html(showmsg);
+
+//	    	AMap.plugin('AMap.PlaceSearch', function(){
+//		        var autoOptions = {
+//		          city: '全国'
+//		        }
+//		        var placeSearch = new AMap.PlaceSearch(autoOptions);
+//		        placeSearch.search(keywords, function(status, result) {
+//		        	console.log(result.poiList.pois)
+//		        	for(var i=0;i<result.poiList.pois.length;i++){
+//		        		citysshow.push({"lnglat":result.poiList.pois[i].location,"name":result.poiList.pois[i].name,"style":3});
+//		        		showmsg = showmsg+ '<li data-lng="'+result.poiList.pois[i].location.lng+'" data-lat="'+result.poiList.pois[i].location.lat+'"><p>门店名称：'+result.poiList.pois[i].name+'</p><p>门店电话：'+result.poiList.pois[i].tel+'</p><p>门店地址：'+result.poiList.pois[i].address+'</p></li>'
+//		        	}
+//		        	$('#arealist').html(showmsg);
+//		        })
+//	    	})
+	    })
+	    //门店选择
+	    $('#arealist').on('click','li',function(e){
+	    	var lng = $(this).attr('data-lng');
+	    	var lat = $(this).attr('data-lat');
+	    	var shopnid = $(this).attr('data-shopnid');
+	    	map.setCenter([lng,lat]);
+	    	$('#arealist li').removeClass('listclick');
+	    	$(this).addClass('listclick');
+	    	$('.imageShow').removeClass('hide');
+	    	
+	    	for(var i=0;i<citysshow.length;i++){
+	    		if(citysshow[i].id == shopnid){
+			    	infoWindow = new AMap.InfoWindow({ //创建信息窗体
+				        isCustom: false,  //使用自定义窗体
+				        content:'<div>门店</div><div>名称：'+citysshow[i].name+'</div><div>电话：'+citysshow[i].tel+'</div><div>地址：'+citysshow[i].address+'</div>', //信息窗体的内容可以是任意html片段
+				        offset: new AMap.Pixel(10, -10)
+				    });
+			        $('.imgpart').html('<img src="img/pwd.png" /><img src="img/add.png" />');
+			    	
+			    	infoWindow.on('open',function(){})
+			    	infoWindow.on('close',function(){})
+			    	infoWindow.open(map, citysshow[i].lnglat);
+	    		}
+	    	}
+	    })
+	    
+	    //显示图片
+	    $('.imgpart').on('click','img',function(e){
+	    	var imgpath = $(this).attr('src');
+	    	imgshownum = imgarray.indexOf(imgpath);
+	    	$('.imgcenter img').attr('src',imgpath);
+	    	$('.confirm_img').removeClass('hide');
+	    	toolBar.hide();
+	    	infoWindow.close();
+	    })
+	    //下张
+	    $('.nextimg').click(function(){
+	    	if(imgshownum == imgarray.length-1){
+	    		imgshownum = 0;
+	    	}
+	    	else{
+	    		imgshownum = imgshownum +1;
+	    	}
+	    	$('.imgcenter img').attr('src',imgarray[imgshownum]);
+	    })
+	    //上张
+	    $('.propimg').click(function(){
+	    	if(imgshownum == 0){
+	    		imgshownum = imgarray.length-1;
+	    	}
+	    	else{
+	    		imgshownum = imgshownum -1;
+	    	}
+	    	$('.imgcenter img').attr('src',imgarray[imgshownum]);
+	    })
+	    $('.conf_toolbar span').click(function(){
+			$('.confirm_img').addClass('hide');
+			toolBar.show();
+		})
+	   
+
+	    //-------------------------------------------------------------------获取经纬度-------------------------------------------------------------------------
+//	    map.on('click', function(e) {
+//	    	console.log(e)
+//	        console.log(e.lnglat.getLng() + ',' + e.lnglat.getLat());
+//	    });
+
+		//--------------------------------------------------------------------测距工具------------------------------------------------------------------------------------
+		//自定义样式-开始
+		var startMarkerOptions= {
+		    icon: new AMap.Icon({
+		        size: new AMap.Size(19, 31),//图标大小
+		        imageSize:new AMap.Size(19, 31),
+		        image: "https://webapi.amap.com/theme/v1.3/markers/b/start.png"
+		    })
+		};
+		//自定义样式-结束
+		var endMarkerOptions = {
+		    icon: new AMap.Icon({
+		        size: new AMap.Size(19, 31),//图标大小
+		        imageSize:new AMap.Size(19, 31),
+		        image: "https://webapi.amap.com/theme/v1.3/markers/b/end.png"
+		    }),
+		    offset: new AMap.Pixel(-9, -31)
+		};
+		//自定义样式-经过点
+		var midMarkerOptions = {
+		    icon: new AMap.Icon({
+		        size: new AMap.Size(19, 31),//图标大小
+		        imageSize:new AMap.Size(19, 31),
+		        image: "https://webapi.amap.com/theme/v1.3/markers/b/mid.png"
+		    }),
+		    offset: new AMap.Pixel(-9, -31)
+		};
+		//线绘制
+		var lineOptions = {
+		    strokeStyle: "solid",
+		    strokeColor: "#FF33FF",
+		    strokeOpacity: 1,
+		    strokeWeight: 2
+		};
+		var rulerOptions = {
+		    startMarkerOptions: startMarkerOptions,
+		    midMarkerOptions:midMarkerOptions,
+		    endMarkerOptions: endMarkerOptions,
+		    lineOptions: lineOptions
+		};
+		//启用自定义样式测距
+	    ruler = new AMap.RangingTool(map, rulerOptions);
+	    //--------------------------------------------------------------------测距工具end------------------------------------------------------------------------------------
+	    
+        $('#distance').click(function() {
+        	map.setDefaultCursor("crosshair");
+            ruler.turnOn();
+        })
+        $('#move').click(function() {
+        	map.setDefaultCursor("pointer");
+            ruler.turnOff();
+        })
+        
+        $('#tradingshow').click(function(){
+        	map.clearMap();
+        	circleShow();
+        })
+        $('#tradinghide').click(function(){
+        	map.clearMap();
+        })
+        $('#removeCenter').click(function(){
+        	map.setCenter([121.473658, 31.230378]);
+        })
+        
+        
+        function provShow(num){
+        	$('#provSelect').html('');
+		    for(var i=0;i<province.length;i++){  
+		    	$('#provSelect').append('<option value="'+province[i].id+'">'+province[i].area+'</option>');
+		    	if(province[i].id == num){
+		    		tradingarea = province[i].tradingarea;
+					console.log(tradingarea);
+			    	circleShow();
+		    	}
+		    }
+		    $('#provSelect').val(num);
+		    $('#provSelect').css('display','inline-block');
+	    }
+        function styleShow(){
+		    for(var i=0;i<stylelist.length;i++){
+		    	$('#styleSelect').append('<option value="'+stylelist[i].id+'">'+stylelist[i].name+'</option>');
+		    }
+		    $('#styleSelect').css('display','inline-block');
+	    }
+	    function circleShow(){
+    		for(var j=0;j<tradingarea.length;j++){
+		    	var lng = tradingarea[j].lnglat.lng;
+		    	var lat = tradingarea[j].lnglat.lat;
+		    	var radius = tradingarea[j].radius;
+		    	var circle = new AMap.Circle({
+			        map: map,
+			        center: [lng, lat],          //设置线覆盖物路径
+			        radius: radius,
+			        strokeColor: "#FF0000", //边框线颜色
+			        strokeOpacity: 0.3,       //边框线透明度
+			        strokeWeight: 3,        //边框线宽
+			        fillColor: "#FF0000", //填充色
+			        fillOpacity: 0.25//填充透明度
+			   });
+    		}
+	    }
+	    function provSearch(){
+	    	var showmsg='';
+	    	for(var i=0;i<citysshow.length;i++){
+				showmsg = showmsg + '<li data-shopnid="'+citysshow[i].id+'" data-lng="'+citysshow[i].lnglat.lng+'" data-lat="'+citysshow[i].lnglat.lat+'">'+
+				'<div class="listnum">'+(i+1)+'</div><div class="listmsg">'+
+				'<p>门店名称：'+citysshow[i].name+'</p>'+
+				'<p>门店电话：'+citysshow[i].tel+'</p>'+
+				'<p>门店地址：'+citysshow[i].address+'</p></div></li>';
+	    	}
+	    	$('#arealist').html(showmsg);
+	    	
+	    }
+	</script>
+</html>

@@ -1,0 +1,265 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>密丝小铺订单列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('orders')}">
+                        <div class="col-sm-12">
+                            <!--<div class="input-group" style="margin-top: -5px;width: 150px">-->
+                                <!--<select class="form-control m-b chosen-select" name="sale_uid" id="sale_uid">-->
+                                    <!--<option value="">选择美容师</option>-->
+                                    <!--{if !empty($seller)}-->
+                                    <!--{foreach name="seller" item="vo"}-->
+                                    <!--<option value="{$vo.fid}" {if condition="$sale_uid eq $vo['fid']"}selected{/if}>{$vo.realname}</option>-->
+                                    <!--{/foreach}-->
+                                    <!--{/if}-->
+                                <!--</select>-->
+                            <!--</div>-->
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" name="pay_status" id="pay_status" style="width: 150px;">
+                                    <option value="88" {if condition="$pay_status eq 88"}selected{/if}>请选择支付状态</option>
+                                    <option value="1" {if condition="$pay_status eq 1"}selected{/if}>已支付</option>
+                                    <option value="0" {if condition="$pay_status eq 0"}selected{/if}>未支付</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" name="scene" id="scene" style="width: 150px;">
+                                    <option value="88" {if condition="$scene eq 88"}selected{/if}>请选择集客场景</option>
+                                    {if !empty($activityList)}
+                                    {foreach name="activityList" item="vo"}
+                                    <option value="{$key}" {if condition="$scene eq $key"}selected{/if}>{$vo}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" name="is_axs" id="is_axs" style="width: 150px;">
+                                    <option value="88" {if condition="$is_axs eq 88"}selected{/if}>请选择配送方式</option>
+                                    <option value="1" {if condition="$is_axs eq 1"}selected{/if}>安心直邮</option>
+                                    <option value="0" {if condition="$is_axs eq 0"}selected{/if}>送到门店</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" name="start" id="start" onclick="laydate()" value="{$start}" autocomplete="off"  class="form-control layer-date" placeholder="订单开始日期"/>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" name="end" id="end" onclick="laydate()" value="{$end}" autocomplete="off" class="form-control layer-date" placeholder="订单结束日期"/>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" style="width: 80px;" name="start_id" id="start_id"  value="{$start_id}" autocomplete="off"  class="form-control" placeholder="起始ID"/>
+                            </div>
+                            <div class="input-group"  style="margin-bottom: 5px;">
+                                <input type="text" style="width: 80px;" name="end_id" id="end_id"  value="{$end_id}" autocomplete="off" class="form-control" placeholder="结束ID"/>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的订单信息" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <!--<a href="{:url('orders',['key'=>$val,'sale_uid'=>$sale_uid,'pay_status'=>$pay_status,'export'=>1])}" class="btn btn-primary"><i class="fa fa-download"></i> 导出</a>-->
+                                    <div class="btn-group">
+                                       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-download"></i> 导出 <span class="caret"></span>
+                                      </button>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="{:url('orders',['key'=>$val,'sale_uid'=>$sale_uid,'pay_status'=>$pay_status,'scene'=>$scene,'start'=>$start,'end'=>$end,'start_id'=>$start_id,'end_id'=>$end_id,'is_axs'=>$is_axs,'export'=>1])}">导出Excel文件</a></li>
+                                        <li><a href="{:url('orders',['key'=>$val,'sale_uid'=>$sale_uid,'pay_status'=>$pay_status,'scene'=>$scene,'start'=>$start,'end'=>$end,'end_id'=>$end_id,'end_id'=>$end_id,'is_axs'=>$is_axs,'export'=>2])}">导出Csv文件</a></li>
+                                      </ul>
+                                    </div>
+                                </span>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    已成交：<span style="color: #1ab394;">{$order['count']}</span> 单，支付金额：<span style="color: #ed5565;">{$order['pay_price']}</span> 元，成交门店：<span style="color: #1ab394;">{$order['storeNum']}</span> 家，参与人数：<span style="color: #1c84c6;">{$order['number']}</span> 人
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>所属市场</th>
+                                <th width="10%">所属美容院</th>
+                                <th>推广美容师</th>
+                                <th>订单信息</th>
+                                <th>支付状态</th>
+                                <th>取货方式</th>
+                                <th>取货状态</th>
+                                <th>已插入U8？</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                            {{# if(d[i].scene==5){ }}
+                            <tr>
+                                <td colspan="16" class="text-danger"><i class="fa fa-gift"></i> 春节88福袋订单：{{d[i].remark}}</td>
+                            </tr>
+                            {{# } }}
+                                <tr >
+                                    <td>{{d[i].id}}</td>
+                                    <td>{{d[i].st_department}}</td>
+                                    <td>{{d[i].cus_title}}<br/>{{d[i].sign}}</td>
+                                    <td>{{d[i].sellername}}<br/>{{d[i].sellermobile}}</td>
+                                    <td class="text-left">
+                                        购买人：{{d[i].realname}}<br/>
+                                        手机号码：{{d[i].mobile}}<br/>
+                                        数量：{{d[i].num}}<br/>
+                                        金额：{{d[i].pay_price}}<br/>
+                                        类型：{{d[i].scene}}<br/>
+                                        单号：{{d[i].order_sn}}<br/>
+                                        下单时间：{{d[i].insert_time}}<br/>
+                                        支付时间：{{d[i].pay_time}}<br/>
+                                        购买产品：<br/>{{d[i].name}}
+                                    </td>
+                                    <td>
+                                        {{# if(d[i].pay_status==1){ }}
+                                            <div><span class="label label-info">已支付</span></div>
+                                        {{# }else{ }}
+                                            <div><span class="label label-success">未支付</span></div>
+                                        {{# } }}
+                                    </td>
+                                    <td>
+                                        {{# if(d[i].is_axs==1){ }}
+                                        <div><span class="label label-warning">安心直邮</span></div>
+                                        {{# }else{ }}
+                                            {{# if(d[i].pick_type==1){ }}
+                                            <div><span class="label label-info">到店取货</span></div>
+                                            {{# }else{ }}
+                                            <div><span class="label label-success">现场取货</span></div>
+                                            {{# } }}
+                                        {{# } }}
+                                    </td>
+                                    <td>
+                                        {{# if(d[i].order_status==1){ }}
+                                        <div><span class="label label-info">已取货</span></div>
+                                        {{# }else{ }}
+                                        <div><span class="label label-success">未取货</span></div>
+                                        {{# } }}
+                                    </td>
+                                    <td width="15%">{{d[i].u8_flag_text}}<br/>{{d[i].u8_flag_err}}</td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var sale_uid=$('#sale_uid').val();
+        var pay_status=$('#pay_status').val();
+        var start=$('#start').val();
+        var end=$('#end').val();
+        var scene=$('#scene').val();
+        var is_axs=$('#is_axs').val();
+        var start_id=$('#start_id').val();
+        var end_id=$('#end_id').val();
+        $.getJSON('{:url("missshop/orders")}', {page: curr || 1,key:key,sale_uid:sale_uid,pay_status:pay_status,start:start,end:end,scene:scene,is_axs:is_axs,start_id:start_id,end_id:end_id}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+
+    //分期奖品
+    function fenqi(id){
+        location.href = './fenqi/id/'+id+'.html';
+    }
+
+    //编辑奖品
+    function edit(id){
+        location.href = './edit/id/'+id+'.html';
+    }
+
+    //删除奖品
+    function del(id){
+        lunhui.confirm(id,'{:url('del')}');
+    }
+
+    //奖品状态
+    function state(id){
+        lunhui.status(id,'{:url('state')}');
+    }
+
+    function insert_repeat(id) {
+        layer.confirm('异常您已经手动解决了吗？', {
+            btn: ['已解决','点错了'] //按钮
+        }, function(){
+            $.getJSON('{:url("Missshop/abnormalResolve")}', {'id' : id}, function(res){
+                console.log(res);
+                if(res.code == 1){
+                    $obj=$('#order_'+id).parent();
+                    $obj.empty();
+                    $obj.append("<span class='label label-default'>等待插入</span>");
+                    layer.msg(res.msg,{icon:1,time:1500,shade: 0.1});
+                }else{
+                    layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+                }
+            });
+            layer.close(index);
+        }, function(){
+        });
+    }
+
+
+</script>
+</body>
+</html>

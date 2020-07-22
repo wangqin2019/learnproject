@@ -1,0 +1,406 @@
+{include file="public/header" /}
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/style.css">
+<style>
+.file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+.file-item .info{overflow: hidden;}
+.uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加拼人品</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal" name="userAdd" id="ptAdd" method="post" action="{:url('add')}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">拼人品名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="bargain_name" type="text" class="form-control" name="bargain_name" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动门店：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control m-b chosen-select" name="storeid" id="storeid">
+                                    <option value="">==请选择活动门店==</option>
+                                    {if !empty($storeList)}
+                                        {foreach name="storeList" item="vo"}
+                                            <option value="{$vo.id}">{$vo.sign} {$vo.title}</option>
+                                        {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">拼人品产品：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control m-b chosen-select" name="pid" id="pid">
+                                    <option value="">==请选择拼人品产品==</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">产品名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="name" type="text" class="form-control" name="name" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">产品图片：</label>
+                            <div class="input-group col-sm-4">
+                                <div class="up">
+                                <input type="hidden" id="data_photo0" name="pic" value="">
+                                    <input type="hidden" id="data_photo_num0" value="0">
+                                <div id="fileList0" class="uploader-list" style="float:right"></div>
+                                <div id="imgPicker0" style="float:left">选择图片</div>
+                                <img id="img_data0" class="" height="55px" width="80px" style="float:left;margin-left: 50px;margin-top: -10px;" src="/static/admin/images/no_img.jpg"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">封面图片：</label>
+                            <div class="input-group col-sm-4">
+                                <div class="up">
+                                    <input type="hidden" id="data_photo1" name="cover" value="">
+                                    <input type="hidden" id="data_photo_num1" value="0">
+                                    <div id="fileList1" class="uploader-list" style="float:right"></div>
+                                    <div id="imgPicker1" style="float:left">选择图片</div>
+                                    <img id="img_data1" class="" height="55px" width="80px" style="float:left;margin-left: 50px;margin-top: -10px;" src="/static/admin/images/no_img.jpg"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">产品介绍：</label>
+                            <div class="input-group col-sm-4">
+                                <textarea id="description"  class="form-control" name="description" ></textarea>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">产品价格：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="market_price" type="text" class="form-control" name="market_price" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">参与人：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="partake" type="text" class="form-control" name="partake" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">参与拼人品支付金额：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="price" type="text" class="form-control" name="price" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">拼人品效期：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="pt_time" type="text" class="form-control" name="pt_time" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">拼人品状态：</label>
+                            <div class="col-sm-6">
+                                <div class="radio i-checks">
+                                    <input type="radio" name='status' value="1" checked="checked"/>正常&nbsp;&nbsp;
+                                    <input type="radio" name='status' value="0" />关闭
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">排序：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="order_by" type="text" class="form-control" placeholder="数字越大 排序越靠前" name="order_by" value="">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">奖励产品：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control m-b chosen-select" multiple="multiple" data-placeholder="请选择参团人获得的礼品" name="prizeid[]" id="prize">
+                                    <option value="">==请选择参团人获得礼品==</option>
+                                    {if !empty($prizeGoodsList)}
+                                    {foreach name="prizeGoodsList" item="vo"}
+                                    <option value="{$vo.id}">{$vo.name}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">拼人品介绍：</label>
+                            <div class="input-group col-sm-4">
+                                <textarea id="b_intro"  class="form-control" name="b_intro" ></textarea>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label " for="myEditor">发起人规则：</label>
+                            <div class="input-group col-sm-9">
+                                <script src="/static/admin/ueditor/ueditor.config.js" type="text/javascript"></script>
+                                <script src="/static/admin/ueditor/ueditor.all.js" type="text/javascript"></script>
+                                <textarea name="b_rule" style="width:90%" id="myEditor"></textarea>
+                                <script type="text/javascript">
+                                    var editor = new UE.ui.Editor();
+                                    editor.render("myEditor");
+                                </script>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label " for="myEditor1">参团人规则：</label>
+                            <div class="input-group col-sm-9">
+                                <textarea name="b_rule1" style="width:90%" id="myEditor1"></textarea>
+                                <script type="text/javascript">
+                                    var editor1 = new UE.ui.Editor();
+                                    editor1.render("myEditor1");
+                                </script>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否推送到所有门店：</label>
+                            <div class="col-sm-6">
+                                <div class="radio i-checks">
+                                    <input type="radio" name='tuisong'  value="1" checked="checked"/>推送&nbsp;&nbsp;
+                                    <input type="radio" name='tuisong'  value="0" />不推送&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff0000">^_^ 默认会将新增商品推送到全部门店</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript" src="/static/admin/webupload/webuploader.min.js"></script>
+<script type="text/javascript">
+    uploaderArr = new Array();
+    $('.up').each(function(index){
+        // console.log(index);
+        var $list = $('#fileList'+index);
+        var $list_num=$('#data_photo_num'+index).val();
+        //上传图片,初始化WebUploader
+        uploaderArr[index] = WebUploader.create({
+            auto: true,// 选完文件后，是否自动上传。
+            swf: '/static/admin/webupload/Uploader.swf',// swf文件路径
+            server: "{:url('Upload/upload')}",// 文件接收服务端。
+            duplicate: true,// 重复上传图片，true为可重复false为不可重复
+            pick: '#imgPicker'+index,// 选择文件的按钮。可选。
+
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/jpg,image/jpeg,image/png'
+            },
+            'onUploadSuccess': function (file, data, response) {
+                if(data.status){
+                    if($list_num==0){
+                        $("#data_photo"+index).val(data.data);
+                        $("#img_data"+index).attr('src',data.data).show();
+                    }else{
+                        var $li = $(
+                            '<div id="' + file.id + '" class="item" style="float: left;margin-right: 15px;position: relative">' +
+                            '<img src="'+data.data+'" width="100">' +
+                            '<a class="file-panel" href="javascript:;" style="position: absolute;right: 0" onclick="remove(\''+file.id+'\')">'+
+                            '<span class="fa fa-close" style="list-style: none"></span>' +
+                            '</a>' +
+                            '<input type="hidden"  name="images[]" value="'+data.data+'">' +
+                            '</div>'
+                        );
+                        // // $lists为容器jQuery实例
+                        $("#img_data"+index).hide();
+                        $list.append( $li );
+                    }
+                }else{
+                    alert(data.message);
+                }
+            }
+        });
+
+        uploaderArr[index].on('fileQueued', function (file) {
+            // $list.html('<div id="' + file.id + '" class="item">' +
+            //     // '<h4 class="info">' + file.name + '</h4>' +
+            //     '<p class="state">正在上传...</p>' +
+            //     '</div>');
+        });
+
+        // 文件上传成功
+        uploaderArr[index].on('uploadSuccess', function (file) {
+            $('#' + file.id).find('p.state').text('');
+        });
+
+        // 文件上传失败，显示上传出错。
+        uploaderArr[index].on('uploadError', function (file) {
+            $('#' + file.id).find('p.state').text('上传出错!');
+        });
+    });
+
+    function remove(obj){
+        $('#'+obj).remove();
+    }
+
+    //提交
+    $(function(){
+        $('#ptAdd').ajaxForm({
+            beforeSubmit: checkForm, 
+            success: complete, 
+            dataType: 'json'
+        });
+        
+        function checkForm(){
+            if( '' == $.trim($('#bargain_name').val())){
+                layer.msg('请输入拼人品名',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+            
+            if( '' == $.trim($('#storeid').val())){
+                layer.msg('请选择活动门店',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+
+            if( '' == $.trim($('#pid').val())){
+                layer.msg('请输入拼人品产品',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+        }
+
+
+        function complete(data){
+            if(data.code==1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    window.location.href="{:url('bargain/index')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1});
+                return false;   
+            }
+        }
+     
+    });
+
+    //IOS开关样式配置
+   var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+    var config = {
+        '.chosen-select': {},                    
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+    //选择门店后 获取门店下允许售卖的产品列表
+    $("#storeid").chosen().change(function(){
+        $.ajax({
+            url: '{:url("Comm/storeGoodsList")}',
+            dataType: 'json',
+            //data:{storeid:storeid},
+            method: 'GET',
+            success: function(data) {
+                jsonObj = eval('(' + data + ')');
+                console.log(jsonObj);
+                if (jsonObj.code == 0) {
+                    layer.msg('错误 请重试',{icon:2,time:1500,shade: 0.1,});
+                }else{
+                    var str='';
+                    $.each(jsonObj.data,function(name,value) {
+                        str+='<option value="'+value.id+'" alt="'+value.price+'">'+value.name+'</option>';
+                    });
+                    $('#pid').html(str);
+                    $("#pid").trigger("chosen:updated");
+                    $('#name').val(jsonObj.data[0]['name']);
+                    $('#market_price').val(jsonObj.data[0]['price']);
+                    $('#description').val(jsonObj.data[0]['intro']);
+                    $('#data_photo0').val(jsonObj.data[0]['image']);
+                    $('#img_data0').attr('src',jsonObj.data[0]['image']);
+                }
+            },
+            error: function(xhr) {
+                // 导致出错的原因较多，以后再研究
+                alert('error:' + JSON.stringify(xhr));
+            }
+        })
+    });
+
+    $("#pid").chosen().change(function(){
+        var pid=$("#pid").find("option:selected").val();
+        $.ajax({
+            url: '{:url("Comm/storeGoodsInfo")}',
+            dataType: 'json',
+            data:{pid:pid},
+            method: 'GET',
+            success: function(data) {
+                jsonObj = eval('(' + data + ')');
+                console.log(jsonObj);
+                if (jsonObj.code == 0) {
+                    layer.msg('错误 请重试',{icon:2,time:1500,shade: 0.1,});
+                }else{
+                    $('#name').val(jsonObj.data['name']);
+                    $('#market_price').val(jsonObj.data['price']);
+                    $('#description').val(jsonObj.data['intro']);
+                    $('#data_photo0').val(jsonObj.data['image']);
+                    $('#img_data0').attr('src',jsonObj.data['image']);
+                }
+            },
+            error: function(xhr) {
+                // 导致出错的原因较多，以后再研究
+                alert('error:' + JSON.stringify(xhr));
+            }
+        })
+    });
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

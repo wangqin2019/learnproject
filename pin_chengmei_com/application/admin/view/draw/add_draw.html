@@ -1,0 +1,315 @@
+{include file="public/header" /}
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/style.css">
+<style>
+    .file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+    .file-item .info{overflow: hidden;}
+    .uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加奖项</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal" name="drawAdd" id="drawAdd" method="post" action="{:url('add_draw')}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">抽奖场景：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control m-b chosen-select" name="draw_type" id="draw_type">
+                                    <!--<option value="">==请选择抽奖用户类型==</option>-->
+                                    <option value="1">周末直播抽奖</option>
+                                    <!--<option value="2">顾客</option>-->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">选择轮次：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control m-b chosen-select" name="draw_rank" id="draw_rank">
+                                    <option value="">==请选择第几次抽奖==</option>
+                                    <option value="第一次">第一次</option>
+                                    <option value="第二次">第二次</option>
+                                    <option value="第三次">第三次</option>
+                                    <option value="第四次">第四次</option>
+                                    <!--<option value="新年盲盒">新年盲盒</option>-->
+                                    <!--<option value="女王专属礼">女王专属礼</option>-->
+                                    <!--<option value="女王新年福袋">女王新年福袋</option>-->
+                                    <!--<option value="三等奖">三等奖</option>-->
+                                    <!--<option value="二等奖">二等奖</option>-->
+                                    <!--<option value="一等奖">一等奖</option>-->
+                                    <!--<option value="特等奖">特等奖</option>-->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">奖品名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="draw_name" type="text" class="form-control" name="draw_name" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">短信标识：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="draw_sms" type="text" class="form-control" name="draw_sms" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">奖品标识：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="draw_flag" type="text" class="form-control" name="draw_flag" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">奖项图片：</label>
+                            <div class="input-group col-sm-4">
+                                <div class="up">
+                                    <input type="hidden" id="data_photo0" name="pic1" >
+                                    <input type="hidden" id="data_photo_num0" value="0" >
+                                    <div id="fileList0" class="uploader-list" style="float:right"></div>
+                                    <div id="imgPicker0" style="float:left">选择图片</div>
+                                    <img id="img_data0" class="" height="55px" width="80px" style="float:left;margin-left: 50px;margin-top: -10px;" src="/static/admin/images/no_img.jpg"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">产品图片：</label>
+                            <div class="input-group col-sm-4">
+                                <div class="up">
+                                    <input type="hidden" id="data_photo1" name="pic2" >
+                                    <input type="hidden" id="data_photo_num1" value="0">
+                                    <div id="fileList1" class="uploader-list" style="float:right"></div>
+                                    <div id="imgPicker1" style="float:left">选择图片</div>
+                                    <img id="img_data1" class="" height="55px" width="80px" style="float:left;margin-left: 50px;margin-top: -10px;" src="/static/admin/images/no_img.jpg"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">奖品总数量：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="draw_num" type="text" class="form-control" name="draw_num" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">实际抽奖数量：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="old_draw_num" type="text" class="form-control" name="old_draw_num" >
+                            </div>
+                        </div>
+                        <!--<div class="hr-line-dashed"></div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">新客奖品数量：</label>-->
+                            <!--<div class="input-group col-sm-4">-->
+                                <!--<input id="new_draw_num" type="text" class="form-control" name="new_draw_num" >-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">后台奖品排序：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="orderby" type="text" class="form-control" name="orderby" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">前台奖品排序：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="orderby1" type="text" class="form-control" name="orderby1" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">短信模版id：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="sms_id" type="number" class="form-control" name="sms_id" >
+                            </div>
+                        </div>
+                        <!--<div class="hr-line-dashed"></div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">是否允许多次中奖：</label>-->
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="radio i-checks">-->
+                                    <!--<input type="radio" name='flag' value="0" checked/>允许&nbsp;&nbsp;-->
+                                    <!--<input type="radio" name='flag' value="1" />不允许-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript" src="/static/admin/webupload/webuploader.min.js"></script>
+
+<script type="text/javascript">
+
+    uploaderArr = new Array();
+    $('.up').each(function(index){
+        // console.log(index);
+        var $list = $('#fileList'+index);
+        var $list_num=$('#data_photo_num'+index).val();
+        //上传图片,初始化WebUploader
+        uploaderArr[index] = WebUploader.create({
+            auto: true,// 选完文件后，是否自动上传。
+            swf: '/static/admin/webupload/Uploader.swf',// swf文件路径
+            server: "{:url('Upload/upload')}",// 文件接收服务端。
+            duplicate: true,// 重复上传图片，true为可重复false为不可重复
+            pick: '#imgPicker'+index,// 选择文件的按钮。可选。
+
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/jpg,image/jpeg,image/png'
+            },
+            'onUploadSuccess': function (file, data, response) {
+                if(data.status){
+                    if($list_num==0){
+                        $("#data_photo"+index).val(data.data);
+                        $("#img_data"+index).attr('src',data.data).show();
+                    }else{
+                        var $li = $(
+                            '<div id="' + file.id + '" class="item" style="float: left;margin-right: 15px;position: relative">' +
+                            '<img src="'+data.data+'" width="100">' +
+                            '<a class="file-panel" href="javascript:;" style="position: absolute;right: 0" onclick="remove(\''+file.id+'\')">'+
+                            '<span class="fa fa-close" style="list-style: none"></span>' +
+                            '</a>' +
+                            '<input type="hidden"  name="images[]" value="'+data.data+'">' +
+                            '</div>'
+                        );
+                        // // $lists为容器jQuery实例
+                        $("#img_data"+index).hide();
+                        $list.append( $li );
+                    }
+                }else{
+                    alert(data.message);
+                }
+            }
+        });
+
+        uploaderArr[index].on('fileQueued', function (file) {
+            // $list.html('<div id="' + file.id + '" class="item">' +
+            //     // '<h4 class="info">' + file.name + '</h4>' +
+            //     '<p class="state">正在上传...</p>' +
+            //     '</div>');
+        });
+
+        // 文件上传成功
+        uploaderArr[index].on('uploadSuccess', function (file) {
+            $('#' + file.id).find('p.state').text('');
+        });
+
+        // 文件上传失败，显示上传出错。
+        uploaderArr[index].on('uploadError', function (file) {
+            $('#' + file.id).find('p.state').text('上传出错!');
+        });
+    });
+
+    function remove(obj){
+        $('#'+obj).remove();
+    }
+
+
+</script>
+
+<script type="text/javascript">
+    //提交
+    $(function(){
+        $('#drawAdd').ajaxForm({
+            beforeSubmit: checkForm, 
+            success: complete, 
+            dataType: 'json'
+        });
+        
+        function checkForm(){
+            if( '' == $.trim($('#draw_rank').val())){
+                layer.msg('请输入奖项',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+            
+            if( '' == $.trim($('#draw_name').val())){
+                layer.msg('请选择奖品名称',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+
+            if( '' == $.trim($('#draw_num').val())){
+                layer.msg('请选择奖品数量',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+            if( '' == $.trim($('#sms_id').val())){
+                layer.msg('请选择奖品对应短信模版id',{icon:2,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+
+        }
+
+
+        function complete(data){
+            if(data.code==1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    window.location.href="{:url('draw/index')}?draw_type="+data.data.draw_type;
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1});
+                return false;
+            }
+        }
+     
+    });
+
+
+
+    //IOS开关样式配置
+   var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+    var config = {
+        '.chosen-select': {},                    
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+</body>
+</html>

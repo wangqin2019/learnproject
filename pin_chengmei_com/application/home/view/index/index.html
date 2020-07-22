@@ -1,0 +1,123 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>诚美杯-人气PK赛</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <script src="__JS__/jquery.min.js"></script>
+</head>
+<body>
+    rgdrg
+</body>
+<script>
+
+    // //连接websocket
+    // function connect() {
+    //     // 创建websocket
+    //     ws = new WebSocket("wss://pin.qunarmei.com/wss");
+    //     // 当socket连接打开时，输入用户名
+    //     ws.onopen = function() {
+    //         console.log('连接成功');
+    //     };
+    //     // 当有消息时根据消息类型显示不同信息
+    //     ws.onmessage = onmessage;
+    //     ws.onclose = function() {
+    //         console.log("连接关闭，定时重连");
+    //         connect();
+    //     };
+    //     ws.onerror = function() {
+    //         console.log("出现错误");
+    //     };
+    // }
+    // //消息处理
+    // function onmessage(e){
+    //     var message =  eval("("+e.data+")");
+    //     console.log(message);
+    //     switch (message.type){
+    //         case 'ping':
+    //             ws.send('{"type":"pong"}');
+    //             break;
+    //         case 'init':
+    //             $.post("{:url('bind')}", {client_id: message.client_id,mobile:15821881959}, function(data){}, 'json');
+    //             break;
+    //         case 'initData':
+    //             $.post("{:url('get_live')}", {mobile:15821881959}, function(data){}, 'json');
+    //             break;
+    //         case 'live':
+    //            console.log(message);
+    //             break;
+    //     }
+    // }
+    // //初始化连接
+    // connect();
+
+    var sockInit = {
+        //wsServer:"wss://pin.qunarmei.com/wss",
+        wsServer:"ws://192.168.3.88:2348",
+        pingpongBeat:40000,
+        heartBeat:1000,
+        sock:null,
+        isOpen:false,
+        init(){
+            clearTimeout(window.sockTimerHeartBeat);
+            var _this = this;
+            this.sock = new WebSocket(_this.wsServer);
+            this.sock.onopen = function(evt) {
+                _this.isOpen = true;
+                _this.pingpong(_this.pingpongBeat);
+            };
+            this.sock.onclose = function(evt) {
+                _this.isOpen = false;
+                clearTimeout(window.sockTimerHeartBeat);
+                _this.reConnect(_this.heartBeat);
+            }
+            this.sock.onmessage = function(evt) {
+                console.log('init接收到信息');
+               // console.log(evt);
+                var dataObj = eval("(" + evt.data + ")");
+                console.log(dataObj);
+                switch (dataObj.scene){
+                    case 'pong':
+                        clearInterval(window.pingpong);
+                        _this.pingpong(_this.pingpongBeat);
+                        break;
+                    case 'init':
+                        $.post("{:url('api/live/bind')}", {client_id: dataObj.client_id,mobile:15821881959}, function(data){}, 'json');
+                        break;
+                    case 'initData':
+                        $.post("{:url('api/live/get_live')}", {mobile:15821881959}, function(data){}, 'json');
+                        break;
+                    case 'live':
+                       console.log(dataObj);
+                        break;
+                }
+            };
+            this.sock.onerror = function(evt) {
+                _this.isOpen = false;
+                clearTimeout(window.sockTimerHeartBeat);
+                _this.reConnect(_this.heartBeat);
+            }
+        },
+        pingpong(ppBeat){
+            console.log("心跳");
+            var _this = this;
+            window.pingpong = setInterval(function(){
+                var pingpongdata = {
+                    scene:'ping'
+                };
+                _this.sock.send(JSON.stringify(pingpongdata));
+            },ppBeat)
+        },
+        reConnect(heartBeat){
+            var _this = this;
+            window.sockTimerHeartBeat = setTimeout(function(){
+                _this.init();
+            },heartBeat)
+        }
+    }
+    sockInit.init();
+
+
+</script>
+</html>

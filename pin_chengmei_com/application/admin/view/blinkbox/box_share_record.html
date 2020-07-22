@@ -1,0 +1,25 @@
+{include file="public/header" /}
+<body >
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+               <table class="table table-bordered table-hover">
+                <tr>
+                    <th>卡券编号</th>
+                    <th>日志</th>
+                    <th>时间</th>
+                </tr>
+                   {volist name="list" id="v"}
+                   <tr>
+                       <td>{$v.code}</td>
+                       <td>{$v.desc}</td>
+                       <td>{$v.create_time}</td>
+                   </tr>
+                   {/volist}
+               </table>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+</body>
+</html>

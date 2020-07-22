@@ -1,0 +1,146 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>门店集客列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('branch_customer_order')}">
+                        <div class="input-group" style="margin-top: -5px;">
+                            <select class="form-control m-b chosen-select" name="union_id" id="union_id" style="width: 250px">
+                                <option value="">筛选活动门店</option>
+                                {if !empty($unionList)}
+                                {foreach name="unionList" item="vo"}
+                                <option value="{$vo.union_id}" {if condition="$union_id eq $vo['union_id']"}selected{/if}>{$vo.title}</option>
+                                {/foreach}
+                                {/if}
+                            </select>
+                        </div>
+                        <div class="input-group" style="margin-bottom: 5px;">
+                            <input type="text" name="start" id="start" onclick="laydate()" value="{$start}" autocomplete="off"  class="form-control layer-date" placeholder="开始日期"/>
+                        </div>
+                        <div class="input-group" style="margin-bottom: 5px;">
+                            <input type="text" name="end" id="end" onclick="laydate()" value="{$end}" autocomplete="off" class="form-control layer-date" placeholder="结束日期"/>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的顾客信息" />
+                            <span class="input-group-btn">
+                                <input type="hidden" name="bid" id="bid" value="{$bid}">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                            </span>&nbsp;&nbsp;
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>集客联盟商</th>
+                                <th>顾客姓名</th>
+                                <th>顾客电话</th>
+                                <th>订单编号</th>
+                                <th>订单金额</th>
+                                <th>下单时间</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].title}}</td>
+                                    <td>{{d[i].name}}</td>
+                                    <td>{{d[i].mobile}}</td>
+                                    <td>{{d[i].ordersn}}</td>
+                                    <td>{{d[i].price}}</td>
+                                    <td>{{d[i].createtime}}</td>
+
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var bid=$('#bid').val();
+        var union_id=$('#union_id').val();
+        var start=$('#start').val();
+        var end=$('#end').val();
+        $.getJSON('{:url("qmjk/branch_customer_order")}', {page: curr || 1,key:key,bid:bid,union_id:union_id,start:start,end:end}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+    //编辑门店
+    function jiameng(role_text){
+        layer.open({
+            title:'加盟条款',
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['420px', '240px'], //宽高
+            content: role_text
+        });
+    }
+
+    function pay_log(branch_id,$union_id){
+        location.href = '/admin/qmjk/branch_pay_log/branch_id/'+branch_id+'/union_id/'+$union_id+'.html';
+    }
+
+
+</script>
+</body>
+</html>

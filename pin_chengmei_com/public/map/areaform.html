@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="referrer" content="no-referrer">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/pagination.css"/>
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.12&key=87479936d9ecb6fc4997e30cb3b14732&plugin=AMap.RangingTool"></script>
+	    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+	    <script type="text/javascript" src="js/pagination.js"></script>
+	    <script type="text/javascript" src="city.js"></script>
+	    <style type="text/css">
+	    	.shopnlist,.title{width: 90%;margin: 20px 5%;}
+	    	#add,#add2{float: right;margin-left: 10px;color: #fff;background:#23c6c8}
+	    	#search2{background: #007AFF;color: #fff;vertical-align: top;}
+	    	.tradingtable{margin-top: 75px;border-top: 1px solid #ddd;padding-top: 20px;}
+	    	.tradingarea{color: #007AFF;border-radius: 3px;background: #fff;border: 1px solid #007AFF;margin-right: 10px;}
+	    	.tradingarea:hover {color: #fff;background: #007AFF;}
+	    	#pagingtwo{float: right;margin-right: 5%;}
+	    	#container{width: 85%;height: 100%;float: right;}
+	    	.mapsearch{left: auto;right: 20px;}
+	    	#manualbutton{position: fixed;top: 20px;right: 380px;background: #0062CC;color: #fff;height: 40px;width: 200px;}
+	    	.table{margin-bottom: 15px;}
+	    </style>
+	</head>
+	<body>
+		<div class="title">
+			<input placeholder="请输入名称" id="sch_name"/>
+			<button id="search">查询</button>
+			
+			<button id="add">新增</button>
+		</div>
+		<div class="shopnlist">
+			<table class="table table-bordered table-hover" onscroll="scroll">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>名称</th>
+						<th>介绍</th>
+						<th>中心点</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="list"></tbody>
+			</table>
+			<div id="paging" class="quotes"></div>
+		</div>
+		<div class="title tradingtable">
+			<input placeholder="请输入名称" id="sch_name2"/>
+			<button id="search2">查询</button>
+			
+			<button id="add2" class="hide">新增</button>
+		</div>
+		<div class="shopnlist">
+			<table class="table table-bordered table-hover" onscroll="scroll">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>名称</th>
+						<th>中心点</th>
+						<th>半径</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="tradingArea"></tbody>
+			</table>
+			<div id="pagingtwo" class="quotes"></div>
+		</div>
+		
+		<div class="map hide">
+			<div class="form formone hide">
+				<div><p>名称</p><input placeholder="地图名称" id="formone_name"/></div>
+				<div><p>介绍</p><input placeholder="地图介绍" id="formone_cont"/></div>
+				<div><p>中心点</p><input placeholder="中心点" id="formone_center"/></div>
+				<div><p>办事处</p><select id="formone_agency" value=""></select></div>
+				<div><p>经度</p><input placeholder="经度" id="formone_lng"/></div>
+				<div><p>纬度</p><input placeholder="纬度" id="formone_lat"/></div>
+				<button id="formOneSubmit">保存</button>
+				<button class="formCancel">取消</button>
+			</div>
+			<div class="form formtwo hide">
+				<div><p>名称</p><input placeholder="门店名称" id="formtwo_name"/></div>
+				<div><p>中心点</p><input placeholder="中心点" id="formtwo_center"/></div>
+				<div><p>半径</p><input placeholder="半径" id="formtwo_rad" value="1000"/></div>
+				<div><p>经度</p><input placeholder="经度" id="formtwo_lng"/></div>
+				<div><p>纬度</p><input placeholder="纬度" id="formtwo_lat"/></div>
+				<button id="formTwoSubmit">保存</button>
+				<button class="formCancel">取消</button>
+			</div>
+			<div id="container"></div>
+			
+			
+			<div class="mapsearch">
+				<button id="manualbutton">手动标记</button>
+			    <div class="mapsearch_title">
+			    	<span>请输入关键字:</span>
+			    	<input id='areaInput' type="text" value='上海' >
+			    	<button id="areaSearch">查询</button>
+			    </div>
+			    <ul id="arealist"></ul>
+			</div>
+		</div>
+		<div class="tishi hide"></div>
+	</body>
+	<script type="text/javascript">
+		var provinceall = province,trading=[],tradingall=[],mapclick=false,provid='',tradingid='',circle ='';
+		$('.shopnlist').css('width',(document.body.clientWidth)*0.9+'px');
+    	//办事处导入
+		for(var i=0;i<provinceall.length;i++){
+			$('#formone_agency').append('<option data-agency="'+provinceall[i].agency+'">'+provinceall[i].agency+'</option>');
+		}
+    	
+        if(province.length<5){listShow(0,province.length);}
+		else{listShow(0,5);}
+		pagingShow();
+		if(trading.length<5){tradingShow(0,trading.length);}
+		else{tradingShow(0,5);}
+		pagingtwoShow();
+//---------------------------------------------------------------------------------地图----------------------------------------------------------------		
+		var map = new AMap.Map('container', {
+	        zoom:15,//级别
+	        center: [121.473658, 31.230378],//中心点坐标
+	        viewMode:'3D'//使用3D视图
+	    });
+	    
+	    
+	    var marker1 = new AMap.Marker({
+	        position: map.getCenter(),
+	    }),marker2='';
+	    marker1.setMap(map);
+//	    circle = addCircle(121.473658, 31.230378,1);
+	    
+	    function addCircle(lng,lat,radius){
+			var circle = new AMap.Circle({
+		        map: map,
+		        center: [lng, lat],          //设置线覆盖物路径
+		        radius: radius,
+		        strokeColor: "#3366FF", //边框线颜色
+		        strokeOpacity: 0.3,       //边框线透明度
+		        strokeWeight: 3,        //边框线宽
+		        fillColor: "#FFA500", //填充色
+		        fillOpacity: 0.35//填充透明度
+		   });
+		   return circle;
+	    }
+	    
+//--------------------------------------------------表格操作---------------------------------------------------------------------------------
+		//核心商圈显示
+		$('#list').on('click','.tradingarea',function(){
+			var id = $(this).parent().parent().attr('data-id');
+			for(var i=0;i<provinceall.length;i++){
+				if(provinceall[i].id == id){
+					trading = provinceall[i].tradingarea;
+					tradingall = provinceall[i].tradingarea;
+				}
+			}
+			$('#add2').removeClass('hide');
+			if(trading.length<5){tradingShow(0,trading.length);}
+			else{tradingShow(0,5);}
+			pagingtwoShow();
+		})
+//--------------------------------------------------删除---------------------------------------------------------------------------------
+		//地图
+		$('#list').on('click','.delect',function(){
+			var id = $(this).parent().parent().attr('data-id');
+			for(var i=0;i<province.length;i++){
+				if(province[i].id == id){
+					province.splice(i,1);
+				}
+			}
+			if(province.length<5){listShow(0,province.length);}
+			else{listShow(0,5);}
+			pagingShow();
+			$(this).parent().parent().remove();
+		})
+		
+		//核心商圈
+		$('#tradingArea').on('click','.delect',function(){
+			var id = $(this).parent().parent().attr('data-id');
+			console.log(id)
+			for(var i=0;i<tradingall.length;i++){
+				if(tradingall[i].tradid == id){
+					tradingall.splice(i,1);
+				}
+			}
+			trading = tradingall;
+			if(tradingall.length<5){tradingShow(0,tradingall.length);}
+			else{tradingShow(0,5);}
+			pagingtwoShow();
+			$(this).parent().parent().remove();
+		})
+//--------------------------------------------------删除end---------------------------------------------------------------------------------		
+		//取消
+		$('.formCancel').click(function(){
+			$('.map').addClass('hide');
+			$('.formone').addClass('hide');
+			$('.formtwo').addClass('hide');
+			provid='';
+			tradingid='';
+			map.remove(circle);
+		})
+//--------------------------------------------------新增---------------------------------------------------------------------------------
+		//地图
+		$('#add').click(function(){
+			$('.map').removeClass('hide');
+			$('.formone').removeClass('hide');
+			$('#formone_name').val('');
+			$('#formone_cont').val('');
+			$('#formone_center').val('');
+			$('#formone_agency').val('');
+			$('#formone_lng').val('');
+			$('#formone_lat').val('');
+			if(circle != ''){
+				map.remove(circle);
+			}
+		})
+		
+		//核心商圈
+		$('#add2').click(function(){
+			$('.map').removeClass('hide');
+			$('.formtwo').removeClass('hide');
+			$('#formtwo_name').val('');
+			$('#formtwo_center').val('');
+			$('#formtwo_rad').val('1000');
+			var t = setTimeout(function(){
+				var lnglat = map.getCenter();
+		    	$('#formtwo_lng').val(lnglat.lng);
+		    	$('#formtwo_lat').val(lnglat.lat);
+				circle = addCircle(lnglat.lng, lnglat.lat,1000);
+			},100)
+		})
+//--------------------------------------------------新增end---------------------------------------------------------------------------------		
+//--------------------------------------------------编辑---------------------------------------------------------------------------------
+		//地图
+		$('#list').on('click','.change',function(){
+			var id = $(this).parent().parent().attr('data-id');
+			provid=id;
+			for(var i=0;i<province.length;i++){
+				if(province[i].id == id){
+					$('.map').removeClass('hide');
+					$('.formone').removeClass('hide');
+					$('#formone_name').val(province[i].area);
+					$('#formone_cont').val(province[i].content);
+					$('#formone_center').val(province[i].center);
+					$('#formone_agency').val(province[i].agency);
+					$('#formone_lng').val(province[i].lnglat.lng);
+					$('#formone_lat').val(province[i].lnglat.lat);
+					var lng = province[i].lnglat.lng;
+					var lat = province[i].lnglat.lat;
+					var t = setTimeout(function(){
+						map.setCenter([lng,lat]);
+				    	marker2 = new AMap.Marker({
+					        position: [lng,lat],
+					    })
+				    	marker1.setMap(null);
+				    	map.add(marker2);
+				    	marker1 = marker2;
+						if(circle != ''){
+							map.remove(circle);
+						}
+					},100)
+				}
+			}
+			
+		})
+		
+		//核心商圈
+		$('#tradingArea').on('click','.change',function(){
+			var id = $(this).parent().parent().attr('data-id');
+			tradingid=id;
+			for(var i=0;i<tradingall.length;i++){
+				if(tradingall[i].tradid == id){
+					$('.map').removeClass('hide');
+					$('.formtwo').removeClass('hide');
+					$('#formtwo_name').val(tradingall[i].name);
+					$('#formtwo_center').val(tradingall[i].center);
+					$('#formtwo_rad').val(tradingall[i].radius);
+					$('#formtwo_lng').val(tradingall[i].lnglat.lng);
+					$('#formtwo_lat').val(tradingall[i].lnglat.lat);
+					var lng = tradingall[i].lnglat.lng;
+					var lat = tradingall[i].lnglat.lat;
+					var radius = tradingall[i].radius
+					var t = setTimeout(function(){
+						map.setCenter([lng,lat]);
+				    	marker2 = new AMap.Marker({
+					        position: [lng,lat],
+					    })
+				    	marker1.setMap(null);
+				    	map.add(marker2);
+				    	marker1 = marker2;
+				    	circle = addCircle(lng, lat,radius);
+					},100)
+				}
+			}
+		})
+//--------------------------------------------------编辑end---------------------------------------------------------------------------------		
+		//手动标记
+        $('#manualbutton').click(function() {
+        	map.setDefaultCursor("crosshair");
+        	mapclick=true;
+        })
+        //手动标记-取消
+        map.on('click', function(e) {
+        	if(mapclick == true){
+        		var radius = $('#formtwo_rad').val();
+        		map.setDefaultCursor("");
+        		var lng = e.lnglat.getLng();
+        		var lat = e.lnglat.getLat();
+        		map.setCenter([lng,lat]);
+		    	marker2 = new AMap.Marker({
+			        position: [lng,lat],
+			    })
+		    	marker1.setMap(null);
+		    	map.add(marker2);
+		    	marker1 = marker2;
+		    	map.remove(circle);
+		        $('#formone_lng').val(lng);
+		        $('#formone_lat').val(lat);
+		    	$('#formtwo_lng').val(lng);
+		    	$('#formtwo_lat').val(lat);
+		    	
+		    	circle = addCircle(lng, lat,radius);
+		    	mapclick = false;
+        	}
+	    });
+//--------------------------------------------------保存---------------------------------------------------------------------------------
+		//地图
+		$('#formOneSubmit').click(function(){
+			var name = $('#formone_name').val();
+			var content = $('#formone_cont').val();
+			var center = $('#formone_center').val();
+			var agency = $('#formone_agency').val();
+			var lng = $('#formone_lng').val();
+			var lat = $('#formone_lat').val();
+			if(name != '' && content != '' && center != '' && agency != '' && lng != '' && lat != ''){
+				if(provid == ''){
+					provinceall.push({
+						"id": provinceall.length+1,
+						"agency":agency,
+						"area":name,
+						"content": content,
+						"center": center,
+						"lnglat": {
+							"Q": lat,
+							"R": lng,
+							"lat": lat,
+							"lng": lng
+						},
+						"tradingarea":[],
+					})
+					
+				}
+				else{
+					for(var i=0;i<provinceall.length;i++){
+						if(provinceall[i].id == provid){
+							provinceall[i].agency = agency;
+							provinceall[i].area = name;
+							provinceall[i].content = content;
+							provinceall[i].center = center;
+							provinceall[i].lnglat.lat = lat;
+							provinceall[i].lnglat.lng = lng;
+						}
+					}
+				}
+				
+				$('.map').addClass('hide');
+				$('.formone').addClass('hide');
+				province = provinceall;
+				if(province.length<5){listShow(0,province.length);}
+				else{listShow(0,5);}
+				pagingShow();
+				provid='';
+			}
+			else{
+				$('.tishi').html('您还有未输入项');
+	    		$('.tishi').removeClass('hide');
+	    		var t = setTimeout(function(){
+	    			$('.tishi').addClass('hide');
+	    			$('.map').addClass('hide');
+	    		},1500);
+			}
+		})
+		
+		//核心商圈
+		$('#formTwoSubmit').click(function(){
+			var name = $('#formtwo_name').val();
+			var center = $('#formtwo_center').val();
+			var radius = $('#formtwo_rad').val();
+			var lng = $('#formtwo_lng').val();
+			var lat = $('#formtwo_lat').val();
+			if(name != '' && center != '' && radius != '' && lng != '' && lat != ''){
+				if(tradingid == ''){
+					tradingall.push({
+						"tradid": tradingall.length+1,
+						"name":name,
+						"radius": radius,
+						"center": center,
+						"lnglat": {
+							"Q": lat,
+							"R": lng,
+							"lat": lat,
+							"lng": lng
+						}
+					})
+					
+				}
+				else{
+					for(var i=0;i<tradingall.length;i++){
+						if(tradingall[i].tradid == tradingid){
+							tradingall[i].name = name;
+							tradingall[i].center = center;
+							tradingall[i].radius = radius;
+							tradingall[i].lnglat.lat = lat;
+							tradingall[i].lnglat.lng = lng;
+						}
+					}
+				}
+				
+				$('.map').addClass('hide');
+				$('.formtwo').addClass('hide');
+				trading = tradingall;
+				if(trading.length<5){tradingShow(0,trading.length);}
+				else{tradingShow(0,5);}
+				pagingtwoShow();
+				tradingid='';
+				map.remove(circle);
+			}
+			else{
+				$('.tishi').html('您还有未输入项');
+	    		$('.tishi').removeClass('hide');
+	    		var t = setTimeout(function(){
+	    			$('.tishi').addClass('hide');
+	    			$('.map').addClass('hide');
+	    		},1500);
+			}
+		})
+
+//--------------------------------------------------保存end---------------------------------------------------------------------------------	
+		//筛选
+		$('#search').click(function(){
+			var name = $('#sch_name').val();
+			province = [];
+			for(var i=0;i<provinceall.length;i++){
+				if(name == ''){province.push(provinceall[i]);}
+				else{if(provinceall[i].area == name){province.push(provinceall[i]);}}
+			}
+			if(province.length<5){listShow(0,province.length);}
+			else{listShow(0,5);}
+			pagingShow();
+		})
+		//筛选2
+		$('#search2').click(function(){
+			var name = $('#sch_name2').val();
+			trading = [];
+			for(var i=0;i<tradingall.length;i++){
+				if(name == ''){trading.push(tradingall[i]);}
+				else{if(tradingall[i].name == name){trading.push(tradingall[i]);}}
+			}
+			if(trading.length<5){tradingShow(0,trading.length);}
+			else{tradingShow(0,5);}
+			pagingtwoShow();
+		})
+//--------------------------------------------------表格操作end---------------------------------------------------------------------------------
+		
+		//查询门店
+	    $("#areaSearch").click(function(){
+	    	var keywords = $("#areaInput").val(),showmsg ='';
+	    	AMap.plugin('AMap.PlaceSearch', function(){
+		        var autoOptions = {
+		          city: '全国'
+		        }
+		        var placeSearch = new AMap.PlaceSearch(autoOptions);
+		        placeSearch.search(keywords, function(status, result) {
+		        	console.log(result.poiList.pois)
+		        	areaList = result.poiList.pois;
+		        	for(var i=0;i<result.poiList.pois.length;i++){
+		        		citys.push({"lnglat":result.poiList.pois[i].location,"name":result.poiList.pois[i].name,"style":3});
+		        		showmsg = showmsg+ '<li data-num="'+i+'" ><p>门店名称：'+result.poiList.pois[i].name+'</p><p>门店地址：'+result.poiList.pois[i].address+'</p></li>'
+		        	}
+		        	$('#arealist').html(showmsg);
+		        })
+	    	})
+	    })
+        //查询门店-门店选择
+	    $('#arealist').on('click','li',function(e){
+	    	var num = e.currentTarget.dataset.num;
+	    	var lng = areaList[num].location.lng;
+	    	var lat = areaList[num].location.lat;
+	    	var radius = $('#formtwo_rad').val();
+	    	$('#arealist li').removeClass('listclick');
+	    	$(this).addClass('listclick');
+
+			map.setCenter([lng,lat]);
+	    	marker2 = new AMap.Marker({
+		        position: [lng,lat],
+		    })
+	    	marker1.setMap(null);
+	    	map.add(marker2);
+	    	marker1 = marker2;
+	    	
+	    	map.remove(circle);
+	    	circle = addCircle(lng, lat,radius);
+	    	$('#formone_name').val(areaList[num].name);
+	    	$('#formtwo_name').val(areaList[num].name);
+	    	$('#formone_lng').val(areaList[num].location.lng);
+	    	$('#formone_lat').val(areaList[num].location.lat);
+	    	$('#formtwo_lng').val(areaList[num].location.lng);
+	    	$('#formtwo_lat').val(areaList[num].location.lat);
+	    })
+//--------------------------------------------------表单更改---------------------------------------------------------------------------------
+		$('#formtwo_rad').change(function(){
+			var radius = $('#formtwo_rad').val();
+			var lng = $('#formtwo_lng').val();
+			var lat = $('#formtwo_lat').val();
+			map.setCenter([lng,lat]);
+	    	marker2 = new AMap.Marker({
+		        position: [lng,lat],
+		    })
+	    	marker1.setMap(null);
+	    	map.add(marker2);
+	    	marker1 = marker2;
+			map.remove(circle);
+	    	circle = addCircle(lng, lat,radius);
+		})
+		$('#formtwo_lng').change(function(){
+			var radius = $('#formtwo_rad').val();
+			var lng = $('#formtwo_lng').val();
+			var lat = $('#formtwo_lat').val();
+			map.setCenter([lng,lat]);
+	    	marker2 = new AMap.Marker({
+		        position: [lng,lat],
+		    })
+	    	marker1.setMap(null);
+	    	map.add(marker2);
+	    	marker1 = marker2;
+			map.remove(circle);
+	    	circle = addCircle(lng, lat,radius);
+		})
+		$('#formtwo_lat').change(function(){
+			var radius = $('#formtwo_rad').val();
+			var lng = $('#formtwo_lng').val();
+			var lat = $('#formtwo_lat').val();
+			map.setCenter([lng,lat]);
+			marker2 = new AMap.Marker({
+		        position: [lng,lat],
+		    })
+	    	marker1.setMap(null);
+	    	map.add(marker2);
+	    	marker1 = marker2;
+			map.remove(circle);
+	    	circle = addCircle(lng, lat,radius);
+		})
+
+
+//--------------------------------------------------表单更改end---------------------------------------------------------------------------------
+	    
+		
+		
+        //表格显示
+        function listShow(startnum,endnum){
+        	$('#list').html('');
+        	for(var i=startnum;i<endnum;i++){
+	    		$('#list').append('<tr data-id="'+province[i].id+'"><th>'+province[i].id+'</th><th>'+province[i].area+'</th><th>'+province[i].content+'</th><th>'+province[i].center+'</th><th><button class="tradingarea">核心商圈</button><button class="change">编辑</button><button class="delect">删除</button></th></tr>');
+    			
+	    	}
+        }
+        //核心商圈表格显示
+        function tradingShow(startnum,endnum){
+        	$('#tradingArea').html('');
+        	for(var i=startnum;i<endnum;i++){
+	    		$('#tradingArea').append('<tr data-id="'+trading[i].tradid+'"><th>'+trading[i].tradid+'</th><th>'+trading[i].name+'</th><th>'+trading[i].center+'</th><th>'+trading[i].radius+'</th><th><button class="change">编辑</button><button class="delect">删除</button></th></tr>');
+    			
+	    	}
+        }
+        //分页1
+		function pagingShow(){
+			$('#paging').css('display','block');
+			$('#paging').pagination({
+	            totalData:province.length,
+	            pageCount:province.length,
+	            showData:5,
+	            current: 1,
+	            jump: true,
+	            coping: true,
+	            count: 2,
+	            homePage: '首页',
+	            endPage: '末页',
+	            prevContent: '上页',
+	            nextContent: '下页',
+	            callback: function (api) {
+			        if(province.length<api.getCurrent()*5){listShow((api.getCurrent()-1)*5,province.length);}
+					else{listShow((api.getCurrent()-1)*5,api.getCurrent()*5);}
+//			        listShow((api.getCurrent()-1)*5,api.getCurrent()*5)
+			    }
+	       });
+		}
+		
+		//核心商圈-分页
+		function pagingtwoShow(){
+			$('#pagingtwo').css('display','block');
+			$('#pagingtwo').pagination({
+	            totalData:trading.length,
+	            pageCount:trading.length,
+	            showData:5,
+	            current: 1,
+	            jump: true,
+	            coping: true,
+	            count: 2,
+	            homePage: '首页',
+	            endPage: '末页',
+	            prevContent: '上页',
+	            nextContent: '下页',
+	            callback: function (api) {
+			        if(trading.length<api.getCurrent()*5){tradingShow((api.getCurrent()-1)*5,trading.length);}
+					else{tradingShow((api.getCurrent()-1)*5,api.getCurrent()*5);}
+//			        listShow((api.getCurrent()-1)*5,api.getCurrent()*5)
+			    }
+	       });
+		}
+	</script>
+</html>

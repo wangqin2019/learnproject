@@ -1,0 +1,218 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>安心送订单汇总</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <!--<div class="col-sm-12">-->
+                    <!--<form name="admin_list_sea" class="form-search" method="post" action="{:url('axs')}">-->
+                        <!--<div class="col-sm-3">-->
+                            <!--<div class="input-group">-->
+                                <!--<span class="input-group-btn">-->
+                                     <!--<a href="{:url('deliveryImport')}"><button class="btn btn-primary" type="button">物流导入</button></a>-->
+                                <!--</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</form>-->
+                <!--</div>-->
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>日期</th>
+                                <th>订单数量</th>
+                                <th>订单总量</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].days}}</td>
+                                    <td>{{d[i].count}}</td>
+                                    <td>{{d[i].price}}</td>
+                                    <td>
+                                        <a href="javascript:;" onclick="download_branch_order('{{d[i].days}}')"  class="btn btn-primary btn-outline btn-xs"><i class="fa fa-send-o"></i> 导出</a>
+                                        {{# if(d[i].is_check==-1){ }}
+                                        <a href="javascript:;" onclick="confirm_amount('{{d[i].days}}')" class="btn btn-warning btn-outline btn-xs" id="{{d[i].days}}"><i class="fa fa-exclamation"></i> 核对异常</a>
+                                        {{# }else if(d[i].is_check==1){ }}
+                                        <a href="javascript:;" onclick="confirm_amount('{{d[i].days}}')" class="btn btn-danger btn-outline btn-xs" id="{{d[i].days}}"><i class="fa fa-check"></i> 核对完成</a>
+                                        {{# }else{ }}
+                                        <a href="javascript:;" onclick="confirm_amount('{{d[i].days}}')" class="btn btn-primary btn-outline btn-xs" id="{{d[i].days}}"><i class="fa fa-cny"></i> 确认进账</a>
+                                        {{# } }}
+                                    </td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        $.getJSON('{:url("Missshop/axs")}', {page: curr || 1,key:key}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+    function showDate(obj) {
+        var thisObj=$(obj);//js对象转jquery对象
+        thisObj.parent().parent().next().toggle();
+    }
+    
+    function confirm_amount(n_date) {
+        layer.confirm(n_date+'订单金额与进账是否一致？', {
+            btn: ['一致','不一致'] //按钮
+        }, function(){
+            confirm_amount_action(n_date,1);
+        }, function(){
+            confirm_amount_action(n_date,-1);
+        });
+    }
+
+    function confirm_amount_action(n_date,flag) {
+        $.ajax({
+            url: '{:url("confirm_amount_action")}',
+            dataType: 'json',
+            data:{n_date:n_date,flag:flag},
+            method: 'GET',
+            success: function(data) {
+                console.log(data);
+                if (data.code == 1) {
+                    layer.msg(data.msg, {icon: 1,time:1500,shade: 0.1}, function(index){
+                        if(flag==1){
+                            $('#'+n_date).html("<i class='fa fa-check'></i> 核对完成");
+                            $('#'+n_date).addClass("btn-danger");
+                        }else{
+                            $('#'+n_date).addClass("btn-warning");
+                            $('#'+n_date).html("<i class='fa fa-exclamation'></i> 核对异常");
+                        }
+                    });
+                }else{
+                    layer.msg(data.msg, {icon: 2,time:1500,shade: 0.1});
+                }
+            },
+            error: function(xhr) {
+                // 导致出错的原因较多，以后再研究
+                alert('error:' + JSON.stringify(xhr));
+            }
+        })
+    }
+
+
+
+    function showNo(n_date,n_id) {
+        var thisno= $('#'+n_date+n_id+'input').text();
+        layer.prompt({title: '输入Erp回填单号',value: $.trim(thisno), formType: 0}, function(text, index){
+            layer.close(index);
+            $.ajax({
+                url: '{:url("save_erp_no")}',
+                dataType: 'json',
+                data:{n_date:n_date,n_id:n_id,text:text},
+                method: 'GET',
+                success: function(data) {
+                    console.log(data);
+                    if (data.code == 1) {
+                        layer.msg(data.msg, {icon: 1,time:1500,shade: 0.1}, function(index){
+                           $('#'+n_date+n_id).html("<i class='fa fa-check'></i> 录入完成");
+                           $('#'+n_date+n_id).addClass("btn-danger");
+                           $('#'+n_date+n_id+'input').text(text);
+                        });
+                    }else{
+                        layer.msg(data.msg, {icon: 2,time:1500,shade: 0.1});
+                    }
+                },
+                error: function(xhr) {
+                    // 导致出错的原因较多，以后再研究
+                    alert('error:' + JSON.stringify(xhr));
+                }
+            })
+        });
+    }
+
+    function download_branch_order(n_date) {
+        location.href = './download_branch_order/n_date/'+n_date+'.html';
+    }
+
+    //编辑活动号
+    function edit(id){
+        location.href = './activityEdit/id/'+id+'.html';
+    }
+    //操作活动
+    function action(id){
+        location.href = './activityAction/id/'+id+'.html';
+    }
+
+    //操作活动
+    function exports(id){
+        location.href = './activityExports/id/'+id+'.html';
+    }
+    //操作活动
+    function axs(id){
+        location.href = './axs_list/id/'+id+'.html';
+    }
+
+    //删除活动号
+    function manager(id){
+        location.href = './bsc_branch/id_department/'+id+'.html';
+    }
+
+
+</script>
+</body>
+</html>

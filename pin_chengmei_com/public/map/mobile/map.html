@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <META HTTP-EQUIV="expires" CONTENT="0">
+		<title>test</title>
+		<!--<link rel="stylesheet" type="text/css" href="css/show.css"/>-->
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.12&key=87479936d9ecb6fc4997e30cb3b14732&plugin=AMap.RangingTool,AMap.Scale,AMap.OverView,AMap.ToolBar"></script>
+	    <script type="text/javascript" src="js/jquery.min.js"></script>
+	    <script type="text/javascript" src="js/common.js"></script>
+	    <script type="text/javascript" src="js/prov.js"></script>
+	    <script type="text/javascript" src="js/shopn.js"></script>
+	    <script type="text/javascript" src="city.js"></script>
+	    <style type="text/css">
+	    	.shopn_label p{height: 2em;line-height: 2em;text-align: center !important;border-radius: 1em;background: #18A689;color: #fff;margin: 0 0.5em 0.5em 0;}
+	    </style>
+	</head>
+	<body>
+		<div id="container"></div>
+		<div id="toolbarLeft">
+			<div id="removeCenter"><span class="iconfont">&#xe684;</span></div>
+			<div id="distance"><span class="iconfont">&#xe768;</span></div>
+			<div id="tradingswitch"><span class="iconfont">&#xe68c;</span></div>
+			<div id="zoomAdd"><span class="iconfont">&#xe643;</span></div>
+			<div id="zoomDelect"><span class="iconfont">&#xe608;</span></div>
+		</div>
+		<div id="toolbarRight">
+			<div id="provShow"><span class="iconfont">&#xe627;</span></div>
+			<div id="shopnShow"><span class="iconfont">&#xeeea;</span></div>
+			<div id="setShop"><span class="iconfont">&#xe634;</span></div>
+		</div>
+		
+		<div class="setshopn hide">
+			<img src="img/position.png" />
+		</div>
+		
+		<div class="showpart hide">
+			<!-----------------------------------------------------------地图信息----------------------------------------------------------->
+			<div class="provshow hide">
+				<div class="return"><span class="iconfont floatl">&#xe667;</span>地图信息<span class="floatr edit">编辑</span></div>
+				<div class="body">
+					<label><p>地图名称：</p><div class="prov_name"></div></label>
+					<label><p>地图详情：</p><div class="prov_detail"></div></label>
+				</div>
+			</div>
+			<div class="provchange hide">
+				<div class="return"><span class="iconfont floatl">&#xe667;</span>地图信息<span class="floatr save">保存</span></div>
+				<div class="body">
+					<label>
+						<p>地图名称：</p>
+						<div><input placeholder="请输入地图名称" value="" id="provName"/></div>
+					</label>
+					<label>
+						<p>地图详情：</p>
+						<div><textarea placeholder="请输入地图详情" id="provDel"></textarea></div>
+					</label>
+					<label>
+						<p>中心点：</p>
+						<div>
+							<input placeholder="请输入中心点名称" value="" id="provCenter"/>
+							<!--<div class="prov_center">-->
+								<input placeholder="请输入中心点坐标" value="" id="provLnglat" disabled="disabled"/>
+								<!--<button class="floatr" class="">修改</button>-->
+							<!--</div>-->
+						</div>
+					</label>
+					<label>
+						<p>核心商圈：</p>
+						<div id="tradingList">
+							<!--<div>
+								<input placeholder="请输入商圈名称" value="" class="tradName"/>
+								<input placeholder="请输入商圈中心" value="" class="tradCenter"/>
+								<input placeholder="请输入商圈半径" value="" class="tradRadius"/>
+								<button class="tradDelect">删除</button>
+							</div>-->
+							<button id="tradingAdd">新增</button>
+						</div>
+					</label>
+				</div>
+			</div>
+			<!-----------------------------------------------------------门店列表----------------------------------------------------------->
+			<div class="shopnlist hide">
+				<div class="return"><span class="iconfont floatl">&#xe667;</span>门店列表</div>
+				<ul class="body"></ul>
+			</div>
+			<div class="shopndetail hide">
+				<div class="return">
+					<p class="floatl"><span class="iconfont">&#xe667;</span>详情</p>
+					<span class="iconfont floatr" id="positionMap">&#xe651;</span>
+					<span class="iconfont floatr" id="positionChange">&#xe628;</span>
+				</div>
+				<div class="body">
+					<label><p>名称：</p><div class="shopn_name"></div></label>
+					<label><p>电话：</p><div class="shopn_tel"></div></label>
+					<label><p>详细地址：</p><div class="shopn_address"></div></label>
+					<label><p>老板：</p><div class="shopn_boss"></div></label>
+					<label><p>类型：</p><div class="shopn_style"></div></label>
+					<label><p>状态：</p><div class="shopn_type"></div></label>
+					<label><p>标签：</p><div class="shopn_label"></div></label>	
+					<label><p>图片：</p><div class="shopn_img"></div></label>
+					
+					<label><button class="delect">删除</button></label>
+				</div>
+				
+			</div>
+			<div class="shopnchange hide">
+				<div class="return">
+					<span class="iconfont floatl">&#xe667;</span>
+					<span class="floatr save">保存</span>
+				</div>
+				<div class="body">
+					<label><p>名称：</p><div><input placeholder="请输入门店名称" value="" id="shopn_name"/></div></label>
+					<label><p>电话：</p><div><input placeholder="请输入门店电话" value="" id="shopn_tel" /></div></label>
+					<label><p>详细地址：</p><div><input placeholder="请输入门店详细地址" value="" id="shopn_address" /></div></label>
+					<label><p>老板：</p><div><input placeholder="请输入老板姓名" value="" id="shopn_boss" /></div></label>
+					<label>
+						<p>类型：</p>
+						<div>
+							<select id="styleSearch" value="0"></select>
+						</div>
+					</label>
+					<label>
+						<p>状态：</p>
+						<div>
+							<select id="typeSearch" value="0"></select>
+						</div>
+					</label>
+					<label>
+						<p>标签：</p>
+						<div id="shopn_label"></div>
+						<button id="shopn_label_button">新增</button>
+						<select id="labelSearch" value="0"></select>
+					</label>
+					<label>
+						<p>地图：</p>
+						<div>
+							<select id="areaSearch" value="0"></select>
+						</div>
+					</label>
+					<label>
+						<p>图片：</p>
+						<div id="shopn_img"></div>
+						<button class="shopn_img_button">新增</button>
+						<input id="shopnImgBut" value="新增" type="file" accept="image/png, image/jpeg, image/gif, image/jpg"/>
+					</label>
+					
+				</div>
+			</div>
+			
+		</div>
+	</body>
+	<script type="application/x-javascript">
+		var provid = window.location.search.split('?provid=')[1];
+		var imgarray = ['img/pwd.png','img/add.png'];
+		var winhei = window.screen.availHeight ,winwid = document.body.clientWidth;
+		console.log(province)
+		$('#container').css({'width':winwid+'px','height':winhei+'px'});
+		var provinceshow = province[provid-1],citysshow=[],tradingarea=[],trading=true,style =[],map,distance=false,zoomnum = 15,addNewShopn = false;
+		var centerlnglat=provinceshow.lnglat,citysshownum = citysshow.length;
+		if(provid == 1){
+			var lng = centerlnglat.lng,lat = centerlnglat.lat;
+			citysshow = citys;
+			tradingarea = provinceshow.tradingarea;
+			map = new AMap.Map('container', {
+		        zoom:zoomnum,//级别
+		        center: [lng,lat],//中心点坐标
+		        viewMode:'2D',//使用3D视图
+		        features: ['bg', 'road', 'building'],
+		        resizeEnable: true
+			});
+		}
+		else if(provid == 2){
+			var lng = centerlnglat.lng,lat = centerlnglat.lat;
+			citysshow = citys2;
+			tradingarea = provinceshow[1].tradingarea;
+			map = new AMap.Map('container', {
+		        zoom:zoomnum,//级别
+		        center: [lng,lat],//中心点坐标
+		        viewMode:'2D',//使用3D视图
+		        features: ['bg', 'road', 'building'],
+		        resizeEnable: true
+			});
+		}
+		else{
+			var lng = centerlnglat.lng,lat = centerlnglat.lat;
+			citysshow = [];
+			map = new AMap.Map('container', {
+		        zoom:zoomnum,//级别
+		        center: [lng,lat],//中心点坐标
+		        viewMode:'2D',//使用3D视图
+		        features: ['bg', 'road', 'building'],
+		        resizeEnable: true
+			});
+		}
+		
+	    for(var i=0;i<stylelist.length;i++){
+	    	style.push({
+		        url: stylelist[i].url,
+		        anchor: new AMap.Pixel(3, 3),
+		        size: new AMap.Size(26, 29.5)
+		    })
+	    }
+	    map.setFeatures(['bg', 'road', 'building']);
+	    var mass = new AMap.MassMarks(citysshow, {
+	        opacity: 1,
+	        zIndex: 11,
+	        cursor: 'pointer',
+	        style: style
+	    });
+
+	    mass.on('click', function (e) {
+	        map.setCenter([e.data.lnglat.lng, e.data.lnglat.lat]);
+			var infoWindow = new AMap.InfoWindow({ //创建信息窗体
+		        isCustom: false,  //使用自定义窗体
+		        content:'<div>门店</div><div>名称：'+e.data.name+'</div><div>电话：'+e.data.tel+'</div><div>地址：'+e.data.address+'</div><div class="detail"><button data-shopnid="'+e.data.id+'">详情</button></div>', //信息窗体的内容可以是任意html片段
+		        offset: new AMap.Pixel(10, -10)
+		    });
+	        infoWindow.open(map, e.data.lnglat);
+	    });
+	    mass.setMap(map);
+	    circleShow();
+	    ruler = new AMap.RangingTool(map, rulerOptions);
+	    //地图查找-插件
+		AMap.plugin('AMap.PlaceSearch', function(){})
+		var autoOptions = {city: '全国'}
+		var placeSearch = new AMap.PlaceSearch(autoOptions);
+	
+	    $('#removeCenter').click(function(){
+	    	map.setCenter(centerlnglat);
+	    })
+	    
+	    //启用自定义样式测距
+        $('#distance').click(function(){
+        	if(distance == true){
+        		distance = false;
+        		map.setDefaultCursor("pointer");
+            	ruler.turnOff();      		
+        	}
+        	else{
+        		distance = true;
+        		map.setDefaultCursor("crosshair");
+            	ruler.turnOn();      		
+        	}
+        })
+	    
+	    //商圈开关-默认打开
+	    $('#tradingswitch').click(function(){
+	    	if(trading ==true){
+	    		trading = false;
+        		map.clearMap();
+	    	}
+	    	else{
+	    		trading = true;
+	    		map.clearMap();
+        		circleShow();
+	    	}
+	    })
+        
+        
+        $('#zoomAdd').click(function(){
+        	if(19 <= zoomnum){}
+        	else{zoomnum = zoomnum+1;}
+        	map.setZoom(zoomnum);
+        	if(trading ==true){
+	    		map.clearMap();
+        		circleShow();
+	    	}
+        })
+        $('#zoomDelect').click(function(){
+        	if(zoomnum <= 3){}
+        	else{zoomnum = zoomnum-1;}
+        	map.setZoom(zoomnum);
+        	if(trading ==true){
+        		map.clearMap();
+        		circleShow();
+	    	}
+        })
+//---------------------------------------------------------地图信息----------------------------------------------------------------------------------
+		$('#provShow').click(function(){
+			$('.showpart').removeClass('hide');
+			$('.provshow').removeClass('hide');
+		})
+//---------------------------------------------------------地图信息----------------------------------------------------------------------------------
+		$('#shopnShow').click(function(){
+			$('.showpart').removeClass('hide');
+			$('.shopnlist').removeClass('hide');
+			if(marker_state == true){addshopnCancel();}
+			
+		})
+//---------------------------------------------------------地图信息----------------------------------------------------------------------------------
+		var marker,marker_state = false;
+		$('#setShop').click(function(){
+			if(marker_state == false){
+				var msg = map.getCenter();
+				marker = new AMap.Marker({
+			        icon: "img/position.png",
+			        position: msg,
+			        offset: new AMap.Pixel(-25, -23)
+			    });
+			    marker.setMap(map);
+			    marker_state = true;
+			    var infoWindow = new AMap.InfoWindow({ //创建信息窗体
+			        isCustom: false,  //使用自定义窗体
+			        content:'<div>门店</div><div class="addshopnbutton"><button class="cancleShopn">取消</button><button class="addShopn">添加</button></div>', //信息窗体的内容可以是任意html片段
+			        offset: new AMap.Pixel(10, -20)
+			    });
+		        infoWindow.open(map, msg);
+			    map.on('dragstart', dragStart);
+			    map.on('dragend', dragEnd);
+			}
+			else{
+				addshopnCancel();
+			}
+		})
+		//门店取消
+		$('#container').on('click','.cancleShopn',function(){
+			addshopnCancel();
+		})
+		//门店添加
+		$('#container').on('click','.addShopn',function(){
+			$('#shopn_name').val('');
+			$('#shopn_tel').val('');
+			$('#shopn_address').val('');
+			$('#shopn_boss').val('');
+			$('#styleSearch').val('0');
+			$('#typeSearch').val('0');
+			$('#areaSearch').val('0');
+			$('#shopn_label').html('');
+			$('#shopn_img').html('');
+			
+			citysshow.push({
+				"id": (citysshow.length+1),
+				"agency":"",
+				"area":"",
+				"boss":"",
+				"name": "",
+				"content": "",
+				"lnglat": [],
+				"address": "",
+				"tel": "",
+				"type": "",
+				"label": [],
+				"style": "",
+				"image":[]
+			})
+			citysshownum = citysshownum+1;
+			$('.shopnchange').removeClass('hide');
+			$('.showpart').removeClass('hide');
+			addNewShopn = true;
+		})
+		
+		//门店取消添加
+		function addshopnCancel(){
+			marker_state = false;
+			map.clearMap();
+			trading=false;
+			$('.setshopn').addClass('hide');
+			map.off('dragstart', dragStart);
+		    map.off('dragend', dragEnd);
+		    addNewShopn = false;
+		}
+		
+		function dragStart(){
+			$('.setshopn').removeClass('hide');
+        	map.clearMap();
+	        trading=false;
+		}
+		function dragEnd(){
+			$('.setshopn').addClass('hide');
+	        var msg = map.getCenter();
+	        var infoWindow = new AMap.InfoWindow({ //创建信息窗体
+		        isCustom: false,  //使用自定义窗体
+		        content:'<div>门店</div><div class="addshopnbutton"><button class="cancleShopn">取消</button><button class="addShopn">添加</button></div>', //信息窗体的内容可以是任意html片段
+		        offset: new AMap.Pixel(10, -20)
+		    });
+	        infoWindow.open(map, msg);
+	        
+	        marker = new AMap.Marker({
+		        icon: "img/position.png",
+		        position: msg,
+		        offset: new AMap.Pixel(-25, -23)
+		    });
+		    marker.setMap(map);
+		}
+
+	    function circleShow(){
+    		for(var j=0;j<tradingarea.length;j++){
+		    	var lng = tradingarea[j].lnglat.lng;
+		    	var lat = tradingarea[j].lnglat.lat;
+		    	var radius = tradingarea[j].radius;
+		    	var circle = new AMap.Circle({
+			        map: map,
+			        center: [lng, lat],          //设置线覆盖物路径
+			        radius: radius,
+			        strokeColor: "#FF0000", //边框线颜色
+			        strokeOpacity: 0.3,       //边框线透明度
+			        strokeWeight: 3,        //边框线宽
+			        fillColor: "#FF0000", //填充色
+			        fillOpacity: 0.25//填充透明度
+			   });
+    		}
+	    }
+	</script>
+</html>

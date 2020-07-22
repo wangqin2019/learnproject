@@ -1,0 +1,139 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>产品规格列表</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-sm-12">
+                <div  class="col-sm-2" style="width: 100px">
+                    <div class="input-group" >
+                        <a href="{:url('add_specs')}"><button class="btn btn-outline btn-primary" type="button">添加产品规格</button></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>规格名称</th>
+                                <th>规格项</th>
+                                <th>规格状态</th>
+                                <th width="15%">添加时间</th>
+                                <th width="15%">更新时间</th>
+                                <th width="20%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach name="list" item="vo"}
+                                <tr class="long-td">
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo.specs_name}</td>
+                                    <td>{$vo.specs_item}</td>
+                                    <td>
+                                        {if condition="$vo['specs_status'] == 1"}
+                                            <span class="label label-info">开启</span>
+                                        {else/}
+                                            <span class="label label-danger">禁用</span>
+                                        {/if}
+                                    </td>
+                                    <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+                                    <td>{$vo.update_time|date='Y-m-d H:i:s',###}</td>
+                                    <td>
+                                        <a href="{:url('edit_specs',['id'=>$vo.id])}" class="btn btn-primary btn-xs btn-outline">
+                                            <i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+                                        <a href="javascript:;" onclick="del_specs({$vo.id})" class="btn btn-danger btn-xs btn-outline">
+                                            <i class="fa fa-trash-o"></i> 删除</a>
+                                    </td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                     <div id="Pages" style="text-align:right;"></div><div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{include file="public/footer" /}
+
+
+<script type="text/javascript">
+
+    //分页
+    laypage({
+        cont: $('#Pages'),  // 分页容器
+        pages: "{$allpage}",// 总页数
+        skip: false, //是否开启跳页
+        skin: '#1AB5B7',//分页组件颜色
+        groups: 3,//连续显示分页数
+        curr: function(){
+            var page = "{$nowpage}"; // 当前页(后台获取到的)
+            return page ? page : 1; // 返回当前页码值
+        }(),
+        jump: function(e, first){ //触发分页后的回调(单击页码后)
+            if(!first){ //一定要加此判断，否则初始时会无限刷新
+                location.href = '?page='+e.curr;
+            }
+        }
+    });
+
+
+/**
+ * [del_position 删除产品分类]
+ * @Author[田建龙 864491238@qq.com]
+ */
+function del_specs(id){
+    layer.confirm('确认删除此产品规格?', {icon: 3, title:'提示'}, function(index){
+        //do something
+        $.getJSON('./del_specs', {'id' : id}, function(res){
+            if(res.code == 1){
+                layer.msg(res.msg,{icon:1,time:1500,shade: 0.1},function(){
+                    window.location.href="{:url('goods/specs')}";
+                });
+            }else{
+                layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+            }
+        });
+
+        layer.close(index);
+    })
+
+}
+
+/**
+ * [position_state 产品分类状态]
+ * @Author[田建龙 864491238@qq.com]
+ */
+function position_state(val){
+    $.post('{:url("cate_state")}',
+    {id:val},
+    function(data){
+
+        if(data.code==1){
+            var a='<span class="label label-danger">禁用</span>'
+            $('#zt'+val).html(a);
+            layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+            return false;
+        }else{
+            var b='<span class="label label-info">开启</span>'
+            $('#zt'+val).html(b);
+            layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+            return false;
+        }
+
+    });
+    return false;
+}
+
+
+</script>
+</body>
+</html>

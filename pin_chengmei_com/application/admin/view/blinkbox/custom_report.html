@@ -1,0 +1,49 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>销售定制订单列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <form name="admin_list_sea" class="form-horizontal m-t" method="post" action="{:url('customReport1')}">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">开始时间：</label>
+                    <div class="col-sm-6" style="padding-left: 0px;">
+                        <input type="text" name="start" id="start" onclick="laydate()" value="{$start}" autocomplete="off"  class="form-control layer-date" placeholder="订单开始日期"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">结束时间：</label>
+                    <div class="col-sm-6" style="padding-left: 0px;">
+                        <input type="text" name="end" id="end" onclick="laydate()" value="{$end}" autocomplete="off" class="form-control layer-date" placeholder="订单结束日期"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-3">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 导出</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+
+</script>
+</body>
+</html>

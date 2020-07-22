@@ -1,0 +1,142 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>密丝小铺推广</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('rank')}">
+                        <div class="col-sm-12">
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" name="share" id="share" style="width: 150px;">
+                                    <option value="share_uid" {if condition="$share eq 'share_uid'"}selected{/if}>按推广人</option>
+                                    <option value="fid" {if condition="$share eq 'fid'"}selected{/if}>按美容师</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" name="scene" id="scene" style="width: 150px;">
+                                    <option value="88" {if condition="$scene eq 88"}selected{/if}>请选择集客场景</option>
+                                    <option value="1" {if condition="$scene eq 1"}selected{/if}>组套转客</option>
+                                    <option value="0" {if condition="$scene eq 0"}selected{/if}>19元集客</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的用户名" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <a href="{:url('rank',['key'=>$val,'share'=>$share,'export'=>1])}" class="btn btn-primary"><i class="fa fa-download"></i> 导出</a>
+                                </span>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>所属市场</th>
+                                <th>所属美容院</th>
+                                <th>推广人姓名</th>
+                                <th>推广人电话</th>
+                                <th>推广订单数</th>
+                                <th>拓客人数</th>
+                                <th>销售盒数</th>
+                                <th>支付总金额</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].bsc_name}}</td>
+                                    <td>{{d[i].cus_title}}{{d[i].cus_sign}}</td>
+                                    <td>{{d[i].seller_name}}</td>
+                                    <td>{{d[i].seller_tel}}</td>
+                                    <td>{{d[i].count}}</td>
+                                    <td>{{d[i].cus_total}}</td>
+                                    <td>{{d[i].num}}</td>
+                                    <td>{{d[i].price}}</td>
+                                    <td>
+                                        <a href="javascript:;" onclick="show({{d[i].share_uid}},{$scene})" class="btn btn-primary btn-outline btn-xs"><i class="fa fa-info"></i> 详细</a>&nbsp;&nbsp;
+                                    </td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var share=$('#share').val();
+        var scene=$('#scene').val();
+        $.getJSON('{:url("missshop/rank")}', {page: curr || 1,key:key,share:share,scene:scene}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+
+    //下单详细
+    function show(id,scene){
+        location.href = './orders/pay_status/1/sale_uid/'+id+'/scene/'+scene+'.html';
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+{include file="public/header" /}
+<body >
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+                <div class="ibox-content" style="border: 0px">
+                    <form class="form-horizontal" name="recommend" id="recommend"  method="post" action="#">
+                        {if !empty($recommend)}
+                            {foreach name="recommend" item="vo"}
+
+                                <div style="border: 1px dashed #eee">
+                                    <span class="checkbox i-checks" style="display: inline">
+                                        <input type="checkbox" value="{$vo.id}" class="r_ids"> {$vo.name}
+                                    </span>
+                                </div>
+                            {/foreach}
+                        {/if}
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="button" id="save"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" onclick="closed();"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script>
+    var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+    $(function () {
+        $('#save').click(function () {
+            var recommend_num= parent.$('#recommend_show .panel-body').length;
+            var keyArr=new Array();
+            var valArr = new Array();
+            $(".r_ids:checkbox:checked").each(function(i){
+                var pid= $(this).val();
+                keyArr[i]=pid;
+            });
+            var vals = keyArr.join(',');//转换为逗号隔开的字符串
+            if (vals.length == 0) {
+                layer.msg('请先勾选确认推荐的产品',{icon:2,time:1500,shade: 0.1,});
+            } else {
+                layer.confirm('您确认将这些产品作为推荐产品吗？', {
+                    btn: ['确认', '取消'] //按钮
+                }, function () {
+                    $.post('{:url("recommend")}',
+                        {ids:vals},
+                        function(data){
+                            var money=0;
+                            var len=data.data.length;
+                            var str = '<div class=\'panel panel-default tuijina\'>';
+                            str +="<div class='panel-heading' style='padding-bottom: 10px;'>连带推荐组合</div>";
+                            str +=" <div class='panel-body' style='position: relative'>";
+                            $.each(data.data, function (name, value) {
+                                //console.log(name);
+                                money+=value.activity_price;
+                                str +="<div style='float: left;width: 100px;'><input type='hidden' name='recommend["+recommend_num+"]["+name+"]' value=" + value.id + " /><img src=" + value.images + " width='100'/><br/>" + value.name + " ￥" + value.activity_price + "</div>";
+                                if(name<len-1){
+                                    str+='<div style="float: left;padding: 38px 15px 0px;"><img src="/static/admin/images/add.png"> </div>';
+                                }else{
+                                    str+='<div style="float: left;padding: 38px 15px 0px;font-weight: bold;color: #ff0000;font-size: 16px"><img src="/static/admin/images/equal.png"> '+money+'</div>';
+                                }
+                            });
+                            str +="<div style='float: right;width: 100px;font-size: 16px;font-weight:bold;position: absolute;right: 0px;top: 40%'><button class='btn btn-default' onclick='remove(this)' type='button'>移除</button></div>";
+                            str +="</div></div>";
+                            parent.$('#recommend_show').append(str);
+                            parent.layer.close(index);
+                        });
+                });
+            }
+        })
+    });
+    function closed() {
+        parent.layer.close(index);
+    }
+    //IOS开关样式配置
+    var elem = document.querySelector('.js-switch');
+    var switchery = new Switchery(elem, {
+        color: '#1AB394'
+    });
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+</script>
+</body>
+</html>

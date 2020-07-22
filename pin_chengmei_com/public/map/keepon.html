@@ -1,0 +1,122 @@
+<!--测试-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+		
+		<title>test</title>
+		<link rel="stylesheet" type="text/css" href="css/show.css"/>
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.12&key=87479936d9ecb6fc4997e30cb3b14732&plugin=AMap.RangingTool"></script>
+	    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+	    <script type="text/javascript" src="js/jquery.min.js"></script>
+	    <script type="text/javascript" src="js/common.js"></script>
+	    <script type="text/javascript" src="city.js"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+		<button id='distance'>测距工具</button>
+		<button id='move'>平移</button>
+		
+		<div class="search">
+		    <div class="search_title">
+		    	<span>请输入关键字:</span>
+		    	<input id='areaInput' type="text" value='上海' >
+		    	<button id="areaSearch">查询</button>
+		    </div>
+		    <ul id="arealist">
+		    	<li>
+		    		<p>name</p>
+		    		<p>address</p>
+		    	</li>
+		    	<li>
+		    		<p>name</p>
+		    		<p>address</p>
+		    	</li>
+		    </ul>
+		</div>
+	</body>
+	<script type="application/x-javascript">
+		document.getElementById('container').style.height = document.documentElement.clientHeight+'px';
+		
+		var map = new AMap.Map('container', {
+	        zoom:15,//级别
+	        center: [121.473658, 31.230378],//中心点坐标
+	        viewMode:'3D'//使用3D视图
+	    });
+	    var style = [{
+	        url: './img/ic_cooperation_club_azure.png',
+	        anchor: new AMap.Pixel(3, 3),
+	        size: new AMap.Size(19, 21.5),
+	    }, {
+	        url: 'https://webapi.amap.com/theme/v1.3/markers/b/mark_b.png',
+	        anchor: new AMap.Pixel(3, 3),
+	        size: new AMap.Size(12, 20)
+	    }
+	    ];
+	    
+	    var mass = new AMap.MassMarks(citys, {
+	        opacity: 1,
+	        zIndex: 11,
+	        cursor: 'pointer',
+	        style: style
+	    });
+	    mass.on('click', function (e) {
+	        map.setCenter([e.data.lnglat.lng, e.data.lnglat.lat]);
+			var infoWindow = new AMap.InfoWindow({ //创建信息窗体
+		        isCustom: false,  //使用自定义窗体
+		        content:'<div>门店</div><div>名称：'+e.data.name+'</div><div>电话：'+e.data.tel+'</div><div>地址：'+e.data.address+'</div>', //信息窗体的内容可以是任意html片段
+		        offset: new AMap.Pixel(10, -10)
+		    });
+	        infoWindow.open(map, e.data.lnglat);
+	    });
+	
+	    mass.setMap(map);
+//	    map.setCenter([116.258446,37.686622]);
+
+	    //查询门店
+	    $("#areaSearch").click(function(){
+	    	var keywords = $("#areaInput").val(),showmsg ='';
+	    	AMap.plugin('AMap.PlaceSearch', function(){
+		        var autoOptions = {
+		          city: '全国'
+		        }
+		        var placeSearch = new AMap.PlaceSearch(autoOptions);
+		        placeSearch.search(keywords, function(status, result) {
+		        	console.log(result.poiList.pois)
+		        	for(var i=0;i<result.poiList.pois.length;i++){
+		        		citys.push({"lnglat":result.poiList.pois[i].location,"name":result.poiList.pois[i].name,"style":3});
+		        		showmsg = showmsg+ '<li data-lng="'+result.poiList.pois[i].location.lng+'" data-lat="'+result.poiList.pois[i].location.lat+'"><p>门店名称：'+result.poiList.pois[i].name+'</p><p>门店电话：'+result.poiList.pois[i].tel+'</p><p>门店地址：'+result.poiList.pois[i].address+'</p></li>'
+		        	}
+		        	$('#arealist').html(showmsg);
+		        })
+	    	})
+	    })
+	    //门店选择
+	    $('#arealist').on('click','li',function(e){
+//	    	console.log(e.currentTarget.dataset.lnglat);
+	    	var lng = e.currentTarget.dataset.lng;
+	    	var lat = e.currentTarget.dataset.lat;
+	    	map.setCenter([lng,lat]);
+	    	$('#arealist li').removeClass('listclick');
+	    	$(this).addClass('listclick');
+	    })
+	    //-------------------------------------------------------------------获取经纬度-------------------------------------------------------------------------
+	    map.on('click', function(e) {
+	    	console.log(e)
+	        console.log(e.lnglat.getLng() + ',' + e.lnglat.getLat());
+	    });
+
+		//启用自定义样式测距
+	    ruler = new AMap.RangingTool(map, rulerOptions);
+        $('#distance').click(function() {
+        	map.setDefaultCursor("crosshair");
+            ruler.turnOn();
+        })
+        $('#move').click(function() {
+        	map.setDefaultCursor("pointer");
+            ruler.turnOff();
+        })
+	</script>
+</html>

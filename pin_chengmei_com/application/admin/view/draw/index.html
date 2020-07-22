@@ -1,0 +1,378 @@
+{include file="public/header" /}
+<style>
+.file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+.file-item .info{overflow: hidden;}
+.uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>抽奖</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-inline">
+                                <div class="input-group">
+                                    <a href="{:url('add_draw')}"><button class="btn btn-outline btn-primary" type="button"><i class="fa fa-star"></i> 新增奖项</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="{:url('export')}" class="btn btn-outline btn-primary"><i class="fa fa-download"></i> 中奖名单</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:;" onclick="join_close()" class="btn btn-danger"><i class="fa fa-power-off"></i> 报名截至 准备抽奖</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <!--<a href="{:url('import')}" class="btn btn-outline btn-primary"><i class="fa fa-send"></i> 发送短信</a>&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                    <!--<a href="javascript:;" class="btn btn-outline btn-danger" onclick="distroy_draw(this)"><i class="fa fa-refresh"></i> 清空中奖</a>-->
+                                </div>
+                                <div class="input-group">
+                                    <select name="drawStatus" id="drawStatus" class="form-control m-b chosen-select">
+                                        <option value="0" {if condition="$drawAmbient eq 0 "}selected{/if}>选择抽奖环境</option>
+                                        <option value="1" {if condition="$drawAmbient eq 1 "}selected{/if}>测试抽奖</option>
+                                        <option value="2" {if condition="$drawAmbient eq 2 "}selected{/if}>正式抽奖</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="wrapper wrapper-content animated fadeInRight">
+                        <div class="row">
+                            <form class="form-horizontal"  action="">
+                                <!--<div class="form-group">-->
+                                    <!--<label class="col-sm-1 control-label">奖池人数：</label>-->
+                                    <!--<div class="input-group col-sm-3">-->
+                                        <!--<div id="jcrs" style='padding-top: 8px;'>{$ticketMan}人</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="hr-line-dashed"></div>-->
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">抽奖场景：</label>
+                                    <div class="col-sm-4">
+                                        <select class="form-control m-b chosen-select" name="draw_type" id="draw_type">
+                                            <!--<option value="">==请选择用户==</option>-->
+                                            <option value="1" {if condition="$d_type eq '1' "}selected{/if}>周末直播抽奖</option>
+                                            <!--<option value="2" {if condition="$d_type eq '2' "}selected{/if}>顾客</option>-->
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1 control-label " style="text-align: left"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">选择奖项：</label>
+                                    <div class="input-group col-sm-6">
+                                        <div class="radio i-checks">
+                                            <div id="draw">↑↑↑↑↑↑请先选择抽奖轮次↑↑↑↑↑↑</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="hr-line-dashed"></div>-->
+                                <!--<div class="form-group">-->
+                                    <!--<label class="col-sm-1 control-label">中奖人数：</label>-->
+                                    <!--<div class="input-group col-sm-3">-->
+                                        <!--<input id="number" type="number" maxlength="11" class="form-control" name="number" placeholder="输入中奖人数">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-2 col-sm-offset-1">
+                                        <input type="hidden" name="d_type" id="d_type" value="{$d_type}">
+                                        <button class="btn btn-primary" type="button" id="draw_begin" onclick="begin_now()"><i class="fa fa-play"></i> 开始</button>&nbsp;&nbsp;&nbsp;
+                                        <button class="btn btn-danger" type="button" id="draw_end" onclick="vote_end()"><i class="fa fa-stop"></i> 结束</button>&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //报名关闭 开始抽奖
+    function join_close() {
+        chack_ambient();
+        $.ajax({
+            type:"post",
+            async:false,
+            url:"{:url('draw/join_close')}",
+            data: {},
+            dataType:"json",
+            success:function(result){
+                if (result.code==1) {
+                    layer.msg(result.msg, {icon: 1,time:2000,shade: 0.1}, function(index){
+                        layer.close(index);
+                    });
+                }else{
+                    layer.confirm(result.msg, {
+                        btn: ['确定','取消'] //按钮
+                    }, function(){
+                        $.ajax({
+                            type:"post",
+                            async:false,
+                            url:"{:url('draw/join_close')}",
+                            data: {is_ok:1},
+                            dataType:"json",
+                            success:function(result){
+                                if (result.code==1) {
+                                    layer.msg(result.msg, {icon: 1,time:2000,shade: 0.1}, function(index){
+                                        layer.close(index);
+                                    });
+                                }
+                            }
+                        });
+                    });
+                }
+            }
+        });
+    }
+
+
+
+    //准备抽奖 推预告
+    function draw_intro(obj,id) {
+        chack_ambient();
+        var thisObj=$(obj);//js对象转jquery对象
+        thisObj.parent().iCheck('check');
+        $.ajax({
+            type:"post",
+            async:false,
+            url:"{:url('draw/vote_intro')}",
+            data: {id:id},
+            dataType:"json",
+            success:function(result){
+                if (result.code==1) {
+                    layer.msg(result.msg, {icon: 1,time:2000,shade: 0.1}, function(index){
+                        layer.close(index);
+                    });
+
+                }
+            }
+        });
+    }
+
+    //准备抽奖 推预告
+    function ready_draw(obj,id) {
+        chack_ambient();
+        var thisObj=$(obj);//js对象转jquery对象
+        thisObj.parent().iCheck('check');
+        $.ajax({
+            type:"post",
+            async:false,
+            url:"{:url('draw/vote_ready')}",
+            data: {id:id},
+            dataType:"json",
+            success:function(result){
+                if (result.code==1) {
+                    layer.msg(result.msg, {icon: 1,time:2000,shade: 0.1}, function(index){
+                        layer.close(index);
+                    });
+
+                }
+            }
+        });
+    }
+
+    function begin_now(){
+        chack_ambient();
+        var draw_type=$("#draw_type").find("option:selected").val();
+        var draw_id=$("input[name='draw_id']:checked").val();
+        $.ajax({
+            type:"post",
+            async:false,
+            url:"{:url('draw/vote_begin')}",
+            data: {draw_id:draw_id,draw_type:draw_type},
+            dataType:"json",
+            success:function(result){
+                if (result.code==1) {
+                    $('#draw_begin').hide();
+                    layer.msg(result.msg, {icon: 1,time:2000,shade: 0.1}, function(index){
+                        layer.close(index);
+                    });
+                }else{
+                    layer.msg(result.msg, {icon: 5,time:2000,shade: 0.1}, function(index){
+                        layer.close(index);
+                    });
+                }
+            }
+        });
+    }
+
+    function vote_end(){
+        var d_type=$('#draw_type').val();
+        var draw_id=$("input[name='draw_id']:checked").val();
+        $.ajax({
+            type:"post",
+            async:false,
+            url:"{:url('draw/vote_end')}",
+            data: {draw_id:draw_id},
+            dataType:"json",
+            success:function(result){
+                if (result.code==1) {
+                    layer.msg(result.msg, {icon: 1,time:2000,shade: 0.1}, function(index){
+                        //layer.close(index);
+                        window.location.href="{:url('index')}?draw_type="+d_type;
+                    });
+                }
+            }
+        });
+        // $('#number').val('');
+        $('#draw_begin').show();
+    }
+
+    /**
+     * [del_draw 删除奖项]
+     */
+    function del_draw(obj,id){
+        var thisObj=$(obj);//js对象转jquery对象
+        layer.confirm('确认删除此奖项?', {icon: 3, title:'提示'}, function(index){
+            $.getJSON('./del_draw', {'id' : id}, function(res){
+                if(res.code == 1){
+                    layer.msg(res.msg,{icon:1,time:1500,shade: 0.1});
+                    thisObj.parent().remove();
+                }else{
+                    layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+                }
+            });
+            layer.close(index);
+        })
+    }
+
+    function config_draw(obj,id) {
+        location.href = './drawGoods/fid/'+id+'.html';
+    }
+
+    /**
+     * [distroy_draw 清空奖项]
+     */
+    function distroy_draw(){
+        layer.confirm('确认要清空所有中奖记录吗?', {icon: 3, title:'提示'}, function(index){
+            $.getJSON('./distroy_draw', {}, function(res){
+                if(res.code == 1){
+                    layer.msg(res.msg,{icon:1,time:1500,shade: 0.1},function(index){
+                        layer.close(index);
+                        window.location.href="{:url('index')}";
+                    });
+                }else{
+                    layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+                }
+            });
+            layer.close(index);
+        })
+    }
+
+
+    function chack_ambient() {
+        var ambient={$drawAmbient};
+        if(!ambient){
+            layer.msg('请先选择抽奖环境',{icon:0,time:1500,shade: 0.1});
+            return false;
+        }
+    }
+
+    function draw_change(draw_type){
+        if(draw_type>0) {
+            $.ajax({
+                url: '{:url("Draw/drawList")}',
+                dataType: 'json',
+                data: {draw_type: draw_type},
+                method: 'GET',
+                success: function (data) {
+                    jsonObj = eval('(' + data + ')');
+                    console.log(jsonObj);
+                    if (jsonObj.code == 0) {
+                        layer.msg('错误 请重试', {icon: 2, time: 1500, shade: 0.1,});
+                    } else {
+                        var str = '';
+                        $.each(jsonObj.data, function (name, value) {
+                            // str += "<div><input type='radio' name='draw_id' value=" + value.id + " />" + value.draw_rank + "：" + value.draw_name + " 共" + value.draw_num + "名 已抽" + value.count + "名&nbsp;&nbsp; <a href='javascript:;' onclick='ready_draw(this,"+value.id+")'>[准备抽]</a>&nbsp; <a href='{:url(\'edit_draw\')}?id="+value.id+"'>[编辑]</a>&nbsp; <a href='javascript:;' onclick='del_draw(this,"+value.id+")'>[删除]</a>&nbsp; <a href='javascript:;' onclick='send_message(this,"+value.id+")'>[发短信]</a><br/><br/></div>";
+                            str += "<div><span style='min-width: 400px;display: inline-block'><input type='radio' name='draw_id' value=" + value.id + " />" + value.draw_rank + "：" + value.draw_name + " 共" + value.draw_num + "名 <span class='text-danger'>" + value.draw_status + "</span></span>&nbsp;&nbsp; <a class='btn btn-info btn-xs'  href='javascript:;' onclick='draw_intro(this,"+value.id+")'>[推奖品介绍]</a>&nbsp; <a class='btn btn-warning btn-xs'  href='javascript:;' onclick='ready_draw(this,"+value.id+")'>[推奖品图片]</a>&nbsp; <a class='btn btn-default btn-xs' href='{:url(\'edit_draw\')}?id="+value.id+"'>[编辑]</a>&nbsp; <a href='javascript:;' class='btn btn-default btn-xs' onclick='del_draw(this,"+value.id+")'>[删除]</a>&nbsp; <a href='javascript:;' class='btn btn-default btn-xs' onclick='config_draw(this,"+value.id+")'>[配置奖品]</a><br/><br/></div>";
+                        });
+                        $('#draw').html(str);
+                        //$('#jcrs').html(jsonObj.tips);
+                        $(document).ready(function () {
+                            $("#draw").iCheck({
+                                checkboxClass: "icheckbox_square-green",
+                                radioClass: "iradio_square-green",
+                            })
+                        });
+
+                    }
+                },
+                error: function (xhr) {
+                    // 导致出错的原因较多，以后再研究
+                    alert('error:' + JSON.stringify(xhr));
+                }
+            })
+        }else{
+            $('#draw').html('↑↑↑↑↑↑请先选择抽奖轮次↑↑↑↑↑↑');
+        }
+    }
+
+    //选择抽奖对象 显示抽奖产品
+    $("#draw_type").chosen().change(function(){
+        var draw_type=$("#draw_type").find("option:selected").val();
+        draw_change(draw_type);
+    });
+
+    $(function () {
+        var get_d_type=$('#d_type').val();
+        draw_change(get_d_type);
+    });
+
+    function send_message(obj,id) {
+        layer.confirm('确认要发送中奖短信吗?', {icon: 3, title:'提示'}, function(index) {
+            var thisObj = $(obj);//js对象转jquery对象
+            $.ajax({
+                type: "post",
+                async: false,
+                url: "{:url('draw/send_message')}",
+                data: {id: id},
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 1) {
+                        layer.msg(result.msg, {icon: 1, time: 2000, shade: 0.1}, function (index) {
+                            thisObj.remove();
+                            layer.close(index);
+                        });
+                    } else {
+                        layer.msg(res.msg, {icon: 0, time: 1500, shade: 0.1});
+                    }
+                }
+            });
+        });
+    }
+
+    $("#drawStatus").chosen().change(function(){
+        var status=($(this).val());
+        if(status) {
+            $.ajax({
+                url: '{:url("draw/drawAmbient")}',
+                dataType: 'json',
+                data: {status: status},
+                method: 'GET',
+                success: function (data) {
+                    if (data.code == 0) {
+                        layer.msg(data.msg, {icon: 2, time: 1500, shade: 0.1,});
+                    } else {
+                        layer.msg(data.msg, {icon: 1, time: 1500, shade: 0.1}, function (index) {
+                            window.location.reload();
+                        });
+                    }
+                },
+                error: function (xhr) {
+                    // 导致出错的原因较多，以后再研究
+                    alert('error:' + JSON.stringify(xhr));
+                }
+            })
+        }
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>参与活动{$flag ? '奖励' : ''}产品列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post"
+                          action="{:url('goods',['storeid'=>$storeid,'flag'=>$flag])}">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <a href="{:url('goods/add',['storeid'=>$storeid,'cate_id'=>$cate,'source'=>'bargain'])}">
+                                    <button class="btn btn-outline btn-primary" type="button">添加{$flag ? '奖励' : ''}产品</button>
+                                </a>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}"
+                                       placeholder="输入需查询的产品名称" />
+                                <span class="input-group-btn">
+                                    <input type="hidden" id="storeid" name="storeid" value="{$storeid}">
+                                    <input type="hidden" id="flag" name="flag" value="{$flag}">
+                                    <input type="hidden" id="goods_id" name="flag" value="{$goods_id}">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {if condition="!empty($stores)"}
+            <div class="panel">
+                <div class="panel-heading">
+                    <span style="color: #1ab394;">{$stores['title']}</span>（活动商品：<span style="color: #1ab394;">{$activity}</span> 个，奖励商品：<span
+                        style="color:#ed5565;">{$reward}</span> 个）
+                </div>
+            </div>
+            {/if}
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover"  id="article_list">
+                        <thead>
+                        <tr class="long-tr">
+                            <th>ID</th>
+                            <th>商品名称</th>
+                            <th>商品价格</th>
+                            <th>活动价</th>
+                            <th>分类</th>
+                            <th>缩略图</th>
+                            <th>商品类型</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        {volist name='lists' id='val' empty="<tr><td colspan='10'>暂时没有数据</td></tr>"}
+                        <tr class="long-td">
+                            <td>
+                                <div class="radio i-checks">
+                                    <input type="checkbox" value="{$val.id}" {in name="$val.id"
+                                           value="$bargain_goods"}checked{/in} /> {$val.id}
+                                </div>
+                            </td>
+                            <td>{$val.name}</td>
+                            <td>{$val.price}</td>
+                            <td>{$val.activity_price}</td>
+                            <td>{$val.cate_name}</td>
+                            <td><img src="{$val.image}" alt="" width="50px"></td>
+                            <td>{if condition="$val['storeid'] == 0"}基础商品{else/}定制商品{/if}</td>
+                           <!-- <td>
+                                {eq name="val.is_bargain" value="1"}
+                                <a class="red" href="javascript:;" onclick="state({$val.id});">
+                                    <div id="zt{$val.id}"><span class="label label-info">开启</span></div>
+                                </a>
+                                {else/}
+                                <a class="red" href="javascript:;" onclick="state({$val.id});">
+                                    <div id="zt{$val.id}"><span class="label label-danger">禁用</span></div>
+                                </a>
+                                {/eq}
+                            </td>-->
+                            <td>
+                                {eq name="val.goods_cate" value='7'}
+                                {in name="$val.id" value="$bargain_goods"}
+                                <a href="{:url('goods',array('storeid'=>$storeid,'flag'=>1,'goods_id'=>$val['id']))}"
+                                   class="btn btn-primary btn-outline btn-xs">
+                                    <i class="fa fa-gear"></i> 奖励配置</a>&nbsp;&nbsp;
+                                {/in}
+                                {/eq}
+                                {neq name="val.goods_cate" value='0'}
+                                    {neq name="val.storeid" value='0'}
+                                    <a href="{:url('admin/goods/edit',array('storeid'=>$storeid,'cate_id'=>$cate,'id'=>$val['id'],'source'=>'bargain'))"
+                                       class="btn btn-primary btn-outline btn-xs">
+                                        <i class="fa fa-gear"></i> 编辑</a>&nbsp;&nbsp;
+                                    {/neq}
+                                    {in name="$val.id" value="$bargain_goods"}
+                                    <a href="javascript:;" onclick="del({$val.id})" class="btn btn-danger btn-outline btn-xs">
+                                        <i class="fa fa-gear"></i> 删除</a>
+                                    {else/}
+                                    {neq name="val.storeid" value='0'}
+                                        <a href="javascript:;" onclick="del({$val.id})" class="btn btn-danger btn-outline btn-xs">
+                                            <i class="fa fa-gear"></i> 删除</a>
+                                    {/neq}
+                                    {/in}
+                                {/neq}
+                            </td>
+                        </tr>
+                        {/volist}
+                        <tr class="long-tr" style="background-color: #F5F5F6;">
+                            <td colspan="100">
+                                <input type="button"  value="全选" class="btn btn-primary  btn-xs" style="margin-bottom: 3px" id="selectAll">
+                                <input type="button" value="全不选" class="btn btn-primary btn-xs" style="margin-bottom: 3px" id="unSelect">
+                                <input type="button" value="反选" class="btn btn-primary  btn-xs" style="margin-bottom: 3px" id="reverse">
+                                <input type="button" value="确认砍价产品" class="btn btn-danger  btn-xs"
+                                       style="margin-bottom: 3px" id="confirm">
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="text-align: right;margin: -20px 0;">{$lists->render()}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    $(function () {
+        $("#selectAll").click(function () {
+            $("#article_list :checkbox").prop("checked", true);
+        });
+        $("#unSelect").click(function () {
+            $("#article_list :checkbox").prop("checked", false);
+        });
+        $("#reverse").click(function () {
+            $("#article_list :checkbox").each(function () {
+                $(this).prop("checked", !$(this).prop("checked"));
+            });
+        });
+
+        $('#confirm').click(function () {
+            var storeid = $('#storeid').val();
+            var flag = $('#flag').val();
+            var goods_id = $('#goods_id').val();
+            var valArr = new Array();
+            $("#article_list :checkbox:checked").each(function(i){
+                valArr[i] = $(this).val();
+            });
+            var vals = valArr.join(',');//转换为逗号隔开的字符串
+            if (vals.length == 0) {
+                layer.msg('请先勾选确认砍价的产品',{icon:2,time:1500,shade: 0.1,});
+            } else {
+                layer.confirm('您确认将这些产品作为砍价产品吗？', {
+                    btn: ['确认', '取消'] //按钮
+                }, function () {
+                    $.post('{:url("is_bargain_goods")}',
+                        {storeid:storeid,ids:vals,flag:flag,goods_id:goods_id},
+                        function(data){
+                            if(data.code==1){
+                                layer.msg(data.msg,{icon:1,time:1500,shade: 0.1,});
+                                window.location.reload();
+                                return false;
+                            }else{
+                                layer.msg(data.msg,{icon:2,time:1500,shade: 0.1,});
+                                return false;
+                            }
+                        });
+                });
+            }
+        })
+    });
+    $(document).on('click','a[data-storeid]',function () {
+        s = $(this).data('storeid');
+        url = "{:url('goods')}";
+        url = url.replace('.','/storeid/'+s+'.');
+        window.location.href = url
+    })
+    //删除拼团
+    function del(id){
+        layer.confirm('确认删除此条记录吗?', {icon: 3, title:'提示'}, function(index){
+            $.getJSON("{:url('delGoods')}", {'id' : id}, function(res){
+                if(res.code == 1){
+                    layer.msg(res.msg,{icon:1,time:1500,shade: 0.1});
+                    window.location.href="{:url('goods',['storeid'=>$storeid,'flag'=>$flag,'goods'=>$goods_id])}"
+                }else{
+                    layer.msg(res.msg,{icon:0,time:1500,shade: 0.1});
+                }
+            });
+            layer.close(index);
+        })
+    }
+
+    //拼团状态
+    function state(id){
+        lunhui.status(id,'{:url("set_bargain")}');
+    }
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+{include file="public/header" /}
+<body >
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-content" style="border: 0px">
+                <form class="form-horizontal" name="addAll" id="addAll"  method="post" action="{:url('addAll')}">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">活动门店：</label>
+                        <div class="input-group col-sm-5">
+                            <textarea name="sign" id="sign" cols="30" rows="10" class="form-control"></textarea>
+                            <p class="notic" style="padding-top: 10px;"> 按"回车"添加多个</p>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">适用人群：</label>
+                        <div class="input-group col-sm-8">
+                            <div class="checkbox i-checks">
+                                <input type="radio" name='status' value="3" checked/>全部&nbsp;&nbsp;
+                                <input type="radio" name='status' value="1" />非missshop顾客&nbsp;&nbsp;
+                                <input type="radio" name='status' value="2" />missshop顾客&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-3">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                            <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script>
+    //提交
+    $(function(){
+        $('#addAll').ajaxForm({
+            beforeSubmit: checkForm,
+            success: complete,
+            dataType: 'json'
+        });
+
+        function checkForm(){
+            if( '' == $.trim($('#sign').val())){
+                layer.msg('请选择活动门店',{icon:2,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+
+        }
+
+
+        function complete(data){
+            if(data.code==1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    window.parent.location.reload(); //刷新父页面
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1});
+                return false;
+            }
+        }
+
+    });
+
+    //IOS开关样式配置
+    var elem = document.querySelector('.js-switch');
+    var switchery = new Switchery(elem, {
+        color: '#1AB394'
+    });
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>拼人品订单列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('order')}">
+                        <div class="col-sm-12">
+                            <div class="input-group" style="margin-top: -5px;width: 150px">
+                                <select class="form-control m-b chosen-select" name="sale_uid" id="sale_uid">
+                                    <option value="">选择美容师</option>
+                                    {if !empty($seller)}
+                                    {foreach name="seller" item="vo"}
+                                    <option value="{$vo.fid}" {if condition="$sale_uid eq $vo['fid']"}selected{/if}>{$vo.realname}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-top: -5px;">
+                                <select class="form-control m-b chosen-select" name="pay_status" id="pay_status" style="width: 150px;">
+                                    <option value="88" {if condition="$pay_status eq 88"}selected{/if}>请选择支付状态</option>
+                                    <option value="1" {if condition="$pay_status eq 1"}selected{/if}>已完成</option>
+                                    <option value="2" {if condition="$pay_status eq 2"}selected{/if}>进行中</option>
+                                    <option value="3" {if condition="$pay_status eq 3"}selected{/if}>已失效</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" name="start" id="start" onclick="laydate()" value="{$start}" autocomplete="off"  class="form-control layer-date" placeholder="订单开始日期"/>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <input type="text" name="end" id="end" onclick="laydate()" value="{$end}" autocomplete="off" class="form-control layer-date" placeholder="订单结束日期"/>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的用户名" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <div class="btn-group">
+                                       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-download"></i> 导出 <span class="caret"></span>
+                                      </button>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="{:url('export',['key'=>$val,'sale_uid'=>$sale_uid,'pay_status'=>$pay_status,'start'=>$start,'end'=>$end,'export'=>1])}">导出Excel文件</a></li>
+                                        <li><a href="{:url('export',['key'=>$val,'sale_uid'=>$sale_uid,'pay_status'=>$pay_status,'start'=>$start,'end'=>$end,'export'=>2])}">导出Csv文件</a></li>
+                                      </ul>
+                                    </div>
+                                </span>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>所属市场</th>
+                                <th>所属美容院</th>
+                                <th>推广美容师</th>
+                                <th>用户姓名</th>
+                                <th>用户电话</th>
+                                <th>商品</th>
+                                <th>进度</th>
+                                <th>类型</th>
+                                <th>订单编号</th>
+                                <th>数量</th>
+                                <th>金额</th>
+                                <th>下单时间</th>
+                                <th>支付时间</th>
+                                <th>支付状态</th>
+                                <th>取货方式</th>
+                                <th>取货状态</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].id}}</td>
+                                    <td>{{d[i].pertain_department_name}}</td>
+                                    <td>{{d[i].title}}</td>
+                                    <td>{{d[i].sellername}}{{d[i].sellermobile}}</td>
+                                    <td>{{d[i].realname}}</td>
+                                    <td>{{d[i].mobile}}</td>
+                                    <td>{{d[i].name}}</td>
+                                    <td>{{d[i].discount}}</td>
+                                    <td>{{d[i].order_type}}</td>
+                                    <td>{{d[i].order_sn}}</td>
+                                    <td>{{d[i].num}}</td>
+                                    <td>{{d[i].pay_price}}</td>
+                                    <td>{{d[i].insert_time}}</td>
+                                    <td>{{d[i].pay_time}}</td>
+                                    <td>{{d[i].pay_status}}</td>
+                                    <td>{{d[i].pick_type}}</td>
+                                    <td>{{d[i].order_status}}</td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var sale_uid=$('#sale_uid').val();
+        var pay_status=$('#pay_status').val();
+        var start=$('#start').val();
+        var end=$('#end').val();
+        var scene=$('#scene').val();
+        $.getJSON('{:url("order")}', {page: curr || 1,key:key,sale_uid:sale_uid,pay_status:pay_status,start:start,end:end,scene:scene}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+
+    //分期奖品
+    function fenqi(id){
+        location.href = './fenqi/id/'+id+'.html';
+    }
+
+    //编辑奖品
+    function edit(id){
+        location.href = './edit/id/'+id+'.html';
+    }
+
+    //删除奖品
+    function del(id){
+        lunhui.confirm(id,'{:url('del')}');
+    }
+
+    //奖品状态
+    function state(id){
+        lunhui.status(id,'{:url('state')}');
+    }
+
+</script>
+</body>
+</html>

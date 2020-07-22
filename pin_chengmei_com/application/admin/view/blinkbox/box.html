@@ -1,0 +1,186 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>盲盒列表</h5>
+        </div>
+
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('box',array('order_id'=>$order_id))}">
+                        <div class="input-group">
+                            <input type="hidden" name="order_id" value="{$order_id}">
+                            <input type="text" id="key" class="form-control" name="key" value="{$key}"
+                                   placeholder="输入需查询的盒子编号" />
+                            <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+            <div class="panel">
+                <div class="panel-heading">
+                    当前订单号：<span style="color: #1ab394;">{$member['order_sn']}</span> ，拥有人：<span style="color: #ed5565;">{$member['realname']}</span>
+                </div>
+            </div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr class="long-tr">
+                            <th>盲盒编号</th>
+                            <th>盲盒名称</th>
+                            <th>盲盒价格</th>
+                            <th>缩略图</th>
+                            <th>状态</th>
+                            <th>是否赠送</th>
+                            <th>原始拥有者</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                            <tr class="long-td">
+                                <td>{{d[i].blinkno}}</td>
+                                <td>{{d[i].name}}</td>
+                                <td>{{d[i].activity_price}} 元</td>
+                                <td><img src="{{d[i].image}}" alt="" width="50"></td>
+                                <td>{{d[i].status}}</td>
+                                <td>{{d[i].is_give}}</td>
+                                <td>{{d[i].parent_name}}</td>
+                                <td data-uid="{{d[i].uid}}" data-blinkno="{{d[i].blinkno}}">
+                                    {{# if(d[i].is_give1 >0){ }}
+                                    <a class="btn btn-primary btn-outline btn-xs share" href="javascript:;" >分享记录  </a>
+                                    {{# } }}
+                                    {{# if(d[i].status1 == 1){ }}
+                                    <a href="javascript:;" class="btn btn-primary btn-outline btn-xs rats">鼠卡 </a>
+                                    <a href="javascript:;" class="btn btn-primary btn-outline btn-xs coupons">卡券</a>
+                                    {{# } }}
+                                </td>
+                            </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var store_id=$('#store_id').val();
+        var is_custom=$('#is_custom').val();
+        var count="{$count}";
+        var order_id="{:request()->param('order_id')}";
+        $.getJSON('{:url("blinkbox/box")}', {page: curr || 1,order_id:order_id},
+            function(data){
+                $(".spiner-example").css('display','none'); //数据加载完关闭动画
+                if(data==''){
+                    $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+                }else{
+                    var tpl = document.getElementById('list-template').innerHTML;
+                    laytpl(tpl).render(data, function(html){
+                        document.getElementById('list-content').innerHTML = html;
+                    });
+                    laypage({
+                        cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                        pages:'{$allpage}',//总页数
+                        skip: true,//是否开启跳页
+                        skin: '#1AB5B7',//分页组件颜色
+                        curr: curr || 1,
+                        groups: 3,//连续显示分页数
+                        jump: function(obj, first){
+                            if(!first){
+                                Ajaxpage(obj.curr)
+                            }
+                            $('#allpage').html('第'+ obj.curr +'页/共'+ obj.pages +'页，总计'+count+'条记录');
+                        }
+                    });
+                }
+            });
+    }
+
+    //盲盒分享记录
+    $(document).on('click','.share',function () {
+        var _this = $(this);
+        var uid = _this.parent().data('uid'),
+        blinkno = _this.parent().data('blinkno');
+        layer.open({
+            type: 2,
+            title: '分享记录',
+            area: ['768px', '600px'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: '{:url("boxShareRecord")}?uid='+uid+'&blinkno='+blinkno
+        });
+    });
+    //盲盒中鼠卡记录
+    $(document).on('click','.rats',function () {
+        var _this = $(this);
+        var uid = _this.parent().data('uid'),
+            blinkno = _this.parent().data('blinkno');
+        layer.open({
+            type: 2,
+            title: '鼠卡记录',
+            area: ['768px', '600px'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: '{:url("boxRatsRecord")}?uid='+uid+'&blinkno='+blinkno
+        });
+    });
+    //盲盒中卡券记录
+    $(document).on('click','.coupons',function () {
+        var _this = $(this);
+        var uid = _this.parent().data('uid'),
+            blinkno = _this.parent().data('blinkno');
+        layer.open({
+            type: 2,
+            title: '卡券商品记录',
+            area: ['768px', '600px'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: '{:url("boxCouponsRecord")}?uid='+uid+'&blinkno='+blinkno
+        });
+    });
+
+
+
+
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+</body>
+</html>

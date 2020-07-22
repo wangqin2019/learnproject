@@ -1,0 +1,83 @@
+{include file="public/header" /}
+<body >
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+                <div class="ibox-content" style="border: 0px">
+                    <form class="form-horizontal" name="activityGoods" id="activityGoods"  method="post" action="{:url('activity_goods')}">
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">适用人群：</label>
+                            <div class="input-group col-sm-8">
+                                <div class="checkbox i-checks">
+                                    <input type="radio" name='status' value="1" {if condition="$status ==1 || $status == ''"}checked{/if}/>非missshop顾客&nbsp;&nbsp;
+                                    <input type="radio" name='status' value="2" {if condition="$status == 2"}checked{/if}/>missshop顾客&nbsp;&nbsp;
+                                    <input type="radio" name='status' value="3" {if condition="$status == 3"}checked{/if}/>全部&nbsp;&nbsp;
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <input type="hidden" name="storeid" value="{$storeid}">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-danger" type="button" onclick="layer_close()"><i class="fa fa-close"></i> 关闭</button>&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script>
+    var index1 = parent.layer.getFrameIndex(window.name); //获取窗口索引
+    //提交
+    $(function(){
+        $('#activityGoods').ajaxForm({
+            beforeSubmit: checkForm,
+            success: complete,
+            dataType: 'json'
+        });
+
+        function checkForm(){
+
+        }
+
+        function complete(data){
+            var p=window.parent.$('#pp').text();
+            if(data.code==1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    // window.parent.location.reload(); //刷新父页面
+                    window.parent.Ajaxpage(p);
+                    parent.layer.close(index1);
+
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1});
+                return false;
+            }
+        }
+
+    });
+
+    function layer_close() {
+        parent.layer.close(index1);
+    }
+
+    //IOS开关样式配置
+    var elem = document.querySelector('.js-switch');
+    var switchery = new Switchery(elem, {
+        color: '#1AB394'
+    });
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+</script>
+</body>
+</html>

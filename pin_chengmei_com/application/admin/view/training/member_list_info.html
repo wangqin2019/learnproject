@@ -1,0 +1,135 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>减脂营学员打卡列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                </div>
+            </div>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>序号</th>
+                                <th>用户姓名</th>
+                                <th>用户电话</th>
+                                <th>打卡天数</th>
+                                <th>打卡体重</th>
+                                <th>打卡时间</th>
+                                <th>打卡奖励</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                                <tr class="long-td">
+                                    <td>{{d[i].nums}}</td>
+                                    <td>{{d[i].realname}}</td>
+                                    <td>{{d[i].mobile}}</td>
+                                    <td>第{{d[i].day}}天</td>
+                                    <td>{{d[i].weight}}Kg</td>
+                                    <td>{{d[i].insert_time}}</td>
+                                    <td>
+                                        {{# if(d[i].award==1){ }}
+                                        连续打卡7天奖励
+                                        {{# }else if(d[i].award==2){ }}
+                                        连续打卡21天奖励
+                                        {{# }else{ }}
+                                        无
+                                        {{# } }}
+                                    </td>
+                                    <td>
+                                        {{# if(d[i].bs==1){ }}
+                                        <a href="javascript:;" onclick="showDate(this)" class="btn btn-info btn-outline btn-xs">
+                                            <i class="fa fa-eraser"></i> 测量数据</a>
+                                        {{# }else{ }}
+                                        <a href="javascript:alert('暂无测量数据');" class="btn btn-default btn-outline btn-xs">
+                                            <i class="fa fa-eraser"></i> 暂无数据</a>
+                                        {{# } }}
+                                    </td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td colspan="8" style="color: #ff0000;font-weight: bold">
+                                        {{d[i].info}}
+                                    </td>
+                                </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var uid='{$uid}';
+        $.getJSON('{:url("Training/member_list_info")}', {page: curr || 1,uid:uid}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+    //编辑拼团
+    function view(uid){
+        location.href = './member_list_info/uid/'+uid+'.html';
+    }
+    function showDate(obj) {
+        var thisObj=$(obj);//js对象转jquery对象
+        thisObj.parent().parent().next().toggle();
+    }
+
+
+</script>
+</body>
+</html>

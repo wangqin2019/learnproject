@@ -1,0 +1,136 @@
+{include file="public/header" /}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>鼠卡列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-2" style="    width: 140px;">
+                        <div class="input-group">
+                            　<a class="btn btn-primary" href="{:url('addrat')}">添加鼠卡</a>
+                        </div>
+                    </div>
+                    <form name="admin_list_sea" class="form-search form-inline" method="post" action="{:url('store')}">
+                        <div class="input-group">
+                            <input type="text" id="key" class="form-control" name="key" value="{$val}"
+                                   placeholder="输入需查询的鼠卡" />
+                            <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <!--搜索框结束-->
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr class="long-tr">
+                            <th>ID</th>
+                            <th>所属活动</th>
+                            <th>鼠卡名称</th>
+                            <th>缩略图</th>
+                            <th>类型</th>
+                            <th>数量</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        {volist name="lists" id="val"}
+                        <tr class="long-td">
+                            <td>{$val.id}</td>
+                            <td>{$val.activity_name}</td>
+                            <td>{$val.name} </td>
+                            <td>
+                                <img src="{$val.thumb}" alt="" width="50">
+                                <img src="{$val.thumb1}" alt="" width="50">
+                            </td>
+                            <td>
+                                {if condition="$val['type'] == '普通卡'"}
+                                <a class="red" href="javascript:;" >
+                                    <div ><span class="label label-info">{$val.type}</span></div>
+                                </a>
+                                    {else/}
+                                    <a class="red" href="javascript:;" >
+                                        <div ><span class="label label-danger">{$val.type}</span></div>
+                                    </a>
+                                {/if}
+                            </td>
+                            <td>{$val.number} </td>
+                            <td>
+                                <a href="{:url('addrat',array('id'=>$val['id']))}" class="btn btn-info btn-xs btn-outline">
+                                    编辑
+                                </a>
+                            </td>
+                        </tr>
+                        {/volist}
+                    </table>
+                    <div style="text-align: right">{$page}</div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+
+
+{include file="public/footer" /}
+
+<script type="text/javascript">
+    //laypage分页
+
+    $(function () {
+        $('#addAll').click(function () {
+            layer.open({
+                type: 2,
+                area: ['768px', '600px'],
+                fixed: false, //不固定
+                maxmin: true,
+                content: '{:url("bargain/addAll")}'
+            });
+        })
+    });
+
+    function activity_goods(id){
+        layer.open({
+            type: 2,
+            area: ['768px', '600px'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: '{:url("bargain/activity_goods")}?storeid='+id
+        });
+    }
+    //编辑拼团
+    function edit(id){
+        location.href = './edit/id/'+id+'.html';
+    }
+
+    //删除拼团
+    function del(id){
+        lunhui.confirm(id,'{:url("del")}');
+    }
+
+    //拼团状态
+    function state(id){
+        lunhui.status(id,'{:url("state")}');
+    }
+    var config = {
+        '.chosen-select': {},
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+</body>
+</html>
